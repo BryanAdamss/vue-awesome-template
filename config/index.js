@@ -22,6 +22,7 @@ module.exports = {
       [API_PREFIX]: {
         target: API_PROXY_URL, // 目标url
         changeOrigin: true, // 更改host header的origin为target URL
+        // secure: false,  // 如果是https接口，需要配置这个参数
         pathRewrite: {
           // 将最终url中匹配正则的部分替换成对应字符串
           // 下面是将最终url中开头的/api替换成''

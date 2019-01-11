@@ -1,0 +1,37 @@
+@charset "UTF-8";
+// 通用助手样式
+.u-textL {
+    text-align: left !important;
+}
+
+.u-textC {
+    text-align: center !important;
+}
+
+.u-textR {
+    text-align: right !important;
+}
+
+.u-textRtl {
+    direction: rtl !important;
+}
+
+.u-textBreak {
+    @extend %textWrap;
+}
+
+.u-textMainTone {
+    color: $mainTone !important;
+}
+
+.u-textSubTone {
+    color: $subTone !important;
+}
+
+.u-textWarn {
+    color: $warnningColor !important;
+}
+
+.u-textDanger {
+    color: $dangerColor !important;
+}

@@ -1,0 +1,37 @@
+@charset "UTF-8";
+// ---------------------------------------------
+// 默认开关变量设置
+// ---------------------------------------------
+$lte7: true !default; //是否兼容ie6-7
+$filter: true !default; //是否为ie6-8开启css3滤镜兼容，常用于渐变背景
+$printStyleSwitch: false !default; //是否开启打印样式
+// ---------------------------------------------
+// font相关
+// ---------------------------------------------
+// html基础字体样式
+$baseFontPC: arial, \5b8b\4f53, "Hiragino Sans GB", "Microsoft YaHei", sans-serif; //PC端,$pageType为PC
+$baseFontM: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif; //$pageType为M
+// 常用字体
+$fontSong: \5b8b\4f53 !default; //宋体
+$fontYaHei: "Microsoft YaHei" !default; //微软雅黑
+// ---------------------------------------------
+// 颜色
+// ---------------------------------------------
+// 页面主要色调
+$mainTone: #3da4fe !default;
+$subTone: #fe6e00 !default;
+// 文字颜色
+$mainTextColor: #666 !default;
+$subTextColor: #ccc !default;
+// 边框颜色
+$baseBorderColor: #c7c7c7 !default;
+// 按钮文字颜色
+$mainButtonColor: #fff !default;
+// 辅助颜色
+$dangerColor: #a94442 !default;
+$warnningColor: #8a6d3b !default;
+// ---------------------------------------------
+// 尺寸
+// ---------------------------------------------
+// 设计图尺寸，用于rem()和设置html的字体大小
+$designWidth: 750px !default;

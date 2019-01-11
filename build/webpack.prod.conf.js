@@ -11,9 +11,30 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-const env = process.env.NODE_ENV === 'testing'
-  ? require('../config/test.env')
-  : require('../config/prod.env')
+const env =
+  process.env.NODE_ENV === 'testing'
+    ? require('../config/test.env')
+    : require('../config/prod.env')
+
+// * 2019-0111-添加资源导入插件
+const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
+
+// * 生产环境根据不同打包模式导入不同资源
+const HtmlWebpackIncludeAssets =
+  process.env.BUILD_MODE === 'test'
+    ? [
+        './static/formula/katex/katex.css',
+        './static/formula/katex/katex.min.js',
+        './static/formula/mathjax/MathJax.js?config=TeX-AMS_CHTML',
+        './static/formula/mathjax-config-cutom.js'
+      ]
+    : [
+        // * 此处由于没有实际cdn地址，所以还是用和test模式一样的资源路径
+        './static/formula/katex/katex.css',
+        './static/formula/katex/katex.min.js',
+        './static/formula/mathjax/MathJax.js?config=TeX-AMS_CHTML',
+        './static/formula/mathjax-config-cutom.js'
+      ]
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -26,18 +47,24 @@ const webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    filename: utils.assetsPath('js/[name].[chunkhash].js')
+    // * 2019-0111-调整生产环境输出的chunk名，使用base config中的chunkFilename
+    // chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      'process.env': env
+      'process.env': env,
+      // * 2019-0111-生产环境添加不同的BUILD_MODE
+      'process.env.BUILD_MODE': JSON.stringify(process.env.BUILD_MODE)
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
         compress: {
-          warnings: false
+          warnings: false,
+          // * 2019-0111-去除console及debugger
+          drop_debugger: true,
+          drop_console: true
         }
       },
       sourceMap: config.build.productionSourceMap,
@@ -48,9 +75,9 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: utils.assetsPath('css/[name].[contenthash].css'),
       // Setting the following option to `false` will not extract CSS from codesplit chunks.
       // Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.
-      // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`, 
+      // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`,
       // increasing file size: https://github.com/vuejs-templates/webpack/issues/1110
-      allChunks: true,
+      allChunks: true
     }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
@@ -63,9 +90,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: process.env.NODE_ENV === 'testing'
-        ? 'index.html'
-        : config.build.index,
+      filename:
+        process.env.NODE_ENV === 'testing' ? 'index.html' : config.build.index,
       template: 'index.html',
       inject: true,
       minify: {
@@ -78,6 +104,12 @@ const webpackConfig = merge(baseWebpackConfig, {
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
     }),
+    // * 2019-0111-生产环境导入公式相关资源
+    new HtmlWebpackIncludeAssetsPlugin({
+      assets: HtmlWebpackIncludeAssets,
+      append: false,
+      publicPath: false
+    }),
     // keep module.id stable when vendor modules does not change
     new webpack.HashedModuleIdsPlugin(),
     // enable scope hoisting
@@ -85,14 +117,12 @@ const webpackConfig = merge(baseWebpackConfig, {
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      minChunks (module) {
+      minChunks(module) {
         // any required modules inside node_modules are extracted to vendor
         return (
           module.resource &&
           /\.js$/.test(module.resource) &&
-          module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
-          ) === 0
+          module.resource.indexOf(path.join(__dirname, '../node_modules')) === 0
         )
       }
     }),
@@ -131,9 +161,7 @@ if (config.build.productionGzip) {
       asset: '[path].gz[query]',
       algorithm: 'gzip',
       test: new RegExp(
-        '\\.(' +
-        config.build.productionGzipExtensions.join('|') +
-        ')$'
+        '\\.(' + config.build.productionGzipExtensions.join('|') + ')$'
       ),
       threshold: 10240,
       minRatio: 0.8
@@ -142,7 +170,8 @@ if (config.build.productionGzip) {
 }
 
 if (config.build.bundleAnalyzerReport) {
-  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+    .BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 

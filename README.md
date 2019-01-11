@@ -1,7 +1,7 @@
 # vue-10w-template
 
-> A Vue.js project
-> 参照https://juejin.im/post/5b29c3bde51d45588d4d7110实现的一个个人模板
+- 参照 [链接](https://juejin.im/post/5b29c3bde51d45588d4d7110)
+- 实现的一个模板
 
 ## Build Setup
 

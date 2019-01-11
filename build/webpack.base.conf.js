@@ -37,7 +37,17 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      '@': resolve('src')
+      '@': resolve('src'),
+      // * 2019-0111-添加相关路径别名
+      Api: resolve('src/api'),
+      Assets: resolve('src/assets'),
+      Base: resolve('src/base'),
+      Common: resolve('src/common'),
+      Components: resolve('src/components'),
+      Directives: resolve('src/Directives'),
+      Sass: resolve('src/sass'),
+      Store: resolve('src/store'),
+      Views: resolve('src/views')
     }
   },
   module: {

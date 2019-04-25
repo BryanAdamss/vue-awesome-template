@@ -1,4 +1,13 @@
-// dom.js用来保存通用的dom操作函数
+/**
+ * @author GuangHui
+ * @description dom 操作相关
+ */
+
+/**
+ * 添加样式类
+ * @param {Element} el 元素
+ * @param {String} className 样式名
+ */
 export function addClass(el, className) {
   if (hasClass(el, className)) {
     return
@@ -8,6 +17,11 @@ export function addClass(el, className) {
   el.className = newClass.join(' ')
 }
 
+/**
+ * 移除样式类
+ * @param {Element} el 元素
+ * @param {String} className 样式名
+ */
 export function removeClass(el, className) {
   if (!hasClass(el, className)) {
     return
@@ -17,11 +31,22 @@ export function removeClass(el, className) {
   el.className = newClassList.join(' ')
 }
 
+/**
+ * 判断是否有样式类
+ * @param {Element} el 元素
+ * @param {String} className 样式类
+ */
 export function hasClass(el, className) {
   let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
   return reg.test(el.className)
 }
 
+/**
+ * 获取/设置data-*
+ * @param {Element} el 元素
+ * @param {String} name 名称
+ * @param {Any} val 需要设置的值
+ */
 export function getData(el, name, val) {
   const prefix = 'data-'
   name = prefix + name
@@ -56,7 +81,10 @@ let vendor = (() => {
   return false
 })()
 
-// 添加前缀
+/**
+ * 添加前缀
+ * @param {String} style 样式字符串
+ */
 export function prefixStyle(style) {
   if (vendor === false) {
     return false
@@ -69,7 +97,10 @@ export function prefixStyle(style) {
   return vendor + style.charAt(0).toUpperCase() + style.substr(1)
 }
 
-// 获取元素尺寸
+/**
+ * 获取元素尺寸
+ * @param {Element} el 元素
+ */
 export function getRect(el) {
   if (el instanceof window.SVGElement) {
     let rect = el.getBoundingClientRect()
@@ -91,6 +122,7 @@ export function getRect(el) {
 
 /**
  * 复制到剪贴板
+ * @param {String} str 需要复制的字符串
  */
 export function copyToClipboard(str) {
   const el = document.createElement('textarea')

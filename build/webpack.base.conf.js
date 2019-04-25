@@ -44,10 +44,11 @@ module.exports = {
       Base: resolve('src/base'),
       Common: resolve('src/common'),
       Components: resolve('src/components'),
-      Directives: resolve('src/Directives'),
+      Directives: resolve('src/directives'),
       Sass: resolve('src/sass'),
       Store: resolve('src/store'),
-      Views: resolve('src/views')
+      Views: resolve('src/views'),
+      Utils: resolve('src/utils')
     }
   },
   module: {

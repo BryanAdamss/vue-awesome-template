@@ -218,7 +218,7 @@ export function isArrayLike(collection) {
 
 /**
  * 判断数组或对象是否为空
- * @param {*} obj
+ * @param {Any} obj
  */
 export function isEmpty(obj) {
   if (obj == null) return true

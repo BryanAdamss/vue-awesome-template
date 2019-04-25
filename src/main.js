@@ -17,7 +17,7 @@ import router from './router'
 import BaseToast from 'Base/BaseToast/BaseToast'
 
 import axios from 'Common/js/axios'
-import { debounce, throttle } from 'Common/js/utils'
+import { debounce, throttle } from 'Utils/tools'
 
 import { DEBUG } from 'Common/js/const'
 

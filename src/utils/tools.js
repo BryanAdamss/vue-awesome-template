@@ -1,4 +1,8 @@
-// utils.js用来定义通用的js操作函数
+/**
+ * @author GuangHui
+ * @description 常用js工具函数
+ */
+
 /**
  * 用来获取一个区间的随机整数
  * @param min

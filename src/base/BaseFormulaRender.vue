@@ -10,7 +10,7 @@
  * @description 基础公式渲染组件
  */
 
-import { timeChunk } from 'Common/js/utils'
+import { timeChunk } from 'Utils/tools'
 
 window.__formula_err_queues__ = []
 window.__formula_err_timer__ = null

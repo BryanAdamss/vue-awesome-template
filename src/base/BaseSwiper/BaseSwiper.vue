@@ -29,7 +29,7 @@
 
 import BaseSwiperSlide from './BaseSwiperSlide'
 
-import { easeOut } from 'Common/js/easings'
+import { easeOut } from 'Utils/easings'
 // import { rafAnim } from 'Common/js/rafAnim'
 
 export default {

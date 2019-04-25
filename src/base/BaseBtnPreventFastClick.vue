@@ -1,9 +1,10 @@
 <script>
 /**
  * * BaseBtnPreventFastClick
+ * * 防暴击按钮
  */
 
-import { debounce } from 'Common/js/utils'
+import { debounce } from 'Utils/tools'
 
 export default {
   name: 'BaseBtnPreventFastClick',

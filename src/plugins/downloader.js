@@ -3,7 +3,7 @@
  * @description 前端下载
  */
 
-import { isIE } from './browser'
+import { isIE } from 'Utils/browser'
 
 class Downloader {
   constructor() {

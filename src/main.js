@@ -17,7 +17,7 @@ import router from './router'
 import BaseToast from 'Base/BaseToast/BaseToast'
 
 import axios from 'Common/js/axios'
-import { debounce, throttle } from 'Utils/tools'
+import { debounce, throttle } from 'Utils'
 
 import { DEBUG } from 'Common/js/const'
 
@@ -59,7 +59,7 @@ document.addEventListener(
 // * 注册lazyload并配置默认图
 // * ----------------------------------------
 Vue.use(VueLazyload, {
-  loading: require('Common/img/loading.gif')
+  loading: require('Assets/img/loading.gif')
 })
 
 /* eslint-disable no-new */
@@ -67,6 +67,5 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
-  template: '<App/>'
+  render: h => h(App)
 })

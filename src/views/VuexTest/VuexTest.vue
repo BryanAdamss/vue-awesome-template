@@ -4,10 +4,10 @@
     <div @click="change">点击设置全局vuex</div>
 
     <span>moduleANameLen：{{ moduleANameLen }}</span>
-    <div @click="setModuleAName(moduleAParams)">点击设置模块A Vuex</div>
+    <div @click="setModuleAName({moduleAName:Math.random().toString()})">点击设置模块A Vuex</div>
 
     <span>moduleBNameLen：{{ moduleBNameLen }}</span>
-    <div @click="setModuleBName(moduleBParams)">点击设置模块B Vuex</div>
+    <div @click="setModuleBName({ moduleBName:Math.random().toString() })">点击设置模块B Vuex</div>
   </div>
 </template>
 
@@ -39,13 +39,7 @@ export default {
   name: 'VuexTest',
   data() {
     return {
-      count: 0,
-      moduleAParams: {
-        moduleAName: Math.random().toString()
-      },
-      moduleBParams: {
-        moduleBName: Math.random().toString()
-      }
+      count: 0
     }
   },
   computed: {

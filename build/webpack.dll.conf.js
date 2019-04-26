@@ -12,7 +12,8 @@ const dllWebpackConfig = {
       'vue-router',
       'better-scroll',
       'velocity-animate',
-      'vue-lazyload'
+      'vue-lazyload',
+      'babel-polyfill'
     ]
   },
   output: {

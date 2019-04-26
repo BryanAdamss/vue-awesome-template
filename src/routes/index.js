@@ -2,8 +2,35 @@
  * @author GuangHui
  * @description 路由入口
  */
-
-import others from './others'
+import axiosTest from './axios-test'
+import betterScrollTest from './better-scroll-test'
+import clickAreaExpandTest from './click-area-expand-test'
+import clickOutsideTest from './click-outside-test'
+import confirmTest from './confirm-test'
+import debounceThrottleTest from './debounce-throttle-test'
+import downloaderTest from './downloader-test'
+import dragTest from './drag-test'
+import eventBusTest from './event-bus-test'
+import formulaTest from './formula-test'
+import goToTopTest from './go-to-top-test'
+import home from './home'
+import imgLazyloadTest from './img-lazyload-test'
+import inputAutoHeightTest from './input-auto-height-test'
+import layoutTest from './layout-test'
+import listTransitionTest from './list-transition-test'
+import loadingTest from './loading-test'
+import login from './login'
+import modalTest from './modal-test'
+import numberToChineseTest from './number-to-chinese-test'
+import popUpTest from './pop-up-test'
+import preventFastClickTest from './prevent-fast-click-test'
+import pullupTest from './pullup-test'
+import scrollbarTest from './scrollbar-test'
+import swiperTest from './swiper-test'
+import timeCounterTest from './time-counter-test'
+import toastTest from './toast-test'
+import userCenter from './user-center'
+import vuexTest from './vuex-test'
 
 export default [
   {
@@ -21,5 +48,33 @@ export default [
       name: 'Home'
     }
   },
-  ...others
+  ...axiosTest,
+  ...betterScrollTest,
+  ...clickAreaExpandTest,
+  ...clickOutsideTest,
+  ...confirmTest,
+  ...debounceThrottleTest,
+  ...downloaderTest,
+  ...dragTest,
+  ...eventBusTest,
+  ...formulaTest,
+  ...goToTopTest,
+  ...home,
+  ...imgLazyloadTest,
+  ...inputAutoHeightTest,
+  ...layoutTest,
+  ...listTransitionTest,
+  ...loadingTest,
+  ...login,
+  ...modalTest,
+  ...numberToChineseTest,
+  ...popUpTest,
+  ...preventFastClickTest,
+  ...pullupTest,
+  ...scrollbarTest,
+  ...swiperTest,
+  ...timeCounterTest,
+  ...toastTest,
+  ...userCenter,
+  ...vuexTest
 ]

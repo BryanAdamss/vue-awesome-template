@@ -4,7 +4,7 @@
  * * 防暴击按钮
  */
 
-import { debounce } from 'Utils/tools'
+import { debounce } from 'Utils'
 
 export default {
   name: 'BaseBtnPreventFastClick',

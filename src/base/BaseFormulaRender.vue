@@ -10,7 +10,7 @@
  * @description 基础公式渲染组件
  */
 
-import { timeChunk } from 'Utils/tools'
+import { timeChunk } from 'Utils'
 
 window.__formula_err_queues__ = []
 window.__formula_err_timer__ = null

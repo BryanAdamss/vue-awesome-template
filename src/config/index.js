@@ -3,6 +3,10 @@
  * @description 项目配置及开关
  */
 
+// * ----------------------------------------
+// * 项目默认配置
+// * ----------------------------------------
+
 // BASE_URL 默认配置
 export const BASE_URL =
   process.env.NODE_ENV !== 'production'
@@ -40,16 +44,6 @@ export const ROUTER_DEFAULT_CONFIG = {
   base: ''
 }
 
-// 全局命名空间
-export const GLOBAL_NAME_SPACE = '__VUE_10W_TEMPLATE__'
-
-// APP信息
-export const APP_INFO = Object.freeze({
-  name: 'VUE_10W_TEMPLATE',
-  desc: 'vue_10w_模板',
-  version: '1.0.0'
-})
-
 // global-loading 默认配置
 export const GLOBAL_LOADING_DEFAULT_CONFIG = {
   showEventName: 'global.loading.show',
@@ -59,5 +53,26 @@ export const GLOBAL_LOADING_DEFAULT_CONFIG = {
   debug: false
 }
 
-// 开关
+// * ----------------------------------------
+// * 开关
+// * ----------------------------------------
+
+// 开启vconsole
 export const VCONSOLE_DEBUG = false
+
+// * ----------------------------------------
+// * App描述信息
+// * ----------------------------------------
+
+// App 名
+export const APP_NAME = 'VUE_10W_TEMPLATE'
+
+// 全局命名空间
+export const GLOBAL_NAME_SPACE = `__${APP_NAME}__`
+
+// APP信息
+export const APP_INFO = Object.freeze({
+  name: APP_NAME,
+  desc: 'vue_10w_模板',
+  version: '1.0.0'
+})

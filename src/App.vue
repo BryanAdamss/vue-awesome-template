@@ -25,6 +25,8 @@ import BaseLayoutVertical from 'Base/BaseLayoutVertical'
 
 import TopBar from 'Components/TopBar'
 
+import {LOADING_DEFAULT_CONFIG} from 'Config'
+
 export default {
   name: 'App',
   components: {
@@ -43,6 +45,34 @@ export default {
       if (to.meta && to.meta.title) {
         this.title = to.meta.title
       }
+    }
+  },
+  created() {
+    this.bindEvents()
+  },
+  methods: {
+    bindEvents() {
+      // 接口报错弹窗
+      this.$bus.$on('business.response.incorrect', msg => {
+        // 接口返回code不为200时默认弹窗
+        if (!msg) return
+        this.$message(msg)
+      })
+
+      // 展示loading
+      this.$bus.$on('global.loading.show', config => {
+        if (!this.loading) {
+          this.loading = this.$loading(Object.assign({}, LOADING_DEFAULT_CONFIG, config))
+        }
+      })
+
+      // 隐藏loading
+      this.$bus.$on('global.loading.hide', () => {
+        if (this.loading) {
+          this.loading.close()
+          this.loading = null
+        }
+      })
     }
   }
 }

@@ -32,6 +32,11 @@ export function respSuccFn(respObj) {
     respObj.data.code == null ||
     respObj.data.result == null
   ) {
+    !respObj.config._noShowDefaultError &&
+      window[GLOBAL_NAME_SPACE].$bus.$emit(
+        'business.response.incorrect',
+        '服务器异常，请稍后重试。'
+      )
     return Promise.reject('未获取到有效消息体')
   }
 

@@ -36,10 +36,14 @@ export default {
   created() {
     this.isLoading = true
     // * 测试axios
-    this.$http.get('/api/posts').then(res => {
+    this.$api['common/getPost']({}, {
+      // _noShowDefaultError: true
+    }).then(res => {
       console.log(res)
       this.posts = res
       this.isLoading = false
+    }).catch(err => {
+      console.log('err', err)
     })
   },
   beforeRouteEnter(to, from, next) {

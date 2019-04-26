@@ -10,6 +10,7 @@ import api from 'Plugins/api-builder'
 import { throttle, debounce } from 'Utils'
 import { GLOBAL_NAME_SPACE, BASE_URL, APP_INFO } from 'Config'
 import { Loading, Message, MessageBox } from 'element-ui'
+import BaseToast from 'Base/BaseToast/BaseToast'
 
 Vue.use(Loading.directive)
 
@@ -17,6 +18,8 @@ const vueInjecter = {
   install: (Vue, options) => {
     Vue.prototype.$throttle = throttle
     Vue.prototype.$debounce = debounce
+
+    Vue.prototype.$toast = BaseToast
 
     Vue.prototype.$bus = bus
     Vue.prototype.$api = api

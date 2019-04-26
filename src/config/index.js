@@ -51,7 +51,7 @@ export const APP_INFO = Object.freeze({
 })
 
 // global-loading 默认配置
-export const GLOBAL_LOADING_CONFIG = {
+export const GLOBAL_LOADING_DEFAULT_CONFIG = {
   showEventName: 'global.loading.show',
   hideEventName: 'global.loading.hide',
   minReqTime: 400,

@@ -45,8 +45,10 @@ module.exports = {
       Config: resolve('src/config'),
       Components: resolve('src/components'),
       Directives: resolve('src/directives'),
+      Routes: resolve('src/routes'),
       Sass: resolve('src/sass'),
       Store: resolve('src/store'),
+      Services: resolve('src/services'),
       Plugins: resolve('src/plugins'),
       Views: resolve('src/views'),
       Utils: resolve('src/utils')

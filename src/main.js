@@ -1,66 +1,48 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import 'babel-polyfill'
+
 import Vue from 'vue'
+import App from './App'
 
 // * ----------------------------------------
-// * 基础库引入
+// * 导入插件
 // * ----------------------------------------
-import 'Assets/js/flexible-custom'
-import 'Assets/js/fastclick-custom'
+import router from 'Plugins/router-instance'
+import store from 'Plugins/vuex-instance'
+import { vueInjecter, globalInjecter } from 'Plugins/injecter'
+import { directiveRegister } from 'Plugins/register'
 
+// * ----------------------------------------
+// * 导入组件
+// * ----------------------------------------
 import VueLazyload from 'vue-lazyload'
 
-import App from './App'
-import store from './store'
-import router from './router'
-
-import BaseToast from 'Base/BaseToast/BaseToast'
-
-import axios from 'Common/js/axios'
-import { debounce, throttle } from 'Utils'
-
-import { DEBUG } from 'Common/js/const'
-
-Vue.use({
-  install: Vue => {
-    // * 绑定去抖及节流函数到Vue原型上，方便直接调用
-    Vue.prototype.$debounce = debounce
-    Vue.prototype.$throttle = throttle
-    // * 绑定axios到Vue原型上，方便使用this.$http来调用接口
-    Vue.prototype.$http = axios
-    // * 绑定toast到Vue原型上，方便使用this.$toast来调用
-    Vue.prototype.$toast = BaseToast
-    // * 绑定bus到Vue原型上，方便使用this.$bus来调用
-    Vue.prototype.$bus = new Vue()
-  }
-})
+// * ----------------------------------------
+// * 导入组件样式
+// * ----------------------------------------
+import 'element-ui/lib/theme-chalk/index.css'
 
 // * ----------------------------------------
-// * 调试工具引入
-// * ----------------------------------------
-if (DEBUG && process.env.NODE_ENV === 'development') {
-  /* eslint-disable no-unused-vars */
-  var vConsole = new Vconsole()
-}
-
-Vue.config.productionTip = false
-
-// * ----------------------------------------
-// * 在body上绑定fastclick
-// * ----------------------------------------
-document.addEventListener(
-  'DOMContentLoaded',
-  function() {
-    FastClick.attach(document.body)
-  },
-  false
-)
-// * ----------------------------------------
-// * 注册lazyload并配置默认图
+// * 注册组件
 // * ----------------------------------------
 Vue.use(VueLazyload, {
   loading: require('Assets/img/loading.gif')
 })
+
+// * ----------------------------------------
+// * 调用filters、directives注册器
+// * ----------------------------------------
+directiveRegister()
+
+// * ----------------------------------------
+// * 调用注入器
+// * ----------------------------------------
+Vue.use(vueInjecter)
+globalInjecter()
+
+// * ----------------------------------------
+// * 实例化vue
+// * ----------------------------------------
+Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({

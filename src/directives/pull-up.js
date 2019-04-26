@@ -1,4 +1,4 @@
-import { eventListenerPassiveSupported, throttle } from 'Utils/tools'
+import { eventListenerPassiveSupported, throttle } from 'Utils'
 
 import Vue from 'vue'
 import BaseLoadingSpinner from 'Base/BaseLoadingSpinner'

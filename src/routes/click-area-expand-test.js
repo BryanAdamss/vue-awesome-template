@@ -1,5 +1,5 @@
 /**
- * @author ghchu
+ * @author GuangHui
  * @description click-area-expand 测试页
  */
 const ClickAreaExpandTest = () =>

@@ -1,5 +1,5 @@
 /**
- * @author ghchu
+ * @author GuangHui
  * @description directive、filters 注册器
  */
 import Vue from 'vue'

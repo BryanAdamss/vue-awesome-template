@@ -1,5 +1,5 @@
 /**
- * @author ghchu
+ * @author GuangHui
  * @description prevent-fast-click-test 测试页
  */
 

@@ -1,5 +1,5 @@
 /**
- * @author ghchu
+ * @author GuangHui
  * @description modal 测试页
  */
 const ModalTest = () =>

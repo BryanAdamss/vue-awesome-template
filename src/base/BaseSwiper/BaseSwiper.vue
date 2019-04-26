@@ -23,7 +23,7 @@
 <script>
 /**
  * * Swiper
- * * @author ghchu
+ * * @author GuangHui
  * * @description 通用swiper组件
  */
 

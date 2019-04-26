@@ -13,7 +13,7 @@
  * * TimeCounterTest
  */
 
-import TimeCounter from 'Common/js/time-counter'
+import TimeCounter from 'Plugins/time-counter'
 
 export default {
   name: 'TimeCounterTest',

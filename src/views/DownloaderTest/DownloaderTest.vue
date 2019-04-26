@@ -1,8 +1,6 @@
 <template>
   <div class="c-DownloaderTest">
-    <a
-      href="https://test.zhixue.com/paperdownload/download/preview/download?paperId=5b75fc64-da6d-412c-8b2d-73675d7d038c&fileFormat=docx&pageType=A4&paperType=1"
-      download="test">下载</a>
+    <button @click="download">下载</button>
   </div>
 </template>
 
@@ -24,11 +22,14 @@ export default {
   watch: {},
   beforeCreate() {},
   created() {
-    const downloader = new Downloader()
-    downloader.download('https://test.zhixue.com/paperdownload/download/preview/download?paperId=5b75fc64-da6d-412c-8b2d-73675d7d038c&fileFormat=docx&pageType=A4&paperType=1')
   },
   mounted() {},
-  methods: {}
+  methods: {
+    download() {
+      const downloader = new Downloader()
+      downloader.download('https://test.zhixue.com/paperdownload/download/preview/download?paperId=5b75fc64-da6d-412c-8b2d-73675d7d038c&fileFormat=docx&pageType=A4&paperType=1')
+    }
+  }
 }
 </script>
 

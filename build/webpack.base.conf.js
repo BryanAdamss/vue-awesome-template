@@ -42,11 +42,12 @@ module.exports = {
       Api: resolve('src/api'),
       Assets: resolve('src/assets'),
       Base: resolve('src/base'),
-      Common: resolve('src/common'),
+      Config: resolve('src/config'),
       Components: resolve('src/components'),
       Directives: resolve('src/directives'),
       Sass: resolve('src/sass'),
       Store: resolve('src/store'),
+      Plugins: resolve('src/plugins'),
       Views: resolve('src/views'),
       Utils: resolve('src/utils')
     }

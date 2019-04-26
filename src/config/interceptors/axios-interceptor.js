@@ -4,17 +4,10 @@
  */
 
 import { isEmpty } from 'Utils/type-judge'
-import {
-  GLOBAL_NAME_SPACE,
-  GLOBAL_LOADING_SHOW_NAME,
-  GLOBAL_LOADING_HIDE_NAME
-} from 'Config'
+import { GLOBAL_NAME_SPACE, GLOBAL_LOADING_DEFAULT_CONFIG } from 'Config'
 import GlobalLoading from 'Plugins/global-loading'
 
-const globalLoading = new GlobalLoading({
-  showEventName: GLOBAL_LOADING_SHOW_NAME,
-  hideEventName: GLOBAL_LOADING_HIDE_NAME
-})
+const globalLoading = new GlobalLoading(GLOBAL_LOADING_DEFAULT_CONFIG)
 
 export function reqResolveFn(reqConf) {
   // 请求拦截

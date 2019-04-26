@@ -23,14 +23,11 @@
 <script>
 /**
  * * Swiper
- * * @author GuangHui
+ * * @author ghchu
  * * @description 通用swiper组件
  */
 
 import BaseSwiperSlide from './BaseSwiperSlide'
-
-import { easeOut } from 'Utils/easings'
-// import { rafAnim } from 'Common/js/rafAnim'
 
 export default {
   name: 'Swiper',
@@ -96,7 +93,10 @@ export default {
       const { pageX: firstPageX, pageY: firstPageY } = touch
       const target = e.currentTarget
 
+      target.removeEventListener('transitionend', transitionendHandler)
+
       let direction = -1 // 方向 1横向 0竖向 -1为默认值
+      let scheduledAnimationFrame = false
 
       function onTouchmoveHandler(e) {
         const touch = e.changedTouches[0]
@@ -110,14 +110,17 @@ export default {
         }
 
         // eslint-disable-next-line
-        if (direction === 0) return // 忽略竖向
+        if (direction === 0 || scheduledAnimationFrame) return // 忽略竖向
 
         const offset = movePageX - firstPageX
 
         that.transformPosX = that.lastTransformPosX + offset
 
+        scheduledAnimationFrame = true
+        target.style.transition = ''
         window.requestAnimationFrame(() => {
-          target.style.transform = `translateX(${that.transformPosX}px)`
+          scheduledAnimationFrame = false
+          target.style.transform = `translate3d(${that.transformPosX}px,0,0)`
         })
       }
 
@@ -146,7 +149,10 @@ export default {
               const newPosX = that.lastTransformPosX + that.elW
               moveAnimation(that.transformPosX, newPosX)
               that.lastTransformPosX = that.transformPosX = newPosX
-              that.cur--
+
+              setTimeout(() => {
+                that.cur--
+              }, 0)
             } else {
               // * 回到本页
               moveAnimation(that.transformPosX, that.lastTransformPosX)
@@ -166,7 +172,10 @@ export default {
               const newPosX = that.lastTransformPosX - that.elW
               moveAnimation(that.transformPosX, newPosX)
               that.transformPosX = that.lastTransformPosX = newPosX
-              that.cur++
+
+              setTimeout(() => {
+                that.cur++
+              }, 0)
             } else {
               // * 回到本页
               moveAnimation(that.transformPosX, that.lastTransformPosX)
@@ -182,21 +191,18 @@ export default {
         removeAllHandler()
       }
 
+      function transitionendHandler() {
+        target.style.transition = ''
+        target.removeEventListener('transitionend', transitionendHandler)
+      }
+
       function moveAnimation(moveStart, moveEnd) {
         if (moveStart - moveEnd === 0) return
-        let t = 0,
-          b = moveStart,
-          c = moveEnd - moveStart,
-          d = 10
-        function stepAnim() {
-          moveStart = easeOut(t, b, c, d)
-          target.style.transform = `translateX(${moveStart}px)`
-          t++
-          if (t <= d) {
-            window.requestAnimationFrame(stepAnim)
-          }
-        }
-        stepAnim()
+        target.style.transition = 'transform .3s ease-out'
+        setTimeout(() => {
+          target.style.transform = `translate3d(${moveEnd}px,0,0)`
+        }, 20)
+        target.addEventListener('transitionend', transitionendHandler)
       }
 
       target.addEventListener('touchmove', onTouchmoveHandler)
@@ -210,6 +216,7 @@ export default {
 <style lang="scss" scoped>
 .c-BaseSwiper {
   position: relative;
+  z-index: 1;
   overflow: hidden;
   &-wp {
     overflow: hidden;

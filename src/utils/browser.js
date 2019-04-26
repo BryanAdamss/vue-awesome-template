@@ -1,5 +1,5 @@
 /**
- * @author ghchu
+ * @author GuangHui
  * @description 浏览器判断
  */
 

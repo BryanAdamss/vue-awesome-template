@@ -210,30 +210,6 @@ export function dateFormat(timestamp, format = 'yyyy-MM-dd hh:mm:ss') {
 }
 
 /**
- * 判断是否为类数组
- * @param {*} collection
- */
-export function isArrayLike(collection) {
-  const MAX_ARRAY_INDEX = Math.pow(2, 53) - 1
-  // 返回参数 collection 的 length 属性值
-  let length = collection.length
-  return typeof length === 'number' && length >= 0 && length <= MAX_ARRAY_INDEX
-}
-
-/**
- * 判断数组或对象是否为空
- * @param {Any} obj
- */
-export function isEmpty(obj) {
-  if (obj == null) return true
-  if (Array.isArray(obj)) return obj.length === 0
-  if (Object.prototype.toString.call(obj) === '[object Object]') {
-    return Object.keys(obj).length === 0
-  }
-  return false
-}
-
-/**
  * 判断浏览器是否支持passive模式
  */
 export const eventListenerPassiveSupported = () => {
@@ -251,4 +227,17 @@ export const eventListenerPassiveSupported = () => {
   } catch (e) {}
 
   return supported
+}
+
+/**
+ * 断言
+ *
+ * @export
+ * @param {Any} conditions
+ * @param {String} msg
+ */
+export function assert(conditions, msg) {
+  if (process.env.NODE_ENV === 'production') return
+
+  if (!conditions) console.warn(`[Assert Error]:${msg}`)
 }

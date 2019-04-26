@@ -46,7 +46,7 @@
  * * 模拟滚动条
  */
 
-import getScrollbarWidth from 'Common/js/scrollbar-width'
+import getScrollbarWidth from 'Utils/scrollbar-width'
 
 export default {
   name: 'BaseScrollbar',

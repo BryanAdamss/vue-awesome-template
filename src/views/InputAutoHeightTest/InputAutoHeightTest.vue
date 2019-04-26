@@ -10,12 +10,12 @@
  * * c-InputAutoHeightTest
  */
 
-import AutoHeight from 'Directives/auto-height'
+// import AutoHeight from 'Directives/auto-height'
 export default {
-  name: 'CInputAutoHeightTest',
-  directives: {
-    AutoHeight
-  }
+  name: 'InputAutoHeightTest'
+  // directives: {
+  //   AutoHeight
+  // }
 }
 </script>
 

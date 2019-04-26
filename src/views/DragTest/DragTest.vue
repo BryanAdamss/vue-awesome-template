@@ -14,12 +14,12 @@
  * * DragTest
  */
 
-import Drag from 'Directives/drag'
+// import Drag from 'Directives/drag'
 export default {
   name: 'DragTest',
-  directives: {
-    Drag
-  },
+  // directives: {
+  //   Drag
+  // },
   methods: {
     onDrag(pos) {
       console.log(pos)

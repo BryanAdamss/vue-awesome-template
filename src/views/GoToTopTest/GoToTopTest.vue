@@ -117,12 +117,12 @@
  * * GoToTopTest
  */
 
-import GoToTop from 'Directives/go-to-top'
+// import GoToTop from 'Directives/go-to-top'
 export default {
-  name: 'GoToTopTest',
-  directives: {
-    GoToTop
-  }
+  name: 'GoToTopTest'
+  // directives: {
+  //   GoToTop
+  // }
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="c-ClickOutsideTest">
     <div
-      v-clickoutside="onClickOutside"
+      v-click-outside="onClickOutside"
       ref="clickOutsideEl"
       class="c-Box"
     >只有点我外侧才会触发clickOutside指令</div>
@@ -13,13 +13,13 @@
  */
 
 // * clickOutSide指令
-import clickoutside from 'Directives/click-outside'
+// import clickoutside from 'Directives/click-outside'
 
 export default {
   name: 'ClickOutsideTest',
-  directives: {
-    clickoutside
-  },
+  // directives: {
+  //   clickoutside
+  // },
   methods: {
     onClickOutside(e) {
       console.log('onClickOutside', e)

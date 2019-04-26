@@ -44,13 +44,13 @@
  * * PullupTest
  */
 
-import pullUp from 'Directives/pull-up'
+// import pullUp from 'Directives/pull-up'
 
 export default {
   name: 'PullupTest',
-  directives: {
-    pullUp
-  },
+  // directives: {
+  //   pullUp
+  // },
   methods: {
     onPullup(pullupEnd) {
       console.log('onPullup')

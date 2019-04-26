@@ -17,6 +17,8 @@
 @import './base/_typography.scss';
 // 导入助手样式
 @import './helpers/_helpers.scss';
+// 导入自定义element loading样式
+@import './loading.scss';
 // ---------------------------------------------
 // 设置移动端字体(实现自适应)
 // ---------------------------------------------

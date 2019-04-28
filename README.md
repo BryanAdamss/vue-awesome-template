@@ -55,3 +55,33 @@
   - [点击区域外指令](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/directives/click-outside.js)
 - 移动端拖动指令
   - [移动端拖动指令](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/directives/drag.js)
+
+## utils
+- 浏览器识别
+  - [浏览器识别](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/browser.js)
+- dom操作
+  - [dom操作](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/dom.js)
+- 缓动函数
+  - [缓动函数](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/easings.js)
+- file常用类型转换
+  - [file常用类型转换](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/file-convert.js)
+- raf封装
+  - [raf](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/raf.js)
+- raf-animation封装
+  - [raf-animation](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/raf-animation.js)
+- 获取滚动条宽度封装
+  - [获取滚动条宽度](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/scrollbar-width.js)
+- 类型判断封装
+  - [类型判断](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/type-judge.js)
+
+## sass
+- 网格
+  - [网格](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/layout/_gridNew.scss)
+- 常用functions
+  - [常用functions](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_function.scss)
+- 常用mixins
+  - [常用functions](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_mixins.scss)
+- 常用placeholder
+  - [常用placeholder](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_placeholder.scss)
+- mediaQuery封装
+  - [mediaQuery封装](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_mediaQuery.scss)

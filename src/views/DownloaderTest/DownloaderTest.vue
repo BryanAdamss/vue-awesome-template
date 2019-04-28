@@ -1,6 +1,6 @@
 <template>
   <div class="c-DownloaderTest">
-    <button @click="download">下载</button>
+    <button @click="download">下载测试文件</button>
   </div>
 </template>
 
@@ -27,7 +27,7 @@ export default {
   methods: {
     download() {
       const downloader = new Downloader()
-      downloader.download('https://test.zhixue.com/paperdownload/download/preview/download?paperId=5b75fc64-da6d-412c-8b2d-73675d7d038c&fileFormat=docx&pageType=A4&paperType=1')
+      downloader.download('http://down10.zol.com.cn/tuxcl/acdseefree.exe')
     }
   }
 }

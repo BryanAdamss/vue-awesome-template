@@ -73,6 +73,8 @@
   - [获取滚动条宽度](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/scrollbar-width.js)
 - 类型判断封装
   - [类型判断](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/type-judge.js)
+- 解析查询字符串、节流、去抖、分时封装
+  - [解析查询字符串、节流、去抖、分时](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/index.js)
 
 ## sass
 - 网格

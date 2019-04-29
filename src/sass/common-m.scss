@@ -36,3 +36,7 @@ body {
   box-shadow: 0 0 0 1px red;
   overflow: hidden;
 }
+
+body.is-hidden {
+  overflow: hidden !important;
+}

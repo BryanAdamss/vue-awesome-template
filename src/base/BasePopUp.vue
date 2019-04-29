@@ -1,7 +1,7 @@
 <template>
   <div
     ref="modal"
-    :class="[positionClass,{'has-shadow':hasShadow},{'is-visible':isCanVisible}]"
+    :class="[positionClass,{'has-shadow':hasShadow},{'is-visible':isShow}]"
     class="c-BasePopUp"
     @click.stop="onShadowClick"
   >
@@ -28,11 +28,6 @@ export default {
       type: Boolean,
       default: false
     },
-    emitVisibleChangeEvent: {
-      // * 是否派发visibleChange事件
-      type: Boolean,
-      default: false
-    },
     shadowClose: {
       // * 点击阴影关闭
       type: Boolean,
@@ -47,13 +42,14 @@ export default {
       // * 是否展示阴影
       type: Boolean,
       default: true
+    },
+    isShow: {
+      // * 是否可见
+      type: Boolean,
+      default: false
     }
   },
-  data() {
-    return {
-      isCanVisible: false
-    }
-  },
+
   computed: {
     positionClass() {
       const index = POSITIONS.indexOf(this.position)
@@ -61,31 +57,47 @@ export default {
       return `is-${name}`
     }
   },
+  activated() {
+    this._addWatch()
+  },
   created() {
-    if (this.emitVisibleChangeEvent) {
-      // * 手动添加观测
-      let unwatch = this.$watch('isCanVisible', (newVal, oldVal) => {
-        this.$emit('onVisibleChange', newVal, oldVal)
-      })
-      // * 销毁时，取消观测
-      this.$once('hook:beforeDestroy', () => {
-        unwatch()
-      })
-    }
+    this._addWatch()
   },
   methods: {
+    _addWatch() {
+      // * 手动添加观测
+      const unwatch = this.$watch('isShow', (newVal, oldVal) => {
+        this._toggleBodyHidden(newVal)
+        this.$emit('update:isShow', newVal)
+      }, {
+        immediate: true
+      })
+
+      // * 销毁时，取消观测
+      this.$once('hook:beforeDestroy', () => {
+        this._toggleBodyHidden(false)
+        unwatch()
+      })
+    },
+    _toggleBodyHidden(val) {
+      if (val) {
+        document.body.classList.add('is-hidden')
+      } else {
+        document.body.classList.remove('is-hidden')
+      }
+    },
     open() {
-      this.isCanVisible = true
+      this.$emit('update:isShow', true)
     },
     close() {
-      this.isCanVisible = false
+      this.$emit('update:isShow', false)
     },
     onShadowClick(e) {
       // * 点击阴影
       const modal = this.$refs.modal
       const target = e.target
-      // * 不是点击阴影或者不需要派发阴影点击事件时直接返回
-      if (modal !== target || !this.emitShadowClickEvent) {
+      // * 不是点击阴影时直接返回
+      if (modal !== target) {
         return
       }
 
@@ -93,7 +105,7 @@ export default {
         this.close()
       }
 
-      this.$emit('onShadowClick', e)
+      this.emitShadowClickEvent && this.$emit('onShadowClick', e)
     }
   }
 }

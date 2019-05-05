@@ -31,6 +31,7 @@ import timeCounterTest from './time-counter-test'
 import toastTest from './toast-test'
 import userCenter from './user-center'
 import vuexTest from './vuex-test'
+import audioTest from './audio-test'
 
 export default [
   {
@@ -48,6 +49,7 @@ export default [
       name: 'Home'
     }
   },
+  ...audioTest,
   ...axiosTest,
   ...betterScrollTest,
   ...clickAreaExpandTest,

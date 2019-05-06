@@ -5,14 +5,7 @@
       <div
         :class="btnClass"
         class="c-Btn"
-        @click="togglePlay">
-        <template v-if="isPlaying">
-          playing
-        </template>
-        <template v-else>
-          paused
-        </template>
-      </div>
+        @click="togglePlay"/>
 
       <template v-if="isSrcArray">
         <audio
@@ -93,28 +86,52 @@
     </div>
 
     <div
-      v-if="!mini"
+      v-if="showProgress"
       class="c-BaseAudio-sub">
-      <div class="c-Progress">
+      <div
+        ref="progress"
+        class="c-Progress"
+        @mouseup="progressClickHandler">
         <div
-          :style="{width:`${progress}%`}"
-          class="c-Progress-inner">
-          <BaseLoadingSpinner
+          :style="{ width:`${bufferedProgress}%`}"
+          class="c-Track"/>
+
+        <div
+          ref="bar"
+          :style="{ left:`${progressLeft}px`} "
+          class="c-Bar"
+          @mousedown.stop="barMousedownHandler"
+        >
+          <div
             v-if="isLoading"
-            size="1em"/>
+            class="c-Bar-loading">
+            <BaseLoadingSpinner
+              size="12px"/>
+          </div>
           <div
             v-else
-            class="c-Progress-bar"/>
+            class="c-Bar-circle"/>
         </div>
       </div>
     </div>
 
     <div
-      v-if="!mini"
+      v-if="showTime"
       class="c-BaseAudio-extra">
-      <div class="c-Volume">
-        volume
+      <div class="c-Info">
+        {{ curTime | toMMSS }}/{{ duration | toMMSS }}
       </div>
+      <!-- TODO:需要完善音量调节 -->
+      <!-- <div class="c-Volume">
+        <div
+          class="c-Volume-main"
+          @click="volumeClickHandler">
+          音量
+        </div>
+        <div class="c-Volume-sub">
+          调节器
+        </div>
+      </div> -->
     </div>
 
   </div>
@@ -132,15 +149,27 @@ export default {
   components: {
     BaseLoadingSpinner
   },
+  filters: {
+    toMMSS(second) {
+      const s = Math.floor(second % 60)
+      const m = Math.floor(second / 60)
+
+      return `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`
+    }
+  },
   mixins: [],
   props: {
     src: {
       type: [String, Array],
       required: true
     },
-    mini: {
+    showTime: {
       type: Boolean,
-      default: false
+      default: true
+    },
+    showProgress: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -150,14 +179,19 @@ export default {
       isPaused: true,
       curTime: 0,
       duration: 0,
-      volume: 0
+      volume: 0,
+      buffered: 0,
+      progressW: 0,
+      progressLeft: 0,
+      isBarDraging: false
     }
   },
   computed: {
+    isMuted() {
+      return this.volume === 0
+    },
     btnClass() {
-      if (this.isLoading) {
-        return 'is-waiting'
-      } else if (this.isPlaying) {
+      if (this.isPlaying) {
         return 'is-playing'
       } else {
         return 'is-paused'
@@ -169,15 +203,50 @@ export default {
     progress() {
       if (!this.curTime || !this.duration) return 0
 
-      return this.curTime / this.duration * 100
+      return this.curTime / this.duration
+    },
+    progressLeftLimit() {
+      return 0
+    },
+    progressRightLimit() {
+      return this.progressW - this.barW
+    },
+    bufferedProgress() {
+      if (!this.buffered || !this.duration) return 0
+
+      return this.buffered / this.duration * 100
     }
   },
-  watch: {},
+  watch: {
+
+  },
   beforeCreate() {},
+  created() {
+  },
   mounted() {
     this.volume = this.$refs.audio.volume
+    this.progressW = this.$refs.progress.offsetWidth
+    this.barW = this.$refs.bar.offsetWidth
+
+    this.$once('hook:beforeDesotryed', () => {
+      window.onresize = null
+    })
+
+    window.onresize = () => {
+      this.progressW = this.$refs.progress.offsetWidth
+      this.barW = this.$refs.bar.offsetWidth
+    }
   },
   methods: {
+    volumeClickHandler(e) {
+      this.$refs.audio.muted = !this.$refs.audio.muted
+    },
+    progressClickHandler(e) {
+      this.curTime = e.offsetX / this.progressW * this.duration
+      this.$refs.audio.currentTime = this.curTime
+
+      if (this.isPaused) this.play()
+    },
     play() {
       if (this.isLoading) return
 
@@ -194,6 +263,40 @@ export default {
       } else {
         this.play()
       }
+    },
+    barMousedownHandler(e) {
+      this.isBarDraging = true
+      const lastPageX = e.pageX
+      let lastProgressLeft = this.progressLeft
+
+      const barMousemoveHandler = e => {
+        e.preventDefault()
+        const disX = e.pageX - lastPageX
+        const newPos = this._getSafeProgressLeft(this.progressLeft + disX)
+
+        this.$refs.bar.style.left = `${newPos}px`
+        lastProgressLeft = newPos
+      }
+      const barMouseupHandler = e => {
+        e.stopPropagation()
+
+        this.progressLeft = lastProgressLeft
+        this.curTime = lastProgressLeft / this.progressW * this.duration
+        this.$refs.audio.currentTime = this.curTime
+
+        if (this.isPaused) this.play()
+
+        this.isBarDraging = false
+
+        document.removeEventListener('mousemove', barMousemoveHandler, true)
+        document.removeEventListener('mouseup', barMouseupHandler, true)
+      }
+
+      document.addEventListener('mousemove', barMousemoveHandler, true)
+      document.addEventListener('mouseup', barMouseupHandler, true)
+    },
+    _getSafeProgressLeft(left) {
+      return Math.max(Math.min(left, this.progressRightLimit), this.progressLeftLimit)
     },
     // 事件处理器
     abortHandler(e) {
@@ -236,9 +339,12 @@ export default {
     },
     loadedmetadataHandler(e) {
       console.log(e.type)
+      // 更新总时长及缓冲时间
       this.duration = this.$refs.audio.duration
-
-      this.$emit('loadedmetadata', this.duration)
+      if (this.$refs.audio.buffered.length !== 0) {
+        this.buffered = this.$refs.audio.buffered.end(0)
+        this.$emit('loadedmetadata', this.duration, this.bufferedProgress)
+      }
     },
     loadstartHandler(e) {
       console.log(e.type)
@@ -270,7 +376,12 @@ export default {
     },
     progressHandler(e) {
       console.log(e.type)
-      this.$emit('progress')
+
+      // 更新缓冲时间
+      if (this.$refs.audio.buffered.length !== 0) {
+        this.buffered = this.$refs.audio.buffered.end(0)
+        this.$emit('progress', this.bufferedProgress)
+      }
     },
     ratechangeHandler(e) {
       console.log(e.type)
@@ -296,7 +407,13 @@ export default {
     },
     timeupdateHandler(e) {
       console.log(e.type)
+
       this.curTime = this.$refs.audio.currentTime
+      if (this.$refs.audio.buffered.length !== 0) this.buffered = this.$refs.audio.buffered.end(0)
+
+      // 拖拽时，禁止自动更新bar位置
+      if (this.isBarDraging) return
+      this.progressLeft = this._getSafeProgressLeft(this.progress * this.progressW)
 
       this.$emit('timeupdate', this.curTime)
     },
@@ -322,45 +439,123 @@ export default {
 <style lang="scss" scoped>
 .c-BaseAudio {
   font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  padding: 4px 10px;
+  justify-content: center;
+  &-main + &-sub,
+  &-sub + &-extra {
+    margin-left: 6px;
+  }
+  &-sub {
+    flex: 1 1 auto;
+    min-width: 40px;
+  }
+  &-extra {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+  }
 }
 .c-Audio {
-  // display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .c-Btn {
-  &.is-playing {
-    color: red;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #eee;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s;
+  &:hover {
+    background: #dfdfdf;
   }
-  &.is-paused {
-    color: blue;
-    position: relative;
+  &.is-playing {
     &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -6px;
+      margin-left: -4px;
+      width: 8px;
+      height: 12px;
+      border-left: 3px solid #666;
+      border-right: 3px solid #666;
     }
   }
-  &.is-waiting {
-    color: pink;
+  &.is-paused {
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -6px;
+      margin-left: -2px;
+      width: 0;
+      height: 0;
+      border: 8px solid transparent;
+      border-left-color: #666;
+      border-top-width: 6px;
+      border-bottom-width: 6px;
+    }
   }
 }
 
 .c-Progress {
-  height: 4px;
   background-color: #c2c2c2;
-  padding-left: 4px;
-  padding-right: 4px;
-  &-inner {
-    height: 100%;
-    width: 0;
-    background-color: #9c9c9c;
-    position: relative;
-  }
-  &-bar {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: red;
+  position: relative;
+  border-radius: 2px;
+}
 
-    position: absolute;
-    right: -5px;
+.c-Track {
+  height: 4px;
+  width: 0;
+  border-radius: 2px;
+  will-change: width;
+  background-color: #9c9c9c;
+  transition: width 0.3s;
+}
+
+.c-Bar {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  will-change: left;
+  &-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #666;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    &:hover {
+      box-shadow: 0 0 0 3px #666;
+    }
   }
+  &-loading {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.c-Info {
+  font-size: 14px;
+  color: #333;
 }
 </style>

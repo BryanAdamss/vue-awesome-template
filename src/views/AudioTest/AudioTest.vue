@@ -37,5 +37,6 @@ export default {
 
 <style lang="scss" scoped>
 .c-AudioTest {
+  padding: 20px;
 }
 </style>

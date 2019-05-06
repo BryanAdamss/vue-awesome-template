@@ -4,6 +4,7 @@
       <div
         v-show="isShowBackBtn"
         slot="side"
+        :style="{cursor:'pointer'}"
         @click="onClickGoBack"
       >&lt;返回</div>
       <div class="u-textC">{{ title }}</div>

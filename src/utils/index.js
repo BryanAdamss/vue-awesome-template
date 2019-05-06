@@ -182,7 +182,7 @@ export function chunk(array, size) {
  * dateFormat unix时间戳格式化
  */
 export function dateFormat(timestamp, format = 'yyyy-MM-dd hh:mm:ss') {
-  timestamp = timestamp.length === 13 ? timestamp : timestamp * 1000
+  timestamp = timestamp.toString().length === 13 ? timestamp : timestamp * 1000
   let date = new Date(timestamp)
   let args = {
     'M+': date.getMonth() + 1,

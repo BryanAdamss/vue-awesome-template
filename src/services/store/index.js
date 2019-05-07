@@ -1,5 +1,5 @@
 /**
- * @author ghchu
+ * @author GuangHui
  * @description 全局状态管理入口
  */
 import state from './states'

@@ -4,6 +4,23 @@
  */
 
 // * ----------------------------------------
+// * App描述信息
+// * ----------------------------------------
+
+// App 名
+export const APP_NAME = 'VUE_10W_TEMPLATE'
+
+// 全局命名空间
+export const GLOBAL_NAME_SPACE = `__${APP_NAME}__`
+
+// APP信息
+export const APP_INFO = Object.freeze({
+  name: APP_NAME,
+  desc: 'vue_10w_模板',
+  version: '1.0.0'
+})
+
+// * ----------------------------------------
 // * 项目默认配置
 // * ----------------------------------------
 
@@ -53,26 +70,14 @@ export const GLOBAL_LOADING_DEFAULT_CONFIG = {
   debug: false
 }
 
+// vuex 默认配置
+export const VUEX_DEFAULT_CONFIG = {
+  strict: process.env.NODE_ENV !== 'production'
+}
+
 // * ----------------------------------------
 // * 开关
 // * ----------------------------------------
 
 // 开启vconsole
 export const VCONSOLE_DEBUG = false
-
-// * ----------------------------------------
-// * App描述信息
-// * ----------------------------------------
-
-// App 名
-export const APP_NAME = 'VUE_10W_TEMPLATE'
-
-// 全局命名空间
-export const GLOBAL_NAME_SPACE = `__${APP_NAME}__`
-
-// APP信息
-export const APP_INFO = Object.freeze({
-  name: APP_NAME,
-  desc: 'vue_10w_模板',
-  version: '1.0.0'
-})

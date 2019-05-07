@@ -2,7 +2,7 @@
  * * 注册模块入口页
  */
 
-import Store from 'Store'
+import vuexInstance from 'Plugins/vuex-instance'
 
 import moduleA from './module-a'
 import moduleB from './module-b'
@@ -15,7 +15,7 @@ const MODULE_NAME_ARR = MODULE_NAME.split('/').filter(item => !!item)
 
 // * 各个模块根据实际需要决定是否要使用vuex
 export function install() {
-  Store.registerModule(MODULE_NAME_ARR, {
+  vuexInstance.registerModule(MODULE_NAME_ARR, {
     namespaced: true,
     actions,
     modules: {
@@ -26,7 +26,7 @@ export function install() {
 }
 
 export function uninstall() {
-  Store.unregisterModule(MODULE_NAME)
+  vuexInstance.unregisterModule(MODULE_NAME)
 }
 
 export default {

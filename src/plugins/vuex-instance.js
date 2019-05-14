@@ -15,5 +15,5 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   ...VUEX_DEFAULT_CONFIG,
   ...globalStore,
-  plugins: process.env.NODE_ENV !== 'production' ? [createLogger] : []
+  plugins: process.env.NODE_ENV !== 'production' ? [createLogger()] : []
 })

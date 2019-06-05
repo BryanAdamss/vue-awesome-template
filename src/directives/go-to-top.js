@@ -29,8 +29,8 @@ export default {
     update() {},
     unbind(el, binding) {
       if (el.__vueGoToTop__) {
-        el.removeEventListener('click', el.__vueGoToTop__)
-        delete el.__vueGoToTop__
+        el.removeEventListener('click', el.__vueGoToTop__, false)
+        el.__vueGoToTop__ = null
       }
     }
   }

@@ -289,3 +289,10 @@ export function getQueryObject(qs = location.search) {
 
   return obj
 }
+
+/**
+ * 驼峰、帕斯卡转烤串
+ * @param {String} str camelCase、PascalCase字符串
+ * @returns {String} kebab-case字符串
+ */
+export const str2kebab = str => str.replace(/\B([A-Z])/g, '-$1').toLowerCase()

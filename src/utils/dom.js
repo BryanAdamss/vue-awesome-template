@@ -3,6 +3,8 @@
  * @description dom 操作相关
  */
 
+import { str2kebab } from 'Utils'
+
 /**
  * 添加样式类
  * @param {Element} el 元素
@@ -169,4 +171,20 @@ export function getStyle(ele) {
   }
 
   return view.getComputedStyle(ele, null)
+}
+
+/**
+ * 添加样式
+ * @param {Element} el 元素
+ * @param {Object} styleObj 样式obj
+ */
+export function addStyle(el, styleObj) {
+  let oldStyle = el.style.cssText
+
+  const newStyle = Object.entries(styleObj).reduce((acc, cur) => {
+    cur[0] = str2kebab(cur[0]) // key转换成kebab-case
+    return (acc += cur.join(':') + ';')
+  }, oldStyle)
+
+  el.style.cssText = newStyle
 }

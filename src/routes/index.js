@@ -2,6 +2,8 @@
  * @author GuangHui
  * @description 路由入口
  */
+
+import affixTest from './affix-test'
 import axiosTest from './axios-test'
 import betterScrollTest from './better-scroll-test'
 import clickAreaExpandTest from './click-area-expand-test'
@@ -50,6 +52,7 @@ export default [
       name: 'Home'
     }
   },
+  ...affixTest,
   ...audioTest,
   ...axiosTest,
   ...betterScrollTest,

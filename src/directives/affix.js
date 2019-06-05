@@ -67,7 +67,9 @@ export default {
         } else {
           if (affixedEl) {
             document.body.removeChild(affixedEl)
+
             affixedEl = null
+            el.__vueAffixAffixedEl__ = null
 
             el.style.cssText = oldElStyle
           }

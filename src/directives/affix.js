@@ -48,6 +48,7 @@ export default {
 
           // 克隆元素
           affixedEl = el.cloneNode(true)
+          el.__vueAffixAffixedEl__ = affixedEl
 
           // 隐藏原本元素
           addStyle(el, { opacity: 0, visibility: 'hidden' })
@@ -75,17 +76,38 @@ export default {
         }
       }, $interval)
 
-      el.__vueAffix__ = _scrollHandler
+      el.__vueAffixScrollHandler__ = _scrollHandler
+      el.__vueAffixContainer__ = $container
 
-      $container.addEventListener('scroll', el.__vueAffix__, false)
-      window.addEventListener('resize', el.__vueAffix__, false)
+      $container.addEventListener('scroll', el.__vueAffixScrollHandler__, false)
+      window.addEventListener('resize', el.__vueAffixScrollHandler__, false)
     },
     update() {},
     unbind(el, binding) {
-      if (el.__vueAffix__) {
-        el.removeEventListener('click', el.__vueAffix__, false)
-        window.removeEventListener('resize', el.__vueAffix__, false)
-        el.__vueAffix__ = null
+      // * clean
+      if (el.__vueAffixScrollHandler__) {
+        if (el.__vueAffixAffixedEl__) {
+          el.__vueAffixAffixedEl__.parentNode.removeChild(
+            el.__vueAffixAffixedEl__
+          )
+
+          el.__vueAffixAffixedEl__ = null
+        }
+
+        el.__vueAffixContainer__.removeEventListener(
+          'scroll',
+          el.__vueAffixScrollHandler__,
+          false
+        )
+
+        window.removeEventListener(
+          'resize',
+          el.__vueAffixScrollHandler__,
+          false
+        )
+
+        el.__vueAffixContainer__ = null
+        el.__vueAffixScrollHandler__ = null
       }
     }
   }

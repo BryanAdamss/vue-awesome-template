@@ -41,10 +41,13 @@ export default {
   },
   watch: {
     // * 观测route动态修改TopBar的title
-    $route(to, form, next) {
-      if (to.meta && to.meta.title) {
-        this.title = to.meta.title
-      }
+    $route: {
+      handler(to, form, next) {
+        if (to.meta && to.meta.title) {
+          this.title = to.meta.title
+        }
+      },
+      immediate: true
     }
   },
   created() {

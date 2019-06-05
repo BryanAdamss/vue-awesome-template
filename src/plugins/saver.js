@@ -12,7 +12,33 @@ class Saver {
         ? GLOBAL_NAME_SPACE + name // 添加全局命名空间前缀，最终key的组成模式为:namespace:key
         : GLOBAL_NAME_SPACE
 
-    this.keySet = new Set()
+    if (window[this.namespace]) return window[this.namespace] // 对应实例已经存在，直接返回
+
+    // 实例不存在，则尝试收集模块的key
+    const oldKeys = this._getOldKeys()
+    this.keySet = oldKeys.length ? new Set(oldKeys) : new Set()
+
+    window[this.namespace] = this
+  }
+
+  /**
+   * 返回localStorage中当前模块的所有key
+   */
+  _getOldKeys() {
+    let index = 0
+    const temp = []
+    const re = new RegExp(`(${this.namespace}):(.+)`)
+
+    while (index < localStorage.length) {
+      const name = localStorage.key(index)
+      const ret = re.exec(name)
+
+      if (ret && ret[2]) temp.push(ret[2])
+
+      index++
+    }
+
+    return temp
   }
 
   /**

@@ -1,5 +1,7 @@
 <template>
-  <BasePopUp ref="popup">
+  <BasePopUp
+    ref="popup"
+    :isShow.sync="popupShow">
     <div class="c-BaseConfirm">
       <div class="c-BaseConfirm-hd">
         <slot name="header">
@@ -44,6 +46,11 @@ export default {
     title: {
       type: String,
       default: '标题'
+    }
+  },
+  data() {
+    return {
+      popupShow: false
     }
   },
   methods: {

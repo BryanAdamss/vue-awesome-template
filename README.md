@@ -89,7 +89,7 @@
 - 常用functions
   - [常用functions](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_function.scss)
 - 常用mixins
-  - [常用functions](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_mixins.scss)
+  - [常用mixins](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_mixins.scss)
 - 常用placeholder
   - [常用placeholder](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_placeholder.scss)
 - mediaQuery封装

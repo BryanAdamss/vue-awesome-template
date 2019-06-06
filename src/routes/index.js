@@ -27,6 +27,7 @@ import numberToChineseTest from './number-to-chinese-test'
 import popUpTest from './pop-up-test'
 import preventFastClickTest from './prevent-fast-click-test'
 import pullupTest from './pullup-test'
+import saverTest from './saver-test'
 import postMessageTest from './post-message-test'
 import scrollbarTest from './scrollbar-test'
 import swiperTest from './swiper-test'
@@ -78,6 +79,7 @@ export default [
   ...postMessageTest,
   ...preventFastClickTest,
   ...pullupTest,
+  ...saverTest,
   ...scrollbarTest,
   ...swiperTest,
   ...timeCounterTest,

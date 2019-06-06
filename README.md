@@ -47,6 +47,11 @@
   - [localStorage库](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/saver.js)
 - 倒计时库
   - [倒计时库](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/time-counter.js)
+- localStorage、sessionStorage封装库
+  - [localStorage、sessionStorage封装库](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/saver.js)
+- postMessage封装库
+  - [postMessage封装库](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/messager.js)
+  
 
 ## 指令库
 - input、textarea自增高指令
@@ -55,6 +60,8 @@
   - [点击区域外指令](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/directives/click-outside.js)
 - 移动端拖动指令
   - [移动端拖动指令](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/directives/drag.js)
+- 图钉Affix指令
+  - [图钉Affix指令](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/directives/affix.js)
 
 ## utils
 - 浏览器识别

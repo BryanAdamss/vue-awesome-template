@@ -9,14 +9,17 @@ class Saver {
     moduleName = 'Global',
     session = false
   } = {}) {
-    // 添加全局命名空间前缀，最终key的组成模式为:namespace:key
-    this.namespace = globalNamespace + moduleName
+    this.isSession = session
+
+    // 拼装命名空间，namespace的组成为(Session)+globalNamespace+moduleName
+    // 最终存储key的组成为:namespace+:+key
+    this.namespace = session
+      ? `Session${globalNamespace}${moduleName}`
+      : `${globalNamespace}${moduleName}`
 
     // 对应实例已经存在，直接返回
-    const saverName = session
-      ? `Saver_Session_${this.namespace}`
-      : `Saver_${this.namespace}`
-    if (window[saverName]) return window[saverName]
+    this.saverName = `Saver_${this.namespace}`
+    if (window[this.saverName]) return window[this.saverName]
 
     // 实例不存在，生成实例
     // 默认localStorage
@@ -26,7 +29,8 @@ class Saver {
     const oldKeys = this._getOldKeys()
     this.keySet = oldKeys.length ? new Set(oldKeys) : new Set()
 
-    window[saverName] = this
+    // 保存实例
+    window[this.saverName] = this
   }
 
   /**

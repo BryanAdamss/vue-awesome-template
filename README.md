@@ -2,6 +2,7 @@
 
 > 参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)目录结构集成的一个vue模板
 
+
 ## vue组件
 - 翻页组件
   - [BaseSwiper](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseSwiper/BaseSwiper.vue)
@@ -43,8 +44,6 @@
   - [全局loading](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/global-loading.js)
 - 浮点数转中文库
   - [浮点数转中文](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/num-to-chn.js)
-- localStorage库
-  - [localStorage库](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/saver.js)
 - 倒计时库
   - [倒计时库](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/time-counter.js)
 - localStorage、sessionStorage封装库

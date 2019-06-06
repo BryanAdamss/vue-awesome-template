@@ -3,34 +3,42 @@
  * @description localStorage封装
  */
 
-import { GLOBAL_NAME_SPACE } from 'Config'
-
 class Saver {
-  constructor({ name }) {
-    this.namespace =
-      name && typeof name === 'string'
-        ? GLOBAL_NAME_SPACE + name // 添加全局命名空间前缀，最终key的组成模式为:namespace:key
-        : GLOBAL_NAME_SPACE
+  constructor({
+    globalNamespace = '__VUE_SAVER__',
+    moduleName = 'Global',
+    session = false
+  } = {}) {
+    // 添加全局命名空间前缀，最终key的组成模式为:namespace:key
+    this.namespace = globalNamespace + moduleName
 
-    if (window[this.namespace]) return window[this.namespace] // 对应实例已经存在，直接返回
+    // 对应实例已经存在，直接返回
+    const saverName = session
+      ? `Saver_Session_${this.namespace}`
+      : `Saver_${this.namespace}`
+    if (window[saverName]) return window[saverName]
 
-    // 实例不存在，则尝试收集模块的key
+    // 实例不存在，生成实例
+    // 默认localStorage
+    this.storage = session ? window.sessionStorage : window.localStorage
+
+    // 则尝试收集模块之前存储的key
     const oldKeys = this._getOldKeys()
     this.keySet = oldKeys.length ? new Set(oldKeys) : new Set()
 
-    window[this.namespace] = this
+    window[saverName] = this
   }
 
   /**
-   * 返回localStorage中当前模块的所有key
+   * 返回storage中当前模块的所有key
    */
   _getOldKeys() {
     let index = 0
     const temp = []
     const re = new RegExp(`(${this.namespace}):(.+)`)
 
-    while (index < localStorage.length) {
-      const name = localStorage.key(index)
+    while (index < this.storage.length) {
+      const name = this.storage.key(index)
       const ret = re.exec(name)
 
       if (ret && ret[2]) temp.push(ret[2])
@@ -47,11 +55,11 @@ class Saver {
    * @param {Any} value 值
    */
   setItem(key, value) {
-    if (!key || !localStorage) return
+    if (!key || !this.storage) return
 
     !this.keySet.has(key) && this.keySet.add(key)
 
-    localStorage.setItem(`${this.namespace}:${key}`, JSON.stringify(value))
+    this.storage.setItem(`${this.namespace}:${key}`, JSON.stringify(value))
   }
 
   /**
@@ -59,9 +67,9 @@ class Saver {
    * @param {String} key key值
    */
   getItem(key) {
-    if (!key || !localStorage || !this.keySet.has(key)) return
+    if (!key || !this.storage || !this.keySet.has(key)) return
 
-    return JSON.parse(localStorage.getItem(`${this.namespace}:${key}`))
+    return JSON.parse(this.storage.getItem(`${this.namespace}:${key}`))
   }
 
   /**
@@ -69,9 +77,9 @@ class Saver {
    * @param {String} key key值
    */
   removeItem(key) {
-    if (!key || !localStorage || !this.keySet.has(key)) return
+    if (!key || !this.storage || !this.keySet.has(key)) return
 
-    localStorage.removeItem(`${this.namespace}:${key}`)
+    this.storage.removeItem(`${this.namespace}:${key}`)
   }
 
   /**

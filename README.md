@@ -2,6 +2,32 @@
 
 > 参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)目录结构集成的一个vue模板
 
+---
+
+## 特点
+- 集成全家桶
+  - vue-router
+  - axios
+  - vuex
+  - element-ui
+  - sass样式库
+  - ...
+- 常用组件
+  - 轮播
+  - popup
+  - loading
+  - ...
+- 常用指令
+  - 自增高指令
+  - affix指令
+  - 拖拽指令
+  - ...
+- 常用库封装
+  - localStorage、sessionStorage
+  - postMessage
+  - ...
+
+---
 
 ## vue组件
 - 翻页组件

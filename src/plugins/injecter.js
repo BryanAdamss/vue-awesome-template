@@ -12,6 +12,8 @@ import { GLOBAL_NAME_SPACE, BASE_URL, APP_INFO } from 'Config'
 import { Loading, Message, MessageBox } from 'element-ui'
 import BaseToast from 'Base/BaseToast/BaseToast'
 
+import Saver from 'Plugins/saver'
+
 Vue.use(Loading.directive)
 
 const vueInjecter = {
@@ -33,6 +35,12 @@ const vueInjecter = {
     Vue.prototype.$confirm = MessageBox.confirm
     Vue.prototype.$prompt = MessageBox.prompt
     Vue.prototype.$message = Message
+
+    Vue.prototype.$saver = new Saver({ globalNamespace: GLOBAL_NAME_SPACE }) // 全局localStorageSaver
+    Vue.prototype.$sessionSaver = new Saver({
+      globalNamespace: GLOBAL_NAME_SPACE,
+      session: true
+    }) // 全局sessionStorageSaver
   }
 }
 

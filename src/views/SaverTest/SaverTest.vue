@@ -42,6 +42,11 @@ export default {
   watch: {},
   beforeCreate() {},
   created() {
+    console.log('全局localStorageSaver:', this.$saver)
+    console.log('全局sessionStorageSaver:', this.$sessionSaver)
+    console.log('模块化sessionSaver:', this.testSaver)
+    console.log('默认localStorageSaver:', this.globalSaver)
+
     this.globalSaver.setItem('test', 'testItem')
   },
   mounted() {},

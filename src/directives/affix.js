@@ -48,7 +48,6 @@ export default {
           ? document.documentElement.scrollTop || document.body.scrollTop
           : $container.scrollTop
 
-        console.log($container, $top)
         if ($top > $threshold) {
           if (affixed) return
 

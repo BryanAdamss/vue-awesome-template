@@ -11,11 +11,12 @@ export default {
   directive: {
     bind(el, binding, vnode) {},
     inserted(el, binding, vnode) {
-      // * 若有传递container，则监听container，否则监听window的滚动事件
-      const $container =
-        binding.value && binding.value.container
-          ? document.querySelector(binding.value.container)
-          : window
+      // * 若没有传递container，则监听window的滚动事件，否则监听container滚动事件
+      const isGlobal = !binding.value || !binding.value.container
+
+      const $container = isGlobal
+        ? window
+        : document.querySelector(binding.value.container)
 
       // * 触发affixed的阈值
       const $threshold =
@@ -43,7 +44,12 @@ export default {
       let affixedEl = null
 
       const _scrollHandler = throttle(e => {
-        if ($container.scrollTop > $threshold) {
+        const $top = isGlobal
+          ? document.documentElement.scrollTop || document.body.scrollTop
+          : $container.scrollTop
+
+        console.log($container, $top)
+        if ($top > $threshold) {
           if (affixed) return
 
           // 克隆元素
@@ -60,13 +66,13 @@ export default {
             zIndex: 99,
             ...fixedElPos
           })
-          document.body.appendChild(affixedEl)
+          el.parentNode.appendChild(affixedEl)
           affixed = true
 
           onAffixed(affixedEl)
         } else {
           if (affixedEl) {
-            document.body.removeChild(affixedEl)
+            el.parentNode.removeChild(affixedEl)
 
             affixedEl = null
             el.__vueAffixAffixedEl__ = null

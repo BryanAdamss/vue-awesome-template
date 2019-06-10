@@ -1,6 +1,33 @@
 # vue-10w-template
 
-> 参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)集成的一个vue模板
+> 参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)目录结构集成的一个vue模板
+
+---
+
+## 特点
+- 集成全家桶
+  - vue-router
+  - axios
+  - vuex
+  - element-ui
+  - sass样式库
+  - ...
+- 常用组件
+  - 轮播
+  - popup
+  - loading
+  - ...
+- 常用指令
+  - 自增高指令
+  - affix指令
+  - 拖拽指令
+  - ...
+- 常用库封装
+  - localStorage、sessionStorage
+  - postMessage
+  - ...
+
+---
 
 ## vue组件
 - 翻页组件
@@ -43,10 +70,13 @@
   - [全局loading](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/global-loading.js)
 - 浮点数转中文库
   - [浮点数转中文](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/num-to-chn.js)
-- localStorage库
-  - [localStorage库](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/saver.js)
 - 倒计时库
   - [倒计时库](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/time-counter.js)
+- localStorage、sessionStorage封装库
+  - [localStorage、sessionStorage封装库](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/saver.js)
+- postMessage封装库
+  - [postMessage封装库](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/messager.js)
+  
 
 ## 指令库
 - input、textarea自增高指令
@@ -55,6 +85,8 @@
   - [点击区域外指令](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/directives/click-outside.js)
 - 移动端拖动指令
   - [移动端拖动指令](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/directives/drag.js)
+- 图钉Affix指令
+  - [图钉Affix指令](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/directives/affix.js)
 
 ## utils
 - 浏览器识别
@@ -82,7 +114,7 @@
 - 常用functions
   - [常用functions](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_function.scss)
 - 常用mixins
-  - [常用functions](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_mixins.scss)
+  - [常用mixins](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_mixins.scss)
 - 常用placeholder
   - [常用placeholder](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_placeholder.scss)
 - mediaQuery封装

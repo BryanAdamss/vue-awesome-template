@@ -37,11 +37,12 @@ export default {
       // * affixed的回调
       const onAffixed = binding.value && binding.value.onAffixed
 
+      // 重设样式用
       const oldElStyle = el.style.cssText
       const oldElW = el.getBoundingClientRect().width
 
-      let affixed = false
-      let affixedEl = null
+      let isAffixed = false
+      let fakeEl = null // 占位元素
 
       const _scrollHandler = throttle(e => {
         const $top = isGlobal
@@ -49,37 +50,56 @@ export default {
           : $container.scrollTop
 
         if ($top > $threshold) {
-          if (affixed) return
+          if (isAffixed) return
 
-          // 克隆元素
-          affixedEl = el.cloneNode(true)
-          el.__vueAffixAffixedEl__ = affixedEl
+          // 创建占位元素
+          // ! cloneNode会克隆元素上内联事件(<div onclick='xxx'>)
+          // ! 例如，克隆了一个绑定了oninput的input,则克隆元素也会响应oninput事件
+          // ! 但其不会克隆addEventListener及el.onclick=xxx绑定的事件
+          fakeEl = el.cloneNode(true)
+          el.__vueAffixFakeEl__ = fakeEl
 
-          // 隐藏原本元素
-          addStyle(el, { opacity: 0, visibility: 'hidden' })
+          // 隐藏占位元素
+          addStyle(fakeEl, {
+            opacity: 0,
+            visibility: 'hidden',
+            pointerEvents: 'none' // 阻止鼠标事件
+          })
 
-          // 为克隆元素添加样式并追加到body中
-          addStyle(affixedEl, {
+          el.parentNode.insertBefore(fakeEl, el) // 在实际元素之前添加占位元素
+
+          // 为实际元素添加样式
+          addStyle(el, {
             width: `${oldElW}px`, // fixed后，宽度会收缩，需要重设宽度
             position: 'fixed',
             zIndex: 99,
             ...fixedElPos
           })
-          el.parentNode.appendChild(affixedEl)
-          affixed = true
 
-          onAffixed(affixedEl)
+          // 添加标识类
+          el.classList && el.classList.add('is-affixed')
+
+          isAffixed = true
+
+          onAffixed(el)
         } else {
-          if (affixedEl) {
-            el.parentNode.removeChild(affixedEl)
+          if (fakeEl) {
+            el.parentNode.removeChild(fakeEl)
 
-            affixedEl = null
-            el.__vueAffixAffixedEl__ = null
+            fakeEl = null
+            el.__vueAffixFakeEl__ = null
 
-            el.style.cssText = oldElStyle
+            // 重设样式
+            if (oldElStyle) {
+              el.style.cssText = oldElStyle
+            } else {
+              el.removeAttribute('style')
+            }
+
+            el.classList && el.classList.remove('is-affixed')
           }
 
-          affixed = false
+          isAffixed = false
         }
       }, $interval)
 
@@ -93,12 +113,10 @@ export default {
     unbind(el, binding) {
       // * clean
       if (el.__vueAffixScrollHandler__) {
-        if (el.__vueAffixAffixedEl__) {
-          el.__vueAffixAffixedEl__.parentNode.removeChild(
-            el.__vueAffixAffixedEl__
-          )
+        if (el.__vueAffixFakeEl__) {
+          el.__vueAffixFakeEl__.parentNode.removeChild(el.__vueAffixFakeEl__)
 
-          el.__vueAffixAffixedEl__ = null
+          el.__vueAffixFakeEl__ = null
         }
 
         el.__vueAffixContainer__.removeEventListener(

@@ -13,7 +13,8 @@
       <p>占位行9</p>
       <p
         v-affix="affixProps"
-        class="c-AffixTest">测试affix</p>
+        class="c-AffixTest"
+        @click="test">测试affix</p>
       <p>占位行10</p>
       <p>占位行11</p>
       <p>占位行12</p>
@@ -61,7 +62,11 @@ export default {
   beforeCreate() {},
   created() {},
   mounted() {},
-  methods: {}
+  methods: {
+    test() {
+      alert(1)
+    }
+  }
 }
 </script>
 

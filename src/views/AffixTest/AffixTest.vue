@@ -13,6 +13,7 @@
       <p>占位行9</p>
       <p
         v-affix="affixProps"
+        ref="test"
         class="c-AffixTest"
         @click="test">测试affix</p>
       <p>占位行10</p>
@@ -43,25 +44,29 @@ export default {
   props: {},
   data() {
     return {
-      affixProps: {
-        container: '.c-BaseLayoutVertical-bd', // 滚动容器
-        threshold: 495, // 触发affixed阈值
-        fixedElPos: { // fixed元素的位置
-          top: '35px'
-          // left: '50%',
-        },
-        onAffixed(el) { // 触发affixed回调
-          console.log('fixed元素为:', el)
-        },
-        interval: 20 // 滚动事件触发频率
-      }
+      affixProps: null
     }
   },
   computed: {},
   watch: {},
   beforeCreate() {},
   created() {},
-  mounted() {},
+  mounted() {
+    const threshold = this.$refs.test.offsetTop
+
+    this.affixProps = {
+      container: '.c-BaseLayoutVertical-bd', // 滚动容器
+      threshold, // 触发affixed阈值
+      fixedElPos: { // fixed元素的位置
+        top: '35px'
+        // left: '50%',
+      },
+      onAffixed(el) { // 触发affixed回调
+        console.log('fixed元素为:', el)
+      },
+      interval: 20 // 滚动事件触发频率
+    }
+  },
   methods: {
     test() {
       alert(1)

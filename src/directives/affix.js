@@ -10,7 +10,14 @@ export default {
   name: 'affix',
   directive: {
     bind(el, binding, vnode) {},
-    inserted(el, binding, vnode) {
+    inserted(el, binding, vnode) {},
+    update() {},
+    componentUpdated(el, binding) {
+      // 屏蔽无效更新
+      if (JSON.stringify(binding.value) === JSON.stringify(binding.oldValue)) {
+        return
+      }
+
       // * 若没有传递container，则监听window的滚动事件，否则监听container滚动事件
       const isGlobal = !binding.value || !binding.value.container
 
@@ -109,7 +116,6 @@ export default {
       $container.addEventListener('scroll', el.__vueAffixScrollHandler__, false)
       window.addEventListener('resize', el.__vueAffixScrollHandler__, false)
     },
-    update() {},
     unbind(el, binding) {
       // * clean
       if (el.__vueAffixScrollHandler__) {

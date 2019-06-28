@@ -81,7 +81,7 @@ export default {
 
           isAffixed = true
 
-          onAffixed(el)
+          onAffixed && onAffixed(el)
         } else {
           if (fakeEl) {
             el.parentNode.removeChild(fakeEl)

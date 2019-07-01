@@ -74,10 +74,30 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
+        // * 2019-0701-svg使用svgo svgo-loader及svg-sprite-loader处理
+        exclude: [resolve('src/assets/svgs')],
         options: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
+      },
+      {
+        // * 2019-0701-处理svg
+        test: /\.svg$/,
+        use: [
+          { loader: 'svg-sprite-loader', options: {} },
+          {
+            loader: 'svgo-loader',
+            options: {
+              plugins: [
+                // 还有很多配置，具体可以查看https://github.com/svg/svgo
+                { removeViewBox: false },
+                { removeXMLNS: true }
+              ]
+            }
+          }
+        ],
+        include: [resolve('src/assets/svgs')]
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,

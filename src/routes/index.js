@@ -36,6 +36,7 @@ import toastTest from './toast-test'
 import userCenter from './user-center'
 import vuexTest from './vuex-test'
 import audioTest from './audio-test'
+import svgIconTest from './svg-icon-test'
 
 export default [
   {
@@ -85,5 +86,6 @@ export default [
   ...timeCounterTest,
   ...toastTest,
   ...userCenter,
-  ...vuexTest
+  ...vuexTest,
+  ...svgIconTest
 ]

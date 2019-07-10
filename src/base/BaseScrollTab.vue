@@ -16,7 +16,7 @@
         <div
           v-for="(item,index) in formatedDataList"
           :key="index"
-          :class="{'is-active':index === curIndex}"
+          :class="[index === curIndex ? 'is-active' : '',customItemClass]"
           class="c-BaseScrollTab-item"
           @click="clickHandler(index,item)">
 
@@ -82,6 +82,10 @@ export default {
     },
     activeItemId: {
       type: [String, Number],
+      default: ''
+    },
+    customItemClass: {
+      type: String,
       default: ''
     }
   },

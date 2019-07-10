@@ -326,8 +326,10 @@ export default {
     }
 
     &.is-disabled {
-      color: $subTextColor;
       cursor: not-allowed;
+      .icon {
+        color: $subTextColor;
+      }
     }
 
     .icon {

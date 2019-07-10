@@ -37,6 +37,7 @@ import userCenter from './user-center'
 import vuexTest from './vuex-test'
 import audioTest from './audio-test'
 import svgIconTest from './svg-icon-test'
+import baseScrollTabTest from './base-scroll-tab-test'
 
 export default [
   {
@@ -57,6 +58,7 @@ export default [
   ...affixTest,
   ...audioTest,
   ...axiosTest,
+  ...baseScrollTabTest,
   ...betterScrollTest,
   ...clickAreaExpandTest,
   ...clickOutsideTest,

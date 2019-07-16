@@ -296,3 +296,52 @@ export function getQueryObject(qs = location.search) {
  * @returns {String} kebab-case字符串
  */
 export const str2kebab = str => str.replace(/\B([A-Z])/g, '-$1').toLowerCase()
+
+/**
+ * 毫秒转换为 时'分"秒 形式
+ * @param {Number|String} num 需要转换的数字
+ * @param {String} sep 主要分隔符；默认为'
+ * @param {String} subSep 次要分隔符；默认为"
+ * @param {Boolean} needPadZero 是否需要前补0；默认为true
+ * @param {Boolean} showH 是否需要展示时；默认为true
+ * @param {Boolean} showM 是否需要展示分；默认为true
+ */
+export function ms2hms({
+  num,
+  sep = "'",
+  subSep = '"',
+  needPadZero = true,
+  showH = true,
+  showM = true
+}) {
+  const n = Math.floor(num)
+  // null 会被floor函数转为0
+  if (isNaN(n) || n === 0) return num
+
+  const padZeroFn = num => `${num < 10 && num >= 0 ? '0' + num : num}`
+
+  const ms2s = ms => Math.floor(ms / 1000)
+
+  const ms2m = ms => Math.floor(ms2s(ms) / 60)
+
+  const ms2h = ms => Math.floor(ms2m(ms) / 60)
+
+  if (!showM) return needPadZero ? padZeroFn(ms2s(n)) : n + ''
+
+  if (!showH) {
+    const m = ms2m(n)
+    const s = ms2s(n) % 60
+
+    return needPadZero
+      ? `${padZeroFn(m)}${subSep}${padZeroFn(s)}`
+      : `${m}${subSep}${s}`
+  } else {
+    const h = ms2h(n)
+    const m = ms2m(n) % 60
+    const s = ms2s(n) % 60
+
+    return needPadZero
+      ? `${padZeroFn(h)}${sep}${padZeroFn(m)}${subSep}${padZeroFn(s)}`
+      : `${h}${sep}${m}${subSep}${s}`
+  }
+}

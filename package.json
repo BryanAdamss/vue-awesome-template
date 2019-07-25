@@ -20,6 +20,7 @@
     "babel-polyfill": "^6.26.0",
     "better-scroll": "^1.13.4",
     "element-ui": "^2.8.2",
+    "launch-editor-middleware": "^2.2.1",
     "velocity-animate": "^1.5.2",
     "vue": "^2.6.10",
     "vue-lazyload": "^1.2.6",

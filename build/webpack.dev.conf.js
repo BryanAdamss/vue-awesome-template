@@ -13,6 +13,9 @@ const portfinder = require('portfinder')
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
+// * 2019-0725-添加vue-devtools open-in-editor功能需要的中间件
+const openInEditor = require('launch-editor-middleware')
+
 // * 2019-0111-添加资源导入插件
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 
@@ -28,6 +31,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
+    // * 2019-0725-指明需要使用vscode打开组件
+    before(app) {
+      app.use('/__open-in-editor', openInEditor('code'))
+    },
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [

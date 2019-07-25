@@ -38,6 +38,7 @@ import vuexTest from './vuex-test'
 import audioTest from './audio-test'
 import svgIconTest from './svg-icon-test'
 import baseScrollTabTest from './base-scroll-tab-test'
+import filtersTest from './filters-test'
 
 export default [
   {
@@ -89,5 +90,6 @@ export default [
   ...toastTest,
   ...userCenter,
   ...vuexTest,
-  ...svgIconTest
+  ...svgIconTest,
+  ...filtersTest
 ]

@@ -345,3 +345,49 @@ export function ms2hms({
       : `${h}${sep}${m}${subSep}${s}`
   }
 }
+
+/**
+ * 保留位数
+ *
+ * @export
+ * @param {*} originalNum 原始值
+ * @param {number} [keepCount=1] 保留的位数，默认1
+ * @param {boolean} [round=true] 四舍五入，默认为true，否则直接截取
+ * @returns {string} 调整后的数字字符串
+ */
+export function fixedDecimal(originalNum, keepCount = 1, round = true) {
+  let num = parseFloat(originalNum)
+  if (isNaN(num)) return originalNum
+
+  if (round) {
+    return num.toFixed(keepCount)
+  } else {
+    const stringNum = num.toString()
+    let { 0: interget, 1: decimal = '' } = stringNum.split('.')
+
+    if (!keepCount) return interget
+
+    let decimalLen = decimal ? decimal.length : 0
+    if (decimalLen === keepCount) return stringNum
+
+    if (decimalLen > keepCount) return decimal.substring(0, keepCount)
+
+    while (decimalLen < keepCount) {
+      decimal = decimal + '0'
+      decimalLen++
+    }
+
+    return `${interget}.${decimal}`
+  }
+}
+
+/**
+ * 数字转百分比
+ * @param {Number|String} originalNum 需要转换的数字
+ */
+export function num2percentage(originalNum) {
+  const num = parseFloat(originalNum)
+  if (isNaN(num) || num > 1 || num < 0) return originalNum
+
+  return num * 100
+}

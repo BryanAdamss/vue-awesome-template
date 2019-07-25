@@ -9,7 +9,7 @@ import App from './App'
 import router from 'Plugins/router-instance'
 import store from 'Plugins/vuex-instance'
 import { vueInjecter, globalInjecter } from 'Plugins/injecter'
-import { directiveRegister } from 'Plugins/register'
+import { directiveRegister, filterRegister } from 'Plugins/register'
 
 // * ----------------------------------------
 // * 导入组件
@@ -32,6 +32,7 @@ Vue.use(VueLazyload, {
 // * 调用filters、directives注册器
 // * ----------------------------------------
 directiveRegister()
+filterRegister()
 
 // * ----------------------------------------
 // * 调用注入器

@@ -6,6 +6,8 @@ import Vue from 'vue'
 
 import directivesMap from 'Directives'
 
+import filtersMap from 'Utils/filters-map'
+
 export function directiveRegister() {
   for (let key in directivesMap) {
     if (directivesMap.hasOwnProperty(key)) {
@@ -13,4 +15,8 @@ export function directiveRegister() {
       if (name && directive) Vue.directive(name, directive)
     }
   }
+}
+
+export function filterRegister() {
+  Object.entries(filtersMap).forEach(([key, value]) => Vue.filter(key, value))
 }

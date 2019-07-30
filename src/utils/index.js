@@ -353,14 +353,21 @@ export function ms2hms({
  * @param {*} originalNum 原始值
  * @param {number} [keepCount=1] 保留的位数，默认1
  * @param {boolean} [round=true] 四舍五入，默认为true，否则直接截取
+ * @param {boolean} [keepNegativeZero=false] 是否保留负零，默认为false，不保留
  * @returns {string} 调整后的数字字符串
  */
-export function fixedDecimal(originalNum, keepCount = 1, round = true) {
+export function fixedDecimal(
+  originalNum,
+  keepCount = 1,
+  round = true,
+  keepNegativeZero = false
+) {
   let num = parseFloat(originalNum)
   if (isNaN(num)) return originalNum
 
+  let numStr = ''
   if (round) {
-    return num.toFixed(keepCount)
+    numStr = num.toFixed(keepCount)
   } else {
     const stringNum = num.toString()
     let { 0: interget, 1: decimal = '' } = stringNum.split('.')
@@ -377,8 +384,14 @@ export function fixedDecimal(originalNum, keepCount = 1, round = true) {
       decimalLen++
     }
 
-    return `${interget}.${decimal}`
+    numStr = `${interget}.${decimal}`
   }
+
+  return !keepNegativeZero &&
+    parseFloat(numStr) === 0 &&
+    numStr.indexOf('-') === 0
+    ? numStr.slice(1)
+    : numStr
 }
 
 /**

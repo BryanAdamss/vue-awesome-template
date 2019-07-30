@@ -116,8 +116,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+
   &.has-shadow {
     @include bgAlpha();
   }
@@ -131,6 +130,10 @@ export default {
 
   // * 展示时相关样式
   &.is-visible {
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+
     pointer-events: auto;
     opacity: 1;
     transition: opacity 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);

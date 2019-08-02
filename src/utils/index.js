@@ -404,3 +404,16 @@ export function num2percentage(originalNum) {
 
   return num * 100
 }
+
+/**
+ * 数组深度扁平化
+ * @param {Array} arr 待转换数组
+ */
+export const flatten = arr =>
+  arr.reduce(
+    (result, shouldFlatten) =>
+      result.concat(
+        Array.isArray(shouldFlatten) ? flatten(shouldFlatten) : shouldFlatten
+      ),
+    []
+  )

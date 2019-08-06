@@ -1,4 +1,4 @@
-# vue-10w-template
+# vue-awesome-template
 
 > 参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)目录结构集成的一个vue模板
 

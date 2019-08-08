@@ -39,6 +39,7 @@ import audioTest from './audio-test'
 import svgIconTest from './svg-icon-test'
 import baseScrollTabTest from './base-scroll-tab-test'
 import filtersTest from './filters-test'
+import drawingBoardTest from './drawing-board-test'
 
 export default [
   {
@@ -91,5 +92,6 @@ export default [
   ...userCenter,
   ...vuexTest,
   ...svgIconTest,
-  ...filtersTest
+  ...filtersTest,
+  ...drawingBoardTest
 ]

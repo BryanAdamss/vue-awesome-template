@@ -1,6 +1,8 @@
 <template>
   <div class="c-DrawingBoardTest">
-    <div id="board"></div>
+    <div
+      id="board"
+      style="width:300px;height:300px;"/>
   </div>
 </template>
 
@@ -24,7 +26,9 @@ export default {
   beforeCreate() {},
   created() {},
   mounted() {
-    this.drawingBoard=new DrawingBoard('#board')
+    this.drawingBoard = new DrawingBoard('#board')
+
+    console.log(this.drawingBoard)
   },
   methods: {}
 }
@@ -32,5 +36,8 @@ export default {
 
 <style lang="scss" scoped>
 .c-DrawingBoardTest {
+  #board {
+    border: 1px solid blue;
+  }
 }
 </style>

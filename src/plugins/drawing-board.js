@@ -6,11 +6,13 @@
 class DrawingBoard {
   constructor(
     container,
-    options = { size: [], manualMount: false, maxRevokeSteps: 10 }
+    options = {
+      size: [],
+      manualMount: false,
+      maxRevokeSteps: 10
+    }
   ) {
     this._init(container, options)
-
-    this.mode = ['painting', 'eraser']
 
     if (!this.manualMount) this.mount(this.container)
   }

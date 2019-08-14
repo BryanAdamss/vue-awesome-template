@@ -430,3 +430,24 @@ export const replaceEmoji = (str, placeholder = '') =>
       placeholder
     )
     : str
+
+/**
+ * 从url中获取图片的流
+ * @param {String} url 图片url
+ */
+export function getImgURLBlob(url) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+
+    xhr.open('GET', url, true)
+    xhr.responseType = 'blob'
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) resolve(xhr.response)
+    }
+
+    xhr.onerror = reject
+
+    xhr.send()
+  })
+}

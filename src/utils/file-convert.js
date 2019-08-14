@@ -125,7 +125,7 @@ export function blob2ObjectURL(blobOrFile) {
 export function _btoa(s) {
   if (btoa) {
     return btoa(
-      // 原生btoa，无法编码中文，需要encodeURIComponent再escape(转移)
+      // 原生btoa，无法编码中文，需要encodeURIComponent再escape(转义)
       encodeURIComponent(s).replace(/%([0-9A-F]{2})/g, function(match, p1) {
         return String.fromCharCode('0x' + p1)
       })

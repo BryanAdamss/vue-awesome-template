@@ -57,13 +57,10 @@ class DrawingBoard {
     // 尺寸未传，则使用容器的尺寸
     const [width, height] = size
 
-    // 保留原始尺寸，方便旋转时使用
-    this.originalSize = [
+    this.setSize([
       width == null ? this.container.getBoundingClientRect().width : width,
       height == null ? this.container.getBoundingClientRect().height : height
-    ]
-
-    this.setSize(this.originalSize)
+    ])
 
     // 手动挂载
     this.manualMount = manualMount
@@ -93,11 +90,14 @@ class DrawingBoard {
     this.bgImgRotate = bgImgRotate
     this.className = className
 
-    // 获取背景图
+    // 有设置背景图，则获取并绘制
     if (bgImgURL) {
       this._getImageFromURL(bgImgURL)
         .then(image => {
           this._bgImgObject = image
+          // 保留原始尺寸，方便旋转时使用
+          // TODO:设置初始旋转角度时，会存在问题
+          this.originalSize = [image.width, image.height]
           this._drawBg(image, ...this.originalSize)
         })
         .catch(err => {
@@ -431,9 +431,6 @@ class DrawingBoard {
     // 因为旋转操作不记录到撤销栈中
     // 旋转时需要清空撤销栈，不然会导致撤销状态错误
     this.revokeStack = []
-
-    // 重新保存旋转后的第一帧
-    this._saveImageData(this.ctx.getImageData(0, 0, this.width, this.height))
   }
 
   /**
@@ -539,11 +536,11 @@ class DrawingBoard {
       this._getImageFromURL(urlOrObject)
         .then(image => {
           this._bgImgObject = image
-          this._drawBg(
-            image,
+          this.originalSize = [
             originalWidth || image.width,
             originalHeight || image.height
-          )
+          ]
+          this._drawBg(image, ...this.originalSize)
         })
         .catch(err => {
           console.log(err)
@@ -551,11 +548,11 @@ class DrawingBoard {
         })
     } else {
       if (urlOrObject !== this._bgImgObject) this._bgImgObject = urlOrObject
-      this._drawBg(
-        urlOrObject,
+      this.originalSize = [
         originalWidth || this.width,
         originalHeight || this.height
-      )
+      ]
+      this._drawBg(urlOrObject, ...this.originalSize)
     }
   }
 

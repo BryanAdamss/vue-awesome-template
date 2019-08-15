@@ -24,15 +24,16 @@ class DrawingBoard {
         : container
 
     this._defaultOptions = {
-      size: [],
-      manualMount: false,
-      maxRevokeSteps: 10,
-      useMouse: true,
-      penColor: 'red',
-      penWidth: 6,
-      bgImgURL: '',
-      bgColor: '#fff',
-      rotate: 0
+      size: [], // canvas尺寸
+      className: '',
+      manualMount: false, // 手动挂载
+      maxRevokeSteps: 10, // 最大回退步数
+      useMouse: true, // 交互模式
+      penColor: 'red', // 画笔颜色
+      penWidth: 6, // 画笔粗细
+      bgImgURL: '', // 背景图url或base64
+      bgImgRotate: 0, // 背景图旋转角度
+      bgColor: '#fff' // 背景色
     }
 
     this.options = {
@@ -42,6 +43,7 @@ class DrawingBoard {
 
     const {
       size,
+      className,
       manualMount,
       maxRevokeSteps,
       useMouse,
@@ -49,15 +51,19 @@ class DrawingBoard {
       penWidth,
       bgImgURL,
       bgColor,
-      rotate
+      bgImgRotate
     } = this.options
 
     // 尺寸未传，则使用容器的尺寸
     const [width, height] = size
-    this.setSize([
+
+    // 保留原始尺寸，方便旋转时使用
+    this.originalSize = [
       width == null ? this.container.getBoundingClientRect().width : width,
       height == null ? this.container.getBoundingClientRect().height : height
-    ])
+    ]
+
+    this.setSize(this.originalSize)
 
     // 手动挂载
     this.manualMount = manualMount
@@ -84,12 +90,15 @@ class DrawingBoard {
     this.bgImgURL = bgImgURL
     this.bgColor = bgColor
 
+    this.bgImgRotate = bgImgRotate
+    this.className = className
+
     // 获取背景图
     if (bgImgURL) {
       this._getImageFromURL(bgImgURL)
         .then(image => {
           this._bgImgObject = image
-          this._drawBg(image)
+          this._drawBg(image, ...this.originalSize)
         })
         .catch(err => {
           console.log(err)
@@ -343,6 +352,84 @@ class DrawingBoard {
   }
 
   /**
+   * 绘制背景底图
+   * @param {CanvasImageSource} imgObject 图像对象
+   * @param {Number} w 宽
+   * @param {Number} h 高
+   */
+  _drawBg(imgObject, w, h) {
+    if (
+      !imgObject ||
+      !this.ctx ||
+      !this.ctx.drawImage ||
+      !w ||
+      !h ||
+      w <= 0 ||
+      h <= 0
+    ) {
+      return
+    }
+
+    const sx = 0
+    const sy = 0
+    const sWidth = w
+    const sHeight = h
+
+    const dx = -w / 2
+    const dy = -h / 2
+    const dWidth = w
+    const dHeight = h
+
+    this.ctx.save()
+
+    this.ctx.translate(this.width / 2, this.height / 2)
+    this.ctx.rotate((Math.PI / 180) * this.bgImgRotate)
+
+    console.log(
+      '旋转参数:',
+      sx,
+      sy,
+      sWidth,
+      sHeight,
+      dx,
+      dy,
+      dWidth,
+      dHeight,
+      this.bgImgRotate
+    )
+
+    this.ctx.drawImage(
+      imgObject,
+      sx,
+      sy,
+      sWidth,
+      sHeight,
+      dx,
+      dy,
+      dWidth,
+      dHeight
+    )
+
+    this.ctx.restore()
+  }
+
+  /**
+   * 旋转
+   * @param {Boolean} direction 方向 1顺时针 -1逆时针
+   */
+  rotate(direction = 1) {
+    if (![1, -1].includes(direction)) return
+
+    // 逆时针旋转角度记录为正值，-90度 记录为270；450记录为90
+    this.bgImgRotate = (this.bgImgRotate + direction * 90 + 360) % 360
+
+    // 重设尺寸，旋转90度，宽高互换即可
+    this.setSize([this.height, this.width])
+
+    this._drawBg(this._bgImgObject, ...this.originalSize)
+  }
+
+  /**
    * 设置画笔样式(粗细、颜色)
    * @param {Object} penStyle 画笔样式
    */
@@ -402,6 +489,15 @@ class DrawingBoard {
   }
 
   /**
+   * 设置样式名
+   * @param {String} name 样式类字符串
+   */
+  setClassName(name) {
+    if (!name || !this.el) return
+    this.el.className = name
+  }
+
+  /**
    * 挂载
    */
   mount() {
@@ -409,6 +505,7 @@ class DrawingBoard {
     if (!this.ctx) this.ctx = this._getCtx()
 
     this._setDOMSize([this.width, this.height])
+    this.setClassName(this.className)
 
     this._bindEvents(this.mode)
 
@@ -417,10 +514,12 @@ class DrawingBoard {
   }
 
   /**
-   * 设置绘图背景
-   * @param {CanvasImageSource|String} img 需要绘制的图或url
+   * 设置背景
+   * @param {CanvasImageSource|String} urlOrObject 需要绘制的图像对象(HTMLImageElement、SVGImageElement、HTMLVideoElement、HTMLCanvasElement、ImageBitmap、OffscreenCanvas)或图像url
+   * @param {Number} originalWidth 原图像宽度。当无法从urlOrObject直接获取原始尺寸时需要手动提供原始尺寸
+   * @param {Number} originalHeight 原图像高度
    */
-  setBgImg(urlOrObject) {
+  setBgImg(urlOrObject, originalWidth, originalHeight) {
     if (
       typeof urlOrObject === 'string' &&
       /^(http[s]?)|(data:image)/.test(urlOrObject)
@@ -429,25 +528,24 @@ class DrawingBoard {
       this._getImageFromURL(urlOrObject)
         .then(image => {
           this._bgImgObject = image
-          this._drawBg(image)
+          this._drawBg(
+            image,
+            originalWidth || image.width,
+            originalHeight || image.height
+          )
         })
         .catch(err => {
           console.log(err)
+          this._bgImgObject = null
         })
     } else {
-      this._bgImgObject = urlOrObject
-      this._drawBg(urlOrObject)
+      if (urlOrObject !== this._bgImgObject) this._bgImgObject = urlOrObject
+      this._drawBg(
+        urlOrObject,
+        originalWidth || this.width,
+        originalHeight || this.height
+      )
     }
-  }
-
-  /**
-   * 绘制背景
-   * @param {Image} imgObject 图片对象
-   */
-  _drawBg(imgObject) {
-    if (!imgObject || !this.ctx || !this.ctx.drawImage) return
-
-    this.ctx.drawImage(imgObject, 0, 0)
   }
 
   /**

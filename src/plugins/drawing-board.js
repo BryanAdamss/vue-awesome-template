@@ -427,6 +427,13 @@ class DrawingBoard {
     this.setSize([this.height, this.width])
 
     this._drawBg(this._bgImgObject, ...this.originalSize)
+
+    // 因为旋转操作不记录到撤销栈中
+    // 旋转时需要清空撤销栈，不然会导致撤销状态错误
+    this.revokeStack = []
+
+    // 重新保存旋转后的第一帧
+    this._saveImageData(this.ctx.getImageData(0, 0, this.width, this.height))
   }
 
   /**
@@ -444,11 +451,12 @@ class DrawingBoard {
    * 撤销
    */
   revoke() {
+    // TODO:鼠标按住绘制，离开canvs松开鼠标，撤销,再进入绘制的图形无法撤销
     this._revoke()
   }
 
   /**
-   * 清空绘图板
+   * 清空绘制
    */
   clear() {
     if (!this.ctx || !this.el) return
@@ -456,6 +464,9 @@ class DrawingBoard {
     this._saveImageData(this.ctx.getImageData(0, 0, this.width, this.height))
 
     this.ctx.clearRect(0, 0, this.width, this.height)
+
+    // 如果有背景图，则需要将背景图绘制回来
+    this._bgImgObject && this._drawBg(this._bgImgObject, ...this.originalSize)
   }
 
   /**
@@ -546,23 +557,6 @@ class DrawingBoard {
         originalHeight || this.height
       )
     }
-  }
-
-  /**
-   * 设置背景色
-   * @param {String} color 背景色
-   */
-  setBgColor(color = '#fff') {
-    if (typeof color !== 'string' || !this.ctx) return
-
-    this.bgColor = color
-
-    this.ctx.save()
-
-    this.ctx.beginPath()
-    this.ctx.fillRect(color, 0, 0, this.width, this.height)
-
-    this.ctx.restore()
   }
 
   /**

@@ -27,8 +27,6 @@
 
 import DrawingBoard from 'Plugins/drawing-board'
 
-import {} from 'Utils/file-convert'
-
 export default {
   name: 'DrawingBoardTest',
   components: {},

@@ -25,7 +25,7 @@ class DrawingBoard {
 
     this._defaultOptions = {
       size: [], // canvas尺寸
-      className: '',
+      className: '', // 自定义样式类
       manualMount: false, // 手动挂载
       maxRevokeSteps: 10, // 最大回退步数
       useMouse: true, // 交互模式
@@ -50,8 +50,8 @@ class DrawingBoard {
       penColor,
       penWidth,
       bgImgURL,
-      bgColor,
-      bgImgRotate
+      bgImgRotate,
+      bgColor
     } = this.options
 
     // 尺寸未传，则使用容器的尺寸

@@ -96,7 +96,6 @@ class DrawingBoard {
         .then(image => {
           this._bgImgObject = image
           // 保留原始尺寸，方便旋转时使用
-          // TODO:设置初始旋转角度时，会存在问题
           this.originalSize = [image.width, image.height]
           this._drawBg(image, ...this.originalSize)
         })
@@ -147,9 +146,10 @@ class DrawingBoard {
 
     this.lastPoint = this._getPointOffset(e)
 
-    // TODO:存在用户轻点，占用撤销栈的问题
     this.ctx &&
       this._saveImageData(this.ctx.getImageData(0, 0, this.width, this.height))
+
+    this._drawCircle(this.lastPoint.x, this.lastPoint.y)
   }
 
   /**
@@ -173,7 +173,16 @@ class DrawingBoard {
     this.isPainting = false
   }
 
-  _drawCircle(x, y, radius = 10, color = 'red') {
+  /**
+   * 绘制圆形
+   * @param {Number} x 横轴
+   * @param {Number} y 纵轴
+   * @param {Number} radius 半径
+   * @param {String} color 画笔颜色
+   */
+  _drawCircle(x, y, radius = 3, color = 'red') {
+    console.log(arguments)
+
     if (!this.ctx) return
     this.ctx.save()
 
@@ -257,7 +266,11 @@ class DrawingBoard {
       this._handlePointerMoveBinded,
       false
     )
-    this.el.addEventListener(endEventName, this._handlePointerEndBinded, false)
+    this.el.removeEventListener(
+      endEventName,
+      this._handlePointerEndBinded,
+      false
+    )
   }
 
   /**

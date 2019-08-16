@@ -135,6 +135,15 @@ class DrawingBoard {
       false
     )
     this.el.addEventListener(endEventName, this._handlePointerEndBinded, false)
+
+    // 鼠标交互时，需要单独绑定leave
+    if (mode === 'mouse') {
+      this.el.addEventListener(
+        'mouseleave',
+        this._handlePointerEndBinded,
+        false
+      )
+    }
   }
 
   /**
@@ -181,8 +190,6 @@ class DrawingBoard {
    * @param {String} color 画笔颜色
    */
   _drawCircle(x, y, radius = 3, color = 'red') {
-    console.log(arguments)
-
     if (!this.ctx) return
     this.ctx.save()
 
@@ -237,8 +244,6 @@ class DrawingBoard {
       const { clientX, clientY } = touches[0]
       const { left, top } = target.getBoundingClientRect()
 
-      console.log('_getPointOffset', clientX, clientY, left, top)
-
       return {
         x: clientX - left,
         y: clientY - top
@@ -271,6 +276,14 @@ class DrawingBoard {
       this._handlePointerEndBinded,
       false
     )
+
+    if (mode === 'mouse') {
+      this.el.removeEventListener(
+        'mouseleave',
+        this._handlePointerEndBinded,
+        false
+      )
+    }
   }
 
   /**

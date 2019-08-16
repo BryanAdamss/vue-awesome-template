@@ -87,7 +87,7 @@ class DrawingBoard {
     this.bgImgURL = bgImgURL
     this.bgColor = bgColor
 
-    this.bgImgRotate = bgImgRotate
+    this.bgImgRotate = this._getLawfulRotateAngle(bgImgRotate)
     this.className = className
 
     // 有设置背景图，则获取并绘制
@@ -375,10 +375,23 @@ class DrawingBoard {
     const sWidth = w
     const sHeight = h
 
-    const dx = -w / 2
-    const dy = -h / 2
-    const dWidth = w
-    const dHeight = h
+    const dx =
+      this.bgImgRotate === 0 || this.bgImgRotate === 180
+        ? -this.width / 2
+        : -this.height / 2
+    const dy =
+      this.bgImgRotate === 0 || this.bgImgRotate === 180
+        ? -this.height / 2
+        : -this.width / 2
+
+    const dWidth =
+      this.bgImgRotate === 0 || this.bgImgRotate === 180
+        ? this.width
+        : this.height
+    const dHeight =
+      this.bgImgRotate === 0 || this.bgImgRotate === 180
+        ? this.height
+        : this.width
 
     this.ctx.save()
 
@@ -414,14 +427,33 @@ class DrawingBoard {
   }
 
   /**
+   * 获取合法角度值(逆时针旋转角度记录为正值，-90度 记录为270；450记录为90,10度记录为0,55度记录为90)
+   * @param {Number} angle 角度
+   */
+  _getLawfulRotateAngle(angle) {
+    if (typeof angle !== 'number' || isNaN(angle)) return
+    const tempAngle = angle % 360
+    const newAngle = tempAngle < 0 ? tempAngle + 360 : tempAngle
+    // 角度>=45，计入下一个90度，保证返回的角度 % 90 ===0
+    const roundAngle =
+      newAngle % 90 >= 45
+        ? (Math.ceil(newAngle / 90) * 90) % 360
+        : (Math.floor(newAngle / 90) * 90) % 360
+
+    // 可能存在-0
+    return Math.abs(roundAngle)
+  }
+
+  /**
    * 旋转
    * @param {Boolean} direction 方向 1顺时针 -1逆时针
    */
   rotate(direction = 1) {
     if (![1, -1].includes(direction)) return
 
-    // 逆时针旋转角度记录为正值，-90度 记录为270；450记录为90
-    this.bgImgRotate = (this.bgImgRotate + direction * 90 + 360) % 360
+    this.bgImgRotate = this._getLawfulRotateAngle(
+      this.bgImgRotate + direction * 90
+    )
 
     // 重设尺寸，旋转90度，宽高互换即可
     this.setSize([this.height, this.width])

@@ -506,7 +506,6 @@ class DrawingBoard {
    * 撤销
    */
   revoke() {
-    // TODO:鼠标按住绘制，离开canvs松开鼠标，撤销,再进入绘制的图形无法撤销
     this._revoke()
   }
 
@@ -575,7 +574,6 @@ class DrawingBoard {
 
     this._bindEvents(this.mode)
 
-    // TODO:此处在reinit时，需要先移除节点或者重刷canvas
     this.container.appendChild(this.el)
   }
 

@@ -34,7 +34,8 @@ class DrawingBoard {
       bgImgURL: '', // 背景图url或base64
       bgImgRotate: 0, // 背景图旋转角度
       bgColor: '#fff', // 背景色
-      onRevokeStackChange: null // 撤销栈改变时的回调
+      onRevokeStackChange: null, // 撤销栈改变时的回调
+      onPaintEnd: null // 绘制一笔结束的回调
     }
 
     this.options = {
@@ -176,6 +177,10 @@ class DrawingBoard {
 
     this._drawLine(lastX, lastY, x, y, this.penWidth, this.penColor)
     this.lastPoint = { x, y }
+
+    this.onPaintEnd &&
+      typeof this.onPaintEnd === 'function' &&
+      this.onPaintEnd()
   }
 
   /**

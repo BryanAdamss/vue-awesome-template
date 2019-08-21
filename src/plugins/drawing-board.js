@@ -505,8 +505,9 @@ class DrawingBoard {
   /**
    * 撤销
    */
-  revoke() {
+  revoke(cb) {
     this._revoke()
+    cb && typeof cb === 'function' && cb(this.revokeStack)
   }
 
   /**

@@ -33,7 +33,8 @@ class DrawingBoard {
       penWidth: 6, // 画笔粗细
       bgImgURL: '', // 背景图url或base64
       bgImgRotate: 0, // 背景图旋转角度
-      bgColor: '#fff' // 背景色
+      bgColor: '#fff', // 背景色
+      onRevokeStackChange: null // 撤销栈改变时的回调
     }
 
     this.options = {
@@ -51,7 +52,8 @@ class DrawingBoard {
       penWidth,
       bgImgURL,
       bgImgRotate,
-      bgColor
+      bgColor,
+      onRevokeStackChange
     } = this.options
 
     // 尺寸未传，则使用容器的尺寸
@@ -106,6 +108,8 @@ class DrawingBoard {
     } else {
       this._bgImgObject = null
     }
+
+    this.onRevokeStackChange = onRevokeStackChange
   }
 
   /**
@@ -311,6 +315,10 @@ class DrawingBoard {
 
     this.revokeStack.push(imageData)
 
+    this.onRevokeStackChange &&
+      typeof this.onRevokeStackChange === 'function' &&
+      this.onRevokeStackChange(this.revokeStack)
+
     console.log('revokeStack', this.revokeStack)
   }
 
@@ -345,6 +353,11 @@ class DrawingBoard {
     if (!this.ctx || !this.revokeStack || !this.revokeStack.length) return
 
     this.ctx.putImageData(this.revokeStack.pop(), 0, 0)
+
+    this.onRevokeStackChange &&
+      typeof this.onRevokeStackChange === 'function' &&
+      this.onRevokeStackChange(this.revokeStack)
+
     console.log('_revoke', this.revokeStack)
   }
 
@@ -505,9 +518,8 @@ class DrawingBoard {
   /**
    * 撤销
    */
-  revoke(cb) {
+  revoke() {
     this._revoke()
-    cb && typeof cb === 'function' && cb(this.revokeStack)
   }
 
   /**

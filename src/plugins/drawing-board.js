@@ -54,7 +54,8 @@ class DrawingBoard {
       bgImgURL,
       bgImgRotate,
       bgColor,
-      onRevokeStackChange
+      onRevokeStackChange,
+      onPaintEnd
     } = this.options
 
     // 尺寸未传，则使用容器的尺寸
@@ -111,6 +112,9 @@ class DrawingBoard {
     }
 
     this.onRevokeStackChange = onRevokeStackChange
+    this.onPaintEnd = onPaintEnd
+
+    this.paintCount = 0 // 记录绘制次数
   }
 
   /**
@@ -128,6 +132,7 @@ class DrawingBoard {
     this._handlePointerStartBinded = this._handlePointerStart.bind(this)
     this._handlePointerMoveBinded = this._handlePointerMove.bind(this)
     this._handlePointerEndBinded = this._handlePointerEnd.bind(this)
+    this._handlePointerLeaveBinded = this._handlePointerLeave.bind(this)
 
     this.el.addEventListener(
       startEventName,
@@ -145,7 +150,7 @@ class DrawingBoard {
     if (mode === 'mouse') {
       this.el.addEventListener(
         'mouseleave',
-        this._handlePointerEndBinded,
+        this._handlePointerLeaveBinded,
         false
       )
     }
@@ -160,8 +165,13 @@ class DrawingBoard {
 
     this.lastPoint = this._getPointOffset(e)
 
+    // 绘制前保存状态
     this.ctx &&
-      this._saveImageData(this.ctx.getImageData(0, 0, this.width, this.height))
+      this._saveImageData(
+        'paint',
+        this.paintCount,
+        this.ctx.getImageData(0, 0, this.width, this.height)
+      )
 
     this._drawCircle(this.lastPoint.x, this.lastPoint.y)
   }
@@ -177,10 +187,6 @@ class DrawingBoard {
 
     this._drawLine(lastX, lastY, x, y, this.penWidth, this.penColor)
     this.lastPoint = { x, y }
-
-    this.onPaintEnd &&
-      typeof this.onPaintEnd === 'function' &&
-      this.onPaintEnd()
   }
 
   /**
@@ -188,6 +194,22 @@ class DrawingBoard {
    * @param {MouseEvent|TouchEvent} e 事件对象
    */
   _handlePointerEnd(e) {
+    this.isPainting = false
+
+    this.paintCount++
+
+    this.onPaintEnd &&
+      typeof this.onPaintEnd === 'function' &&
+      this.onPaintEnd(this.paintCount)
+
+    console.log('_handlePointerEnd paintCount', this.paintCount)
+  }
+
+  /**
+   * 处理指针离开
+   * @param {MouseEvent|TouchEvent} e 事件对象
+   */
+  _handlePointerLeave(e) {
     this.isPainting = false
   }
 
@@ -289,7 +311,7 @@ class DrawingBoard {
     if (mode === 'mouse') {
       this.el.removeEventListener(
         'mouseleave',
-        this._handlePointerEndBinded,
+        this._handlePointerLeaveBinded,
         false
       )
     }
@@ -308,23 +330,33 @@ class DrawingBoard {
   }
 
   /**
-   * 保存当前画布像素数据
+   * 保存当前画布状态
+   * @param {String} type 类型(绘制paint、清空clear) 默认paint
+   * @param {Number} paintCount 绘制次数
    * @param {ImageData} imageData 像素数据
    */
-  _saveImageData(imageData) {
-    if (!imageData || !(imageData instanceof ImageData)) return
+  _saveImageData(type = 'paint', paintCount, imageData) {
+    if (
+      !['paint', 'clear'].includes(type) ||
+      paintCount == null ||
+      !imageData ||
+      !(imageData instanceof ImageData)
+    ) {
+      return
+    }
 
     if (this.revokeStack.length >= this.MAX_REVOKE_STEPS) {
       this.revokeStack.shift()
     }
 
-    this.revokeStack.push(imageData)
+    // 保存类型及绘制次数(撤销时使用)
+    this.revokeStack.push({ type, paintCount, imageData })
 
     this.onRevokeStackChange &&
       typeof this.onRevokeStackChange === 'function' &&
       this.onRevokeStackChange(this.revokeStack)
 
-    console.log('revokeStack', this.revokeStack)
+    console.log('_saveImageData onRevokeStackChange', this.revokeStack)
   }
 
   /**
@@ -357,13 +389,25 @@ class DrawingBoard {
   _revoke() {
     if (!this.ctx || !this.revokeStack || !this.revokeStack.length) return
 
-    this.ctx.putImageData(this.revokeStack.pop(), 0, 0)
+    const {
+      imageData,
+      paintCount: afterRevokePaintCount
+    } = this.revokeStack.pop()
+
+    this.ctx.putImageData(imageData, 0, 0)
+
+    // 恢复绘制次数
+    this.paintCount = afterRevokePaintCount
 
     this.onRevokeStackChange &&
       typeof this.onRevokeStackChange === 'function' &&
       this.onRevokeStackChange(this.revokeStack)
 
-    console.log('_revoke', this.revokeStack)
+    console.log(
+      '_revoke onRevokeStackChange',
+      this.revokeStack,
+      afterRevokePaintCount
+    )
   }
 
   /**
@@ -533,12 +577,22 @@ class DrawingBoard {
   clear() {
     if (!this.ctx || !this.el) return
 
-    this._saveImageData(this.ctx.getImageData(0, 0, this.width, this.height))
+    // 清空前保存状态
+    this._saveImageData(
+      'clear',
+      this.paintCount,
+      this.ctx.getImageData(0, 0, this.width, this.height)
+    )
 
     this.ctx.clearRect(0, 0, this.width, this.height)
 
-    // 如果有背景图，则需要将背景图绘制回来
+    // 重置绘制次数
+    this.paintCount = 0
+
+    // 如果有背景图，则需要重新绘制背景图
     this._bgImgObject && this._drawBg(this._bgImgObject, ...this.originalSize)
+
+    console.log('clear paintCount', this.paintCount)
   }
 
   /**

@@ -101,6 +101,7 @@ class DrawingBoard {
           this._bgImgObject = image
           // 保留原始尺寸，方便旋转时使用
           this.originalSize = [image.width, image.height]
+          // TODO:此处存在异步问题，drawBg内部会使用ctx
           this._drawBg(image, ...this.originalSize)
         })
         .catch(err => {
@@ -533,6 +534,13 @@ class DrawingBoard {
   }
 
   /**
+   * 获取当前画面的绘制次数
+   */
+  getPaintCount() {
+    return this.paintCount
+  }
+
+  /**
    * 旋转
    * @param {Boolean} direction 方向 1顺时针 -1逆时针
    */
@@ -549,7 +557,8 @@ class DrawingBoard {
     this._drawBg(this._bgImgObject, ...this.originalSize)
 
     // 因为旋转操作不记录到撤销栈中
-    // 旋转时需要清空撤销栈，不然会导致撤销状态错误
+    // 旋转时需要清空撤销栈并重置绘制数量，不然会导致撤销状态错误
+    this.paintCount = 0
     this.revokeStack = []
   }
 
@@ -656,6 +665,7 @@ class DrawingBoard {
    * @param {Number} originalHeight 原图像高度
    */
   setBgImg(urlOrObject, originalWidth, originalHeight) {
+    // TODO:此处可能需要保存状态
     if (
       typeof urlOrObject === 'string' &&
       /^(http[s]?)|(data:image)/.test(urlOrObject)

@@ -40,6 +40,7 @@ import svgIconTest from './svg-icon-test'
 import baseScrollTabTest from './base-scroll-tab-test'
 import filtersTest from './filters-test'
 import drawingBoardTest from './drawing-board-test'
+import baseTextAreaTest from './base-textarea-test'
 
 export default [
   {
@@ -93,5 +94,6 @@ export default [
   ...vuexTest,
   ...svgIconTest,
   ...filtersTest,
-  ...drawingBoardTest
+  ...drawingBoardTest,
+  ...baseTextAreaTest
 ]

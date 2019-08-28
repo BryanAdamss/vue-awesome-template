@@ -27,7 +27,7 @@ class DrawingBoard {
       size: [], // canvas尺寸
       className: '', // 自定义样式类
       manualMount: false, // 手动挂载
-      maxRevokeSteps: 10, // 最大回退步数
+      maxRevokeSteps: 20, // 最大回退步数
       useMouse: true, // 交互模式
       penColor: 'red', // 画笔颜色
       penWidth: 6, // 画笔粗细
@@ -174,7 +174,7 @@ class DrawingBoard {
         this.ctx.getImageData(0, 0, this.width, this.height)
       )
 
-    this._drawCircle(this.lastPoint.x, this.lastPoint.y)
+    this._drawCircle(this.lastPoint.x, this.lastPoint.y, this.penColor)
   }
 
   /**

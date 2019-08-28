@@ -16,29 +16,43 @@ export default {
 
       let borderWidth = 1
       let timer = setTimeout(() => {
-        borderWidth = parseInt(getComputedStyle(el).borderWidth)
+        const bw = parseInt(getComputedStyle(el).borderWidth)
+
+        if (isNaN(bw)) {
+          clearTimeout(timer)
+          timer = null
+          return
+        }
+
+        borderWidth = bw
+
         clearTimeout(timer)
         timer = null
       }, 20)
 
       function onInputHandler() {
-        const currentLength = el.value.length
+        // 延迟20ms，以解决在ff中有字符长度限制截取的情况下，快到达截取临界值时
+        // el.value值先改变了，输入框的高度随之变化，然后截取才生效，导致高度错误
+        // 通过延迟20ms，让截取先生效，再改变高度
+        setTimeout(() => {
+          const currentLength = el.value.length
 
-        // * 判断字数如果比之前少了，说明内容正在减少，需要清除高度样式，重新获取
-        if (currentLength < lastLength) {
-          el.style.height = ''
-        }
+          // * 判断字数如果比之前少了，说明内容正在减少，需要清除高度样式，重新获取
+          if (currentLength < lastLength) {
+            el.style.height = ''
+          }
 
-        // * 内容高度
-        const currentHeight = el.scrollHeight
+          // * 内容高度
+          const currentHeight = el.scrollHeight
 
-        // * 如果内容高度发生了变化，再去设置高度值
-        if (lastHeight !== currentHeight || !el.style.height) {
-          el.style.height = currentHeight + borderWidth * 2 + 'px'
-        }
+          // * 如果内容高度发生了变化，再去设置高度值
+          if (lastHeight !== currentHeight || !el.style.height) {
+            el.style.height = currentHeight + borderWidth * 2 + 'px'
+          }
 
-        lastLength = currentLength
-        lastHeight = currentHeight
+          lastLength = currentLength
+          lastHeight = currentHeight
+        }, 20)
       }
 
       el.__vueAutoHeight__ = onInputHandler

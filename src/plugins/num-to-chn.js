@@ -52,7 +52,7 @@ export default class NumToChn {
    * @param {Number} n 数字
    */
   isSafeNumber(n) {
-    return typeof n === 'number' && !isNaN(n) && Math.abs(n) <= Math.pow(2, 53)
+    return typeof n === 'number' && !isNaN(n) && Math.abs(n) < Math.pow(2, 53)
   }
 
   /**
@@ -70,7 +70,7 @@ export default class NumToChn {
       typeof str !== 'string' ||
       typeof padNum !== 'number' ||
       isNaN(padNum) ||
-      padNum === 0 ||
+      padNum <= 0 ||
       typeof padChar !== 'string'
     ) {
       return str

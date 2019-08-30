@@ -25,7 +25,7 @@ import BaseLayoutVertical from 'Base/BaseLayoutVertical'
 
 import TopBar from 'Components/TopBar'
 
-import {LOADING_DEFAULT_CONFIG} from 'Config'
+import { LOADING_DEFAULT_CONFIG } from 'Config'
 
 export default {
   name: 'App',

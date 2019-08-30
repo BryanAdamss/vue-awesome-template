@@ -36,7 +36,7 @@ module.exports = {
   // jest会自动查找.spec.js、.test.js测试文件，所以需要e2e的测试文件
   testPathIgnorePatterns: ['<rootDir>/test/e2e'],
   snapshotSerializers: [
-    // 配置使用jest-serializer-vue序列化快照html
+    // 配置使用jest-serializer-vue序列化快照
     '<rootDir>/node_modules/jest-serializer-vue'
   ],
   setupFiles: [

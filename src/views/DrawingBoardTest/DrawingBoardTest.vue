@@ -17,10 +17,6 @@
 
     <hr>
     <div id="board"/>
-    <hr>
-    paintCount:{{ count }}
-    <hr>
-    stack:{{ stack }}
   </div>
 </template>
 

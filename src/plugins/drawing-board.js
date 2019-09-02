@@ -174,7 +174,12 @@ class DrawingBoard {
         this.ctx.getImageData(0, 0, this.width, this.height)
       )
 
-    this._drawCircle(this.lastPoint.x, this.lastPoint.y, this.penColor)
+    this._drawCircle(
+      this.lastPoint.x,
+      this.lastPoint.y,
+      this.penWidth / 2,
+      this.penColor
+    )
   }
 
   /**

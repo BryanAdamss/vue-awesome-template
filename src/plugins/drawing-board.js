@@ -211,7 +211,11 @@ class DrawingBoard {
    * @param {MouseEvent|TouchEvent} e 事件对象
    */
   _handlePointerLeave(e) {
-    this.isPainting = false
+    if (this.isPainting) {
+      console.log('_handlePointerLeave')
+
+      this._handlePointerEnd(e)
+    }
   }
 
   /**
@@ -715,6 +719,29 @@ class DrawingBoard {
     const resourceType = `image/${type}`
 
     return this.el.toDataURL(resourceType, compressRate)
+  }
+
+  /**
+   * 获取Blob
+   * @param {String} type 图片类型
+   * @param {Number} compressRate 压缩比率
+   */
+  getBlob(type = 'png', compressRate = 1) {
+    if (
+      !this.el ||
+      !this.IMG_TYPES.includes(type) ||
+      typeof compressRate !== 'number' ||
+      isNaN(compressRate)
+    ) {
+      return
+    }
+
+    if (compressRate < 0.3) compressRate = 0.3
+    if (compressRate > 1) compressRate = 1
+
+    const resourceType = `image/${type}`
+
+    return this.el.toBlob(resourceType, compressRate)
   }
 
   /**

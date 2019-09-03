@@ -30,7 +30,8 @@ export default {
   },
   data() {
     return {
-      posts: []
+      posts: [],
+      isLoading: false
     }
   },
   created() {
@@ -43,6 +44,7 @@ export default {
       this.posts = res
       this.isLoading = false
     }).catch(err => {
+      this.isLoading = false
       console.log('err', err)
     })
   },

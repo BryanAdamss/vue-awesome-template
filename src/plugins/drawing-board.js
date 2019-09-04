@@ -4,7 +4,10 @@
  */
 
 class DrawingBoard {
-  static INTERACTIVE_MODE = ['mouse', 'touch', 'both']
+  // 支持的交互模式枚举
+  static INTERACTIVE_MODE_ENUM = ['mouse', 'touch', 'both']
+  // 支持的图片类型枚举
+  static IMG_TYPE_ENUM = ['jpg', 'jpeg', 'png', 'webp']
 
   constructor(container, options) {
     this._init(container, options)
@@ -76,14 +79,11 @@ class DrawingBoard {
     // 最大撤销步数
     this.MAX_REVOKE_STEPS = this._getLawfulMaxRevokeSteps(maxRevokeSteps)
 
-    // 支持的图片类型
-    this.IMG_TYPES = ['jpg', 'jpeg', 'png', 'webp']
-
     this.lastPoint = null
     this.isPainting = false
 
     // 交互模式
-    this.interactiveMode = DrawingBoard.INTERACTIVE_MODE.includes(
+    this.interactiveMode = DrawingBoard.INTERACTIVE_MODE_ENUM.includes(
       interactiveMode
     )
       ? interactiveMode
@@ -816,7 +816,7 @@ class DrawingBoard {
   getDataUrl(type = 'png', compressRate = 1) {
     if (
       !this.el ||
-      !this.IMG_TYPES.includes(type) ||
+      !DrawingBoard.IMG_TYPE_ENUM.includes(type) ||
       typeof compressRate !== 'number' ||
       isNaN(compressRate)
     ) {
@@ -839,7 +839,7 @@ class DrawingBoard {
   getBlob(type = 'png', compressRate = 1) {
     if (
       !this.el ||
-      !this.IMG_TYPES.includes(type) ||
+      !DrawingBoard.IMG_TYPE_ENUM.includes(type) ||
       typeof compressRate !== 'number' ||
       isNaN(compressRate)
     ) {
@@ -861,7 +861,7 @@ class DrawingBoard {
    */
   download(type = 'png', compressRate = 1, name = 'drawing-board') {
     if (
-      !this.IMG_TYPES.includes(type) ||
+      !DrawingBoard.IMG_TYPE_ENUM.includes(type) ||
       typeof compressRate !== 'number' ||
       isNaN(compressRate)
     ) {

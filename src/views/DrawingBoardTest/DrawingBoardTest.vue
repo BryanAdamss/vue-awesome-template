@@ -4,6 +4,8 @@
     <button @click="handleClear">clear</button>
     <button @click="handleDownload">下载</button>
     <button @click="handleGetDataUrl">getDataUrl</button>
+    <button @click="handleGetBlob">getBlob</button>
+    <button @click="handleGetFile">getFile</button>
     <button @click="handleRotate">旋转</button>
 
     <hr>
@@ -74,6 +76,16 @@ export default {
     },
     handleGetDataUrl() {
       console.log(this.drawingBoard.getDataUrl())
+    },
+    handleGetBlob() {
+      this.drawingBoard.getBlob().then(blob => {
+        console.log(blob)
+      })
+    },
+    handleGetFile() {
+      this.drawingBoard.getFile().then(file => {
+        console.log(file)
+      })
     },
     handleSetPenColor(e) {
       const color = e.target.value

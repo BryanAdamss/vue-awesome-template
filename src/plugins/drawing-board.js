@@ -3,6 +3,8 @@
  * @description 绘图板
  */
 
+import { blob2File } from 'Utils/file-convert'
+
 class DrawingBoard {
   // 支持的交互模式枚举
   static INTERACTIVE_MODE_ENUM = ['mouse', 'touch', 'both']
@@ -851,7 +853,18 @@ class DrawingBoard {
 
     const resourceType = `image/${type}`
 
-    return this.el.toBlob(resourceType, compressRate)
+    return new Promise((resolve, reject) => {
+      this.el.toBlob(resolve, resourceType, compressRate)
+    })
+  }
+
+  /**
+   * 获取File
+   * @param {String} type 图片类型
+   * @param {Number} compressRate 压缩比率
+   */
+  getFile(name = 'drawingBoard', type = 'png', compressRate = 1) {
+    return this.getBlob(type, compressRate).then(blob => blob2File(blob, name))
   }
 
   /**

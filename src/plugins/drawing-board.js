@@ -29,7 +29,7 @@ class DrawingBoard {
       size: [], // canvas尺寸
       className: '', // 自定义样式类
       manualMount: false, // 手动挂载
-      maxRevokeSteps: 20, // 最大回退步数
+      maxRevokeSteps: 10, // 最大回退步数
       interactiveMode: 'mouse', // 交互模式 enum:['mouse','touch','both'] ,both将同时绑定mouse、touch事件(PointerEvent存在兼容性问题，放弃使用)
       penColor: 'red', // 画笔颜色
       penWidth: 6, // 画笔粗细
@@ -82,8 +82,10 @@ class DrawingBoard {
     this.lastPoint = null
     this.isPainting = false
 
-    // 指针类型
-    this.pointerType = DrawingBoard.INTERACTIVE_MODE.includes(interactiveMode)
+    // 交互模式
+    this.interactiveMode = DrawingBoard.INTERACTIVE_MODE.includes(
+      interactiveMode
+    )
       ? interactiveMode
       : 'mouse'
 
@@ -94,20 +96,56 @@ class DrawingBoard {
     this._handlePointerCancelBinded = this._handlePointerCancel.bind(this)
 
     // 事件映射
-    this.eventMap = {
-      mouse: {
-        mousedown: this._handlePointerStartBinded,
-        mousemove: this._handlePointerMoveBinded,
-        mouseup: this._handlePointerEndBinded,
-        mouseleave: this._handlePointerLeaveBinded
+    this.eventList = [
+      {
+        pointerType: 'mouse',
+        action: 'start',
+        name: 'mousedown',
+        handler: this._handlePointerStartBinded
       },
-      touch: {
-        touchstart: this._handlePointerStartBinded,
-        touchmove: this._handlePointerMoveBinded,
-        touchend: this._handlePointerEndBinded,
-        touchcancel: this._handlePointerCancelBinded
+      {
+        pointerType: 'mouse',
+        action: 'move',
+        name: 'mousemove',
+        handler: this._handlePointerMoveBinded
+      },
+      {
+        pointerType: 'mouse',
+        action: 'end',
+        name: 'mouseup',
+        handler: this._handlePointerEndBinded
+      },
+      {
+        pointerType: 'mouse',
+        action: 'leave',
+        name: 'mouseleave',
+        handler: this._handlePointerLeaveBinded
+      },
+      {
+        pointerType: 'touch',
+        action: 'start',
+        name: 'touchstart',
+        handler: this._handlePointerStartBinded
+      },
+      {
+        pointerType: 'touch',
+        action: 'move',
+        name: 'touchmove',
+        handler: this._handlePointerMoveBinded
+      },
+      {
+        pointerType: 'touch',
+        action: 'end',
+        name: 'touchend',
+        handler: this._handlePointerEndBinded
+      },
+      {
+        pointerType: 'touch',
+        action: 'cancel',
+        name: 'touchcancel',
+        handler: this._handlePointerCancelBinded
       }
-    }
+    ]
 
     this.setPenStyle({
       color: penColor,
@@ -145,64 +183,97 @@ class DrawingBoard {
   }
 
   /**
-   * 绑定事件
-   * @param {String} pointerType 指针类型(鼠标、触摸、都需要支持)
+   * 绑定当前模式对应动作的所有事件
+   * @param {String} action 动作
    */
-  _bindEvents(pointerType) {
-    if (!pointerType || !this.el) return
-    this._cleanEvents(pointerType)
+  _bindCurModeEvents({ action }) {
+    if (!this.el) return
 
-    if (pointerType === 'both') {
-      this._bindEventByPointerType('mouse')
-      this._bindEventByPointerType('touch')
-    } else if (pointerType === 'touch') {
-      this._bindEventByPointerType('touch')
+    const pointerType = this._getPointerType(this.interactiveMode)
+
+    const condition = { pointerType, action }
+
+    this._cleanCurModeEvents(condition)
+
+    this._bindEvent(condition)
+  }
+
+  /**
+   * 绑定符合特定条件的事件
+   * @param {Object} condition 过滤条件
+   */
+  _bindEvent(condition = {}) {
+    if (!this.el) return
+    const eventItems = this._getEventItems(condition)
+
+    if (!eventItems || !eventItems.length) return
+
+    eventItems.forEach(({ name, handler }) =>
+      this.el.addEventListener(name, handler, false)
+    )
+  }
+
+  /**
+   * 获取模式对应的指针类型
+   * @param {string} mode 模式
+   */
+  _getPointerType(mode) {
+    if (mode === 'both') {
+      return ''
+    } else if (mode === 'touch') {
+      return 'touch'
     } else {
-      this._bindEventByPointerType('mouse')
+      return 'mouse'
     }
   }
 
   /**
-   * 根据指针类型绑定对应事件
-   * @param {String} pointerType 指针类型(鼠标、触摸、都需要支持)
+   * 过滤出符合条件的EventItems
+   * @param {String} mode 模式
+   * @param {String} action 动作
    */
-  _bindEventByPointerType(pointerType) {
-    const map = this.eventMap[pointerType]
-    if (!map || !this.el) return
+  _getEventItems({ mode, action }) {
+    // 默认全量返回
+    let filterFn = () => true
 
-    Object.entries(map).forEach(([eventName, handler]) => {
-      this.el.addEventListener(eventName, handler, false)
-    })
-  }
-
-  /**
-   * 清除事件
-   * @param {String} pointerType 指针类型(鼠标、触摸、都需要支持)
-   */
-  _cleanEvents(pointerType) {
-    if (!this.el || !pointerType) return
-
-    if (pointerType === 'both') {
-      this._cleanEventByPointerType('mouse')
-      this._cleanEventByPointerType('touch')
-    } else if (pointerType === 'touch') {
-      this._cleanEventByPointerType('touch')
-    } else {
-      this._cleanEventByPointerType('mouse')
+    if (mode && action) {
+      filterFn = item => item.mode === mode && item.action === action
+    } else if (mode && !action) {
+      filterFn = item => item.mode === mode
+    } else if (!mode && action) {
+      filterFn = item => item.action === action
     }
+
+    return this.eventList.filter(filterFn)
   }
 
   /**
-   * 根据指针类型清除对应事件
-   * @param {String} pointerType 指针类型(鼠标、触摸、都需要支持)
+   * 清除当前模式对应动作的所有事件
+   * @param {String} action 动作
    */
-  _cleanEventByPointerType(pointerType) {
-    const map = this.eventMap[pointerType]
-    if (!map || !this.el) return
+  _cleanCurModeEvents({ action }) {
+    if (!this.el) return
 
-    Object.entries(map).forEach(([eventName, handler]) => {
-      this.el.removeEventListener(eventName, handler, false)
-    })
+    const pointerType = this._getPointerType(this.interactiveMode)
+
+    const condition = { pointerType, action }
+
+    this._cleanEvent(condition)
+  }
+
+  /**
+   * 清除符合特定条件的事件
+   * @param {Object} condition 过滤条件
+   */
+  _cleanEvent(condition = {}) {
+    if (!this.el) return
+    const eventItems = this._getEventItems(condition)
+
+    if (!eventItems || !eventItems.length) return
+
+    eventItems.forEach(({ name, handler }) =>
+      this.el.removeEventListener(name, handler, false)
+    )
   }
 
   /**
@@ -210,6 +281,7 @@ class DrawingBoard {
    * @param {MouseEvent|TouchEvent} e 事件对象
    */
   _handlePointerStart(e) {
+    console.log('_handlePointerStart')
     this.isPainting = true
 
     this.lastPoint = this._getPointOffset(e)
@@ -228,6 +300,10 @@ class DrawingBoard {
       this.penWidth / 2,
       this.penColor
     )
+
+    this._bindCurModeEvents({ action: 'move' })
+    this._bindCurModeEvents({ action: 'end' })
+    this._bindCurModeEvents({ action: 'leave' })
   }
 
   /**
@@ -235,6 +311,8 @@ class DrawingBoard {
    * @param {MouseEvent|TouchEvent} e 事件对象
    */
   _handlePointerMove(e) {
+    console.log('_handlePointerMove')
+
     if (!this.isPainting) return
 
     const { x, y } = this._getPointOffset(e)
@@ -249,6 +327,7 @@ class DrawingBoard {
    * @param {MouseEvent|TouchEvent} e 事件对象
    */
   _handlePointerEnd(e) {
+    console.log('_handlePointerEnd')
     this.isPainting = false
 
     this.paintCount++
@@ -258,6 +337,11 @@ class DrawingBoard {
       this.onPaintEnd(this.paintCount)
 
     console.log('_handlePointerEnd paintCount', this.paintCount)
+
+    // 解绑相关事件
+    this._cleanCurModeEvents({ action: 'move' })
+    this._cleanCurModeEvents({ action: 'end' })
+    this._cleanCurModeEvents({ action: 'leave' })
   }
 
   /**
@@ -265,11 +349,8 @@ class DrawingBoard {
    * @param {MouseEvent|TouchEvent} e 事件对象
    */
   _handlePointerLeave(e) {
-    if (this.isPainting) {
-      console.log('_handlePointerLeave')
-
-      this._handlePointerEnd(e)
-    }
+    console.log('_handlePointerLeave')
+    if (this.isPainting) this._handlePointerEnd(e)
   }
 
   /**
@@ -277,11 +358,9 @@ class DrawingBoard {
    * @param {MouseEvent|TouchEvent} e 事件对象
    */
   _handlePointerCancel(e) {
-    if (this.isPainting) {
-      console.log('_handlePointerCancel')
+    console.log('_handlePointerCancel')
 
-      this._handlePointerEnd(e)
-    }
+    if (this.isPainting) this._handlePointerEnd(e)
   }
 
   /**
@@ -688,7 +767,7 @@ class DrawingBoard {
     this._setDOMSize([this.width, this.height])
     this.setClassName(this.className)
 
-    this._bindEvents(this.pointerType)
+    this._bindCurModeEvents({ action: 'start' })
 
     this.container.appendChild(this.el)
   }

@@ -48,13 +48,14 @@ export default {
       className: 'c-MyCanvas',
       size: [300, 400],
       bgImgRotate: 90,
+      interactiveMode: 'both',
+      maxRevokeSteps: 20,
       onRevokeStackChange(stack) {
         console.log('onRevokeStackChange回调', stack)
       },
       onPaintEnd(paintCount) {
         console.log('onPaintEnd回调', paintCount)
-      },
-      interactiveMode: 'both'
+      }
     })
 
     console.log(this.drawingBoard)

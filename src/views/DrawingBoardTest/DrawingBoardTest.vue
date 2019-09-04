@@ -53,7 +53,8 @@ export default {
       },
       onPaintEnd(paintCount) {
         console.log('onPaintEnd回调', paintCount)
-      }
+      },
+      interactiveMode: 'both'
     })
 
     console.log(this.drawingBoard)

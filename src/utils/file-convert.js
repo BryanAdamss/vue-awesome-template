@@ -3,6 +3,8 @@
  * @description 文件相关类型转换函数
  */
 
+import { isIE } from 'Utils/browser'
+
 /**
  * dataURL(base64)转Blob
  *
@@ -95,7 +97,14 @@ export function file2Blob(file) {
  * @returns
  */
 export function blob2File(blob, name) {
-  return new File([blob], name, { type: blob.type })
+  if (isIE) {
+    // IE不支持new File
+    blob.lastModifiedDate = new Date()
+    blob.name = name
+    return blob
+  } else {
+    return new File([blob], name, { type: blob.type })
+  }
 }
 
 /**

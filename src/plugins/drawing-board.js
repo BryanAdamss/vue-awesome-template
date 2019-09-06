@@ -187,6 +187,7 @@ class DrawingBoard {
   /**
    * 绑定当前模式对应动作的所有事件
    * @param {String} action 动作
+   * @returns void
    */
   _bindCurModeEvents({ action }) {
     if (!this.el) return
@@ -203,6 +204,7 @@ class DrawingBoard {
   /**
    * 绑定符合特定条件的事件
    * @param {Object} condition 过滤条件
+   * @returns void
    */
   _bindEvent(condition = {}) {
     if (!this.el) return
@@ -218,6 +220,7 @@ class DrawingBoard {
   /**
    * 获取模式对应的指针类型
    * @param {string} mode 模式
+   * @returns 类型字符串
    */
   _getPointerType(mode) {
     if (mode === 'both') {
@@ -233,6 +236,7 @@ class DrawingBoard {
    * 过滤出符合条件的EventItems
    * @param {String} mode 模式
    * @param {String} action 动作
+   * @returns EventItems数组
    */
   _getEventItems({ mode, action }) {
     // 默认全量返回
@@ -252,6 +256,7 @@ class DrawingBoard {
   /**
    * 清除当前模式对应动作的所有事件
    * @param {String} action 动作
+   * @returns void
    */
   _cleanCurModeEvents({ action }) {
     if (!this.el) return
@@ -266,6 +271,7 @@ class DrawingBoard {
   /**
    * 清除符合特定条件的事件
    * @param {Object} condition 过滤条件
+   * @returns void
    */
   _cleanEvent(condition = {}) {
     if (!this.el) return
@@ -281,6 +287,7 @@ class DrawingBoard {
   /**
    * 处理指针开始
    * @param {MouseEvent|TouchEvent} e 事件对象
+   * @returns void
    */
   _handlePointerStart(e) {
     console.log('_handlePointerStart')
@@ -311,6 +318,7 @@ class DrawingBoard {
   /**
    * 处理指针移动
    * @param {MouseEvent|TouchEvent} e 事件对象
+   * @returns void
    */
   _handlePointerMove(e) {
     console.log('_handlePointerMove')
@@ -327,6 +335,7 @@ class DrawingBoard {
   /**
    * 处理指针结束
    * @param {MouseEvent|TouchEvent} e 事件对象
+   * @returns void
    */
   _handlePointerEnd(e) {
     console.log('_handlePointerEnd')
@@ -349,6 +358,7 @@ class DrawingBoard {
   /**
    * 处理指针离开
    * @param {MouseEvent|TouchEvent} e 事件对象
+   * @returns void
    */
   _handlePointerLeave(e) {
     console.log('_handlePointerLeave')
@@ -358,6 +368,7 @@ class DrawingBoard {
   /**
    * 处理指针取消
    * @param {MouseEvent|TouchEvent} e 事件对象
+   * @returns void
    */
   _handlePointerCancel(e) {
     console.log('_handlePointerCancel')
@@ -371,6 +382,7 @@ class DrawingBoard {
    * @param {Number} y 纵轴
    * @param {Number} radius 半径
    * @param {String} color 画笔颜色
+   * @returns void
    */
   _drawCircle(x, y, radius = 3, color = 'red') {
     if (!this.ctx) return
@@ -393,6 +405,7 @@ class DrawingBoard {
    * @param {Number} y2 终点y2
    * @param {Number} width 线条宽度
    * @param {String} color 颜色
+   * @returns void
    */
   _drawLine(x1, y1, x2, y2, width = 6, color = 'red') {
     if (!this.ctx) return
@@ -414,6 +427,7 @@ class DrawingBoard {
   /**
    * 获取事件相对触发对象的偏移值
    * @param {MouseEvent|TouchEvent} e 事件对象
+   * @returns 偏移值对象
    */
   _getPointOffset(e) {
     if (e instanceof MouseEvent) {
@@ -437,6 +451,7 @@ class DrawingBoard {
   /**
    * 获取合法的最大撤销步数
    * @param {Number} steps 步数
+   * @returns 合法的最大撤销步数
    */
   _getLawfulMaxRevokeSteps(steps) {
     if (steps <= 0 || typeof steps !== 'number' || isNaN(steps)) return 10
@@ -451,6 +466,7 @@ class DrawingBoard {
    * @param {String} type 类型(绘制paint、清空clear) 默认paint
    * @param {Number} paintCount 绘制次数
    * @param {ImageData} imageData 像素数据
+   * @returns void
    */
   _saveImageData(type = 'paint', paintCount, imageData) {
     if (
@@ -478,6 +494,7 @@ class DrawingBoard {
 
   /**
    * 生成canvas元素
+   * @returns canvas DOM对象
    */
   _makeCanvas() {
     return document.createElement('canvas')
@@ -487,6 +504,7 @@ class DrawingBoard {
    * 设置canvas dom尺寸
    * @param {Number} width 宽
    * @param {Number} height 高
+   * @returns void
    */
   _setDOMSize([width, height]) {
     if (width != null && this.el) this.el.width = width
@@ -495,6 +513,7 @@ class DrawingBoard {
 
   /**
    * 获取绘图上下文
+   * @returns canvas context
    */
   _getCtx() {
     return this.el && this.el.getContext && this.el.getContext('2d')
@@ -502,6 +521,7 @@ class DrawingBoard {
 
   /**
    * 单步撤销
+   * @returns void
    */
   _revoke() {
     if (!this.ctx || !this.revokeStack || !this.revokeStack.length) return
@@ -530,6 +550,7 @@ class DrawingBoard {
   /**
    * 从url获取图片
    * @param {String} imgURL 图片url，支持base64
+   * @returns void
    */
   _getImageFromURL(imgURL) {
     return new Promise((resolve, reject) => {
@@ -561,6 +582,7 @@ class DrawingBoard {
    * @param {CanvasImageSource} imgObject 图像对象
    * @param {Number} w 宽
    * @param {Number} h 高
+   * @returns void
    */
   _drawBg(imgObject, w, h) {
     if (
@@ -634,6 +656,7 @@ class DrawingBoard {
   /**
    * 获取合法角度值(逆时针旋转角度记录为正值，-90度 记录为270；450记录为90,10度记录为0,55度记录为90)
    * @param {Number} angle 角度
+   * @returns 合法角度值
    */
   _getLawfulRotateAngle(angle) {
     if (typeof angle !== 'number' || isNaN(angle)) return
@@ -651,6 +674,7 @@ class DrawingBoard {
 
   /**
    * 获取当前画面的绘制次数
+   * @returns 绘制次数
    */
   getPaintCount() {
     return this.paintCount
@@ -659,6 +683,7 @@ class DrawingBoard {
   /**
    * 旋转
    * @param {Boolean} direction 方向 1顺时针 -1逆时针
+   * @returns void
    */
   rotate(direction = 1) {
     if (![1, -1].includes(direction)) return
@@ -681,6 +706,7 @@ class DrawingBoard {
   /**
    * 设置画笔样式(粗细、颜色)
    * @param {Object} penStyle 画笔样式
+   * @returns void
    */
   setPenStyle({ color, width }) {
     if (color && typeof color === 'string') this.penColor = color
@@ -691,6 +717,7 @@ class DrawingBoard {
 
   /**
    * 撤销
+   * @returns void
    */
   revoke() {
     this._revoke()
@@ -698,6 +725,7 @@ class DrawingBoard {
 
   /**
    * 清空绘制
+   * @returns void
    */
   clear() {
     if (!this.ctx || !this.el) return
@@ -724,6 +752,7 @@ class DrawingBoard {
    * 设置canvas尺寸
    * @param {Number} width 宽
    * @param {Number} height 高
+   * @returns void
    */
   setSize([width, height]) {
     if (width) this.width = width
@@ -735,6 +764,7 @@ class DrawingBoard {
   /**
    * 重新初始化
    * @param {Object} options 选项
+   * @returns void
    */
   reInit(options) {
     this._init(this.container, options || this.options)
@@ -743,6 +773,7 @@ class DrawingBoard {
 
   /**
    * 销毁
+   * @returns void
    */
   destory() {
     this.container.removeChild(this.el)
@@ -753,6 +784,7 @@ class DrawingBoard {
   /**
    * 设置样式名
    * @param {String} name 样式类字符串
+   * @returns void
    */
   setClassName(name) {
     if (!name || !this.el) return
@@ -761,6 +793,7 @@ class DrawingBoard {
 
   /**
    * 挂载
+   * @returns void
    */
   mount() {
     if (!this.el) this.el = this._makeCanvas()
@@ -779,6 +812,7 @@ class DrawingBoard {
    * @param {CanvasImageSource|String} urlOrObject 需要绘制的图像对象(HTMLImageElement、SVGImageElement、HTMLVideoElement、HTMLCanvasElement、ImageBitmap、OffscreenCanvas)或图像url
    * @param {Number} originalWidth 原图像宽度。当无法从urlOrObject直接获取原始尺寸时需要手动提供原始尺寸
    * @param {Number} originalHeight 原图像高度
+   * @returns void
    */
   setBgImg(urlOrObject, originalWidth, originalHeight) {
     // TODO:此处可能需要保存状态
@@ -814,6 +848,7 @@ class DrawingBoard {
    * 获取dataURL
    * @param {String} type 图片类型
    * @param {Number} compressRate 压缩比率
+   * @returns dataURL
    */
   getDataUrl(type = 'png', compressRate = 1) {
     if (
@@ -837,6 +872,7 @@ class DrawingBoard {
    * 获取Blob
    * @param {String} type 图片类型
    * @param {Number} compressRate 压缩比率
+   * @returns promise resolved a blob
    */
   getBlob(type = 'png', compressRate = 1) {
     if (
@@ -862,6 +898,7 @@ class DrawingBoard {
    * 获取File
    * @param {String} type 图片类型
    * @param {Number} compressRate 压缩比率
+   * @returns promise resolved a file
    */
   getFile(name = 'drawingBoard', type = 'png', compressRate = 1) {
     return this.getBlob(type, compressRate).then(blob => blob2File(blob, name))
@@ -871,6 +908,7 @@ class DrawingBoard {
    * 下载图片
    * @param {String} type 图片类型
    * @param {Number} compressRate 压缩比率，默认原图输出
+   * @returns void
    */
   download(type = 'png', compressRate = 1, name = 'drawing-board') {
     if (

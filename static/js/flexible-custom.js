@@ -17,7 +17,10 @@
   // reset rem unit on page resize
   window.addEventListener('resize', setRemUnit)
   window.addEventListener('pageshow', function(e) {
-    if (e.persisted) {
+    if (
+      e.persisted ||
+      (window.performance && window.performance.navigation.type === 2)
+    ) {
       setRemUnit()
     }
   })

@@ -13,7 +13,8 @@ const dllWebpackConfig = {
       'better-scroll',
       'velocity-animate',
       'vue-lazyload',
-      'babel-polyfill'
+      'babel-polyfill',
+      'element-ui'
     ]
   },
   output: {

@@ -51,10 +51,11 @@ export default {
     }
   },
   created() {
-    this.bindEvents()
+    this.bindBusEvents()
+    this.$once('hook:beforeDestroy', this.unbindBusEvents)
   },
   methods: {
-    bindEvents() {
+    bindBusEvents() {
       // 接口报错弹窗
       this.$bus.$on('business.response.incorrect', msg => {
         // 接口返回code不为200时默认弹窗
@@ -76,6 +77,9 @@ export default {
           this.loading = null
         }
       })
+    },
+    unbindBusEvents() {
+      this.$bus && this.$bus.$off()
     }
   }
 }

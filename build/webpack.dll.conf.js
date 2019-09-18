@@ -2,20 +2,27 @@ const path = require('path')
 const webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
+const { dependencies } = require('../package.json')
+
+console.log(Object.keys(dependencies))
+
 const dllWebpackConfig = {
   entry: {
     // * 将下列第三方库，打包到一个dllVender.js中
-    dllVendor: [
-      'vue/dist/vue.esm.js',
-      'axios',
-      'vuex',
-      'vue-router',
-      'better-scroll',
-      'velocity-animate',
-      'vue-lazyload',
-      'babel-polyfill',
-      'element-ui'
-    ]
+    // dllVendor: [
+    //   'vue/dist/vue.esm.js',
+    //   'axios',
+    //   'vuex',
+    //   'vue-router',
+    //   'better-scroll',
+    //   'velocity-animate',
+    //   'vue-lazyload',
+    //   'babel-polyfill',
+    //   'element-ui'
+    // ]
+    dllVendor: Object.keys(dependencies).map(depName =>
+      depName === 'vue' ? 'vue/dist/vue.esm.js' : depName
+    )
   },
   output: {
     // * 2019-0103-输出dllVendor.js到build/dll文件夹中

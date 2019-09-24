@@ -46,11 +46,14 @@ export default {
         return ['bottom', 'center'].indexOf(val) > -1
       },
       default: 'bottom'
+    },
+    val: {
+      type: [String, Number],
+      default: ''
     }
   },
   data() {
     return {
-      val: '',
       isDisabled: false,
       showCounter: false
     }
@@ -82,6 +85,11 @@ export default {
     } else {
       this.showCounter = true
     }
+
+    // 设置初始值
+    this.$nextTick(() => {
+      field[0].elm.value = this.val
+    })
   },
   mounted() {},
   methods: {
@@ -90,7 +98,8 @@ export default {
 
       if (val.length >= this.max) {
         const limitedVal = val.slice(0, this.max)
-        this.val = limitedVal
+        // this.val = limitedVal
+        this.$emit('update:val', limitedVal)
         e.target.value = limitedVal
 
         this.setDisabled(true)
@@ -98,7 +107,8 @@ export default {
         // 派发超出事件
         this.$emit('exceed', limitedVal)
       } else {
-        this.val = val
+        // this.val = val
+        this.$emit('update:val', val)
         this.setDisabled(false)
       }
     },
@@ -141,7 +151,7 @@ export default {
 
     &.is-center {
       &::after {
-        right: 0.2em;
+        right: 0.8em;
         top: 50%;
         transform: translateY(-50%);
       }

@@ -4,18 +4,16 @@
  */
 import Vue from 'vue'
 
-import directivesMap from 'Directives'
+// import directivesMap from 'Directives'
+
+import directivesLoader from 'Plugins/directives-loader'
 
 import filtersMap from 'Config/filters-map'
 import elementUIList from 'Config/element-ui-list'
 
 export function directiveRegister() {
-  for (let key in directivesMap) {
-    if (directivesMap.hasOwnProperty(key)) {
-      const { name, directive } = directivesMap[key]
-      if (name && directive) Vue.directive(name, directive)
-    }
-  }
+  const directives = directivesLoader()
+  directives.forEach(({ name, directive }) => Vue.directive(name, directive))
 }
 
 export function filterRegister() {

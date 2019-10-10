@@ -1,6 +1,6 @@
 # vue-awesome-template
 
-> 分层思路[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)
+> 分层思路参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)
 
 ---
 

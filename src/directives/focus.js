@@ -1,6 +1,6 @@
 /**
  * @author GuangHui
- * @description 聚焦
+ * @description 聚焦指令
  */
 export default {
   name: 'focus', // 指定注册名称

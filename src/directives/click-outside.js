@@ -1,3 +1,8 @@
+/**
+ * @author GuangHui
+ * @description 点击区域外指令
+ */
+
 export default {
   name: 'click-outside',
   directive: {

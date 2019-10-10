@@ -1,3 +1,8 @@
+/**
+ * @author GuangHui
+ * @description 拖拽指令
+ */
+
 export default {
   name: 'drag',
   directive: {

@@ -1,3 +1,8 @@
+/**
+ * @author GuangHui
+ * @description 自增高指令
+ */
+
 export default {
   name: 'auto-height', // 指定注册名称
   directive: {

@@ -1,3 +1,8 @@
+/**
+ * @author GuangHui
+ * @description 回到顶部指令
+ */
+
 export default {
   name: 'go-to-top',
   directive: {

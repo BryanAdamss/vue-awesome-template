@@ -1,3 +1,8 @@
+/**
+ * @author GuangHui
+ * @description 上拉指令
+ */
+
 import { eventListenerPassiveSupported, throttle } from 'Utils'
 
 import Vue from 'vue'

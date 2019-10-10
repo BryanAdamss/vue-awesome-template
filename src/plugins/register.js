@@ -6,7 +6,7 @@ import Vue from 'vue'
 
 import directivesMap from 'Directives'
 
-import filtersMap from 'Utils/filters-map'
+import filtersMap from 'Config/filters-map'
 
 export function directiveRegister() {
   for (let key in directivesMap) {

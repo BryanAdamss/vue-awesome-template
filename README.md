@@ -12,21 +12,55 @@
   - element-ui
   - sass样式库
   - ...
-- 常用组件
+  
+- 自造组件
   - 轮播
   - popup
+  - toast
+  - confirm
+  - dialog
+  - audio
   - loading
+  - 公式渲染组件
+  - 模拟滚动条组件
+  - svg动态导入、sprite化组件
   - ...
-- 常用指令
-  - 自增高指令
-  - affix指令
-  - 拖拽指令
+  
+- 自造指令
+  - textarea自增高指令
+  - affix图钉固定指令
+  - 移动端拖拽指令
+  - 返回顶部指令
   - ...
+  
 - 常用库封装
-  - localStorage、sessionStorage
-  - postMessage
+  - 前端下载库
+  - localStorage、sessionStorage模块化封装
+  - 多窗口postMessage封装
+  - canvas绘图板封装
+  - 全局loading封装
+  - 数字转中文库封装
+  - directives、filters加载器封装
+  - 倒计时库封装
+  - event-bus封装
   - ...
-
+  
+- [常用utils](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/index.js)
+  - 分时函数
+  - 去抖、节流函数
+  - 获取随机数
+  - shuffle函数
+  - unix时间戳格式化函数
+  - 查询字符串解析函数
+  - 驼峰、帕斯卡转烤串转换函数
+  - 毫秒转换为 时'分"秒 形式函数
+  - 数字保留位数函数
+  - 数字转百分比函数
+  - 数组深度扁平化函数
+  - emoji过滤函数
+  - url中获取图片的流函数
+  - blob、file、dataURL相互转换函数
+  
 ---
 
 ## vue组件

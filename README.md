@@ -153,3 +153,19 @@
   - [常用placeholder](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_placeholder.scss)
 - mediaQuery封装
   - [mediaQuery封装](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_mediaQuery.scss)
+  
+## 其他项目
+- [drawing-board](https://github.com/BryanAdamss/drawing-board)
+  - 基于canvas的绘图板
+- [fe-awesome-demos](https://github.com/BryanAdamss/fe-awesome-demos)
+  - 前端入门demo、最佳实践集合
+- [WebpackTemplate](https://github.com/BryanAdamss/WebpackTemplate)
+  - webpack多页面脚手架 https://bryanadamss.github.io/2018/01/02/webpack-multi-page/
+- [BryanAdamss.github.io](https://github.com/BryanAdamss/BryanAdamss.github.io)
+  - 个人博客
+...
+
+## npm 包
+- [@bryanadamss/drawing-board](https://www.npmjs.com/package/@bryanadamss/drawing-board)
+- [ant-color-converter](https://www.npmjs.com/package/ant-color-converter)
+

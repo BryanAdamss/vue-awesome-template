@@ -447,3 +447,17 @@ export function getImgURLBlob(url) {
     xhr.send()
   })
 }
+
+/**
+ * 生成唯一id uuid v4版本
+ * UUID也是需要像身份证号一样事先制定一些简单的规则进去的，它的标准型式包含32个16进制数字，以连字号分为五段，表现形式为8-4-4-4-12的32个字符，如下所示
+ * xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx
+ * 其中M与N都有特殊含义，M表示UUID版本，目前只有五个版本，即只会出现1，2，3，4，5，数字 N的一至三个最高有效位表示 UUID 变体，目前只会出现8，9，a，b四种情况。
+ */
+export function uuid() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = (Math.random() * 16) | 0,
+      v = c === 'x' ? r : (r & 0x3) | 0x8
+    return v.toString(16)
+  })
+}

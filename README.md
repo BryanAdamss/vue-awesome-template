@@ -1,5 +1,10 @@
 # vue-awesome-template
 
+![GitHub](https://img.shields.io/github/license/BryanAdamss/vue-awesome-template)
+![GitHub issues](https://img.shields.io/github/issues/BryanAdamss/vue-awesome-template)
+
+---
+
 > 分层思路参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)
 
 ---

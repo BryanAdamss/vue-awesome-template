@@ -17,7 +17,8 @@
     "build:test": "cross-env BUILD_MODE=test node build/build.js",
     "dll": "webpack --config build/webpack.dll.conf.js",
     "release": "standard-version",
-    "release:first": "npm run release -- --first-release"
+    "release:first": "npm run release -- --first-release",
+    "commit": "git-cz"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -49,10 +50,12 @@
     "babel-register": "^6.22.0",
     "chalk": "^2.0.1",
     "chromedriver": "^2.46.0",
+    "commitizen": "^4.0.3",
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^5.2.0",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
+    "cz-conventional-changelog": "^3.0.2",
     "eslint": "^4.15.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-friendly-formatter": "^3.0.0",
@@ -109,5 +112,10 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }

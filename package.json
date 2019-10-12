@@ -17,6 +17,9 @@
     "build:test": "cross-env BUILD_MODE=test node build/build.js",
     "dll": "webpack --config build/webpack.dll.conf.js",
     "release": "standard-version",
+    "release:patch": "npm run release -r patch",
+    "release:miror": "npm run release -r miror",
+    "release:major": "npm run release -r major",
     "release:first": "npm run release -- --first-release",
     "commit": "git-cz"
   },

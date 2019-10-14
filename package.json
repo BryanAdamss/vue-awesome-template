@@ -21,6 +21,7 @@
     "release:miror": "npm run release -r miror",
     "release:major": "npm run release -r major",
     "release:first": "npm run release -- --first-release",
+    "release:publish": "git push --follow-tags origin master",
     "commit": "git-cz"
   },
   "dependencies": {

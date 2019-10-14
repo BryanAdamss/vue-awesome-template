@@ -18,7 +18,7 @@
     "dll": "webpack --config build/webpack.dll.conf.js",
     "release": "standard-version",
     "release:patch": "npm run release -r patch",
-    "release:miror": "npm run release -r miror",
+    "release:minor": "npm run release -r minor",
     "release:major": "npm run release -r major",
     "release:first": "npm run release -- --first-release",
     "release:publish": "git push --follow-tags origin master",

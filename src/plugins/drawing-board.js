@@ -11,10 +11,16 @@ class DrawingBoard {
   // 支持的图片类型枚举
   static IMG_TYPE_ENUM = ['jpg', 'jpeg', 'png', 'webp']
 
+  // 支持的画笔模式枚举
+  static PEN_MODE_ENUM = ['paint', 'drag', 'empty']
+
+  static DEFAULT_WIDTH = 300 // 默认宽度
+  static DEFAULT_HEIGHT = 150 // 默认高度
+
   constructor(container, options) {
     this._init(container, options)
 
-    if (!this.manualMount) this.mount(this.container)
+    if (!this.manualMount) this.mount()
   }
 
   /**
@@ -42,7 +48,10 @@ class DrawingBoard {
       bgImgRotate: 0, // 背景图旋转角度
       bgColor: '#fff', // 背景色
       onRevokeStackChange: null, // 撤销栈改变时的回调
-      onPaintEnd: null // 绘制一笔结束的回调
+      onPaintEnd: null, // 绘制一笔结束的回调
+      penMode: 'empty', // 画笔模式
+      minScale: 1, // 最小缩放比例
+      maxScale: 3 // 最大缩放比例
     }
 
     this.options = {
@@ -62,15 +71,18 @@ class DrawingBoard {
       bgImgRotate,
       bgColor,
       onRevokeStackChange,
-      onPaintEnd
+      onPaintEnd,
+      penMode,
+      minScale,
+      maxScale
     } = this.options
 
     // 尺寸未传，则使用容器的尺寸
     const [width, height] = size
 
     this.setSize([
-      width == null ? this.container.getBoundingClientRect().width : width,
-      height == null ? this.container.getBoundingClientRect().height : height
+      width == null ? DrawingBoard.DEFAULT_WIDTH : width,
+      height == null ? DrawingBoard.DEFAULT_HEIGHT : height
     ])
 
     // 手动挂载
@@ -81,8 +93,17 @@ class DrawingBoard {
     // 最大撤销步数
     this.MAX_REVOKE_STEPS = this._getLawfulMaxRevokeSteps(maxRevokeSteps)
 
-    this.lastPoint = null
-    this.isPainting = false
+    this.isPainting = false // 是否绘制中
+    this.lastPaintPoint = null // 最后一个绘制点坐标
+
+    this.isDraging = false // 是否拖拽中
+    this.lastDragPoint = null // 最后一个拖拽点坐标
+    this.dragTransformX = 0
+    this.dragTransformY = 0
+
+    this.penMode = DrawingBoard.PEN_MODE_ENUM.includes(penMode)
+      ? penMode
+      : 'empty'
 
     // 交互模式
     this.interactiveMode = DrawingBoard.INTERACTIVE_MODE_ENUM.includes(
@@ -91,14 +112,73 @@ class DrawingBoard {
       ? interactiveMode
       : 'mouse'
 
-    this._handlePointerStartBinded = this._handlePointerStart.bind(this)
-    this._handlePointerMoveBinded = this._handlePointerMove.bind(this)
-    this._handlePointerEndBinded = this._handlePointerEnd.bind(this)
-    this._handlePointerLeaveBinded = this._handlePointerLeave.bind(this)
-    this._handlePointerCancelBinded = this._handlePointerCancel.bind(this)
-
     // 事件映射
-    this.eventList = [
+    this.eventList = this._getEventList()
+
+    this.setPenStyle({
+      color: penColor,
+      width: penWidth
+    })
+
+    this.bgImgURL = bgImgURL
+    this.bgColor = bgColor
+
+    this.bgImgRotate = this._getLawfulRotateAngle(bgImgRotate)
+    this.className = className
+
+    // 有设置背景图，则获取并绘制
+    if (bgImgURL) {
+      this._getImageFromURL(bgImgURL)
+        .then(image => {
+          this._bgImgObject = image
+          // 保留原始尺寸，方便旋转时使用
+          this.originalSize = [image.width, image.height]
+          // TODO:此处存在异步问题，drawBg内部会使用ctx
+          this._drawBg(image, ...this.originalSize)
+        })
+        .catch(err => {
+          console.log(err)
+          this._bgImgObject = null
+        })
+    } else {
+      this._bgImgObject = null
+    }
+
+    this.onRevokeStackChange = onRevokeStackChange
+    this.onPaintEnd = onPaintEnd
+
+    this.paintCount = 0 // 记录绘制次数
+
+    this.minScale = minScale
+    this.maxScale = maxScale
+    this._initScale()
+  }
+
+  /**
+   * 获取事件映射列表
+   */
+  _getEventList() {
+    if (!this._handlePointerStartBinded) {
+      this._handlePointerStartBinded = this._handlePointerStart.bind(this)
+    }
+
+    if (!this._handlePointerMoveBinded) {
+      this._handlePointerMoveBinded = this._handlePointerMove.bind(this)
+    }
+
+    if (!this._handlePointerEndBinded) {
+      this._handlePointerEndBinded = this._handlePointerEnd.bind(this)
+    }
+
+    if (!this._handlePointerLeaveBinded) {
+      this._handlePointerLeaveBinded = this._handlePointerLeave.bind(this)
+    }
+
+    if (!this._handlePointerCancelBinded) {
+      this._handlePointerCancelBinded = this._handlePointerCancel.bind(this)
+    }
+
+    return [
       {
         pointerType: 'mouse',
         action: 'start',
@@ -148,40 +228,6 @@ class DrawingBoard {
         handler: this._handlePointerCancelBinded
       }
     ]
-
-    this.setPenStyle({
-      color: penColor,
-      width: penWidth
-    })
-
-    this.bgImgURL = bgImgURL
-    this.bgColor = bgColor
-
-    this.bgImgRotate = this._getLawfulRotateAngle(bgImgRotate)
-    this.className = className
-
-    // 有设置背景图，则获取并绘制
-    if (bgImgURL) {
-      this._getImageFromURL(bgImgURL)
-        .then(image => {
-          this._bgImgObject = image
-          // 保留原始尺寸，方便旋转时使用
-          this.originalSize = [image.width, image.height]
-          // TODO:此处存在异步问题，drawBg内部会使用ctx
-          this._drawBg(image, ...this.originalSize)
-        })
-        .catch(err => {
-          console.log(err)
-          this._bgImgObject = null
-        })
-    } else {
-      this._bgImgObject = null
-    }
-
-    this.onRevokeStackChange = onRevokeStackChange
-    this.onPaintEnd = onPaintEnd
-
-    this.paintCount = 0 // 记录绘制次数
   }
 
   /**
@@ -189,14 +235,14 @@ class DrawingBoard {
    * @param {String} action 动作
    * @returns void
    */
-  _bindCurModeEvents({ action }) {
+  _bindCurInteractiveModeEvents({ action }) {
     if (!this.el) return
 
     const pointerType = this._getPointerType(this.interactiveMode)
 
     const condition = { pointerType, action }
 
-    this._cleanCurModeEvents(condition)
+    this._cleanCurInteractiveModeEvents(condition)
 
     this._bindEvent(condition)
   }
@@ -258,7 +304,7 @@ class DrawingBoard {
    * @param {String} action 动作
    * @returns void
    */
-  _cleanCurModeEvents({ action }) {
+  _cleanCurInteractiveModeEvents({ action }) {
     if (!this.el) return
 
     const pointerType = this._getPointerType(this.interactiveMode)
@@ -291,9 +337,24 @@ class DrawingBoard {
    */
   _handlePointerStart(e) {
     console.log('_handlePointerStart')
+    if (this.penMode === 'empty') return
+
+    if (this.penMode === 'paint') this._handlePaintStart(e)
+
+    if (this.penMode === 'drag') this._handleDragStart(e)
+
+    this._bindCurInteractiveModeEvents({ action: 'move' })
+    this._bindCurInteractiveModeEvents({ action: 'end' })
+    this._bindCurInteractiveModeEvents({ action: 'leave' })
+  }
+
+  /**
+   * 处理绘制开始
+   */
+  _handlePaintStart(e) {
     this.isPainting = true
 
-    this.lastPoint = this._getPointOffset(e)
+    this.lastPaintPoint = this._getPointOffset(e)
 
     // 绘制前保存状态
     this.ctx &&
@@ -304,15 +365,22 @@ class DrawingBoard {
       )
 
     this._drawCircle(
-      this.lastPoint.x,
-      this.lastPoint.y,
+      this.lastPaintPoint.x,
+      this.lastPaintPoint.y,
       this.penWidth / 2,
       this.penColor
     )
+  }
 
-    this._bindCurModeEvents({ action: 'move' })
-    this._bindCurModeEvents({ action: 'end' })
-    this._bindCurModeEvents({ action: 'leave' })
+  /**
+   * 处理拖拽开始
+   */
+  _handleDragStart(e) {
+    console.log('drag start')
+
+    this.isDraging = true
+
+    this.lastDragPoint = this._getPointOffset(e)
   }
 
   /**
@@ -323,13 +391,47 @@ class DrawingBoard {
   _handlePointerMove(e) {
     console.log('_handlePointerMove')
 
-    if (!this.isPainting) return
+    if (this.penMode === 'empty') return
 
-    const { x, y } = this._getPointOffset(e)
-    const { x: lastX, y: lastY } = this.lastPoint
+    if (this.penMode === 'paint') this._handlePaintMove(e)
 
-    this._drawLine(lastX, lastY, x, y, this.penWidth, this.penColor)
-    this.lastPoint = { x, y }
+    if (this.penMode === 'drag') this._handleDragMove(e)
+  }
+
+  /**
+   * 处理绘制移动
+   */
+  _handlePaintMove(e) {
+    if (this.isPainting) {
+      const { x, y } = this._getPointOffset(e)
+      console.log(x, y)
+
+      const { x: lastX, y: lastY } = this.lastPaintPoint
+
+      this._drawLine(lastX, lastY, x, y, this.penWidth, this.penColor)
+      this.lastPaintPoint = { x, y }
+    }
+  }
+
+  /**
+   * 处理拖拽移动
+   */
+  _handleDragMove(e) {
+    console.log('drag move')
+    if (this.isDraging) {
+      const { x, y } = this._getPointOffset(e)
+
+      const { x: lastX, y: lastY } = this.lastDragPoint
+
+      this.dragTransformX += x - lastX
+      this.dragTransformY += y - lastY
+
+      this._setCanvasTransform(
+        this.dragTransformX,
+        this.dragTransformY,
+        this.scale
+      )
+    }
   }
 
   /**
@@ -339,6 +441,23 @@ class DrawingBoard {
    */
   _handlePointerEnd(e) {
     console.log('_handlePointerEnd')
+
+    if (this.penMode === 'empty') return
+
+    if (this.penMode === 'paint') this._handlePaintEnd(e)
+
+    if (this.penMode === 'drag') this._handleDragEnd(e)
+
+    // 解绑相关事件
+    this._cleanCurInteractiveModeEvents({ action: 'move' })
+    this._cleanCurInteractiveModeEvents({ action: 'end' })
+    this._cleanCurInteractiveModeEvents({ action: 'leave' })
+  }
+
+  /**
+   * 处理绘制结束
+   */
+  _handlePaintEnd(e) {
     this.isPainting = false
 
     this.paintCount++
@@ -348,11 +467,15 @@ class DrawingBoard {
       this.onPaintEnd(this.paintCount)
 
     console.log('_handlePointerEnd paintCount', this.paintCount)
+  }
 
-    // 解绑相关事件
-    this._cleanCurModeEvents({ action: 'move' })
-    this._cleanCurModeEvents({ action: 'end' })
-    this._cleanCurModeEvents({ action: 'leave' })
+  /**
+   * 处理拖拽结束
+   */
+  _handleDragEnd(e) {
+    console.log('drag end')
+
+    this.isDraging = false
   }
 
   /**
@@ -362,7 +485,7 @@ class DrawingBoard {
    */
   _handlePointerLeave(e) {
     console.log('_handlePointerLeave')
-    if (this.isPainting) this._handlePointerEnd(e)
+    if (this.isPainting || this.isDraging) this._handlePointerEnd(e)
   }
 
   /**
@@ -373,7 +496,33 @@ class DrawingBoard {
   _handlePointerCancel(e) {
     console.log('_handlePointerCancel')
 
-    if (this.isPainting) this._handlePointerEnd(e)
+    if (this.isPainting || this.isDraging) this._handlePointerEnd(e)
+  }
+
+  /**
+   * 设置canvas transform
+   * @param {Number} x 横轴
+   * @param {Number} y 纵轴
+   * @param {Number} scale 缩放比例
+   * @param {Boolean} transition 过度动画
+   */
+  _setCanvasTransform(x, y, scale, transition = false) {
+    if (!this.el) return
+
+    const text = `transform:scale(${scale}) translate3d(${x}px,${y}px,0);transform-origin:center;`
+    const cssText = transition ? text + 'transition:0.3s;' : text
+
+    this.el.setAttribute('style', cssText)
+  }
+
+  /**
+   * 设置画笔模式
+   * @param {String} mode 画笔模式
+   */
+  _setPenMode(mode) {
+    if (!DrawingBoard.PEN_MODE_ENUM.includes(mode)) return
+
+    this.penMode = mode
   }
 
   /**
@@ -673,6 +822,95 @@ class DrawingBoard {
   }
 
   /**
+   * 初始化缩放
+   */
+  _initScale() {
+    this.scale = 1 // 初始缩放比例设置为1
+    if (this.container) this.container.style.overflow = 'hidden'
+  }
+
+  /**
+   * 处理缩放比例改变
+   */
+  _handleScaleChange() {
+    if (!this.el) return
+
+    this._setCanvasTransform(
+      this.dragTransformX,
+      this.dragTransformY,
+      this.scale
+    )
+  }
+
+  /**
+   * scale + 0.1
+   */
+  makeScaleAddZeroPointOne() {
+    let newScale = this.scale + 0.1
+    this.setScale(newScale)
+  }
+
+  /**
+   * scale - 0.1
+   */
+  makeScaleSubtractZeroPointOne() {
+    let newScale = this.scale - 0.1
+    this.setScale(newScale)
+  }
+
+  /**
+   * 重置缩放比例、位置
+   */
+  reset() {
+    this.dragTransformX = this.dragTransformY = 0
+    this.scale = 1
+
+    this._setCanvasTransform(
+      this.dragTransformX,
+      this.dragTransformY,
+      this.scale,
+      true
+    )
+  }
+
+  /**
+   * 设置画笔模式为绘制模式
+   */
+  setPenModePaint() {
+    this._setPenMode('paint')
+  }
+
+  /**
+   * 设置画笔模式为拖拽模式
+   */
+  setPenModeDrag() {
+    this._setPenMode('drag')
+  }
+
+  /**
+   * 重置画笔模式为空
+   */
+  setPenModeEmpty() {
+    this._setPenMode('empty')
+  }
+
+  /**
+   * 设置缩放比例
+   * @param {Number} scale 缩放比例
+   */
+  setScale(scale) {
+    let s = parseFloat(scale)
+    if (isNaN(s)) return
+
+    if (s < this.minScale) s = this.minScale
+    if (s > this.maxScale) s = this.maxScale
+
+    this.scale = s
+
+    this._handleScaleChange()
+  }
+
+  /**
    * 获取当前画面的绘制次数
    * @returns 绘制次数
    */
@@ -802,7 +1040,7 @@ class DrawingBoard {
     this._setDOMSize([this.width, this.height])
     this.setClassName(this.className)
 
-    this._bindCurModeEvents({ action: 'start' })
+    this._bindCurInteractiveModeEvents({ action: 'start' })
 
     this.container.appendChild(this.el)
   }

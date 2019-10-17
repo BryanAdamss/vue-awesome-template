@@ -4,8 +4,6 @@
  */
 import Vue from 'vue'
 
-// import directivesMap from 'Directives'
-
 import directivesLoader from 'Plugins/directives-loader'
 
 import filtersMap from 'Config/filters-map'

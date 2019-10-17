@@ -22,7 +22,7 @@ elementUiRegister()
 vueLazyloadReigster()
 
 // * ----------------------------------------
-// * filters、directives注册器
+// * 调用filters、directives注册器
 // * ----------------------------------------
 filterRegister()
 directiveRegister()
@@ -30,7 +30,7 @@ directiveRegister()
 // * ----------------------------------------
 // * 调用注入器
 // * ----------------------------------------
-Vue.use(vueInjecter)
+vueInjecter()
 globalInjecter()
 
 // * ----------------------------------------

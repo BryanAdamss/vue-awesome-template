@@ -9,34 +9,21 @@ import App from './App'
 import router from 'Plugins/router-instance'
 import store from 'Plugins/vuex-instance'
 import { vueInjecter, globalInjecter } from 'Plugins/injecter'
+import { directiveRegister, filterRegister } from 'Plugins/register'
 import {
-  directiveRegister,
-  filterRegister,
-  elCompRegister
-} from 'Plugins/register'
-
-// * ----------------------------------------
-// * 导入组件
-// * ----------------------------------------
-import VueLazyload from 'vue-lazyload'
-
-// * ----------------------------------------
-// * 导入组件样式
-// * ----------------------------------------
-import 'element-ui/lib/theme-chalk/index.css'
+  elementUiRegister,
+  vueLazyloadReigster
+} from 'Plugins/component-register'
 
 // * ----------------------------------------
 // * 注册组件
 // * ----------------------------------------
-
-Vue.use(VueLazyload, {
-  loading: require('Assets/img/loading.gif')
-})
+elementUiRegister()
+vueLazyloadReigster()
 
 // * ----------------------------------------
-// * 调用element-ui、filters、directives注册器
+// * filters、directives注册器
 // * ----------------------------------------
-elCompRegister()
 filterRegister()
 directiveRegister()
 

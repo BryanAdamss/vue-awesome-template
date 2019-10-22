@@ -66,13 +66,14 @@ class Downloader {
     this._isImgDataUrl(contetOrPath) &&
       frame.contentWindow.document.write(`<img src="${contetOrPath}" />`)
 
-    // 在下一个事件循环中，执行ie自带指令保存
-    // 防止循环时，多次同步调用产生bug
-    setTimeout(() => {
-      frame.contentWindow.document.execCommand('SaveAs', false, fileName)
-    }, 0)
-
-    document.body.removeChild(frame)
+    frame.onload = function() {
+      // 在下一个事件循环中，执行ie自带指令保存
+      // 防止循环时，多次同步调用产生bug
+      setTimeout(() => {
+        frame.contentWindow.document.execCommand('SaveAs', false, fileName)
+      }, 20)
+      document.body.removeChild(frame)
+    }
   }
 
   /**

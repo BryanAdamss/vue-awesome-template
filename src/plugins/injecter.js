@@ -42,6 +42,8 @@ export const vueInjecter = () => {
         globalNamespace: GLOBAL_NAME_SPACE,
         session: true
       }) // 全局sessionStorageSaver
+
+      Vue.prototype.$win = window || self
     }
   }
 

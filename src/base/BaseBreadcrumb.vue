@@ -18,7 +18,7 @@
           :iconClassName="homeIconClassName"
           :sep="sep"
           :text="homeText"
-          @itemClick="$win.location.href = homePath"
+          @itemClick="hadleHomeClick"
         />
 
       </template>
@@ -117,6 +117,14 @@ export default {
       type: Boolean,
       default: true
     },
+    homeRouteName: {
+      type: String,
+      default: ''
+    },
+    homeRoutePath: {
+      type: String,
+      default: ''
+    },
     homePath: {
       type: String,
       default: '/'
@@ -160,7 +168,20 @@ export default {
   beforeCreate() {},
   created() {},
   mounted() {},
-  methods: {}
+  methods: {
+    /**
+     * 处理home点击
+     */
+    handleHomeClick() {
+      if (this.homeRouteName) {
+        this.$router && this.$router.push({name: this.homeRouteName})
+      } else if (this.homeRoutePath) {
+        this.$router && this.$router.push({path: this.homeRoutePath})
+      } else if (this.homePath) {
+        this.$win.location.href = this.homePath
+      }
+    }
+  }
 }
 </script>
 

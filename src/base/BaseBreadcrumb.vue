@@ -18,7 +18,7 @@
           :iconClassName="homeIconClassName"
           :sep="sep"
           :text="homeText"
-          @itemClick="hadleHomeClick"
+          @itemClick="handleHomeClick"
         />
 
       </template>

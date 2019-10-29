@@ -8,16 +8,32 @@
     <button @click="handleGetFile">getFile</button>
     <button @click="handleRotate">旋转</button>
 
-    <hr>
+    <button @click="handleBigBtnClick">放大</button>
+    <button @click="handleSmallBtnClick">缩小</button>
+    <button @click="handleOriginBtnClick">重置比例</button>
+
+    <button @click="handlePaintBtnClick">画笔模式</button>
+    <button @click="handleHandBtnClick">移动(抓手模式)</button>
+    <button @click="handleEmptyBtnClick">重置画笔模式</button>
+
+    <button @click="handleResetBtnClick">重置</button>
+
+    <hr >
     <input
       type="color"
-      @change="handleSetPenColor">
+      value="#ff0000"
+      @change="handleSetPenColor"
+    >
 
     <input
       type="range"
-      @change="handleSetPenWidth">
+      min="1"
+      max="10"
+      value="6"
+      @change="handleSetPenWidth"
+    >
 
-    <hr>
+    <hr >
     <div id="board"/>
   </div>
 </template>
@@ -37,7 +53,10 @@ export default {
   data() {
     return {
       stack: [],
-      count: 0
+      count: 0,
+
+      color: '#ff0000',
+      width: 6
     }
   },
   computed: {},
@@ -89,6 +108,7 @@ export default {
     },
     handleSetPenColor(e) {
       const color = e.target.value
+      console.log(color)
 
       this.drawingBoard.setPenStyle({ color })
     },
@@ -99,6 +119,33 @@ export default {
     },
     handleRotate() {
       this.drawingBoard.rotate()
+    },
+    handleBigBtnClick() {
+      this.drawingBoard.makeScaleAddZeroPointOne()
+      console.log('big', this.drawingBoard.scale)
+    },
+    handleSmallBtnClick() {
+      this.drawingBoard.makeScaleSubtractZeroPointOne()
+      console.log('small', this.drawingBoard.scale)
+    },
+    handleOriginBtnClick() {
+      this.drawingBoard.setScale(1)
+      console.log('origin', 1)
+    },
+    handleHandBtnClick() {
+      this.drawingBoard.setPenModeDrag()
+      console.log('penMode', this.drawingBoard.penMode)
+    },
+    handlePaintBtnClick() {
+      this.drawingBoard.setPenModePaint()
+      console.log('penMode', this.drawingBoard.penMode)
+    },
+    handleEmptyBtnClick() {
+      this.drawingBoard.setPenModeEmpty()
+      console.log('penMode', this.drawingBoard.penMode)
+    },
+    handleResetBtnClick() {
+      this.drawingBoard.reset()
     }
   }
 }

@@ -1,0 +1,34 @@
+/**
+ * @author GuangHui
+ * @description js项目配置
+ */
+
+// jsconfig.json继承于tsconfig.json，配置同tsconfig.json
+// 参考https://code.visualstudio.com/docs/languages/jsconfig
+// 此处使用主要用于vscode识别webpack alias
+// 匹配时 Path/* 后的/*不能省略
+
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "Api/*": ["src/api/*"],
+      "Assets/*": ["src/assets/*"],
+      "Base/*": ["src/base/*"],
+      "Common/*": ["src/common/*"],
+      "Config/*": ["src/config/*"],
+      "Components/*": ["src/components/*"],
+      "Directives/*": ["src/directives/*"],
+      "Plugins/*": ["src/plugins/*"],
+      "Routes/*": ["src/routes/*"],
+      "Sass/*": ["src/sass/*"],
+      "Services/*": ["src/services/*"],
+      "Stores/*": ["src/stores/*"],
+      "Utils/*": ["src/utils/*"],
+      "Views/*": ["src/views/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

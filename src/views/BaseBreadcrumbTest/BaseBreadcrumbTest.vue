@@ -1,27 +1,25 @@
 <template>
   <div class="c-BaseBreadcrumbTest">
+
     <BaseBreadcrumb
       :needHome="true"
-      :needHomeIcon="true"
-      :sep="'/'"
-      :homeIconClassName="'el-icon-s-home'"
-      :homeText="'首页'"
-      :routeList="routeList"/>
+      :homeRoute="homeRoute"
+      :globalSep="'/'"
+      :routeList="routeList"
+    />
 
     <hr>
     <p>使用slot-scope 自定义样式</p>
+
     <BaseBreadcrumb
       :needHome="true"
-      :needHomeIcon="true"
-      :homeIconClassName="'el-icon-s-home'"
-      :homeText="'首页'"
+      :homeRoute="homeRoute"
       :routeList="routeList">
 
       <template
-        v-slot:home= "{ needIcon,homeIconClassName,homeText,homePath }">
+        v-slot:home= "{ needHome, homeRoute }">
         <p>home</p>
-        {{ homeIconClassName }}、{{ homeText }}、{{ homePath }}
-
+        {{ homeRoute }}
         <hr>
       </template>
 
@@ -32,6 +30,7 @@
       </template>
 
     </BaseBreadcrumb>
+
   </div>
 </template>
 
@@ -51,6 +50,14 @@ export default {
   props: {},
   data() {
     return {
+      homeRoute: {
+        isLink: true,
+        needIcon: true,
+        iconClassName: 'el-icon-s-home',
+        text: '首页',
+        href: '/',
+        step: null
+      },
       routeList: [
         {
           needIcon: true,

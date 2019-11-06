@@ -7,18 +7,21 @@
     class="c-BaseBreadcrumb">
 
     <slot
-      v-bind="{ needHomeIcon,homeIconClassName,homeText,homePath }"
+      v-bind="{ needHome,homeRoute }"
       name="home">
 
       <!-- 首页 -->
       <template v-if="needHome">
 
         <BaseBreadcrumbItem
-          :needIcon="needHomeIcon"
-          :iconClassName="homeIconClassName"
-          :sep="sep"
-          :text="homeText"
-          @itemClick="handleHomeClick"
+          :isLink="!!homeRoute.isLink"
+          :needIcon="!!homeRoute.needIcon"
+          :iconClassName="homeRoute.iconClassName"
+          :needSep="!!(routeList && routeList.length)"
+          :sep="homeRoute.sep || globalSep"
+          :sepIconClassName=" homeRoute.sepIconClassName || globalSepIconClassName"
+          :text="homeRoute.text"
+          @itemClick="handleHomeClick(homeRoute)"
         />
 
       </template>
@@ -37,7 +40,8 @@
             :needIcon="route.needIcon"
             :iconClassName="route.iconClassName"
             :needSep="index !== routeList.length - 1"
-            :sep="sep"
+            :sep="route.sep || globalSep"
+            :sepIconClassName=" route.sepIconClassName || globalSepIconClassName"
             :text="route.text"
             @itemClick="$router.go(route.step)"
           />
@@ -52,7 +56,8 @@
             :needIcon="route.needIcon"
             :iconClassName="route.iconClassName"
             :needSep="index !== routeList.length - 1"
-            :sep="sep"
+            :sep="route.sep || globalSep"
+            :sepIconClassName=" route.sepIconClassName || globalSepIconClassName"
             :text="route.text"
             @itemClick="$router.push(route)"
           />
@@ -67,7 +72,8 @@
             :needIcon="route.needIcon"
             :iconClassName="route.iconClassName"
             :needSep="index !== routeList.length - 1"
-            :sep="sep"
+            :sep="route.sep || globalSep"
+            :sepIconClassName=" route.sepIconClassName || globalSepIconClassName"
             :text="route.text"
             @itemClick="$win.location.href = route.href"
           />
@@ -83,7 +89,8 @@
             :iconClassName="route.iconClassName"
             :needSep="index !== routeList.length - 1"
             :isLink="false"
-            :sep="sep"
+            :sep="route.sep || globalSep"
+            :sepIconClassName=" route.sepIconClassName || globalSepIconClassName"
             :text="route.text"
           />
 
@@ -113,48 +120,53 @@ export default {
   },
   mixins: [],
   props: {
+    // 是否需要首页
     needHome: {
       type: Boolean,
       default: true
     },
-    homeRouteName: {
-      type: String,
-      default: ''
+    // 首页路由
+    homeRoute: {
+      type: Object,
+      default() {
+        return {
+          isLink: true, // 是否是链接
+          needIcon: true, // 是否展示图标
+          iconClassName: '', // 图标class
+          text: '首页', // 文案
+          href: '/', // window.location跳转地址
+          step: null, // $router.go 跳转步数
+
+          name: '', // 路由名
+          path: ''// 路由path
+        }
+      }
     },
-    homeRoutePath: {
-      type: String,
-      default: ''
-    },
-    homePath: {
-      type: String,
-      default: '/'
-    },
-    homeText: {
-      type: String,
-      default: '首页'
-    },
-    needHomeIcon: {
-      type: Boolean,
-      default: false
-    },
-    homeIconClassName: {
-      type: String,
-      default: ''
-    },
+    // 自定义样式类
     customClass: {
       type: String,
       default: ''
     },
+    // 自定义样式
     customStyle: {
       type: Object,
       default() {
         return {}
       }
     },
-    sep: {
+    // 分隔符优先级
+    // route.sep > route.sepIconClassName > globalSep > globalSepIconClassName
+    // 全局字符型分隔符
+    globalSep: {
       type: String,
       default: '❯'
     },
+    // 全局图标字体分隔符样式类
+    globalSepIconClassName: {
+      type: String,
+      default: ''
+    },
+    // 其他路由列表
     routeList: {
       type: Array,
       required: true
@@ -172,13 +184,14 @@ export default {
     /**
      * 处理home点击
      */
-    handleHomeClick() {
-      if (this.homeRouteName) {
-        this.$router && this.$router.push({name: this.homeRouteName})
-      } else if (this.homeRoutePath) {
-        this.$router && this.$router.push({path: this.homeRoutePath})
-      } else if (this.homePath) {
-        this.$win.location.href = this.homePath
+    handleHomeClick(homeRoute) {
+      const { name, path, href, step } = homeRoute
+      if (typeof step === 'number' && !isNaN(step)) {
+        this.$router && this.$router.go(step)
+      } else if (name || path) {
+        this.$router && this.$router.push(homeRoute)
+      } else if (href) {
+        this.$win.location.href = href
       }
     }
   }

@@ -239,54 +239,6 @@ export function assert(conditions, msg) {
 }
 
 /**
- * 解析查询字符串
- * @param {String} qs 需要解析的查询字符串
- * @return {Object} 解析后的对象
- * http://www.domain.com/?user=anonymous&id=123&id=456&city=%E5%8C%97%E4%BA%AC&d&enabled
- * 解析后:
- * {
-  user: 'anonymous',
-  id: [123, 456],     // 重复出现的 key 要组装成数组，能被转成数字的就转成数字类型
-  city: '北京',        // 中文
-  enabled: true,      // 未指定值的 key 约定值为 true
-  d:true
-}
- */
-export function getQueryObject(qs = location.search) {
-  if (!qs || typeof qs !== 'string') return {}
-
-  qs = decodeURIComponent(qs.substring(qs.lastIndexOf('?')))
-
-  const re = /([^?&=]+)(=([^&?=]+))?/g
-
-  const obj = {}
-
-  for (let result = re.exec(qs); result != null; result = re.exec(qs)) {
-    let { 1: key, 3: value } = result
-
-    if (value == null) {
-      obj[key] = true
-      continue
-    }
-
-    if (!isNaN(Number(value))) value = Number(value)
-
-    const target = obj[key]
-    if (target) {
-      if (Array.isArray(target)) {
-        target.push(value)
-      } else {
-        obj[key] = [target, value]
-      }
-    } else {
-      obj[key] = value
-    }
-  }
-
-  return obj
-}
-
-/**
  * 驼峰、帕斯卡转烤串
  * @param {String} str camelCase、PascalCase字符串
  * @returns {String} kebab-case字符串

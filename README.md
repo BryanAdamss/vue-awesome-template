@@ -190,4 +190,5 @@
 ## npm 包
 
 - [@bryanadamss/drawing-board](https://www.npmjs.com/package/@bryanadamss/drawing-board)
+- [@bryanadamss/num2chn](https://www.npmjs.com/package/@bryanadamss/num2chn)
 - [ant-color-converter](https://www.npmjs.com/package/ant-color-converter)

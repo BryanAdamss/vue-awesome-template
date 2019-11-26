@@ -16,7 +16,7 @@ export const GLOBAL_NAME_SPACE = `__${APP_NAME}__`
 // APP信息
 export const APP_INFO = Object.freeze({
   name: APP_NAME,
-  desc: 'vue_10w_模板',
+  desc: 'vue_awesome_模板',
   version: '1.0.0'
 })
 

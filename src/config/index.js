@@ -3,12 +3,14 @@
  * @description 项目配置及开关
  */
 
+import { version } from '../../package.json'
+
 // * ----------------------------------------
 // * App描述信息
 // * ----------------------------------------
 
 // App 名
-export const APP_NAME = 'VUE_10W_TEMPLATE'
+export const APP_NAME = 'VUE_AWESOME_TEMPLATE'
 
 // 全局命名空间
 export const GLOBAL_NAME_SPACE = `__${APP_NAME}__`
@@ -17,7 +19,7 @@ export const GLOBAL_NAME_SPACE = `__${APP_NAME}__`
 export const APP_INFO = Object.freeze({
   name: APP_NAME,
   desc: 'vue_awesome_模板',
-  version: '1.0.0'
+  version
 })
 
 // * ----------------------------------------

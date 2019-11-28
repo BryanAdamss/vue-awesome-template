@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/BryanAdamss/vue-awesome-template/compare/v1.3.0...v1.4.0) (2019-11-28)
+
+### Features
+
+- **basebreadcrumb:** 添加基础面包屑导航组件及相关测试组件 ([52961e1](https://github.com/BryanAdamss/vue-awesome-template/commit/52961e107ea6f9c6da86257c97f343853bf8c2ee))
+- **basebreadcrumb:** 调整 homeroute 支持参数形式 ([46fd239](https://github.com/BryanAdamss/vue-awesome-template/commit/46fd239da28f15c3f426d1cbb2cc2445df540648))
+- **basebreadcrumb:** 调整首页点击逻辑 ([e445671](https://github.com/BryanAdamss/vue-awesome-template/commit/e44567160f33c863d26a318fdfbb4eb96cb84933))
+- **const-loader:** 添加常量加载器 ([b0fc198](https://github.com/BryanAdamss/vue-awesome-template/commit/b0fc198dbf137ea62cec78fc17282fdf190167d5))
+- **mock:** 添加 mock 服务 ([f97aa53](https://github.com/BryanAdamss/vue-awesome-template/commit/f97aa53f268fbdcf7f24bd0e0e31a80fcf29f745))
+- **services:** 添加 leave-tips-mixins ([3e8a316](https://github.com/BryanAdamss/vue-awesome-template/commit/3e8a316fd1e8df2c455591487210588f09f6d8e4))
+- **url.js:** 添加 isAbsoluteURL、combineURL 函数 ([e9a6d5e](https://github.com/BryanAdamss/vue-awesome-template/commit/e9a6d5e08ef20bd4b61a0d5b2fafe2cb0199876f))
+- **utils:** 添加 url 解析相关函数 ([5e2fbcb](https://github.com/BryanAdamss/vue-awesome-template/commit/5e2fbcb11e0dc42b7e67722cceff426a1c540d0c))
+
+### Bug Fixes
+
+- **basebreadcrumb:** 修复 handleHomeClick 书写错误 ([fe0b945](https://github.com/BryanAdamss/vue-awesome-template/commit/fe0b9452d904720e22a9b58d64c2f9e7ed8e568e))
+- **config:** 调整文案 ([5d77be0](https://github.com/BryanAdamss/vue-awesome-template/commit/5d77be097749d69a9994dc4ce4b60d07c73e696d))
+- **downloader:** 修复 ie 无法获取 iframe 的问题 ([8d8caf2](https://github.com/BryanAdamss/vue-awesome-template/commit/8d8caf20d639de67df8a3bdb2a871224f2ad9a8f))
+- **package.json:** 回退 webpack-dev-server 到 2.x 版本 ([8600f37](https://github.com/BryanAdamss/vue-awesome-template/commit/8600f37165b4062f09697e34c8ef7b6061c60884))
+
 ## [1.3.0](https://github.com/BryanAdamss/vue-awesome-template/compare/v1.2.1...v1.3.0) (2019-10-17)
 
 ### Features

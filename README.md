@@ -81,99 +81,99 @@
 ## vue 组件
 
 - 翻页组件
-  - [BaseSwiper](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseSwiper/BaseSwiper.vue)
+  - [BaseSwiper](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseSwiper/BaseSwiper.vue)
 - toast 组件
-  - [toast](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseToast/BaseToast.js)
+  - [toast](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseToast/BaseToast.js)
 - 防暴击按钮组件
-  - [防暴击按钮](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseBtnPreventFastClick.vue)
+  - [防暴击按钮](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseBtnPreventFastClick.vue)
 - 点击区域放大组件
-  - [点击区域放大](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseClickAreaExpand.vue)
+  - [点击区域放大](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseClickAreaExpand.vue)
 - 确认框组件
-  - [确认框](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseConfirm.vue)
+  - [确认框](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseConfirm.vue)
 - latex 公式渲染组件
-  - [latex 公式渲染](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseFormulaRender.vue)
+  - [latex 公式渲染](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseFormulaRender.vue)
 - 圣杯布局组件
-  - [圣杯布局](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseLayoutHorizontal.vue)
+  - [圣杯布局](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseLayoutHorizontal.vue)
 - 粘滞布局组件
-  - [粘滞布局](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseLayoutVertical.vue)
+  - [粘滞布局](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseLayoutVertical.vue)
 - 列表过渡组件
-  - [列表过渡](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseListTransition.vue)
+  - [列表过渡](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseListTransition.vue)
 - loading 组件
-  - [loading](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseLoading.vue)
+  - [loading](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseLoading.vue)
 - loading spinner 组件
-  - [loading spinner](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseLoadingSpinner.vue)
+  - [loading spinner](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseLoadingSpinner.vue)
 - modal 组件
-  - [modal](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseModal.vue)
+  - [modal](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseModal.vue)
 - popup 组件
-  - [popup](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BasePopUp.vue)
+  - [popup](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BasePopUp.vue)
 - 模拟滚动组件
-  - [模拟滚动](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseScroll.vue)
+  - [模拟滚动](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseScroll.vue)
 - 模拟滚动条组件
-  - [模拟滚动条](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseScrollbar.vue)
+  - [模拟滚动条](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseScrollbar.vue)
 - 路由切换动画组件
-  - [路由切换动画](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/base/BaseTransitionSlide.vue)
+  - [路由切换动画](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseTransitionSlide.vue)
 
 ## 常用库
 
 - 前端下载库
-  - [前端下载库](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/downloader.js)
+  - [前端下载库](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/plugins/downloader.js)
 - 全局 loading 库
-  - [全局 loading](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/global-loading.js)
+  - [全局 loading](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/plugins/global-loading.js)
 - 浮点数转中文库
-  - [浮点数转中文](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/num-to-chn.js)
+  - [浮点数转中文](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/plugins/num-to-chn.js)
 - 倒计时库
-  - [倒计时库](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/time-counter.js)
+  - [倒计时库](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/plugins/time-counter.js)
 - localStorage、sessionStorage 封装库
-  - [localStorage、sessionStorage 封装库](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/saver.js)
+  - [localStorage、sessionStorage 封装库](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/plugins/saver.js)
 - postMessage 封装库
 
-  - [postMessage 封装库](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/plugins/messager.js)
+  - [postMessage 封装库](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/plugins/messager.js)
 
 ## 指令库
 
 - input、textarea 自增高指令
-  - [input、textarea 自增高指令](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/directives/auto-height.js)
+  - [input、textarea 自增高指令](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/directives/auto-height.js)
 - 点击区域外指令
-  - [点击区域外指令](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/directives/click-outside.js)
+  - [点击区域外指令](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/directives/click-outside.js)
 - 移动端拖动指令
-  - [移动端拖动指令](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/directives/drag.js)
+  - [移动端拖动指令](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/directives/drag.js)
 - 图钉 Affix 指令
-  - [图钉 Affix 指令](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/directives/affix.js)
+  - [图钉 Affix 指令](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/directives/affix.js)
 
 ## utils
 
 - 浏览器识别
-  - [浏览器识别](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/browser.js)
+  - [浏览器识别](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/browser.js)
 - dom 操作
-  - [dom 操作](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/dom.js)
+  - [dom 操作](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/dom.js)
 - 缓动函数
-  - [缓动函数](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/easings.js)
+  - [缓动函数](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/easings.js)
 - file 常用类型转换
-  - [file 常用类型转换](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/file-convert.js)
+  - [file 常用类型转换](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/file-convert.js)
 - raf 封装
-  - [raf](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/raf.js)
+  - [raf](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/raf.js)
 - raf-animation 封装
-  - [raf-animation](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/raf-animation.js)
+  - [raf-animation](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/raf-animation.js)
 - 获取滚动条宽度封装
-  - [获取滚动条宽度](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/scrollbar-width.js)
+  - [获取滚动条宽度](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/scrollbar-width.js)
 - 类型判断封装
-  - [类型判断](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/type-judge.js)
+  - [类型判断](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/type-judge.js)
 - 解析查询字符串、节流、去抖、分时封装
-  - [解析查询字符串、节流、去抖、分时](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/utils/index.js)
+  - [解析查询字符串、节流、去抖、分时](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/index.js)
 
 ## sass
 
 - 网格
-  - [网格](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/layout/_gridNew.scss)
+  - [网格](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/sass/layout/_gridNew.scss)
 - 常用 functions
-  - [常用 functions](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_function.scss)
+  - [常用 functions](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/sass/utils/_function.scss)
 - 常用 mixins
-  - [常用 mixins](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_mixins.scss)
+  - [常用 mixins](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/sass/utils/_mixins.scss)
 - 常用 placeholder
-  - [常用 placeholder](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_placeholder.scss)
+  - [常用 placeholder](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/sass/utils/_placeholder.scss)
 - mediaQuery 封装
 
-  - [mediaQuery 封装](https://github.com/BryanAdamss/vue-10w-template/blob/master/src/sass/utils/_mediaQuery.scss)
+  - [mediaQuery 封装](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/sass/utils/_mediaQuery.scss)
 
 ## 其他项目
 

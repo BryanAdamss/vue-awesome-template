@@ -4,8 +4,9 @@
  */
 
 import { isEmpty } from 'Utils/type-judge'
-import { GLOBAL_NAME_SPACE, GLOBAL_LOADING_DEFAULT_CONFIG } from 'Config'
 import GlobalLoading from 'Plugins/global-loading'
+
+import { GLOBAL_NAME_SPACE, GLOBAL_LOADING_DEFAULT_CONFIG } from 'Config'
 
 const globalLoading = new GlobalLoading(GLOBAL_LOADING_DEFAULT_CONFIG)
 
@@ -37,6 +38,7 @@ export function respSuccFn(respObj) {
         'business.response.incorrect',
         '服务器异常，请稍后重试。'
       )
+
     return Promise.reject('未获取到有效消息体')
   }
 

@@ -41,7 +41,7 @@ export const AXIOS_DEFAULT_CONFIG = {
 
 // API构造器 默认配置
 export const API_DEFAULT_CONFIG = {
-  mockBaseURL: '', // mock的baseURL
+  mockBaseURL: 'http://localhost:5000', // mock的baseURL
   mock: false, // 是否全局启用mock
   debug: false, // 调试开关
   sep: '/' // 接口分隔符

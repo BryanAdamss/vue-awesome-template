@@ -36,7 +36,7 @@ export const BASE_URL =
 export const AXIOS_DEFAULT_CONFIG = {
   baseURL: BASE_URL,
   timeout: 10 * 1000
-  // withCredentials: true
+  // withCredentials: true // 是否携带cookie
 }
 
 // API构造器 默认配置

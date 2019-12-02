@@ -8,6 +8,7 @@
       <li
         v-for="post in posts"
         :key="post.id"
+        :class="{'is-overLen':post.isTitleOverLength()}"
         class="c-List-item"
         @click.stop="onListItemClick(post)"
       >{{ post.id }}:{{ post.title }}</li>
@@ -22,6 +23,9 @@
  */
 
 import BaseLoading from 'Base/BaseLoading'
+
+import Post from './models/Post'
+import { formatGetPostRes } from 'Services/translator/axios-test'
 
 export default {
   name: 'AxiosTest',
@@ -41,7 +45,10 @@ export default {
       // _noShowDefaultError: true
     }).then(res => {
       console.log(res)
-      this.posts = res
+      this.posts = formatGetPostRes(res).map(post => new Post(post))
+
+      console.log(this.posts)
+
       this.isLoading = false
     }).catch(err => {
       this.isLoading = false
@@ -83,15 +90,21 @@ export default {
 }
 </script>
 
- <style scoped>
+ <style lang="scss" scoped>
 .c-List {
   height: 500px;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   border: 1px solid blue;
-}
 
-.c-List-item + .c-List-item {
-  border-top: 1px solid #aaa;
+  &-item {
+    & + & {
+      border-top: 1px solid #aaa;
+    }
+
+    &.is-overLen {
+      color: red;
+    }
+  }
 }
 </style>

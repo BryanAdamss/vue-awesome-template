@@ -364,9 +364,11 @@ export function num2percentage(originalNum) {
  */
 export const flatten = arr =>
   arr.reduce(
-    (result, shouldFlatten) =>
+    (result, shouldFlattenArr) =>
       result.concat(
-        Array.isArray(shouldFlatten) ? flatten(shouldFlatten) : shouldFlatten
+        Array.isArray(shouldFlattenArr)
+          ? flatten(shouldFlattenArr)
+          : shouldFlattenArr
       ),
     []
   )

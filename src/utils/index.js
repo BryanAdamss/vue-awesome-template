@@ -208,21 +208,26 @@ export function dateFormat(timestamp, format = 'yyyy-MM-dd hh:mm:ss') {
 /**
  * 判断浏览器是否支持passive模式
  */
+let isSupportPassive = null
 export const eventListenerPassiveSupported = () => {
-  let supported = false
+  if (typeof isSupportPassive === 'boolean') {
+    return isSupportPassive
+  }
 
   try {
     const opts = Object.defineProperty({}, 'passive', {
       get() {
-        supported = true
+        isSupportPassive = true
       }
     })
 
     window.addEventListener('test', null, opts)
     window.removeEventListener('test', null, opts)
-  } catch (e) {}
+  } catch (e) {
+    isSupportPassive = false
+  }
 
-  return supported
+  return isSupportPassive
 }
 
 /**

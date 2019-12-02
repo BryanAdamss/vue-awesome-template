@@ -14,7 +14,6 @@ export default function directivesLoader(defaultDirectives = []) {
 
   files.keys().forEach(key => {
     const file = files(key)
-    console.log(file)
 
     // 将file的default导出模块添加到routes数组中
     directives = directives.concat({

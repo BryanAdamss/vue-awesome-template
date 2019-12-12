@@ -21,18 +21,11 @@ export function isEmpty(obj) {
  * 判断是否是数组
  * @param {Any} arr 需要判断的对象
  */
+const isArrayFn = Array.isArray
+  ? Array.isArray
+  : val => Object.prototype.toString.call(val) === '[object Array]'
 export function isArray(arr) {
-  return Array.isArray
-    ? Array.isArray(arr)
-    : Object.prototype.toString.call(arr) === '[object Array]'
-}
-
-/**
- * 判断是否为函数
- * @param {Any} fn 需要判断的对象
- */
-export function isFunction(fn) {
-  return typeof fn === 'function'
+  return isArrayFn(arr)
 }
 
 /**
@@ -44,6 +37,31 @@ export function isArrayLike(collection) {
   // 返回参数 collection 的 length 属性值
   let length = collection.length
   return typeof length === 'number' && length >= 0 && length <= MAX_ARRAY_INDEX
+}
+
+/**
+ * 检查 value 是否是原始有限数值
+ * 会排除 Infinity, -Infinity, 以及 NaN 数值类型
+ *
+ * @export
+ * @param {Any} val
+ * @returns
+ */
+const isFiniteFn = Number.isFinite
+  ? Number.isFinite
+  : val => typeof val === 'number' && isFinite(val)
+export function isFinite(val) {
+  console.log(isFiniteFn)
+
+  return isFiniteFn(val)
+}
+
+/**
+ * 判断是否为函数
+ * @param {Any} fn 需要判断的对象
+ */
+export function isFunction(fn) {
+  return typeof fn === 'function'
 }
 
 /**

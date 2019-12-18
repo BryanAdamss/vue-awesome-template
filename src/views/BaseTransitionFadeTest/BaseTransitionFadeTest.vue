@@ -2,7 +2,7 @@
   <div class="c-BaseTransitionFadeTest">
 
     <button @click="addItem">添加</button>
-    <p>点击方块删除</p>
+    <p>点击删除</p>
 
     <div class="c-BoxWp">
 

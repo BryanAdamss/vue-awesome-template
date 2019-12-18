@@ -1,8 +1,7 @@
 <template>
   <transition
     :name="transitionName"
-    mode="out-in"
-  >
+    mode="out-in">
     <slot/>
   </transition>
 </template>

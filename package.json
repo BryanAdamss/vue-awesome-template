@@ -93,6 +93,7 @@
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.2.1",
+    "preload-webpack-plugin": "^2.3.0",
     "prettier": "^1.18.2",
     "rimraf": "^2.6.0",
     "sass-loader": "^7.1.0",

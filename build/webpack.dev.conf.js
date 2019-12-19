@@ -19,6 +19,9 @@ const openInEditor = require('launch-editor-middleware')
 // * 2019-0111-添加资源导入插件
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 
+// * 2019-0124-添加prefetch
+const PreloadWebpackPlugin = require('preload-webpack-plugin')
+
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
@@ -86,6 +89,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       append: false,
       publicPath: false
     }),
+    // * 2019-0124-prefetch 所有异步chunk
+    new PreloadWebpackPlugin({
+      rel: 'prefetch'
+    }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {
@@ -128,9 +135,7 @@ module.exports = new Promise((resolve, reject) => {
         new FriendlyErrorsPlugin({
           compilationSuccessInfo: {
             messages: [
-              `Your application is running here: http://${
-                devWebpackConfig.devServer.host
-              }:${port}`
+              `Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`
             ]
           },
           onErrors: config.dev.notifyOnErrors

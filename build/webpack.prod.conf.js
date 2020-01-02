@@ -59,6 +59,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env,
       // * 2019-0111-生产环境添加不同的BUILD_MODE
+      // 注意在定义环境变量的值时用 JSON.stringify 包裹字符串的原因是环境变量的值需要是一个由双引号包裹的字符串，而 JSON.stringify('production')的值正好等于'"production"'。
       'process.env.BUILD_MODE': JSON.stringify(process.env.BUILD_MODE)
     }),
     new UglifyJsPlugin({

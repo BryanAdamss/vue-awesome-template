@@ -19,6 +19,12 @@ const createLintingRule = () => ({
   }
 })
 
+// * 2020-0103- 添加thread-loader
+// https://medium.com/@shinychang/webpack-%E6%9C%80%E4%BD%B3%E5%8C%96-thread-loader-bd18471ffb4c
+const threadLoader = require('thread-loader')
+const jsWorkerPool = { poolTimeout: 2000 }
+threadLoader.warmup(jsWorkerPool, ['babel-loader']) // 预热
+
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
@@ -64,7 +70,15 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        // * 2020-0103-添加thread-loader
+        use: [
+          {
+            loader: 'thread-loader',
+            options: jsWorkerPool
+          },
+          'babel-loader'
+        ],
+        // loader: 'babel-loader',
         include: [
           resolve('src'),
           resolve('test'),

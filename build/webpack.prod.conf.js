@@ -39,6 +39,12 @@ const HtmlWebpackIncludeAssets =
         './static/formula/mathjax-config-cutom.js'
       ]
 
+// * 2020-0103- 添加webpack性能测量插件
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
+const smp = new SpeedMeasurePlugin({
+  disable: !process.env.MEASURE // 通过env参数控制
+})
+
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
@@ -58,8 +64,10 @@ const webpackConfig = merge(baseWebpackConfig, {
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env,
-      // * 2019-0111-生产环境添加不同的BUILD_MODE
-      'process.env.BUILD_MODE': JSON.stringify(process.env.BUILD_MODE)
+      // * 2019-0111- 生产环境添加不同的BUILD_MODE
+      'process.env.BUILD_MODE': JSON.stringify(process.env.BUILD_MODE),
+      // * 2020-0103- 生产环境添加性能测量标志量
+      'process.env.MEASURE': JSON.stringify(process.env.MEASURE)
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -182,4 +190,4 @@ if (config.build.bundleAnalyzerReport) {
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 
-module.exports = webpackConfig
+module.exports = smp.wrap(webpackConfig)

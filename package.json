@@ -25,7 +25,10 @@
     "release:publish": "git push --follow-tags origin master",
     "commit": "git-cz",
     "mock": "node mock/index.js",
-    "stylelint": "stylelint src/**/*.vue"
+    "stylelint": "stylelint src/**/*.vue",
+    "contributor:init": "all-contributors init",
+    "contributor:add": "all-contributors add",
+    "contributor:generate": "all-contributors generate"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -42,6 +45,7 @@
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "@vue/test-utils": "^1.0.0-beta.29",
+    "all-contributors-cli": "^6.13.0",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",

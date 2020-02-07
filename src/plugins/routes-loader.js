@@ -11,6 +11,12 @@
 
 // fn本身也可以接收一个fn.keys中的一项做为参数，返回文件对应内容
 
+// 线上需要被排除的路由文件
+const excludeRouteFileNames = ['./home.js']
+
+const excludeRoute = key =>
+  excludeRouteFileNames.findIndex(name => name === key) === -1
+
 export default function routesLoader(defaultRoutes = []) {
   let routes = [].concat(defaultRoutes)
 
@@ -18,7 +24,11 @@ export default function routesLoader(defaultRoutes = []) {
   // 导入Routes目录下所有非index.js的文件
   const files = require.context('Routes', false, /^(?!\.\/index\b).*\.js$/)
 
-  files.keys().forEach(key => {
+  const keys = files.keys()
+  const filtedKeys =
+    process.env.BUILD_MODE === 'prod' ? keys.filter(excludeRoute) : keys
+
+  filtedKeys.forEach(key => {
     const file = files(key)
 
     // 将file的default导出模块添加到routes数组中

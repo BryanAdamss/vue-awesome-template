@@ -100,10 +100,10 @@ export default {
   },
   computed: {
     outGradientId() {
-      return `outGradient_${new Date().getTime()}`
+      return `outGradient_${Math.random()}`
     },
     innerGradientId() {
-      return `innerGradient_${new Date().getTime()}`
+      return `innerGradient_${Math.random()}`
     },
     arcOption () {
       let arcConfig = {}

@@ -61,6 +61,9 @@ export const LOADING_DEFAULT_CONFIG = {
 // * 路由默认配置
 // * ----------------------------------------
 
+// vue-router异步模块加载失败尝试次数最大值
+export const ASYNC_MODULE_LOAD_FAILD_RETRY_COUNT_MAX = 5
+
 // vue-router 默认配置
 export const ROUTER_DEFAULT_CONFIG = {
   mode: 'hash',

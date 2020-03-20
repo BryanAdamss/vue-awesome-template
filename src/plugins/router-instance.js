@@ -10,7 +10,8 @@ import routesLoader from 'Plugins/routes-loader'
 import { ROUTER_DEFAULT_CONFIG, INDEX_ROUTES } from 'Config'
 import {
   routerAfterEachFn,
-  routerBeforeEachFn
+  routerBeforeEachFn,
+  routerOnErrorHandler
 } from 'Config/interceptors/router-interceptor'
 
 const routes = routesLoader(INDEX_ROUTES)
@@ -24,5 +25,7 @@ const router = new Router({
 
 router.afterEach(routerAfterEachFn)
 router.beforeEach(routerBeforeEachFn)
+
+router.onError(err => routerOnErrorHandler(err, router))
 
 export default router

@@ -1,16 +1,19 @@
 <template>
   <div class="c-SaverTest">
-    <button @click="setVal(Math.random())">存储随机数</button>
-    <button @click="getVal()">读取随机数</button>
-    <button @click="getAllKeys()">获取模块内所有keys</button>
+    <button @click="setVal(Math.random())">存储随机数到'SaverTest'模块的'num'中</button>
+    <button @click="getVal()">读取随机数值</button>
+    <button @click="getAllKeys()">获取'SaverTest'模块内所有keys</button>
+    <button @click="getAllFullKeyNames()">获取'SaverTest'模块内所有key的完整keyName</button>
     <button @click="clear()">清除模块内数据</button>
     <button @click="getNamespace()">获取命名空间</button>
-    {{ value }}
+    <hr>
+    value:{{ value }}
     <br>
-    {{ allKeys }}
+    allKeys:{{ allKeys }}
     <br>
-    {{ namespace }}
-
+    namespace:{{ namespace }}
+    <br>
+    allFullKeyNames:{{ allFullKeyNames }}
   </div>
 </template>
 
@@ -30,11 +33,14 @@ export default {
     return {
       testSaver: new Saver({ // 模块化Saver
         moduleName: 'SaverTest',
-        session: true // sessionStorage
+        isSession: true // sessionStorage
       }),
       globalSaver: new Saver(), // 全局 localStorageSaver
       value: 0,
-      allKeys: null,
+
+      allKeys: [],
+      allFullKeyNames: [],
+
       namespace: ''
     }
   },
@@ -42,12 +48,13 @@ export default {
   watch: {},
   beforeCreate() {},
   created() {
-    console.log('全局localStorageSaver:', this.$saver)
-    console.log('全局sessionStorageSaver:', this.$sessionSaver)
-    console.log('模块化sessionSaver:', this.testSaver)
-    console.log('默认localStorageSaver:', this.globalSaver)
+    console.log('修改了namespace的全局localStorageSaver:', this.$saver)
+    console.log('修改了namespace的全局sessionStorageSaver:', this.$sessionSaver)
 
+    console.log('默认namespace的全局localStorageSaver:', this.globalSaver)
     this.globalSaver.setItem('test', 'testItem')
+
+    console.log('模块化sessionSaver:', this.testSaver)
   },
   mounted() {},
   methods: {
@@ -59,6 +66,9 @@ export default {
     },
     getAllKeys() {
       this.allKeys = this.testSaver.getAllKeys()
+    },
+    getAllFullKeyNames() {
+      this.allFullKeyNames = this.testSaver.getAllFullKeyNames()
     },
     setVal(val) {
       this.testSaver.setItem('num', val)

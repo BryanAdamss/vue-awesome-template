@@ -40,7 +40,7 @@ export const vueInjecter = () => {
       Vue.prototype.$saver = new Saver({ globalNamespace: GLOBAL_NAME_SPACE }) // 全局localStorageSaver
       Vue.prototype.$sessionSaver = new Saver({
         globalNamespace: GLOBAL_NAME_SPACE,
-        session: true
+        isSession: true
       }) // 全局sessionStorageSaver
 
       Vue.prototype.$win = window || self

@@ -5,17 +5,17 @@
 
 class Saver {
   constructor({
-    globalNamespace = '__VUE_SAVER__',
-    moduleName = 'Global',
-    session = false
+    globalNamespace = '__VUE_SAVER__', // 全局命名空间
+    moduleName = 'Global', // 模块名
+    isSession = false // 是否sessionStorage
   } = {}) {
-    this.isSession = session
+    this.globalNamespace = globalNamespace
+    this.moduleName = moduleName
+    this.isSession = isSession
 
     // 拼装命名空间，namespace的组成为(Session)+globalNamespace+moduleName
     // 最终存储key的组成为:namespace+:+key
-    this.namespace = session
-      ? `Session${globalNamespace}${moduleName}`
-      : `${globalNamespace}${moduleName}`
+    this.namespace = this.genNameSpace(isSession, globalNamespace, moduleName)
 
     // 对应实例已经存在，直接返回
     this.saverName = `Saver_${this.namespace}`
@@ -23,7 +23,7 @@ class Saver {
 
     // 实例不存在，生成实例
     // 默认localStorage
-    this.storage = session ? window.sessionStorage : window.localStorage
+    this.storage = isSession ? window.sessionStorage : window.localStorage
 
     // 则尝试收集模块之前存储的key
     const oldKeys = this._getOldKeys()
@@ -31,6 +31,14 @@ class Saver {
 
     // 保存实例
     window[this.saverName] = this
+  }
+
+  /**
+   * 生成命名空间
+   */
+  genNameSpace(isSession, globalNamespace, moduleName) {
+    const nc = `${globalNamespace}${moduleName}`
+    return isSession ? `Session${nc}` : nc
   }
 
   /**
@@ -63,7 +71,7 @@ class Saver {
 
     !this.keySet.has(key) && this.keySet.add(key)
 
-    this.storage.setItem(`${this.namespace}:${key}`, JSON.stringify(value))
+    this.storage.setItem(this.getFullKeyName(key), JSON.stringify(value))
   }
 
   /**
@@ -73,7 +81,7 @@ class Saver {
   getItem(key) {
     if (!key || !this.storage || !this.keySet.has(key)) return
 
-    return JSON.parse(this.storage.getItem(`${this.namespace}:${key}`))
+    return JSON.parse(this.storage.getItem(this.getFullKeyName(key)))
   }
 
   /**
@@ -83,7 +91,7 @@ class Saver {
   removeItem(key) {
     if (!key || !this.storage || !this.keySet.has(key)) return
 
-    this.storage.removeItem(`${this.namespace}:${key}`)
+    this.storage.removeItem(this.getFullKeyName(key))
   }
 
   /**
@@ -95,6 +103,15 @@ class Saver {
     this.keySet.forEach(key => {
       this.removeItem(key)
     })
+
+    this.keySet.clear()
+  }
+
+  /**
+   * 获取完整的keyName
+   */
+  getFullKeyName(key) {
+    return `${this.namespace}:${key}`
   }
 
   /**
@@ -102,6 +119,13 @@ class Saver {
    */
   getAllKeys() {
     return Array.from(this.keySet)
+  }
+
+  /**
+   * 获取所有的完整keyName数组
+   */
+  getAllFullKeyNames() {
+    return this.getAllKeys().map(key => this.getFullKeyName(key))
   }
 
   /**

@@ -95,6 +95,7 @@ export default {
   height: 500px;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+
   border: 1px solid blue;
 
   &-item {

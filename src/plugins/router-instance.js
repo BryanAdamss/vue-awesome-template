@@ -10,9 +10,10 @@ import routesLoader from 'Plugins/routes-loader'
 import { ROUTER_DEFAULT_CONFIG, INDEX_ROUTES } from 'Config'
 import {
   routerAfterEachFn,
-  routerBeforeEachFn,
-  routerOnErrorHandler
+  routerBeforeEachFn
 } from 'Config/interceptors/router-interceptor'
+
+import { routerOnErrorHandler } from 'Config/interceptors/router-error-handler'
 
 const routes = routesLoader(INDEX_ROUTES)
 

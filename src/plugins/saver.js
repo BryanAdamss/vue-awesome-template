@@ -34,14 +34,6 @@ class Saver {
   }
 
   /**
-   * 生成命名空间
-   */
-  genNameSpace(isSession, globalNamespace, moduleName) {
-    const nc = `${globalNamespace}${moduleName}`
-    return isSession ? `Session${nc}` : nc
-  }
-
-  /**
    * 返回storage中当前模块的所有key
    */
   _getOldKeys() {
@@ -62,6 +54,14 @@ class Saver {
   }
 
   /**
+   * 生成命名空间
+   */
+  genNameSpace(isSession, globalNamespace, moduleName) {
+    const nc = `${globalNamespace}${moduleName}`
+    return isSession ? `Session${nc}` : nc
+  }
+
+  /**
    * 设置(添加)数据项
    * @param {String} key key值
    * @param {Any} value 值
@@ -71,7 +71,7 @@ class Saver {
 
     !this.keySet.has(key) && this.keySet.add(key)
 
-    this.storage.setItem(this.getFullKeyName(key), JSON.stringify(value))
+    this.storage.setItem(this.getKeyFullName(key), JSON.stringify(value))
   }
 
   /**
@@ -81,7 +81,7 @@ class Saver {
   getItem(key) {
     if (!key || !this.storage || !this.keySet.has(key)) return
 
-    return JSON.parse(this.storage.getItem(this.getFullKeyName(key)))
+    return JSON.parse(this.storage.getItem(this.getKeyFullName(key)))
   }
 
   /**
@@ -91,7 +91,7 @@ class Saver {
   removeItem(key) {
     if (!key || !this.storage || !this.keySet.has(key)) return
 
-    this.storage.removeItem(this.getFullKeyName(key))
+    this.storage.removeItem(this.getKeyFullName(key))
   }
 
   /**
@@ -110,7 +110,7 @@ class Saver {
   /**
    * 获取完整的keyName
    */
-  getFullKeyName(key) {
+  getKeyFullName(key) {
     return `${this.namespace}:${key}`
   }
 
@@ -124,8 +124,8 @@ class Saver {
   /**
    * 获取所有的完整keyName数组
    */
-  getAllFullKeyNames() {
-    return this.getAllKeys().map(key => this.getFullKeyName(key))
+  getAllKeyFullNames() {
+    return this.getAllKeys().map(key => this.getKeyFullName(key))
   }
 
   /**

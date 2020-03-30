@@ -3,7 +3,7 @@
     <button @click="setVal(Math.random())">存储随机数到'SaverTest'模块的'num'中</button>
     <button @click="getVal()">读取随机数值</button>
     <button @click="getAllKeys()">获取'SaverTest'模块内所有keys</button>
-    <button @click="getAllFullKeyNames()">获取'SaverTest'模块内所有key的完整keyName</button>
+    <button @click="getAllKeyFullName()">获取'SaverTest'模块内所有key的完整keyName</button>
     <button @click="clear()">清除模块内数据</button>
     <button @click="getNamespace()">获取命名空间</button>
     <hr>
@@ -11,9 +11,9 @@
     <br>
     allKeys:{{ allKeys }}
     <br>
-    namespace:{{ namespace }}
+    allKeyFullNames:{{ allKeyFullNames }}
     <br>
-    allFullKeyNames:{{ allFullKeyNames }}
+    namespace:{{ namespace }}
   </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
       value: 0,
 
       allKeys: [],
-      allFullKeyNames: [],
+      allKeyFullNames: [],
 
       namespace: ''
     }
@@ -67,8 +67,8 @@ export default {
     getAllKeys() {
       this.allKeys = this.testSaver.getAllKeys()
     },
-    getAllFullKeyNames() {
-      this.allFullKeyNames = this.testSaver.getAllFullKeyNames()
+    getAllKeyFullName() {
+      this.allKeyFullNames = this.testSaver.getAllKeyFullNames()
     },
     setVal(val) {
       this.testSaver.setItem('num', val)

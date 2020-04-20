@@ -13,12 +13,13 @@
     <BaseDynamicCursor
       :list="tabs"
       :size="4"
+      :offset="10"
       itemTag="div"
       color="#f00"
       pos="left">
 
       <template v-slot="item">
-        <div style="padding-left:20px;">{{ item }}</div>
+        <p style="padding-left:20px;">{{ item }}</p>
       </template>
     </BaseDynamicCursor>
 

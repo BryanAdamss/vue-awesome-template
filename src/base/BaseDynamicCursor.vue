@@ -69,6 +69,10 @@ export default {
       validator(val) {
         return ['top', 'right', 'bottom', 'left'].indexOf(val) > -1
       }
+    },
+    offset: {
+      type: Number,
+      default: 0
     }
   },
   data() {
@@ -78,7 +82,8 @@ export default {
     cursorStyleObj() {
       const w = typeof this.size === 'number' ? `${this.size}px` : this.size
       return {
-        [`border-${this.pos}`]: `${w} ${this.type} ${this.color}`
+        [`border-${this.pos}`]: `${w} ${this.type} ${this.color}`,
+        [this.pos]: typeof this.offset === 'number' ? `${this.offset}px` : this.offset
       }
     }
   },
@@ -98,11 +103,10 @@ export default {
     &.is-top,
     &.is-bottom {
       .c-BaseDynamicCursor-cursor {
-        top: 0;
+        bottom: 0;
         left: 100%;
 
         width: 0;
-        height: 100%;
       }
 
       &:hover .c-BaseDynamicCursor-cursor {
@@ -147,7 +151,6 @@ export default {
 
     .c-BaseDynamicCursor-cursor {
       position: absolute;
-      z-index: -1;
 
       transition: 0.3s all linear;
 

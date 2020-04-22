@@ -8,8 +8,9 @@
       <component
         :is="itemTag"
         :key=" item.id || index "
-        :class="[`is-${pos}`]"
-        class="c-BaseDynamicCursor-item">
+        :class="[`is-${pos}`, isActive(item)]"
+        class="c-BaseDynamicCursor-item"
+        @click="$emit('cursorClick',item,index)">
 
         <slot v-bind="{item,index}">
           {{ item.text || item }}
@@ -44,6 +45,10 @@ export default {
     itemTag: {
       type: String,
       default: 'span'
+    },
+    activeId: {
+      type: [String, Number],
+      default: ''
     },
     list: {
       type: Array,
@@ -91,7 +96,11 @@ export default {
   beforeCreate() {},
   created() {},
   mounted() {},
-  methods: {}
+  methods: {
+    isActive(item) {
+      return this.activeId === item.id || this.activeId === item.text || this.activeId === item ? 'is-active' : ''
+    }
+  }
 }
 </script>
 
@@ -109,7 +118,8 @@ export default {
         width: 0;
       }
 
-      &:hover .c-BaseDynamicCursor-cursor {
+      &:hover .c-BaseDynamicCursor-cursor,
+      &.is-active .c-BaseDynamicCursor-cursor {
         left: 0;
 
         width: 100%;
@@ -134,7 +144,8 @@ export default {
         height: 0;
       }
 
-      &:hover .c-BaseDynamicCursor-cursor {
+      &:hover .c-BaseDynamicCursor-cursor,
+      &.is-active .c-BaseDynamicCursor-cursor {
         top: 0;
 
         height: 100%;

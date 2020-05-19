@@ -67,7 +67,7 @@ class Saver {
    * @param {Any} value 值
    */
   setItem(key, value) {
-    if (!key || !this.storage) return
+    if (!key || !this.storage || value === void 0) return
 
     !this.keySet.has(key) && this.keySet.add(key)
 

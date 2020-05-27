@@ -4,17 +4,19 @@
  */
 import Vue from 'vue'
 
+import BaseToast from 'Base/BaseToast/BaseToast'
+import { Loading, Message, MessageBox } from 'element-ui'
+
+import Saver from 'Plugins/saver'
 import bus from 'Plugins/event-bus'
 import api from 'Plugins/api-builder'
 
-import { throttle, debounce, getGlobalThis } from 'Utils'
 import { GLOBAL_NAME_SPACE, BASE_URL, APP_INFO } from 'Config'
-import { Loading, Message, MessageBox } from 'element-ui'
-import BaseToast from 'Base/BaseToast/BaseToast'
-
-import Saver from 'Plugins/saver'
+import { throttle, debounce, getGlobalThis, getOrigin } from 'Utils'
 
 Vue.use(Loading.directive)
+
+const isBuildMode = mode => process.env.BUILD_MODE === mode
 
 export const vueInjecter = () => {
   const prototypeMethods = {
@@ -44,6 +46,15 @@ export const vueInjecter = () => {
       }) // 全局sessionStorageSaver
 
       Vue.prototype.$win = getGlobalThis()
+
+      // 构建模式
+      Vue.prototype.$buildMode = process.env.BUILD_MODE
+      Vue.prototype.$isDevBuildMode = isBuildMode('dev')
+      Vue.prototype.$isTestBuildMode = isBuildMode('test')
+      Vue.prototype.$isProdBuildMode = isBuildMode('prod')
+
+      // origin
+      Vue.prototype.$origin = getOrigin()
     }
   }
 

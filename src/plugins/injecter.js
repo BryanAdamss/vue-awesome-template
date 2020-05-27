@@ -7,7 +7,7 @@ import Vue from 'vue'
 import bus from 'Plugins/event-bus'
 import api from 'Plugins/api-builder'
 
-import { throttle, debounce } from 'Utils'
+import { throttle, debounce, getGlobalThis } from 'Utils'
 import { GLOBAL_NAME_SPACE, BASE_URL, APP_INFO } from 'Config'
 import { Loading, Message, MessageBox } from 'element-ui'
 import BaseToast from 'Base/BaseToast/BaseToast'
@@ -43,7 +43,7 @@ export const vueInjecter = () => {
         isSession: true
       }) // 全局sessionStorageSaver
 
-      Vue.prototype.$win = window || self
+      Vue.prototype.$win = getGlobalThis()
     }
   }
 

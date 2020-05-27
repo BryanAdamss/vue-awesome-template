@@ -420,3 +420,38 @@ export function uuid() {
     return v.toString(16)
   })
 }
+
+/**
+ * 获取origin
+ * origin = protocol + // + host
+ * host = hostname + port
+ *
+ * @export
+ * @returns origin字符串
+ * 例子:返回 https://xxx.abc.com:456
+ */
+export function getOrigin() {
+  if (!window.location) return ''
+
+  const location = window.location
+
+  if (typeof location.origin === 'string') return location.origin
+
+  return `${location.protocol}//${location.host}`
+}
+
+/**
+ * 返回全局上下文
+ */
+export function getGlobalThis() {
+  // eslint-disable-next-line
+  if (typeof globalThis !== 'undefined') return globalThis
+
+  if (typeof self !== 'undefined') return self
+
+  if (typeof window !== 'undefined') return window
+
+  if (typeof global !== 'undefined') return global
+
+  throw new Error('unable to locate global object')
+}

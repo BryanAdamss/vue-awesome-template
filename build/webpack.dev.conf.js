@@ -9,6 +9,32 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+// * 2020-0617-添加自动添加cdn插件(开发环境使用node_modules、生产使用cdn)
+// * webpack 配置cdn原理文章https://www.jianshu.com/p/9248db0349fb
+// * https://github.com/shirotech/webpack-cdn-plugin
+// * webpack 3.x 使用webpack-cdn-plugin@1
+// * webpack 4.x 使用webpack-cdn-plugin@latest
+const WebpackCdnPlugin = require('webpack-cdn-plugin')
+const CDN_CONFIG = {
+  modules: [
+    {
+      name: 'vue',
+      var: 'Vue',
+      path: 'dist/vue.runtime.min.js'
+    },
+    {
+      name: 'vue-router',
+      var: 'VueRouter',
+      path: 'dist/vue-router.min.js'
+    },
+    {
+      name: 'vuex',
+      var: 'Vuex',
+      path: 'dist/vuex.min.js'
+    }
+  ],
+  prodUrl: '//cdn.jsdelivr.net/npm/:name@:version/:path'
+}
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -76,6 +102,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true
     }),
+    // * 2020-0617-webpack-cdn-plugin
+    new WebpackCdnPlugin(CDN_CONFIG),
     // * 2019-0111-开发环境导入公式相关资源
     new HtmlWebpackIncludeAssetsPlugin({
       assets: [

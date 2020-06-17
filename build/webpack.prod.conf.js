@@ -45,6 +45,33 @@ const smp = new SpeedMeasurePlugin({
   disable: !process.env.MEASURE // 通过env参数控制
 })
 
+// * 2020-0617-添加自动添加cdn插件(开发环境使用node_modules、生产使用cdn)
+// * webpack 配置cdn原理文章https://www.jianshu.com/p/9248db0349fb
+// * https://github.com/shirotech/webpack-cdn-plugin
+// * webpack 3.x 使用webpack-cdn-plugin@1
+// * webpack 4.x 使用webpack-cdn-plugin@latest
+const WebpackCdnPlugin = require('webpack-cdn-plugin')
+const CDN_CONFIG = {
+  modules: [
+    {
+      name: 'vue',
+      var: 'Vue',
+      path: 'dist/vue.runtime.min.js'
+    },
+    {
+      name: 'vue-router',
+      var: 'VueRouter',
+      path: 'dist/vue-router.min.js'
+    },
+    {
+      name: 'vuex',
+      var: 'Vuex',
+      path: 'dist/vuex.min.js'
+    }
+  ],
+  prodUrl: '//cdn.jsdelivr.net/npm/:name@:version/:path'
+}
+
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
@@ -115,6 +142,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
     }),
+    // * 2020-0617-webpack-cdn-plugin
+    new WebpackCdnPlugin(CDN_CONFIG),
     // * 2019-0111-生产环境导入公式相关资源
     new HtmlWebpackIncludeAssetsPlugin({
       assets: HtmlWebpackIncludeAssets,

@@ -67,6 +67,11 @@ const CDN_CONFIG = {
       name: 'vuex',
       var: 'Vuex',
       path: 'dist/vuex.min.js'
+    },
+    {
+      name: 'css-vars-ponyfill',
+      var: 'cssVars',
+      path: 'dist/css-vars-ponyfill.min.js'
     }
   ],
   prodUrl: '//cdn.jsdelivr.net/npm/:name@:version/:path'

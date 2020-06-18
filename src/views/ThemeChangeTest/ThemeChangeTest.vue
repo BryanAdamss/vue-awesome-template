@@ -4,6 +4,7 @@
     <p class="c-Text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem asperiores, vel officia accusantium sed, nobis non quibusdam quam eos iusto eveniet provident, culpa incidunt ab reprehenderit veritatis! Animi, doloremque sapiente?</p>
 
     <button @click="handleBtnClick">切换主题</button>
+    <button @click="handleDestroyedBtnClick">销毁ThemeService</button>
   </div>
 </template>
 
@@ -11,6 +12,10 @@
 /**
  * * ThemeChangeTest
  */
+
+const themeMap = new Map([
+  ['text-color-primary', 'red']
+])
 
 export default {
   name: 'ThemeChangeTest',
@@ -25,22 +30,31 @@ export default {
   beforeCreate() {},
   created() {},
   mounted() {},
+  beforeDestroy() {
+    this.themeService && this.themeService.destroy()
+    this.themeService = null
+  },
   methods: {
     handleBtnClick() {
-      const themeMap = new Map([
-        ['text-color-primary', 'red']
-      ])
+      this.applyTheme()
+    },
+    handleDestroyedBtnClick() {
+      this.themeService && this.themeService.destroy()
+      this.themeService = null
+    },
+    applyTheme() {
+      if (!this.themeService) {
+        import('Plugins/theme-service.js')
+          .then(({default: ThemeService}) => {
+            this.themeService = new ThemeService()
 
-      const getCSSText = ([prop, value]) => `--${prop}:${value};`
-
-      const cssText = `:root{${Array.from(themeMap.entries()).map(getCSSText).join()}}`
-
-      const styEl = document.createElement('style')
-      styEl.id = 'themeStyleEl'
-
-      styEl.innerText = cssText
-
-      document.head.appendChild(styEl)
+            this.themeService.applyTheme(themeMap)
+          }).catch(err => {
+            console.log(err)
+          })
+      } else {
+        this.themeService.applyTheme(themeMap)
+      }
     }
   }
 }
@@ -51,6 +65,8 @@ export default {
 }
 
 .c-Text {
+  display: flex;
+
   color: $mainTextColor;
 }
 </style>

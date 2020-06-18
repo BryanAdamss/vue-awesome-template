@@ -9,22 +9,24 @@ $printStyleSwitch: false; //是否开启打印样式
 // font相关
 // ---------------------------------------------
 // html基础字体样式
-$baseFontPC: arial, \5b8b\4f53, "Hiragino Sans GB", "Microsoft YaHei", sans-serif; //PC端,$pageType为PC
-$baseFontM: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif; //$pageType为M
+$baseFontPC: arial, \5b8b\4f53, 'Hiragino Sans GB', 'Microsoft YaHei',
+  sans-serif; //PC端,$pageType为PC
+$baseFontM: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue',
+  STHeiti, 'Microsoft Yahei', Tahoma, Simsun, sans-serif; //$pageType为M
 // 常用字体
 $fontSong: \5b8b\4f53; //宋体
-$fontYaHei: "Microsoft YaHei"; //微软雅黑
+$fontYaHei: 'Microsoft YaHei'; //微软雅黑
 // ---------------------------------------------
 // 颜色
 // ---------------------------------------------
 // 页面主要色调
-$mainTone: #3da4fe;
-$subTone: #fe6e00;
+$mainTone: var(--brand-color-primary, #3da4fe);
+$subTone: var(--brand-color-secondary, #fe6e00);
 // 文字颜色
-$mainTextColor: #666;
-$subTextColor: #ccc;
+$mainTextColor: var(--text-color-primary, #333);
+$subTextColor: var(--text-color-secondary, #999);
 // 边框颜色
-$baseBorderColor: #c7c7c7;
+$baseBorderColor: var(--border-color, #eee);
 // 按钮文字颜色
 $mainButtonColor: #fff;
 // 辅助颜色

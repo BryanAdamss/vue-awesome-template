@@ -11,28 +11,16 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-brightgreen.svg?maxAge=2592000)](https://conventionalcommits.org)
 
----
-
-- > A `Vue 2.x` project template base on `vue-cli 2.x`
-- > 分层思路参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)
-
----
+> A `Vue 2.x` project template base on `vue-cli 2.x`；分层思路参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)
 
 ## 特点
 
 - `Commitizen friendly`
-- `commit时 auto-prettier、auto-fix支持`
-- 集成全家桶
-
-  - vue-router
-  - axios
-  - vuex
-  - element-ui
-  - sass 样式库
-  - ...
-
+- `auto-prettier、auto-fix`支持
+- 集成`vue`全家桶(vuex、vue-router、axios)
+- 集成`element-ui`
+- 支持`主题化`
 - 自造组件
-
   - 轮播
   - popup
   - toast
@@ -44,17 +32,13 @@
   - 模拟滚动条组件
   - svg 动态导入、sprite 化组件
   - ...
-
 - 自造指令
-
   - textarea 自增高指令
   - affix 图钉固定指令
   - 移动端拖拽指令
   - 返回顶部指令
   - ...
-
 - 常用库封装
-
   - 前端下载库
   - localStorage、sessionStorage 模块化封装
   - 多窗口 postMessage 封装

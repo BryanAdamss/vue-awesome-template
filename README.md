@@ -13,7 +13,8 @@
 
 ---
 
-> 分层思路参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)
+- > A `Vue 2.x` project template base on `vue-cli 2.x`
+- > 分层思路参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)
 
 ---
 
@@ -198,6 +199,16 @@
 - [@bryanadamss/drawing-board](https://www.npmjs.com/package/@bryanadamss/drawing-board)
 - [@bryanadamss/num2chn](https://www.npmjs.com/package/@bryanadamss/num2chn)
 - [ant-color-converter](https://www.npmjs.com/package/ant-color-converter)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2020 [BryanAdamss@foxmail.com](https://github.com/BryanAdamss).<br />
+This project is [MIT](https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE) licensed.
+
 
 ## Contributors ✨
 

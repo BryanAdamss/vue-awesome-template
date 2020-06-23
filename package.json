@@ -44,6 +44,10 @@
     "*.{js,jsx,vue}": [
       "vue-cli-service lint",
       "git add"
+    ],
+    "*.{json,css,scss,less,sass,md,html,flow,ts,tsd}": [
+      "prettier --write",
+      "git add"
     ]
   }
 }

@@ -35,6 +35,10 @@
     "prettier": "^1.19.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "stylelint": "^13.6.1",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-order": "^4.1.0",
+    "stylelint-selector-bem-pattern": "^2.1.0",
     "vue-template-compiler": "^2.6.11"
   },
   "gitHooks": {

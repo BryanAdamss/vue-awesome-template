@@ -1,0 +1,29 @@
+{
+  "plugins": [
+    "stylelint-order",
+    "stylelint-config-rational-order/plugin",
+    "stylelint-selector-bem-pattern"
+  ],
+  "rules": {
+    "order/properties-order": [],
+    "plugin/rational-order": [
+      true,
+      {
+        "border-in-box-model": false,
+        "empty-line-between-groups": true
+      }
+    ],
+    "plugin/selector-bem-pattern": {
+      "preset": "suit",
+      "presetOptions": {
+        "namespace": "c"
+      },
+      "implicitComponents": [
+        "src/**/*.vue"
+      ],
+      "implicitUtilities": [
+        "src/sass/helpers/*.scss"
+      ]
+    }
+  }
+}

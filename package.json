@@ -1,6 +1,6 @@
 {
   "name": "vue-awesome-template",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,6 +9,12 @@
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
     "commit": "git-cz",
+    "release": "standard-version",
+    "release:patch": "npm run release -r patch",
+    "release:minor": "npm run release -r minor",
+    "release:major": "npm run release -r major",
+    "release:first": "npm run release -- --first-release",
+    "release:publish": "git push --follow-tags origin master",
     "contributor:init": "all-contributors init",
     "contributor:add": "all-contributors add",
     "contributor:generate": "all-contributors generate"
@@ -45,6 +51,7 @@
     "prettier": "^1.19.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "standard-version": "^8.0.0",
     "stylelint": "^13.6.1",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-order": "^4.1.0",

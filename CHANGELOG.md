@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/BryanAdamss/vue-awesome-template/compare/v2.0.0...v2.1.0) (2020-06-28)
+
+
+### Features
+
+* **version:** 添加standard-version支持 ([1a069fc](https://github.com/BryanAdamss/vue-awesome-template/commit/1a069fc87c04a0fc5a118533e0d55682c323341c))
+
 ## [2.0.0](https://github.com/BryanAdamss/vue-awesome-template/compare/v1.4.0...v2.0.0) (2020-06-28)
 
 - **all:** 升级 vue-cli 2.x 版本到 4.x

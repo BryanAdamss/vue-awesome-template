@@ -20,6 +20,8 @@ module.exports = {
     'vue/singleline-html-element-content-newline': 'warn',
     // style、template、script块间留有空格
     'vue/padding-line-between-blocks': 'warn',
+    // 允许使用v-html
+    'vue/no-v-html': 'off',
     // 设置缩进
     // indent: ['error', 2, { SwitchCase: 1 }],
     // 关闭reject必须返回一个error
@@ -32,6 +34,8 @@ module.exports = {
     'space-before-function-paren': 'off',
     // allow async-await
     'generator-star-spacing': 'off',
+    // 允许使用void 0代替undefined
+    'no-void': 'off',
     // console、debugger
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
@@ -46,5 +50,12 @@ module.exports = {
         jest: true
       }
     }
-  ]
+  ],
+  globals: {
+    // 指定全局变量并不允许改写，eslint不会报错
+    katex: false,
+    MathJax: false,
+    Vconsole: false,
+    FastClick: false
+  }
 }

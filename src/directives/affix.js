@@ -7,8 +7,6 @@ import { throttle } from 'Utils'
 import { addStyle } from 'Utils/dom'
 
 export default {
-  bind(el, binding, vnode) {},
-  inserted(el, binding, vnode) {},
   update() {},
   componentUpdated(el, binding) {
     // 屏蔽无效更新
@@ -36,8 +34,8 @@ export default {
       binding.value && binding.value.fixedElPos
         ? binding.value.fixedElPos
         : {
-          top: 0
-        }
+            top: 0
+          }
 
     // * affixed的回调
     const onAffixed = binding.value && binding.value.onAffixed

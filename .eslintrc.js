@@ -21,7 +21,7 @@ module.exports = {
     // style、template、script块间留有空格
     'vue/padding-line-between-blocks': 'warn',
     // 设置缩进
-    indent: ['error', 2, { SwitchCase: 1 }],
+    // indent: ['error', 2, { SwitchCase: 1 }],
     // 关闭reject必须返回一个error
     'prefer-promise-reject-errors': 'off',
     // 允许同一个var声明多个变量

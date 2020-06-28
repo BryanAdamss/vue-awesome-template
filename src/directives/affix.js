@@ -47,7 +47,7 @@ export default {
     let isAffixed = false
     let fakeEl = null // 占位元素
 
-    const _scrollHandler = throttle(e => {
+    const _scrollHandler = throttle(() => {
       const $top = isGlobal
         ? document.documentElement.scrollTop || document.body.scrollTop
         : $container.scrollTop
@@ -112,7 +112,7 @@ export default {
     $container.addEventListener('scroll', el.__vueAffixScrollHandler__, false)
     window.addEventListener('resize', el.__vueAffixScrollHandler__, false)
   },
-  unbind(el, binding) {
+  unbind(el) {
     // * clean
     if (el.__vueAffixScrollHandler__) {
       if (el.__vueAffixFakeEl__) {

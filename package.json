@@ -45,6 +45,7 @@
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-order": "^4.1.0",
     "stylelint-selector-bem-pattern": "^2.1.0",
+    "vue-cli-plugin-auto-alias": "~1.2.1",
     "vue-template-compiler": "^2.6.11"
   },
   "config": {

@@ -6,7 +6,7 @@ export default {
   name: 'BaseClickAreaExpand',
   functional: true,
   render(h, context) {
-    let { data, props, children } = context
+    const { data, props, children } = context
 
     // * 组件上不需要显示tag特性
     delete data.attrs.tag

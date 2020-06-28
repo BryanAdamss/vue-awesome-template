@@ -11,7 +11,9 @@
         :class="{'is-overLen':post.isTitleOverLength()}"
         class="c-List-item"
         @click.stop="onListItemClick(post)"
-      >{{ post.id }}:{{ post.title }}</li>
+      >
+        {{ post.id }}:{{ post.title }}
+      </li>
     </ul>
     <BaseLoading v-show="isLoading" />
   </div>
@@ -60,7 +62,7 @@ export default {
       // * 如果是从AxiosListDetailTest页面返回，则读取绑定在$root上的scrollTop
       if (from.name === 'AxiosListDetailTest') {
         alert('列表将被设置到原先位置')
-        let lastScrollTop = vm.$root.$_scrollTop
+        const lastScrollTop = vm.$root.$_scrollTop
         setTimeout(() => {
           // * 因为返回时有个300ms的动画，导致设置不生效，所以延迟了400ms，肉眼基本上看不到滚动过程
           // * 实际生产时，需要根据动画时间调整延迟
@@ -74,7 +76,7 @@ export default {
   methods: {
     onListItemClick(post) {
       // * 点击列表item时，传递post的id、列表滚动位置以及当前路由名(返回判断)
-      let scrollTop = this.$refs.list.scrollTop
+      const scrollTop = this.$refs.list.scrollTop
       this.$router.push({
         name: 'AxiosListDetailTest',
         params: {

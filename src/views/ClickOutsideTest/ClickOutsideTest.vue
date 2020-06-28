@@ -1,12 +1,15 @@
 <template>
   <div class="c-ClickOutsideTest">
     <div
-      v-click-outside="onClickOutside"
       ref="clickOutsideEl"
+      v-click-outside="onClickOutside"
       class="c-Box"
-    >只有点我外侧才会触发clickOutside指令</div>
+    >
+      只有点我外侧才会触发clickOutside指令
+    </div>
   </div>
 </template>
+
 <script>
 /**
  * * ClickOutsideTest
@@ -27,6 +30,7 @@ export default {
   }
 }
 </script>
+
 <style>
 .c-Box {
   font-size: 16px;

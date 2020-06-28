@@ -43,8 +43,8 @@ export default {
       const point = e.changedTouches[0]
       const { pageX, pageY } = point
       // * 获取手指便宜距离
-      let l = pageX - disX
-      let t = pageY - disY
+      const l = pageX - disX
+      const t = pageY - disY
 
       el.style.left = `${l}px`
       el.style.top = `${t}px`

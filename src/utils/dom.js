@@ -14,7 +14,7 @@ export function addClass(el, className) {
   if (hasClass(el, className)) {
     return
   }
-  let newClass = el.className.split(' ')
+  const newClass = el.className.split(' ')
   newClass.push(className)
   el.className = newClass.join(' ')
 }
@@ -28,7 +28,7 @@ export function removeClass(el, className) {
   if (!hasClass(el, className)) {
     return
   }
-  let newClassList = el.className.split(' ')
+  const newClassList = el.className.split(' ')
   newClassList.splice(newClassList.indexOf(className), 1)
   el.className = newClassList.join(' ')
 }
@@ -39,7 +39,7 @@ export function removeClass(el, className) {
  * @param {String} className 样式类
  */
 export function hasClass(el, className) {
-  let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
+  const reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
   return reg.test(el.className)
 }
 
@@ -60,11 +60,11 @@ export function getData(el, name, val) {
 }
 
 // 能力检测，判断浏览器支持哪种前缀
-let elementStyle = document.createElement('div').style
+const elementStyle = document.createElement('div').style
 // 利用IIFE得到支持的前缀
-let vendor = (() => {
+const vendor = (() => {
   // 利用transform做能力检测，来判断支持哪种前缀
-  let transformNames = {
+  const transformNames = {
     webkit: 'webkitTransform',
     Moz: 'MozTransform',
     O: 'OTransform',
@@ -72,7 +72,7 @@ let vendor = (() => {
     standard: 'transform'
   }
 
-  for (let key in transformNames) {
+  for (const key in transformNames) {
     // 支持某种前缀则直接返回
     if (elementStyle[transformNames[key]] !== undefined) {
       return key
@@ -105,7 +105,7 @@ export function prefixStyle(style) {
  */
 export function getRect(el) {
   if (el instanceof window.SVGElement) {
-    let rect = el.getBoundingClientRect()
+    const rect = el.getBoundingClientRect()
     return {
       top: rect.top,
       left: rect.left,
@@ -179,7 +179,7 @@ export function getStyle(ele) {
  * @param {Object} styleObj 样式obj
  */
 export function addStyle(el, styleObj) {
-  let oldStyle = el.style.cssText
+  const oldStyle = el.style.cssText
 
   const newStyle = Object.entries(styleObj).reduce((acc, cur) => {
     cur[0] = str2kebab(cur[0]) // key转换成kebab-case

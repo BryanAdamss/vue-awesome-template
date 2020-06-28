@@ -1,13 +1,14 @@
 <template>
   <div class="c-BaseDynamicCursorTest">
     <p>水平</p>
-    <BaseDynamicCursor :list="tabs"/>
+    <BaseDynamicCursor :list="tabs" />
     <hr>
     <p>垂直</p>
     <BaseDynamicCursor
       :list="tabs"
       itemTag="div"
-      pos="right"/>
+      pos="right"
+    />
     <hr>
     <p>自定义</p>
     <BaseDynamicCursor
@@ -16,13 +17,14 @@
       :offset="10"
       itemTag="div"
       color="#f00"
-      pos="left">
-
+      pos="left"
+    >
       <template v-slot="item">
-        <p style="padding-left:20px;">{{ item }}</p>
+        <p style="padding-left:20px;">
+          {{ item }}
+        </p>
       </template>
     </BaseDynamicCursor>
-
   </div>
 </template>
 

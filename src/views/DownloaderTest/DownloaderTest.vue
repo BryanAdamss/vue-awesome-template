@@ -1,6 +1,8 @@
 <template>
   <div class="c-DownloaderTest">
-    <button @click="download">下载测试文件</button>
+    <button @click="download">
+      下载测试文件
+    </button>
   </div>
 </template>
 

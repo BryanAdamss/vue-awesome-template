@@ -20,21 +20,20 @@
       :info="'自定义文案'"
     >
       <template>
-
         <div class="c-Info">
           <p
             class="c-Info-main"
-            v-text="`60%`"/>
+            v-text="`60%`"
+          />
 
           <div class="c-Info-sub">
-            <div class="c-Info-text">自定义文案</div>
-
+            <div class="c-Info-text">
+              自定义文案
+            </div>
           </div>
         </div>
-
       </template>
     </CircleProgress>
-
   </div>
 </template>
 

@@ -1,6 +1,5 @@
 <template>
   <div class="c-BaseBreadcrumbTest">
-
     <BaseBreadcrumb
       :needHome="true"
       :homeRoute="homeRoute"
@@ -14,11 +13,13 @@
     <BaseBreadcrumb
       :needHome="true"
       :homeRoute="homeRoute"
-      :routeList="routeList">
-
+      :routeList="routeList"
+    >
       <template
-        v-slot:home= "{ needHome, homeRoute }">
+        v-slot:home="{ needHome }"
+      >
         <p>home</p>
+        {{ needHome }}
         {{ homeRoute }}
         <hr>
       </template>
@@ -28,9 +29,7 @@
 
         {{ route }}
       </template>
-
     </BaseBreadcrumb>
-
   </div>
 </template>
 

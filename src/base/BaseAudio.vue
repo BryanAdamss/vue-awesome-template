@@ -1,11 +1,11 @@
 <template>
   <div class="c-BaseAudio">
-
     <div class="c-BaseAudio-main">
       <div
         :class="btnClass"
         class="c-Btn"
-        @click="togglePlay"/>
+        @click="togglePlay"
+      />
 
       <template v-if="isSrcArray">
         <audio
@@ -43,12 +43,12 @@
             v-for="(sour,index) in src"
             :key="index"
             :src="sour.src"
-            :type="sour.type">
+            :type="sour.type"
+          >
 
         </audio>
       </template>
       <template v-else>
-
         <audio
           ref="audio"
           :src="src"
@@ -82,19 +82,21 @@
           您的浏览器不支持<code>audio</code>标签
         </audio>
       </template>
-
     </div>
 
     <div
       v-if="showProgress"
-      class="c-BaseAudio-sub">
+      class="c-BaseAudio-sub"
+    >
       <div
         ref="progress"
         class="c-Progress"
-        @mouseup="progressClickHandler">
+        @mouseup="progressClickHandler"
+      >
         <div
           :style="{ width:`${bufferedProgress}%`}"
-          class="c-Track"/>
+          class="c-Track"
+        />
 
         <div
           ref="bar"
@@ -104,20 +106,24 @@
         >
           <div
             v-if="isLoading"
-            class="c-Bar-loading">
+            class="c-Bar-loading"
+          >
             <BaseLoadingSpinner
-              size="12px"/>
+              size="12px"
+            />
           </div>
           <div
             v-else
-            class="c-Bar-circle"/>
+            class="c-Bar-circle"
+          />
         </div>
       </div>
     </div>
 
     <div
       v-if="showTime"
-      class="c-BaseAudio-extra">
+      class="c-BaseAudio-extra"
+    >
       <div class="c-Info">
         {{ curTime | toMMSS }}/{{ duration | toMMSS }}
       </div>
@@ -133,7 +139,6 @@
         </div>
       </div> -->
     </div>
-
   </div>
 </template>
 

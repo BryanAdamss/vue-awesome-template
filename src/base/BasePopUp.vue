@@ -53,7 +53,7 @@ export default {
   computed: {
     positionClass() {
       const index = POSITIONS.indexOf(this.position)
-      let name = index > -1 ? POSITIONS[index] : 'center'
+      const name = index > -1 ? POSITIONS[index] : 'center'
       return `is-${name}`
     }
   },

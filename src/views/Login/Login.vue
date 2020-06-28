@@ -5,7 +5,9 @@
       您还未登陆，请先登陆
     </p>
     <div>
-      <button @click="onClickBtn">假装已经填过登陆信息，直接登陆</button>
+      <button @click="onClickBtn">
+        假装已经填过登陆信息，直接登陆
+      </button>
     </div>
   </div>
 </template>

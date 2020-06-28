@@ -3,7 +3,9 @@
     <button
       type="button"
       @click.stop="showToast"
-    >点击展示toast</button>
+    >
+      点击展示toast
+    </button>
   </div>
 </template>
 

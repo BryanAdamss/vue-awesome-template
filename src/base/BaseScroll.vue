@@ -169,19 +169,19 @@ export default {
   },
   computed: {
     pullingDownText() {
-      let { text: pullingDownText } = this.pullDownRefresh
+      const { text: pullingDownText } = this.pullDownRefresh
       return pullingDownText || '下拉刷新'
     },
     pullDownReleaseText() {
-      let { text: pullDownReleaseText } = this.pullDownRefresh
+      const { text: pullDownReleaseText } = this.pullDownRefresh
       return pullDownReleaseText || '释放更新'
     },
     pullUpNoMoreDataText() {
-      let { text: noMoreDataText } = this.pullUpLoad
+      const { text: noMoreDataText } = this.pullUpLoad
       return noMoreDataText || '暂无更多数据'
     },
     pullUpText() {
-      let { text: pullUpText } = this.pullUpLoad
+      const { text: pullUpText } = this.pullUpLoad
       return pullUpText || '上拉加载更多'
     }
   },
@@ -249,14 +249,14 @@ export default {
       this.scroll && this.scroll.finishPullDown()
 
       const pullDownDomEl = this.$refs.pulldown
-      let pullDownOptions = this.pullDownOptions
+      const pullDownOptions = this.pullDownOptions
 
       // * 重设下拉相关参数
       pullDownOptions.isPullingDown = false
       pullDownOptions.isAfterPullDownAnimationEnd = false
 
       // * 设置过渡效果
-      pullDownDomEl.style.transition = `top 0.3s`
+      pullDownDomEl.style.transition = 'top 0.3s'
 
       pullDownDomEl.style.top = `${-this.pullDownStop}px`
 
@@ -291,7 +291,7 @@ export default {
       // * 销毁之前实例
       this.scroll && this.scroll.destroy()
 
-      let options = {
+      const options = {
         scrollY: this.scrollY,
         scrollX: this.scrollX,
         probeType: this.probeType,
@@ -411,9 +411,9 @@ export default {
     // * 过渡动画结束处理函数
     _onPullDownTransitionEnd() {
       const pullDownDomEl = this.$refs.pulldown
-      let pullDownOptions = this.pullDownOptions
+      const pullDownOptions = this.pullDownOptions
 
-      pullDownDomEl.style.transition = `unset`
+      pullDownDomEl.style.transition = 'unset'
       pullDownOptions.isAfterPullDownAnimationEnd = true
 
       // * 由于启用下拉刷新后，probeType变为3，导致下拉容器transition动画结束时，仍在触发scroll事件

@@ -199,7 +199,7 @@ export default class NumToChn {
 
     if (num === 0) return [0]
 
-    let temp = []
+    const temp = []
 
     while (num > 0) {
       temp.push(num % 10000)
@@ -224,7 +224,7 @@ export default class NumToChn {
     let unitCount = 0
 
     while (num > 0) {
-      let g = num % 10 // 取个位数
+      const g = num % 10 // 取个位数
       if (g === 0) {
         if (needPadStartZero) {
           needPadStartZero = false // 当前为0，已经补过零，下次若还为0则不需补
@@ -258,9 +258,9 @@ export default class NumToChn {
 
     if (originNum === 0) return this.getNumChar(0)
 
-    let sectionsArr = this.getIntergerSections(originNum)
+    const sectionsArr = this.getIntergerSections(originNum)
 
-    let transformedSectionsArr = sectionsArr
+    const transformedSectionsArr = sectionsArr
       .reverse() // 翻转小节，从最后一个小节开始翻译
       .reduce((acc, cur, index, arr) => {
         if (cur === 0) return acc

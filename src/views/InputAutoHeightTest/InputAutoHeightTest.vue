@@ -2,7 +2,6 @@
   <div class="c-c-InputAutoHeightTestTest">
     <textarea v-auto-height />
   </div>
-
 </template>
 
 <script>

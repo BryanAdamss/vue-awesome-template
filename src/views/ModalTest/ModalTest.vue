@@ -8,15 +8,20 @@
       @onShadowClick="onShadowClick"
       @onVisibleChange="onVisibleChange"
     >
-      <div style="background-color:#fff">测试modal
+      <div style="background-color:#fff">
+        测试modal
         <button
           type="button"
           @click.stop="closeModal"
-        >&times;</button>
+        >
+          &times;
+        </button>
         <h1>sjdkfljaslkdfj</h1>
       </div>
     </BaseModal>
-    <button @click="onButtonClick">展示modal</button>
+    <button @click="onButtonClick">
+      展示modal
+    </button>
   </div>
 </template>
 

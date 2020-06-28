@@ -1,37 +1,35 @@
 <template>
   <div
     ref="gallery"
-    class="c-BaseScrollTab">
-
+    class="c-BaseScrollTab"
+  >
     <div
       ref="track"
-      class="c-BaseScrollTab-track">
-
+      class="c-BaseScrollTab-track"
+    >
       <div
         ref="wp"
         :style="{transform : `translateX(${offset}px)` }"
-        class="c-BaseScrollTab-wp">
-
+        class="c-BaseScrollTab-wp"
+      >
         <!-- item -->
         <div
           v-for="(item,index) in formatedDataList"
           :key="index"
           :class="[index === curIndex ? 'is-active' : '',customItemClass]"
           class="c-BaseScrollTab-item"
-          @click="clickHandler(index,item)">
-
+          @click="clickHandler(index,item)"
+        >
           <slot v-bind="{item,index}">
             <div
               :title="item.text"
               class="c-BaseScrollTab-text"
-              v-text="item.text"/>
+              v-text="item.text"
+            />
           </slot>
-
         </div>
         <!-- item end -->
-
       </div>
-
     </div>
 
     <!-- prev btn -->
@@ -40,12 +38,13 @@
       :class="{'is-disabled':isPrevDisabled}"
       class="c-BaseScrollTab-btn is-prev"
       title="上一页"
-      @click="movePage(1)">
-
+      @click="movePage(1)"
+    >
       <slot name="prev">
-        <div class="icon">&#x276e;</div>
+        <div class="icon">
+          &#x276e;
+        </div>
       </slot>
-
     </div>
     <!-- prev btn end -->
 
@@ -55,13 +54,15 @@
       :class="{'is-disabled':isNextDisabled}"
       class="c-BaseScrollTab-btn is-next"
       title="下一页"
-      @click="movePage(-1)">
+      @click="movePage(-1)"
+    >
       <slot name="next">
-        <div class="icon">&#x276f;</div>
+        <div class="icon">
+          &#x276f;
+        </div>
       </slot>
     </div>
     <!-- next btn end -->
-
   </div>
 </template>
 

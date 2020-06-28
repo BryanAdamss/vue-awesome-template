@@ -4,16 +4,16 @@
       v-if="this.$slots.side"
       class="c-BaseLayoutHorizontal-side"
     >
-      <slot name="side"/>
+      <slot name="side" />
     </div>
     <div class="c-BaseLayoutHorizontal-main">
-      <slot/>
+      <slot />
     </div>
     <div
       v-if="this.$slots.extra"
       class="c-BaseLayoutHorizontal-extra"
     >
-      <slot name="extra"/>
+      <slot name="extra" />
     </div>
   </div>
 </template>

@@ -10,12 +10,12 @@ export default {
   name: 'BaseBtnPreventFastClick',
   functional: true, // * 函数式组件(无响应式数据，无this)
   render(h, context) {
-    let { props, children, data, listeners } = context
+    const { props, children, data, listeners } = context
 
     // * 组件上不需要显示tag特性
     delete data.attrs.tag
 
-    let $_debouncedClickHandler = listeners.click
+    const $_debouncedClickHandler = listeners.click
       ? debounce(
         listeners.click,
         300,
@@ -23,7 +23,7 @@ export default {
       )
       : null
 
-    let newData = $_debouncedClickHandler
+    const newData = $_debouncedClickHandler
       ? {
         ...data,
         on: {

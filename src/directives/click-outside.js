@@ -6,7 +6,7 @@
 export default {
   bind(el, binding, vnode) {
     function documentHandler(e) {
-      let _target = e.target
+      const _target = e.target
       // * 点击自身及内部元素不做处理
       if (el.contains(_target)) return false
       // * 执行指令对应的表达式

@@ -6,7 +6,8 @@
     <iframe
       ref="frame"
       src="http://localhost:8080/#/post-message-test/inner-frame"
-      frameborder="0"/>
+      frameborder="0"
+    />
   </div>
 </template>
 

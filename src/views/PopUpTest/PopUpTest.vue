@@ -1,13 +1,14 @@
 <template>
   <div class="c-PopUpTest">
-
     <div>
       <button
         v-for="(btn,btnIndex) in buttons"
         :key="btnIndex"
         type="button"
         @click="onButtonClick(btn.label)"
-      >位置{{ btn.label }}</button>
+      >
+        位置{{ btn.label }}
+      </button>
     </div>
 
     <BasePopUp
@@ -18,11 +19,14 @@
       :position="buttons[0].label"
       :isShow.sync="isShowCenter"
     >
-      <div style="background-color:#fff;height:100%;">测试modal
+      <div style="background-color:#fff;height:100%;">
+        测试modal
         <button
           type="button"
           @click.stop="closeModal(buttons[0].label)"
-        >&times;</button>
+        >
+          &times;
+        </button>
         <h1>{{ buttons[0].label }} <br> 查看控制台输出</h1>
       </div>
     </BasePopUp>
@@ -34,11 +38,14 @@
       :position="buttons[1].label"
       :isShow.sync="isShowTop"
     >
-      <div style="background-color:#fff;height:100%;">测试modal
+      <div style="background-color:#fff;height:100%;">
+        测试modal
         <button
           type="button"
           @click.stop="closeModal(buttons[1].label)"
-        >&times;</button>
+        >
+          &times;
+        </button>
         <h1>{{ buttons[1].label }} <br> 查看控制台输出</h1>
       </div>
     </BasePopUp>
@@ -50,11 +57,14 @@
       :position="buttons[2].label"
       :isShow.sync="isShowRight"
     >
-      <div style="background-color:#fff;height:100%;">测试modal
+      <div style="background-color:#fff;height:100%;">
+        测试modal
         <button
           type="button"
           @click.stop="closeModal(buttons[2].label)"
-        >&times;</button>
+        >
+          &times;
+        </button>
         <h1>{{ buttons[2].label }} <br> 查看控制台输出</h1>
       </div>
     </BasePopUp>
@@ -66,11 +76,14 @@
       :position="buttons[3].label"
       :isShow.sync="isShowBottom"
     >
-      <div style="background-color:#fff;height:100%;">测试modal
+      <div style="background-color:#fff;height:100%;">
+        测试modal
         <button
           type="button"
           @click.stop="closeModal(buttons[3].label)"
-        >&times;</button>
+        >
+          &times;
+        </button>
         <h1>{{ buttons[3].label }} <br> 查看控制台输出</h1>
       </div>
     </BasePopUp>
@@ -82,11 +95,14 @@
       :position="buttons[4].label"
       :isShow.sync="isShowLeft"
     >
-      <div style="background-color:#fff;height:100%;">测试modal
+      <div style="background-color:#fff;height:100%;">
+        测试modal
         <button
           type="button"
           @click.stop="closeModal(buttons[4].label)"
-        >&times;</button>
+        >
+          &times;
+        </button>
         <h1>{{ buttons[4].label }} <br> 查看控制台输出</h1>
       </div>
     </BasePopUp>

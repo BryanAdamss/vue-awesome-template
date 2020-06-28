@@ -12,6 +12,7 @@
     </slot>
   </div>
 </template>
+
 <script>
 import BaseLoadingSpinner from 'Base/BaseLoadingSpinner'
 
@@ -43,6 +44,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .c-Loading {
   text-align: center;

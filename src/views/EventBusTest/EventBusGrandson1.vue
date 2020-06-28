@@ -5,12 +5,16 @@
     <button
       type="button"
       @click="sendMsg"
-    >发消息给son2</button>
+    >
+      发消息给son2
+    </button>
     <button
       type="button"
       style="margin-top:10px;"
       @click="sendMsg2"
-    >发消息给parent</button>
+    >
+      发消息给parent
+    </button>
   </div>
 </template>
 

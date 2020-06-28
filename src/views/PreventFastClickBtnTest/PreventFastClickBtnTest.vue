@@ -9,7 +9,9 @@
     </BaseBtnPreventFastClick>
 
     <!-- 也可以使用v-once来屏蔽多次点击 -->
-    <div @click.once="onClick">用once实现的防止快速点击，执行一次后，就不会再触发事件。适合场景：点击删除，移除当前元素</div>
+    <div @click.once="onClick">
+      用once实现的防止快速点击，执行一次后，就不会再触发事件。适合场景：点击删除，移除当前元素
+    </div>
   </div>
 </template>
 

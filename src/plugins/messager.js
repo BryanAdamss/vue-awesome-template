@@ -14,7 +14,7 @@ class Messager {
     }
 
     if (targetOrigin === '*') {
-      console.warn(this._INFOS['targetOriginIsEverything'])
+      console.warn(this._INFOS.targetOriginIsEverything)
     }
 
     this.actions = {}
@@ -32,7 +32,7 @@ class Messager {
    */
   on(type, cb) {
     if (!type || !cb || typeof cb !== 'function') {
-      throw new Error(this._INFOS['cbIllegal'])
+      throw new Error(this._INFOS.cbIllegal)
     }
 
     if (!this.actions[type]) this.actions[type] = []
@@ -46,8 +46,8 @@ class Messager {
    * @param {Any} msg 消息
    */
   send(type, msg) {
-    if (!this.targetWin) console.log(this._INFOS['noWin'])
-    if (!msg) console.log(this._INFOS['noMsg'])
+    if (!this.targetWin) console.log(this._INFOS.noWin)
+    if (!msg) console.log(this._INFOS.noMsg)
 
     this.targetWin.postMessage(
       {

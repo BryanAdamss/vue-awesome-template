@@ -1,8 +1,8 @@
 <template>
   <div
     ref="main"
-    class="c-BaseScrollbar">
-
+    class="c-BaseScrollbar"
+  >
     <div
       ref="bd"
       :style="{
@@ -10,32 +10,35 @@
         height:`${bdH}px`
       }"
       class="c-BaseScrollbar-bd"
-      @scroll="scrollHandler">
-      <slot/>
+      @scroll="scrollHandler"
+    >
+      <slot />
     </div>
 
     <div
       ref="horizontalTrack"
       class="c-BaseScrollbar-scroller is-horizontal"
-      @mousedown="clickTrackHandler($event,'h')">
-
+      @mousedown="clickTrackHandler($event,'h')"
+    >
       <div
         ref="horizontalThumb"
         :style="{width:horizontalThumbW,transform:`translateX(${moveX}%)`}"
         class="c-BaseScrollbar-thumb"
-        @mousedown="clickThumbHandler($event,'h')"/>
+        @mousedown="clickThumbHandler($event,'h')"
+      />
     </div>
 
     <div
       ref="verticalTrack"
       class="c-BaseScrollbar-scroller is-vertical"
-      @mousedown="clickTrackHandler($event)">
-
+      @mousedown="clickTrackHandler($event)"
+    >
       <div
         ref="verticalThumb"
         :style="{height:verticalThumbH,transform:`translateY(${moveY}%)`}"
         class="c-BaseScrollbar-thumb"
-        @mousedown="clickThumbHandler($event)"/>
+        @mousedown="clickThumbHandler($event)"
+      />
     </div>
   </div>
 </template>
@@ -81,7 +84,7 @@ export default {
   mounted() {
     this.scrollbarW = getScrollbarWidth()
 
-    const {width, height} = this.$refs.main.getBoundingClientRect()
+    const { width, height } = this.$refs.main.getBoundingClientRect()
     this.mainW = width
     this.mainH = height
 
@@ -90,7 +93,7 @@ export default {
   },
   methods: {
     scrollHandler() {
-      const {scrollLeft, scrollTop} = this.$refs.bd
+      const { scrollLeft, scrollTop } = this.$refs.bd
 
       this.moveY = ((scrollTop * 100) / this.mainH)
       this.moveX = ((scrollLeft * 100) / this.mainW)

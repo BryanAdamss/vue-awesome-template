@@ -28,7 +28,7 @@ export default {
   created() {},
   mounted() {},
   methods: {},
-  render(h, {props, data, children}) {
+  render(h, { props, data, children }) {
     const { href, target } = props
 
     const dataObj = {

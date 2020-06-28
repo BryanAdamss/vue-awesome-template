@@ -3,8 +3,11 @@
     <input
       ref="copyInputEl"
       v-model="text"
-      type="text">
-    <button @click="handleClick">拷贝输入框内容</button>
+      type="text"
+    >
+    <button @click="handleClick">
+      拷贝输入框内容
+    </button>
     <p>尝试ctrl+v</p>
   </div>
 </template>

@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div>
       <p>占位行1</p>
       <p>占位行2</p>
@@ -12,10 +11,13 @@
       <p>占位行8</p>
       <p>占位行9</p>
       <p
-        v-affix="affixProps"
         ref="test"
+        v-affix="affixProps"
         class="c-AffixTest"
-        @click="test">测试affix</p>
+        @click="test"
+      >
+        测试affix
+      </p>
       <p>占位行10</p>
       <p>占位行11</p>
       <p>占位行12</p>
@@ -28,7 +30,6 @@
       <p>占位行19</p>
       <p>占位行20</p>
     </div>
-
   </div>
 </template>
 

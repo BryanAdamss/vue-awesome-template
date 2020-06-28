@@ -1,5 +1,4 @@
 <template>
-
   <component
     :is="type"
     :tag="tag"
@@ -7,12 +6,10 @@
     enter-active-class="fadeIn"
     leave-active-class="fadeOut"
     move-class="fade-move"
-    v-on="hooks">
-
-    <slot/>
-
+    v-on="hooks"
+  >
+    <slot />
   </component>
-
 </template>
 
 <script>

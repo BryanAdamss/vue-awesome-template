@@ -3,7 +3,8 @@
     <BaseNoOpenerAnchor
       class="c-Anchor"
       href="http://test.abc.com"
-      @click="handleClick">
+      @click="handleClick"
+    >
       <template>
         检查a标签的rel=noopener
       </template>

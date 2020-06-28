@@ -1,29 +1,29 @@
 <template>
   <div class="c-CircleProgress">
-
     <BaseCircleProgress
       :progress="progress"
-      :progressOption="baseCircleProgressOption"/>
+      :progressOption="baseCircleProgressOption"
+    />
 
     <div
       :style="styleObj"
-      class="c-CircleProgress-bd">
-
+      class="c-CircleProgress-bd"
+    >
       <slot>
         <h2
           :title="text"
           class="c-CircleProgress-text"
-          v-text="text"/>
+          v-text="text"
+        />
 
         <p
           v-if="info"
           :title="info"
           class="c-CircleProgress-info"
-          v-text="info"/>
+          v-text="info"
+        />
       </slot>
-
     </div>
-
   </div>
 </template>
 

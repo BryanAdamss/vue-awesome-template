@@ -4,7 +4,8 @@
     :height="currentSize.height"
     :viewBox="box"
     class="gf-icon"
-    version="1.1">
+    version="1.1"
+  >
     <use :xlink:href="icon.id" />
   </svg>
 </template>
@@ -52,7 +53,7 @@ export default {
           id: ''
         }
       }
-      let viewBox = this.xml.default.viewBox.split(' ')
+      const viewBox = this.xml.default.viewBox.split(' ')
       return {
         width: viewBox[2] || 0,
         height: viewBox[3] || 0,

@@ -1,11 +1,14 @@
 <template>
   <BasePopUp
     ref="popup"
-    :isShow.sync="popupShow">
+    :isShow.sync="popupShow"
+  >
     <div class="c-BaseConfirm">
       <div class="c-BaseConfirm-hd">
         <slot name="header">
-          <h2 class="c-Title">{{ title }}</h2>
+          <h2 class="c-Title">
+            {{ title }}
+          </h2>
         </slot>
       </div>
       <div class="c-BaseConfirm-bd">
@@ -18,16 +21,19 @@
           <div
             class="c-Btn"
             @click.stop="onClickCancel"
-          >取消</div>
+          >
+            取消
+          </div>
           <div
             class="c-Btn"
             @click.stop="onClickOk"
-          >确定</div>
+          >
+            确定
+          </div>
         </div>
       </div>
     </div>
   </BasePopUp>
-
 </template>
 
 <script>

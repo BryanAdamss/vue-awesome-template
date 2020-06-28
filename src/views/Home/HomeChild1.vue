@@ -1,7 +1,6 @@
 <template>
   <div class="c-HomeChild1">
     我是用来测试子路由
-
   </div>
 </template>
 

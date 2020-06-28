@@ -29,7 +29,7 @@ export const APP_INFO = Object.freeze({
 // BASE_URL 默认配置
 export const BASE_URL =
   process.env.NODE_ENV !== 'production'
-    ? `http://localhost:8080`
+    ? 'http://localhost:8080'
     : `${window.location.protocol}//${window.location.host}`
 
 // AXIOS 默认配置

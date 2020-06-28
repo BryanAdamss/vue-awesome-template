@@ -12,7 +12,6 @@
         <router-view />
       </keep-alive>
     </BaseTransitionSlide>
-
   </BaseLayoutVertical>
 </template>
 

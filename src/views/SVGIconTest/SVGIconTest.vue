@@ -2,13 +2,16 @@
   <div class="c-SVGIconTest">
     <BaseSvgIcon
       name="1"
-      size="20"/>
+      size="20"
+    />
     <BaseSvgIcon
       name="2"
-      size="40"/>
+      size="40"
+    />
     <BaseSvgIcon
       name="3"
-      size="100"/>
+      size="100"
+    />
   </div>
 </template>
 

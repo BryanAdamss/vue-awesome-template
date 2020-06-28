@@ -3,7 +3,9 @@
     <button
       type="button"
       @click.stop="showConfirm"
-    >点击展示confirm</button>
+    >
+      点击展示confirm
+    </button>
     <BaseConfirm
       ref="confirm"
       :title="'我是新标题'"

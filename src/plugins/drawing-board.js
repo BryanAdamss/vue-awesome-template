@@ -846,7 +846,7 @@ class DrawingBoard {
    * scale + 0.1
    */
   makeScaleAddZeroPointOne() {
-    let newScale = this.scale + 0.1
+    const newScale = this.scale + 0.1
     this.setScale(newScale)
   }
 
@@ -854,7 +854,7 @@ class DrawingBoard {
    * scale - 0.1
    */
   makeScaleSubtractZeroPointOne() {
-    let newScale = this.scale - 0.1
+    const newScale = this.scale - 0.1
     this.setScale(newScale)
   }
 

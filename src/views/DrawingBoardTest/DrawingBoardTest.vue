@@ -46,8 +46,12 @@
       重置
     </button>
 
-    <hr />
-    <input type="color" value="#ff0000" @change="handleSetPenColor" />
+    <hr>
+    <input
+      type="color"
+      value="#ff0000"
+      @change="handleSetPenColor"
+    >
 
     <input
       type="range"
@@ -55,9 +59,9 @@
       max="10"
       value="6"
       @change="handleSetPenWidth"
-    />
+    >
 
-    <hr />
+    <hr>
     <div id="board" />
   </div>
 </template>

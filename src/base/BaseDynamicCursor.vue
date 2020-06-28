@@ -1,29 +1,26 @@
 <template>
   <component
     :is="tag"
-    class="c-BaseDynamicCursor">
-
+    class="c-BaseDynamicCursor"
+  >
     <template v-for="(item,index) in list">
-
       <component
         :is="itemTag"
         :key=" item.id || index "
         :class="[`is-${pos}`, isActive(item)]"
         class="c-BaseDynamicCursor-item"
-        @click="$emit('cursorClick',item,index)">
-
+        @click="$emit('cursorClick',item,index)"
+      >
         <slot v-bind="{item,index}">
           {{ item.text || item }}
         </slot>
 
         <span
           :style="cursorStyleObj"
-          class="c-BaseDynamicCursor-cursor"/>
-
+          class="c-BaseDynamicCursor-cursor"
+        />
       </component>
-
     </template>
-
   </component>
 </template>
 

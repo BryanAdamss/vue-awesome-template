@@ -108,7 +108,9 @@
     <div
       v-go-to-top="{target:'#goTop'}"
       style="position:fixed;bottom:40px;right:10px;"
-    >GoToTop</div>
+    >
+      GoToTop
+    </div>
   </div>
 </template>
 

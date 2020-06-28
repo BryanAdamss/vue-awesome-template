@@ -16,13 +16,13 @@ export default {
     el.addEventListener('click', scrollToTop, false)
 
     function scrollToTop() {
-      let top = $target
+      const top = $target
         ? $target.scrollTop
         : document.documentElement.scrollTop || document.body.scrollTop
 
       if (top > 0) {
         window.requestAnimationFrame(scrollToTop)
-        let posY = top - top / 8
+        const posY = top - top / 8
         $target ? $target.scrollTo(0, posY) : window.scrollTo(0, posY)
       }
     }

@@ -101,4 +101,4 @@ function _normalize(options, data) {
 export default new ApiBuilder({
   ...API_DEFAULT_CONFIG,
   apiMap: API_MAP
-})['api']
+}).api

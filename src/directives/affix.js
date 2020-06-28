@@ -34,8 +34,8 @@ export default {
       binding.value && binding.value.fixedElPos
         ? binding.value.fixedElPos
         : {
-            top: 0
-          }
+          top: 0
+        }
 
     // * affixed的回调
     const onAffixed = binding.value && binding.value.onAffixed

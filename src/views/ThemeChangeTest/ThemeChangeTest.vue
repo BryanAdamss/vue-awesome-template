@@ -1,10 +1,15 @@
 <template>
   <div class="c-ThemeChangeTest">
+    <p class="c-Text">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem asperiores, vel officia accusantium sed, nobis non quibusdam quam eos iusto eveniet provident, culpa incidunt ab reprehenderit veritatis! Animi, doloremque sapiente?
+    </p>
 
-    <p class="c-Text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem asperiores, vel officia accusantium sed, nobis non quibusdam quam eos iusto eveniet provident, culpa incidunt ab reprehenderit veritatis! Animi, doloremque sapiente?</p>
-
-    <button @click="handleBtnClick">切换主题</button>
-    <button @click="handleDestroyedBtnClick">销毁ThemeService</button>
+    <button @click="handleBtnClick">
+      切换主题
+    </button>
+    <button @click="handleDestroyedBtnClick">
+      销毁ThemeService
+    </button>
   </div>
 </template>
 
@@ -45,7 +50,7 @@ export default {
     applyTheme() {
       if (!this.themeService) {
         import('Plugins/theme-service.js')
-          .then(({default: ThemeService}) => {
+          .then(({ default: ThemeService }) => {
             this.themeService = new ThemeService()
 
             this.themeService.applyTheme(themeMap)

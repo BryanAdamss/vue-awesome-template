@@ -2,33 +2,40 @@
   <svg
     :height="option.size"
     :width="option.size"
-    x-mlns="http://www.w3.org/200/svg">
+    x-mlns="http://www.w3.org/200/svg"
+  >
     <defs>
       <linearGradient
         :id="outGradientId"
         x1="1"
         y1="0"
         x2="0"
-        y2="0">
+        y2="0"
+      >
         <stop
           :stop-color="arcOption.outArcStartColor"
-          offset="0%" />
+          offset="0%"
+        />
         <stop
           :stop-color="arcOption.outArcEndColor"
-          offset="100%" />
+          offset="100%"
+        />
       </linearGradient>
       <linearGradient
         :id="innerGradientId"
         x1="1"
         y1="0"
         x2="0"
-        y2="0">
+        y2="0"
+      >
         <stop
           :stop-color="arcOption.innerArcStartColor"
-          offset="0%" />
+          offset="0%"
+        />
         <stop
           :stop-color="arcOption.innerArcEndColor"
-          offset="100%" />
+          offset="100%"
+        />
       </linearGradient>
     </defs>
     <circle
@@ -83,6 +90,7 @@
     </circle>
   </svg>
 </template>
+
 <script>
 export default {
   name: 'BaseCircleProgress',
@@ -106,8 +114,8 @@ export default {
       return `innerGradient_${Math.random()}`
     },
     arcOption () {
-      let arcConfig = {}
-      let circleLength = Math.floor(2 * Math.PI * this.option.radius)
+      const arcConfig = {}
+      const circleLength = Math.floor(2 * Math.PI * this.option.radius)
       // 如果此时小于0.5 则只需要显示最外层的圆弧 里面的圆弧不需要画了
       // 时间计算 因为第二段的长度不见得等于第一段 所以不能平分时间 不然会导致第二端的速度出现骤降
       // 因此需要按照比例进行时间计算
@@ -134,7 +142,7 @@ export default {
     },
     option () {
       // 所有进度条的可配置项
-      let baseOption = {
+      const baseOption = {
         radius: 100,
         strokeWidth: 20,
         backColor: '#E6E6E6',

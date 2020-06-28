@@ -1,13 +1,19 @@
 <template>
   <div class="c-VuexTest">
     <span>{{ globalTestObjName }}</span>
-    <div @click="change">点击设置全局vuex</div>
+    <div @click="change">
+      点击设置全局vuex
+    </div>
 
     <span>moduleANameLen：{{ moduleANameLen }}</span>
-    <div @click="setModuleAName({moduleAName:Math.random().toString()})">点击设置模块A Vuex</div>
+    <div @click="setModuleAName({moduleAName:Math.random().toString()})">
+      点击设置模块A Vuex
+    </div>
 
     <span>moduleBNameLen：{{ moduleBNameLen }}</span>
-    <div @click="setModuleBName({ moduleBName:Math.random().toString() })">点击设置模块B Vuex</div>
+    <div @click="setModuleBName({ moduleBName:Math.random().toString() })">
+      点击设置模块B Vuex
+    </div>
   </div>
 </template>
 

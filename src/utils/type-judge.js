@@ -35,7 +35,7 @@ export function isArray(arr) {
 export function isArrayLike(collection) {
   const MAX_ARRAY_INDEX = Math.pow(2, 53) - 1
   // 返回参数 collection 的 length 属性值
-  let length = collection.length
+  const length = collection.length
   return typeof length === 'number' && length >= 0 && length <= MAX_ARRAY_INDEX
 }
 

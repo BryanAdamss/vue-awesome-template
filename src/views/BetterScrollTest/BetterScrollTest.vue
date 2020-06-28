@@ -1,7 +1,6 @@
 <!-- 批改-查看原题 -->
 <template>
   <div style="height:500px;">
-
     <BaseScroll
       ref="baseScroll"
       :pullDownRefresh="true"
@@ -173,13 +172,11 @@
 
 <script>
 import BaseScroll from 'Base/BaseScroll'
-import BaseLoading from 'Base/BaseLoading'
 
 export default {
   name: 'BetterScrollTest',
   components: {
-    BaseScroll,
-    BaseLoading
+    BaseScroll
   },
   methods: {
     onBeforeScroll() {

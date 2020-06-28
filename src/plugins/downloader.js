@@ -18,7 +18,7 @@ class Downloader {
     } else if (typeof files === 'string') {
       this._downloader(files, this._getFileName(files))
     } else {
-      for (let file in files) {
+      for (const file in files) {
         this._downloader(files[file], file)
       }
     }

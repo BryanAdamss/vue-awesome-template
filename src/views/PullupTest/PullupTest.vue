@@ -1,8 +1,8 @@
 <template>
   <div class="c-PullupTest">
     <ul
-      v-pull-up="onPullup"
       ref="ul"
+      v-pull-up="onPullup"
       class="c-List"
     >
       <li>1</li>

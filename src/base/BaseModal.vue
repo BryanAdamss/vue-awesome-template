@@ -45,7 +45,7 @@ export default {
   created() {
     if (this.emitVisibleChangeEvent) {
       // * 手动添加观测
-      let unwatch = this.$watch('isCanVisible', (newVal, oldVal) => {
+      const unwatch = this.$watch('isCanVisible', (newVal, oldVal) => {
         this.$emit('onVisibleChange', newVal, oldVal)
       })
       // * 销毁时，取消观测

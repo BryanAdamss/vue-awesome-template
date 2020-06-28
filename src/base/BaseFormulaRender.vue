@@ -1,6 +1,7 @@
 <template>
   <div
     class="c-Formula"
+    eslint-disable-next-line
     v-html="formatedHtml(htmlString)"
   />
 </template>

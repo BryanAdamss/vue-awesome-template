@@ -1,32 +1,27 @@
 <template>
   <div class="c-BaseTransitionFadeTest">
-
-    <button @click="addItem">添加</button>
+    <button @click="addItem">
+      添加
+    </button>
     <p>点击删除</p>
 
     <div class="c-BoxWp">
-
       <BaseTransitionFade
         group
-        tag="ul">
-
+        tag="ul"
+      >
         <template>
-
           <li
             v-for="(item, index) in list"
             :key="item"
 
             @click="remove(index)"
-            v-text="item"/>
-
+            v-text="item"
+          />
         </template>
-
       </BaseTransitionFade>
-
     </div>
-
   </div>
-
 </template>
 
 <script>
@@ -58,7 +53,7 @@ export default {
       this.list.splice(index, 1)
     },
     addItem() {
-      let randomIndex = Math.floor(Math.random() * this.list.length)
+      const randomIndex = Math.floor(Math.random() * this.list.length)
       this.list.splice(randomIndex, 0, Math.random())
     }
   }

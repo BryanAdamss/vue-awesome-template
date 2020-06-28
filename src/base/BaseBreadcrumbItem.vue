@@ -1,15 +1,16 @@
 <template>
-
   <span
     :class="{ 'is-link':isLink }"
-    class="c-BaseBreadcrumbItem">
+    class="c-BaseBreadcrumbItem"
+  >
 
     <template v-if="needIcon">
 
       <!-- 图标 -->
       <span
         v-if="iconClassName"
-        class="c-BaseBreadcrumbItem-icon">
+        class="c-BaseBreadcrumbItem-icon"
+      >
 
         <i
           :class="[iconClassName]"
@@ -56,7 +57,6 @@
     <!-- 分隔符 end -->
 
   </span>
-
 </template>
 
 <script>

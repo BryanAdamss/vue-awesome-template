@@ -1,4 +1,4 @@
-let MOCK_DATA = [
+const MOCK_DATA = [
   {
     id: 'e6e1222d-3124-48d0-be7e-95f883ee69ac',
     rawHtml:

@@ -1,51 +1,33 @@
 <template>
   <div class="c-BaseCountInputTest">
-    <BaseCountInput>
-
+    <BaseCountInput :val.sync="textVal">
       <template>
-        <input type="text">
+        <input type="text" />
       </template>
-
     </BaseCountInput>
-    <hr>
+    <hr />
 
-    <BaseCountInput
-      :max="30"
-      @exceed="handleExceed">
-
+    <BaseCountInput :val.sync="textareaVal" :max="30" @exceed="handleExceed">
       <template>
-        <textarea
-          id=""
-          name=""
-          cols="30"
-          rows="10"/>
+        <textarea id="" name="" cols="30" rows="10" />
       </template>
-
     </BaseCountInput>
 
-    <hr>
+    <hr />
 
-    <BaseCountInput>
-
+    <BaseCountInput :val.sync="otherTextareaVal">
       <template>
-        <textarea
-          id=""
-          name=""
-          cols="30"
-          rows="10"/>
+        <textarea id="" name="" cols="30" rows="10" />
         <p>另外行</p>
       </template>
-
     </BaseCountInput>
 
-    <hr>
+    <hr />
 
     <BaseCountInput>
-
       <template>
-        <div/>
+        <div />
       </template>
-
     </BaseCountInput>
   </div>
 </template>
@@ -65,7 +47,11 @@ export default {
   mixins: [],
   props: {},
   data() {
-    return {}
+    return {
+      textVal: 1,
+      textareaVal: '1239123ui91203j091',
+      otherTextareaVal: 'other textarea'
+    }
   },
   computed: {},
   watch: {},

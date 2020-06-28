@@ -4,8 +4,9 @@
     :class="customClazz"
     :style="customStyle"
     class="c-BaseCountInput"
-    @input="handleInput">
-    <slot/>
+    @input="handleInput"
+  >
+    <slot />
   </div>
 </template>
 
@@ -72,19 +73,25 @@ export default {
       return `${this.len}${this.sep}${this.max}`
     },
     len() {
-      return this.val.length
+      return String(this.val).length
     }
   },
   watch: {},
   beforeCreate() {},
   created() {
-    const {default: field} = this.$slots
+    const { default: field } = this.$slots
 
-    if (!field || !field.length || !field[0].tag || (field[0].tag.toLowerCase() !== 'textarea' && field[0].tag.toLowerCase() !== 'input')) {
-      this.$slots.default = '不支持此类型输入域'
-    } else {
-      this.showCounter = true
+    if (
+      !field ||
+      !field.length ||
+      !field[0].tag ||
+      (field[0].tag.toLowerCase() !== 'textarea' &&
+        field[0].tag.toLowerCase() !== 'input')
+    ) {
+      return
     }
+
+    this.showCounter = true
 
     // 设置初始值
     this.$nextTick(() => {
@@ -94,6 +101,8 @@ export default {
   mounted() {},
   methods: {
     handleInput(e) {
+      console.log(e)
+
       const val = e.target.value
 
       if (val.length >= this.max) {
@@ -122,8 +131,8 @@ export default {
 <style lang="scss" scoped>
 .c-BaseCountInput {
   @include inline-block();
-  font-size: 14px;
   color: $mainTextColor;
+  font-size: 14px;
 
   &.is-bottom {
     padding: 1.2em;
@@ -137,9 +146,11 @@ export default {
     position: relative;
 
     &::after {
-      font-size: 0.8em;
-      content: attr(data-num);
       position: absolute;
+
+      font-size: 0.8em;
+
+      content: attr(data-num);
     }
 
     &.is-bottom {
@@ -151,8 +162,9 @@ export default {
 
     &.is-center {
       &::after {
-        right: 0.8em;
         top: 50%;
+        right: 0.8em;
+
         transform: translateY(-50%);
       }
     }

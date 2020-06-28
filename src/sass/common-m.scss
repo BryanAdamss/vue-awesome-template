@@ -1,0 +1,42 @@
+﻿@charset "UTF-8";
+// ---------------------------------------------
+// common-m.scss包含默认变量、自定义变量、_mixin、_funciton、_placeholder、_mediaQuery、_normalize、_typography、_helpers以及移动端自适应需要的字体设置
+// ---------------------------------------------
+// 下面为相关变量、_mixin、_funciton、_placeholder、_mediaQuery工具的导入(前面的相关scss文件已经通过sass-resources-loader(位于build/utils.js中)导入，所以此处无需重复导入)
+// ---------------------------------------------
+// 导入自定义变量
+//@import "./utils/_variablesCustom-m.scss";
+//// 导入工具包包含默认变量、_mixin、_funciton、_placeholder、_mediaQuery
+//@import "./utils/_utils.scss";
+// ---------------------------------------------
+// 下面为直接的css(相关工具的调用)导入
+// ---------------------------------------------
+// 导入normalize
+@import './base/_normalize.scss';
+// 导入排版样式
+@import './base/_typography.scss';
+// 导入助手样式
+@import './helpers/_helpers.scss';
+// 导入自定义element loading样式
+@import './loading.scss';
+// ---------------------------------------------
+// 设置移动端字体(实现自适应)
+// ---------------------------------------------
+html {
+  @include htmlFont(M);
+  height: 100%;
+  background-color: #fefefe;
+  overflow: hidden;
+}
+
+body {
+  @include bodyFontSize(M);
+  background-color: #fff;
+  height: 100%;
+  box-shadow: 0 0 0 1px red;
+  overflow: hidden;
+}
+
+body.is-hidden {
+  overflow: hidden !important;
+}

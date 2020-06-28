@@ -4,7 +4,7 @@
  */
 
 // * 首页可使用同步导入
-import Home from 'Views/home/home'
+import Home from 'Views/Home/Home'
 // * 同步导入（可优化成下面的动态导入）
 
 // * 使用异步载入

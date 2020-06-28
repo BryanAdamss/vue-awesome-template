@@ -3,14 +3,16 @@
  * @description 点击外部区域测试页
  */
 
-const ClickOutSideTest = () =>
-  import(/* webpackChunkName:'ClickOutSideTest' */ 'Views/ClickOutSideTest/ClickOutSideTest')
+const ClickOutsideTest = () =>
+  import(
+    /* webpackChunkName:'ClickOutsideTest' */ 'Views/ClickOutsideTest/ClickOutsideTest'
+  )
 
 export default [
   {
     path: '/click-outside-test',
-    name: 'ClickOutSideTest',
-    component: ClickOutSideTest,
+    name: 'ClickOutsideTest',
+    component: ClickOutsideTest,
     meta: {
       title: '测试自定义指令clickOutside'
     }

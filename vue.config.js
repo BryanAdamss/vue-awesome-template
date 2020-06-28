@@ -57,25 +57,40 @@ const setCDN = config => {
 const setStatics = config => {
   const htmlPlug = config.plugin('html')
 
-  htmlPlug.tap(args => {
-    const newOpts = {
-      ...args[0],
-      customs: {
-        head: {
-          css: ['formula/katex/katex.css'],
-          js: ['js/flexible-custom.js', 'js/fastclick-custom.js']
-        },
-        body: {
-          js: [
-            'formula/katex/katex.min.js',
-            'formula/mathjax/MathJax.js?config=TeX-AMS_CHTML',
-            'formula/mathjax-config-cutom.js'
-          ]
-        }
-      }
+  const customs = {
+    head: {
+      css: ['formula/katex/katex.css'],
+      js: ['js/flexible-custom.js', 'js/fastclick-custom.js']
+    },
+    body: {
+      js: [
+        'formula/katex/katex.min.js',
+        'formula/mathjax/MathJax.js?config=TeX-AMS_CHTML',
+        'formula/mathjax-config-cutom.js'
+      ]
     }
+  }
 
-    return [newOpts]
+  htmlPlug.tap(args => {
+    args[0].customs = customs
+    return args
+  })
+}
+
+// 删除console、debugger
+const dropConsole = config => {
+  if (process.env.NODE_ENV !== 'production') return
+
+  const terser = config.optimization.minimizer('terser')
+  terser.tap(args => {
+    args[0].terserOptions.compress = {
+      ...args[0].terserOptions.compress,
+      // 不警告且去除console、debugger
+      warnings: false,
+      drop_console: true,
+      drop_debugger: true
+    }
+    return args
   })
 }
 
@@ -86,6 +101,8 @@ module.exports = {
     setCDN(config)
 
     setStatics(config)
+
+    dropConsole(config)
   },
   pluginOptions: {
     // vue-cli-plugin-auto-alias 配置

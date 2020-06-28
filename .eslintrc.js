@@ -4,7 +4,7 @@ module.exports = {
     node: true
   },
   // 2020-0623-改用更严格的vue eslit检查规则
-  extends: ['plugin:vue/recommended', 'eslint:recommended', '@vue/prettier'],
+  extends: ['plugin:vue/recommended', '@vue/standard'],
   // extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier"],
   parserOptions: {
     parser: 'babel-eslint'

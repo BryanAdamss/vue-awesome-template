@@ -1,0 +1,24 @@
+{
+  "projectName": "vue-awesome-template",
+  "projectOwner": "GuangHui",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 64,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "BryanAdamss",
+      "name": "GuangHui",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/7441504?v=4",
+      "profile": "https://bryanadamss.github.io/",
+      "contributions": [
+        "projectManagement"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

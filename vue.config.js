@@ -1,4 +1,5 @@
 const path = require('path')
+const WebpackCdnPlugin = require('webpack-cdn-plugin')
 
 // 设置svg sprite
 const svgSprite = config => {
@@ -21,9 +22,42 @@ const svgSprite = config => {
     .end()
 }
 
+// 设置cdn
+const setCDN = config => {
+  const CDN_CONFIG = {
+    modules: [
+      {
+        name: 'vue',
+        var: 'Vue',
+        path: 'dist/vue.runtime.min.js'
+      },
+      {
+        name: 'vue-router',
+        var: 'VueRouter',
+        path: 'dist/vue-router.min.js'
+      },
+      {
+        name: 'vuex',
+        var: 'Vuex',
+        path: 'dist/vuex.min.js'
+      },
+      {
+        name: 'css-vars-ponyfill',
+        var: 'cssVars',
+        path: 'dist/css-vars-ponyfill.min.js'
+      }
+    ],
+    prodUrl: '//cdn.jsdelivr.net/npm/:name@:version/:path'
+  }
+
+  config.plugin('cdn-plugin').use(WebpackCdnPlugin, [CDN_CONFIG])
+}
+
 module.exports = {
   chainWebpack: config => {
     svgSprite(config)
+
+    setCDN(config)
   },
   pluginOptions: {
     // vue-cli-plugin-auto-alias 配置

@@ -47,13 +47,18 @@
     "stylelint-selector-bem-pattern": "^2.1.0",
     "vue-template-compiler": "^2.6.11"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "lint-staged": {
     "*.{js,jsx,vue}": [
@@ -64,10 +69,5 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }

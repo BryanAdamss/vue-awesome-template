@@ -9,6 +9,7 @@
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
     "lint:fix": "vue-cli-service lint --fix",
+    "inspect": "vue-cli-service inspect > webpack.inspect.js",
     "commit": "git-cz",
     "contributor:add": "all-contributors add",
     "contributor:generate": "all-contributors generate",

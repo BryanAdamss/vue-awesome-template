@@ -24,6 +24,12 @@
     <!-- h5 中防止空icon请求报错 -->
     <link rel="icon" href="data:;base64,=" />
 
+    <!-- customs.head.css -->
+    <% htmlWebpackPlugin.options.customs.head.css.forEach(function(item){ %>
+    <link rel="stylesheet" href="<%= item %>" />
+    <% }) %>
+    <!-- customs.head.css end -->
+
     <title><%= htmlWebpackPlugin.options.title %></title>
     <style>
       /* 骨架屏 */
@@ -86,8 +92,16 @@
         }
       }
     </style>
-    <script src="/js/flexible-custom.js"></script>
-    <script src="/js/fastclick-custom.js"></script>
+
+    <!-- customs.head.js -->
+    <% htmlWebpackPlugin.options.customs.head.js.forEach(function(item){ %>
+    <script
+      type="text/javascript"
+      async
+      src="<%= BASE_URL %><%= item %>"
+    ></script>
+    <% }) %>
+    <!-- customs.head.js -->
   </head>
 
   <body>
@@ -129,5 +143,15 @@
       </div>
     </div>
     <!-- built files will be auto injected -->
+
+    <!-- customs.body.js -->
+    <% htmlWebpackPlugin.options.customs.body.js.forEach(function(item){ %>
+    <script
+      type="text/javascript"
+      defer
+      src="<%= BASE_URL %><%= item %>"
+    ></script>
+    <% }) %>
+    <!-- customs.body.js end -->
   </body>
 </html>

@@ -53,11 +53,39 @@ const setCDN = config => {
   config.plugin('cdn-plugin').use(WebpackCdnPlugin, [CDN_CONFIG])
 }
 
+// 配置静态资源
+const setStatics = config => {
+  const htmlPlug = config.plugin('html')
+
+  htmlPlug.tap(args => {
+    const newOpts = {
+      ...args[0],
+      customs: {
+        head: {
+          css: ['formula/katex/katex.css'],
+          js: ['js/flexible-custom.js', 'js/fastclick-custom.js']
+        },
+        body: {
+          js: [
+            'formula/katex/katex.min.js',
+            'formula/mathjax/MathJax.js?config=TeX-AMS_CHTML',
+            'formula/mathjax-config-cutom.js'
+          ]
+        }
+      }
+    }
+
+    return [newOpts]
+  })
+}
+
 module.exports = {
   chainWebpack: config => {
     svgSprite(config)
 
     setCDN(config)
+
+    setStatics(config)
   },
   pluginOptions: {
     // vue-cli-plugin-auto-alias 配置

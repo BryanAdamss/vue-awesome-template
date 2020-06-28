@@ -178,7 +178,7 @@ export default {
 
 <style lang="scss" scoped>
 .c-DrawingBoardTest {
-  >>> .c-MyCanvas {
+  ::v-deep > .c-MyCanvas {
     border: 1px solid blue;
   }
 }

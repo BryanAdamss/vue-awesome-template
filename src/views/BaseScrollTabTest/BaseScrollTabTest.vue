@@ -124,7 +124,7 @@ export default {
 
 <style lang="scss" scoped>
 .c-BaseScrollTabTest {
-  /deep/ .c-BaseScrollTab-item.is-active {
+  >>> .c-BaseScrollTab-item.is-active {
     color: red;
   }
 }

@@ -268,6 +268,10 @@ npm run serve
 - 集成`eslint`、`prettier`、`style-lint`、`commitlint`开箱即用
 - 集成`standard-version`标准化发包
 
+## mock
+
+- 相关配置在`./mock`下
+
 ## webpack 相关
 
 - 相关配置在`vue.config.js`

@@ -85,7 +85,7 @@ const dropConsole = config => {
   terser.tap(args => {
     args[0].terserOptions.compress = {
       ...args[0].terserOptions.compress,
-      // 不警告且去除console、debugger
+      // 不在控制台警告并去除console、debugger
       warnings: false,
       drop_console: true,
       drop_debugger: true
@@ -95,6 +95,23 @@ const dropConsole = config => {
 }
 
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
+  devServer: {
+    proxy: {
+      // * 经过下面配置 '/api/post'这个请求路径就会变成'http://jsonplaceholder.typicode.com/post'
+      // 代理所有/api开头的请求
+      '/api': {
+        target: 'http://jsonplaceholder.typicode.com',
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          // 将最终url中匹配正则的部分替换成对应字符串
+          // 下面是将最终url中开头的/api替换成''
+          '^/api': ''
+        }
+      }
+    }
+  },
   chainWebpack: config => {
     svgSprite(config)
 

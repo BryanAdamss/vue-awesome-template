@@ -14,6 +14,7 @@ import {
   elementUiRegister,
   vueLazyloadReigster
 } from 'Plugins/component-register'
+import { vconsoleProvider } from 'Plugins/vconsole-provider'
 
 // * ----------------------------------------
 // * 注册组件
@@ -32,6 +33,11 @@ directiveRegister()
 // * ----------------------------------------
 vueInjecter()
 globalInjecter()
+
+// * ----------------------------------------
+// * vconsole
+// * ----------------------------------------
+vconsoleProvider()
 
 // * ----------------------------------------
 // * 实例化vue

@@ -1,5 +1,6 @@
 # vue-awesome-template
 
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
@@ -12,6 +13,8 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-brightgreen.svg?maxAge=2592000)](https://conventionalcommits.org)
 
 > A `Vue 2.x` project template base on `vue-cli 4.x`；分层思路参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)
+
+- `vue-cli@2.x`版本请查看[cli-2.x分支](https://github.com/BryanAdamss/vue-awesome-template/tree/cli-2.x)
 
 ## 特点
 

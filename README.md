@@ -1,6 +1,5 @@
 # vue-awesome-template
 
-
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
@@ -12,163 +11,276 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-brightgreen.svg?maxAge=2592000)](https://conventionalcommits.org)
 
-> A `Vue 2.x` project template base on `vue-cli 4.x`；分层思路参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)
+- > 一个基于`vue-cli@4.x`的`Vue@2.x`项目最佳实践模板(持续更新中 ✨)
+- > 如果您使用`vue-cli@2.x`版本，可以查看[cli-2.x 分支](https://github.com/BryanAdamss/vue-awesome-template/tree/cli-2.x)
 
-- `vue-cli@2.x`版本请查看[cli-2.x分支](https://github.com/BryanAdamss/vue-awesome-template/tree/cli-2.x)
+## 特性
 
-## 特点
+- 项目分层合理，经受住 10w 行业务代码项目实践检验
+  - 分层思路参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)
+- 集成`vue`全家桶(vuex、vue-router、axios)及各种最佳实践
+- 集成`element-ui`及各种自造轮子
+- 集成`webpack`优化最佳实践
+- 注释完备
+  - 每一个`commit`都有详细注释，可供新手学习
 
-- `Commitizen friendly`
-- `auto-prettier、auto-fix`支持
-- 集成`vue`全家桶(vuex、vue-router、axios)
-- 集成`element-ui`
-- 支持`主题化`
-- 自造组件
-  - 轮播
-  - popup
-  - toast
-  - confirm
-  - dialog
-  - audio
-  - loading
-  - 公式渲染组件
-  - 模拟滚动条组件
-  - svg 动态导入、sprite 化组件
-  - ...
-- 自造指令
-  - textarea 自增高指令
-  - affix 图钉固定指令
-  - 移动端拖拽指令
-  - 返回顶部指令
-  - ...
-- 常用库封装
+## 安装及快速开始
 
-  - 前端下载库
-  - localStorage、sessionStorage 模块化封装
-  - 多窗口 postMessage 封装
-  - canvas 绘图板封装
-  - 全局 loading 封装
-  - 数字转中文库封装
-  - directives、filters 加载器封装
-  - 倒计时库封装
-  - event-bus 封装
-  - ...
+- 安装
 
-- [常用 utils](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/index.js)
+```sh
+git clone git@github.com:BryanAdamss/vue-awesome-template.git
 
-  - 分时函数
-  - 去抖、节流函数
-  - 获取随机数
-  - shuffle 函数
-  - unix 时间戳格式化函数
-  - 查询字符串解析函数
-  - 驼峰、帕斯卡转烤串转换函数
-  - 毫秒转换为 时'分"秒 形式函数
-  - 数字保留位数函数
-  - 数字转百分比函数
-  - 数组深度扁平化函数
-  - emoji 过滤函数
-  - url 中获取图片的流函数
-  - blob、file、dataURL 相互转换函数
+npm i
 
----
+npm run serve
+```
 
-## vue 组件
+- 命令
 
-- 翻页组件
-  - [BaseSwiper](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseSwiper/BaseSwiper.vue)
-- toast 组件
-  - [toast](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseToast/BaseToast.js)
-- 防暴击按钮组件
-  - [防暴击按钮](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseBtnPreventFastClick.vue)
-- 点击区域放大组件
-  - [点击区域放大](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseClickAreaExpand.vue)
-- 确认框组件
-  - [确认框](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseConfirm.vue)
-- latex 公式渲染组件
-  - [latex 公式渲染](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseFormulaRender.vue)
-- 圣杯布局组件
-  - [圣杯布局](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseLayoutHorizontal.vue)
-- 粘滞布局组件
-  - [粘滞布局](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseLayoutVertical.vue)
-- 列表过渡组件
-  - [列表过渡](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseListTransition.vue)
-- loading 组件
-  - [loading](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseLoading.vue)
-- loading spinner 组件
-  - [loading spinner](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseLoadingSpinner.vue)
-- modal 组件
-  - [modal](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseModal.vue)
-- popup 组件
-  - [popup](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BasePopUp.vue)
-- 模拟滚动组件
-  - [模拟滚动](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseScroll.vue)
-- 模拟滚动条组件
-  - [模拟滚动条](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseScrollbar.vue)
-- 路由切换动画组件
-  - [路由切换动画](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/base/BaseTransitionSlide.vue)
+```js
+  "scripts": {
+    "serve": "vue-cli-service serve", // 开发
+    "build": "vue-cli-service build", // 生产包
+    "build:modern": "vue-cli-service build --modern", // 现代打包模式
+    "build:testing": "vue-cli-service build --mode testing", // 测试环境
+    "build:analysis": "vue-cli-service build --mode analysis", // 打包分析
+    "test:unit": "vue-cli-service test:unit", // 单元测试
+    "test:e2e": "vue-cli-service test:e2e", // e2e测试
+    "lint": "vue-cli-service lint", // lint
+    "lint:fix": "vue-cli-service lint --fix", // lint fix
+    "inspect": "vue-cli-service inspect > webpack.inspect.js", // 检查development webpack配置
+    "inspect:production": "vue-cli-service inspect --mode production > webpack.inspect.js", // 检查production webpack配置
+    "commit": "git-cz", // git 提交
+    "contributor:add": "all-contributors add", // 添加贡献者
+    "contributor:generate": "all-contributors generate", // 生成贡献者文件
+    "contributor:init": "all-contributors init", // 贡献者初始化
+    "release": "standard-version", // 发版
+    "release:first": "npm run release -- --first-release", // 初始发版
+    "release:major": "npm run release -r major", // break change版本
+    "release:minor": "npm run release -r minor", // feature 版本
+    "release:patch": "npm run release -r patch", // fix 补丁版本
+    "release:publish": "git push --follow-tags origin master" // 发布到npm
+  }
+```
 
-## 常用库
+## 目录结构
 
-- 前端下载库
-  - [前端下载库](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/plugins/downloader.js)
-- 全局 loading 库
-  - [全局 loading](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/plugins/global-loading.js)
-- 浮点数转中文库
-  - [浮点数转中文](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/plugins/num-to-chn.js)
-- 倒计时库
-  - [倒计时库](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/plugins/time-counter.js)
-- localStorage、sessionStorage 封装库
-  - [localStorage、sessionStorage 封装库](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/plugins/saver.js)
-- postMessage 封装库
+```sh
+├─.all-contributorsrc             # all-contributors配置
+├─.browserslistrc                 # 浏览器兼容列表
+├─.env                            # 通用环境配置文件
+├─.env.analysis                   # 打包分析环境配置文件
+├─.env.development                # 开发环境配置文件
+├─.env.production                 # 生产环境配置文件
+├─.env.testing                    # 测试环境配置文件
+├─.eslintrc.js                    # eslint配置
+├─.gitignore
+├─.prettierrc                     # prettier配置
+├─.stylelintrc                    # style-lint配置
+├─babel.config.js                 # babel配置
+├─CHANGELOG.md                    # 更新记录
+├─commitlint.config.js            # commitlint配置
+├─cypress.json                    # e2e测试配置
+├─jest.config.js                  # 单元测试配置
+├─LICENSE                         # 版权文件
+├─package-lock.json
+├─package.json
+├─README.md                       # 文档
+├─vue.config.js                   # vue project配置文件
+├─tests                           # 测试用例文件夹
+├─src                             # 源目录
+|  ├─App.vue
+|  ├─main.js
+|  ├─registerServiceWorker.js
+|  ├─views                        # 页面目录
+|  ├─utils                        # 常用工具
+|  ├─store                        # vuex 全局状态
+|  ├─services                     # 业务service
+|  ├─sass                         # sass分层
+|  ├─routes                       # 路由模块
+|  ├─plugins                      # 项目插件
+|  ├─directives                   # vue 指令
+|  ├─config                       # 项目配置
+|  ├─components                   # 业务组件
+|  ├─base                         # 基础组件
+|  ├─assets                       # 静态资源
+├─public                          # 无需webpack处理的静态资源
+```
 
-  - [postMessage 封装库](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/plugins/messager.js)
+## 基础组件
 
-## 指令库
+- 除了项目本身已经集成的`element-ui`相关组件，你还可以使用一些`自造的基础组件`，这些组件是与业务无关的，可以跨业务、跨项目使用(后期考虑直接打成一个`npm包`发布到`npm`上管理)
+- 位于`src/base`目录下
 
-- input、textarea 自增高指令
-  - [input、textarea 自增高指令](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/directives/auto-height.js)
-- 点击区域外指令
-  - [点击区域外指令](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/directives/click-outside.js)
-- 移动端拖动指令
-  - [移动端拖动指令](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/directives/drag.js)
-- 图钉 Affix 指令
-  - [图钉 Affix 指令](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/directives/affix.js)
+```sh
+├─src
+|  ├─base
+|  |  ├─BaseAudio.vue                   # 音频播放组件
+|  |  ├─BaseBreadcrumb.vue              # 面包屑
+|  |  ├─BaseBreadcrumbItem.vue          # 面包屑-item
+|  |  ├─BaseBtnPreventFastClick.vue     # 防暴击按钮组件
+|  |  ├─BaseCircleProgress.vue          # 环形进度组件
+|  |  ├─BaseClickAreaExpand.vue         # 拓宽点击区域的按钮组件
+|  |  ├─BaseConfirm.vue                 # confirm组件
+|  |  ├─BaseCountInput.vue              # 计数input组件
+|  |  ├─BaseDynamicCursor.vue           # 动态游标tab组件
+|  |  ├─BaseFormulaRender.vue           # latex公式渲染组件
+|  |  ├─BaseLayoutHorizontal.vue        # 水平三分布局组件
+|  |  ├─BaseLayoutVertical.vue          # 垂直三分布局组件
+|  |  ├─BaseListTransition.vue          # 列表过渡组件
+|  |  ├─BaseLoading.vue                 # loading组件
+|  |  ├─BaseLoadingSpinner.vue          # loading-spinner组件
+|  |  ├─BaseModal.vue                   # 模态框组件
+|  |  ├─BaseNoOpenerAnchor.vue          # noopenner 锚点组件
+|  |  ├─BasePopUp.vue                   # popup组件
+|  |  ├─BaseScroll.vue                  # 移动端滚动组件
+|  |  ├─BaseScrollbar.vue               # 自定义滚动条组件
+|  |  ├─BaseScrollTab.vue               # 滚动tab组件
+|  |  ├─BaseSvgIcon.vue                 # svg icon组件
+|  |  ├─BaseTransitionFade.vue          # fade过渡动画组件
+|  |  ├─BaseTransitionSlide.vue         # slide过渡动画组件
+|  |  ├─BaseToast                       # toast组件
+|  |  |     └BaseToast.js
+|  |  ├─BaseSwiper                      # 轮播组件
+|  |  |     ├─BaseSwiper.vue
+|  |  |     └BaseSwiperSlide.vue
+```
 
-## utils
+## 业务组件
 
-- 浏览器识别
-  - [浏览器识别](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/browser.js)
-- dom 操作
-  - [dom 操作](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/dom.js)
-- 缓动函数
-  - [缓动函数](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/easings.js)
-- file 常用类型转换
-  - [file 常用类型转换](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/file-convert.js)
-- raf 封装
-  - [raf](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/raf.js)
-- raf-animation 封装
-  - [raf-animation](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/raf-animation.js)
-- 获取滚动条宽度封装
-  - [获取滚动条宽度](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/scrollbar-width.js)
-- 类型判断封装
-  - [类型判断](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/type-judge.js)
-- 解析查询字符串、节流、去抖、分时封装
-  - [解析查询字符串、节流、去抖、分时](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/utils/index.js)
+- 与业务相关度高的组件
 
-## sass
+```sh
+├─src
+|  ├─components
+|     ├─Dialog.vue                      # 基于BasePopUp封装的弹窗组件
+```
 
-- 网格
-  - [网格](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/sass/layout/_gridNew.scss)
-- 常用 functions
-  - [常用 functions](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/sass/utils/_function.scss)
-- 常用 mixins
-  - [常用 mixins](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/sass/utils/_mixins.scss)
-- 常用 placeholder
-  - [常用 placeholder](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/sass/utils/_placeholder.scss)
-- mediaQuery 封装
+## 常用插件
 
-  - [mediaQuery 封装](https://github.com/BryanAdamss/vue-awesome-template/blob/master/src/sass/utils/_mediaQuery.scss)
+- 主要集中在`src/plugins`下
+
+```sh
+├─src
+|  ├─plugins
+|  |    ├─api-builder.js                    # api构建器
+|  |    ├─axios-instance.js                 # axios实例
+|  |    ├─component-register.js             # element-ui注册
+|  |    ├─const-loader.js                   # 常量加载器
+|  |    ├─directives-loader.js              # 指令加载器
+|  |    ├─downloader.js                     # 前端下载库
+|  |    ├─drawing-board.js                  # 绘图板
+|  |    ├─event-bus.js                      # 事件总线
+|  |    ├─fastclick-binder.js               # fast-click绑定器
+|  |    ├─global-loading.js                 # 全局loading
+|  |    ├─injecter.js                       # vue原型方法、全局方法注入器
+|  |    ├─messager.js                       # post-message封装
+|  |    ├─num-to-chn.js                     # 数字转中文
+|  |    ├─postcss-plugin-add-var-value.js   # cssvars兼容插件
+|  |    ├─register.js                       # 指令、filter注册器
+|  |    ├─router-instance.js                # 路由实例
+|  |    ├─routes-loader.js                  # 路由加载器
+|  |    ├─saver.js                          # localStorage封装
+|  |    ├─theme-service.js                  # 主题切换服务
+|  |    ├─time-counter.js                   # 计数器
+|  |    ├─vconsole-provider.js              # vconsle动态加载器
+|  |    └vuex-instance.js                   # vuex实例
+```
+
+## 常用指令
+
+- 集中在`src/directives`下
+
+```sh
+├─src
+|  ├─directives
+|  |     ├─affix.js                         # 图钉指令
+|  |     ├─auto-height.js                   # input自增高
+|  |     ├─click-outside.js                 # click-outside
+|  |     ├─drag.js                          # 拖拽
+|  |     ├─focus.js                         # 聚焦
+|  |     ├─go-to-top.js                     # 回到顶部
+|  |     └pull-up.js                        # 上拉加载
+```
+
+## 常用工具
+
+- 集中在`src/utils`下
+
+```sh
+├─src
+|  ├─utils
+|  |   ├─browser.js                         # 浏览器相关
+|  |   ├─copy.js                            # 复制到剪切板
+|  |   ├─dom.js                             # dom相关
+|  |   ├─easings.js                         # 缓动动画
+|  |   ├─file-convert.js                    # file转换
+|  |   ├─index.js                           # 其它
+|  |   ├─raf-animation.js                   # raf动画
+|  |   ├─raf.js                             # raf
+|  |   ├─scrollbar-width.js                 # 滚动条宽度
+|  |   ├─select.js                          # 选中文案
+|  |   ├─type-judge.js                      # 类型判断
+|  |   └url.js                              # url相关
+```
+
+## 样式
+
+- 采用`scss`风格，根据功能进行分层
+- 集中在`src/sass`下
+
+```sh
+├─src
+|  ├─sass
+|  |  ├─common-m.scss                       # 通用
+|  |  ├─loading.scss                        # loading相关
+|  |  ├─vendors                             # 三方库(弃用)
+|  |  |    ├─_c_imgSlider.scss
+|  |  |    └_c_pagination.scss
+|  |  ├─utils
+|  |  |   ├─_function.scss                  # sass function
+|  |  |   ├─_mediaQuery.scss                # 媒体查询
+|  |  |   ├─_mixins.scss                    # sass mixins
+|  |  |   ├─_placeholders.scss              # sass placeholder
+|  |  |   ├─_utils.scss                     # 工具集合
+|  |  |   ├─_variables.scss                 # 默认变量
+|  |  |   ├─_variablesCustom-m.scss         # 移动端变量
+|  |  |   └_variablesCustom.scss            # pc端变量
+|  |  ├─modules
+|  |  |    ├─_animate.scss                  # 动画
+|  |  |    ├─_button.scss                   # 按钮
+|  |  |    ├─_form.scss                     # 表单
+|  |  |    ├─_loading.scss                  # loading
+|  |  |    └_table.scss                     # 表格
+|  |  ├─layout
+|  |  |   ├─_grid.scss                      # 网格(弃用)
+|  |  |   └_gridNew.scss                    # 网格
+|  |  ├─helpers
+|  |  |    └_helpers.scss                   # sass helper
+|  |  ├─base
+|  |  |  ├─_normalize.scss                  # 重置样式
+|  |  |  └_typography.scss                  # 排版
+```
+
+## 代码风格、发包
+
+- 集成`eslint`、`prettier`、`style-lint`、`commitlint`开箱即用
+- 集成`standard-version`标准化发包
+
+## webpack 相关
+
+- 相关配置在`vue.config.js`
+  - 秉承着能用插件实现的绝不手动写的原则
+- 自动别名
+  - 通过自造插件实现[vue-cli-plugin-auto-alias](https://www.npmjs.com/package/vue-cli-plugin-auto-alias)
+- 生产 cdn
+  - 通过`webpack-cdn-plugin`
+- svg 雪碧图
+- sass 公用资源
+  - 通过`vue-cli-plugin-style-resources-loader`插件实现
+- 开启本地生成`gzip`
+- 开启打包分析
 
 ## 其他项目
 
@@ -180,7 +292,6 @@
   - webpack 多页面脚手架 https://bryanadamss.github.io/2018/01/02/webpack-multi-page/
 - [BryanAdamss.github.io](https://github.com/BryanAdamss/BryanAdamss.github.io)
   - 个人博客
-    ...
 
 ## npm 包
 
@@ -189,16 +300,16 @@
 - [@bryanadamss/num2chn](https://www.npmjs.com/package/@bryanadamss/num2chn)
 - [ant-color-converter](https://www.npmjs.com/package/ant-color-converter)
 
-## Show your support
+## 支持
 
-Give a ⭐️ if this project helped you!
+如果你觉得对你有帮助，可以给我一个小星星 ⭐️
 
-## 📝 License
+## 版权
 
 Copyright © 2020 [BryanAdamss@foxmail.com](https://github.com/BryanAdamss).<br />
 This project is [MIT](https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE) licensed.
 
-## Contributors ✨
+## 贡献者 ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 

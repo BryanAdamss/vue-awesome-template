@@ -7,6 +7,7 @@
     "build": "vue-cli-service build",
     "build:modern": "vue-cli-service build --modern",
     "build:testing": "vue-cli-service build --mode testing",
+    "build:analysis": "vue-cli-service build --mode analysis",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
@@ -81,6 +82,7 @@
     "vue-cli-plugin-auto-alias": "~1.2.1",
     "vue-cli-plugin-style-resources-loader": "~0.1.4",
     "vue-template-compiler": "^2.6.11",
+    "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cdn-plugin": "^3.3.1"
   },
   "config": {

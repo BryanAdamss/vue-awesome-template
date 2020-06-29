@@ -1,6 +1,8 @@
 const path = require('path')
 const WebpackCdnPlugin = require('webpack-cdn-plugin')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
 
 // 设置svg sprite
 const svgSprite = config => {
@@ -110,6 +112,15 @@ const enableGZip = config => {
   ])
 }
 
+// 启用打包分析
+const enableBundleAnalysis = config => {
+  if (process.env.NODE_ENV !== 'production') return
+
+  if (process.env.VUE_APP_BUNDLE_ANALYSIS) {
+    config.plugin('bundle-analysis').use(BundleAnalyzerPlugin)
+  }
+}
+
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
   devServer: {
@@ -138,6 +149,8 @@ module.exports = {
     dropConsole(config)
 
     enableGZip(config)
+
+    enableBundleAnalysis(config)
   },
   pluginOptions: {
     // vue-cli-plugin-auto-alias 配置

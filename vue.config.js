@@ -27,6 +27,8 @@ const svgSprite = config => {
 
 // 设置cdn
 const setCDN = config => {
+  if (process.env.NODE_ENV !== 'production') return
+
   const CDN_CONFIG = {
     modules: [
       {

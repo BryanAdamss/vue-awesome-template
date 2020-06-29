@@ -6,14 +6,23 @@
 import { VCONSOLE_DEBUG } from 'Config'
 
 const loadVconsole = () => {
-  import(/* webpackChunkName:'vconsole' */ 'vconsole/dist/vconsole.min.js')
-    .then(({ default: Vconsole }) => {
-      /* eslint-disable no-unused-vars */
-      var vConsole = new Vconsole()
-    })
-    .catch(err => {
-      console.log('vconsole', err)
-    })
+  let script = document.createElement('script')
+  script.src =
+    'https://cdn.jsdelivr.net/npm/vconsole@3.3.4/dist/vconsole.min.js'
+  script.async = true
+
+  script.onload = () => {
+    // eslint-disable-next-line
+    var vConsole = new VConsole()
+    script = null
+  }
+
+  script.onerror = err => {
+    console.log('loadVconsole', err)
+    script = null
+  }
+
+  document.body.appendChild(script)
 }
 
 export function vconsoleProvider() {
@@ -26,7 +35,7 @@ export function vconsoleProvider() {
   const handleClick = () => {
     count++
     clearTimeout(timer)
-
+    // 点击10次加载vconsole
     if (count >= 10) {
       clearTimeout(timer)
       count = 0

@@ -1,6 +1,8 @@
 {
   "name": "vue-awesome-template",
   "version": "2.1.0",
+  "description": "A Vue.js project template base on vue-cli@4.x",
+  "author": "BryanAdamss@foxmail.com",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -84,6 +86,10 @@
     "vue-template-compiler": "^2.6.11",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cdn-plugin": "^3.3.1"
+  },
+  "engines": {
+    "node": ">= 8.17.0",
+    "npm": ">= 6.13.4"
   },
   "config": {
     "commitizen": {

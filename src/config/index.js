@@ -107,4 +107,4 @@ export const VUEX_DEFAULT_CONFIG = {
 // * ----------------------------------------
 
 // 开启vconsole
-export const VCONSOLE_DEBUG = false
+export const VCONSOLE_DEBUG = true

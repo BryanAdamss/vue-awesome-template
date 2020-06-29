@@ -50,6 +50,12 @@ const setCDN = config => {
         name: 'css-vars-ponyfill',
         var: 'cssVars',
         path: 'dist/css-vars-ponyfill.min.js'
+      },
+      {
+        name: 'element-ui',
+        var: 'ELEMENT',
+        path: 'lib/index.js',
+        style: 'lib/theme-chalk/index.css'
       }
     ],
     prodUrl: '//cdn.jsdelivr.net/npm/:name@:version/:path'

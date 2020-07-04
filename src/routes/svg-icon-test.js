@@ -3,16 +3,16 @@
  * @description svg-icon-test 测试页
  */
 
-const SVGIconTest = () =>
-  import(/* webpackChunkName:'SVGIconTest' */ 'Views/SVGIconTest/SVGIconTest')
+const SvgIconTest = () =>
+  import(/* webpackChunkName:'SvgIconTest' */ 'Views/SvgIconTest/SvgIconTest')
 
 export default [
   {
     path: '/svg-icon-test',
-    name: 'SVGIconTest',
-    component: SVGIconTest,
+    name: 'SvgIconTest',
+    component: SvgIconTest,
     meta: {
-      title: '测试SVGIconTest'
+      title: '测试SvgIconTest'
     }
   }
 ]

@@ -1,5 +1,5 @@
 <template>
-  <div class="c-SVGIconTest">
+  <div class="c-SvgIconTest">
     <BaseSvgIcon
       name="1"
       size="20"
@@ -17,13 +17,13 @@
 
 <script>
 /**
- * * SVGIconTest
+ * * SvgIconTest
  */
 
 import BaseSvgIcon from 'Base/BaseSvgIcon'
 
 export default {
-  name: 'SVGIconTest',
+  name: 'SvgIconTest',
   components: {
     BaseSvgIcon
   },
@@ -42,6 +42,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.c-SVGIconTest {
+.c-SvgIconTest {
 }
 </style>

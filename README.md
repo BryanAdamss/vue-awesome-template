@@ -47,6 +47,7 @@ npm run serve
     "build:analysis": "vue-cli-service build --mode analysis", // 打包分析
     "test:unit": "vue-cli-service test:unit", // 单元测试
     "test:e2e": "vue-cli-service test:e2e", // e2e测试
+    "ls-lint":"ls-lint",// 命名检测
     "lint": "vue-cli-service lint", // lint
     "lint:fix": "vue-cli-service lint --fix", // lint fix
     "inspect": "vue-cli-service inspect > webpack.inspect.js", // 检查development webpack配置
@@ -81,6 +82,7 @@ npm run serve
 ├─babel.config.js                 # babel配置
 ├─CHANGELOG.md                    # 更新记录
 ├─commitlint.config.js            # commitlint配置
+├─.ls-lint.yml                    # ls-lint配置(命名检测)
 ├─cypress.json                    # e2e测试配置
 ├─jest.config.js                  # 单元测试配置
 ├─LICENSE                         # 版权文件
@@ -265,7 +267,7 @@ npm run serve
 
 ## 代码风格、发包
 
-- 集成`eslint`、`prettier`、`style-lint`、`commitlint`开箱即用
+- 集成`eslint`、`prettier`、`style-lint`、`commitlint`、`ls-lint(命名检测)`开箱即用
 - 集成`standard-version`标准化发包
 
 ## mock

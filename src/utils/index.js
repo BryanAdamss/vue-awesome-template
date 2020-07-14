@@ -252,6 +252,93 @@ export function assert(conditions, msg) {
 export const str2kebab = str => str.replace(/\B([A-Z])/g, '-$1').toLowerCase()
 
 /**
+ * 毫秒转秒
+ *
+ * @export
+ * @param {number} ms 毫秒
+ * @returns 秒
+ */
+export function ms2s(ms) {
+  return Math.floor(ms / 1000)
+}
+
+/**
+ * 毫秒转分
+ *
+ * @export
+ * @param {number} ms 毫秒
+ * @returns 分
+ */
+export function ms2m(ms) {
+  return Math.floor(ms2s(ms) / 60)
+}
+
+/**
+ * 毫秒转小时
+ *
+ * @export
+ * @param {number} ms 毫秒
+ * @returns 小时
+ */
+export function ms2h(ms) {
+  return Math.floor(ms2m(ms) / 60)
+}
+
+/**
+ * 前补0
+ *
+ * @export
+ * @param {number} num 数字
+ * @returns 补零后的字符串
+ */
+export function padZero(num) {
+  const n = Math.abs(parseInt(num))
+  if (isNaN(n)) throw new Error('输入参数无法转换为整数')
+
+  return `${n < 10 ? '0' + n : n}`
+}
+
+/**
+ * 毫秒转角分符号形式
+ * https://zh.wikipedia.org/wiki/角分符号
+ * 分′秒″
+ *
+ * @export
+ * @param {Number|String} num 需要转换的数字
+ * @param {String} primeSymbol 角分符号；默认为′
+ * @param {String} doublePrimeSymbol 角秒符号；默认为″
+ * @param {Boolean} needPadZero 是否需要前补0；默认为true
+ * @param {Boolean} showM 是否需要展示分；默认为true
+ */
+export function ms2PrimeSymbol({
+  num,
+  primeSymbol = '′',
+  doublePrimeSymbol = '″',
+  needPadZero = true,
+  showM = true
+}) {
+  const n = Math.floor(num)
+
+  // null 会被floor函数转为0
+  if (isNaN(n) || n === 0) {
+    return needPadZero ? `00${doublePrimeSymbol}` : `0${doublePrimeSymbol}`
+  }
+
+  if (!showM) {
+    return needPadZero
+      ? `${padZero(ms2s(n))}${doublePrimeSymbol}`
+      : `${ms2s(n)}${doublePrimeSymbol}`
+  }
+
+  const m = ms2m(n)
+  const s = ms2s(n) % 60
+
+  return needPadZero
+    ? `${padZero(m)}${primeSymbol}${padZero(s)}${doublePrimeSymbol}`
+    : `${m}${primeSymbol}${s}${doublePrimeSymbol}`
+}
+
+/**
  * 毫秒转换为 时'分"秒 形式
  * @param {Number|String} num 需要转换的数字
  * @param {String} sep 主要分隔符；默认为'
@@ -272,22 +359,14 @@ export function ms2hms({
   // null 会被floor函数转为0
   if (isNaN(n) || n === 0) return num
 
-  const padZeroFn = num => `${num < 10 && num >= 0 ? '0' + num : num}`
-
-  const ms2s = ms => Math.floor(ms / 1000)
-
-  const ms2m = ms => Math.floor(ms2s(ms) / 60)
-
-  const ms2h = ms => Math.floor(ms2m(ms) / 60)
-
-  if (!showM) return needPadZero ? padZeroFn(ms2s(n)) : n + ''
+  if (!showM) return needPadZero ? padZero(ms2s(n)) : n + ''
 
   if (!showH) {
     const m = ms2m(n)
     const s = ms2s(n) % 60
 
     return needPadZero
-      ? `${padZeroFn(m)}${subSep}${padZeroFn(s)}`
+      ? `${padZero(m)}${subSep}${padZero(s)}`
       : `${m}${subSep}${s}`
   } else {
     const h = ms2h(n)
@@ -295,7 +374,7 @@ export function ms2hms({
     const s = ms2s(n) % 60
 
     return needPadZero
-      ? `${padZeroFn(h)}${sep}${padZeroFn(m)}${subSep}${padZeroFn(s)}`
+      ? `${padZero(h)}${sep}${padZero(m)}${subSep}${padZero(s)}`
       : `${h}${sep}${m}${subSep}${s}`
   }
 }
@@ -382,9 +461,9 @@ export const flatten = arr =>
 export const replaceEmoji = (str, placeholder = '') =>
   typeof str === 'string'
     ? str.replace(
-      /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udd8e|\ud83c[\udd91-\udd9a]|\ud83c[\udde6-\uddff]|\ud83c[\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/g,
-      placeholder
-    )
+        /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udd8e|\ud83c[\udd91-\udd9a]|\ud83c[\udde6-\uddff]|\ud83c[\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/g,
+        placeholder
+      )
     : str
 
 /**

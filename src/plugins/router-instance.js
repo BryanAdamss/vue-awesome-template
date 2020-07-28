@@ -9,6 +9,7 @@ import Router from 'vue-router'
 import routesLoader from 'Plugins/routes-loader'
 import { ROUTER_DEFAULT_CONFIG, INDEX_ROUTES } from 'Config'
 import {
+  scrollBehaviorFn as scrollBehavior,
   routerAfterEachFn,
   routerBeforeEachFn
 } from 'Config/interceptors/router-interceptor'
@@ -21,7 +22,8 @@ const routes = routesLoader(INDEX_ROUTES)
 
 const router = new Router({
   ...ROUTER_DEFAULT_CONFIG,
-  routes
+  routes,
+  scrollBehavior
 })
 
 router.afterEach(routerAfterEachFn)

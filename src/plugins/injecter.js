@@ -7,12 +7,18 @@ import Vue from 'vue'
 import BaseToast from 'Base/BaseToast/BaseToast'
 import { Loading, Message, MessageBox } from 'element-ui'
 
-import Saver from 'Plugins/saver'
 import bus from 'Plugins/event-bus'
 import api from 'Plugins/api-builder'
 
 import { GLOBAL_NAME_SPACE, BASE_URL, APP_INFO } from 'Config'
 import { throttle, debounce, getGlobalThis, getOrigin } from 'Utils'
+
+import {
+  globalSaver,
+  globalSessionSaver,
+  _getNewGlobalSaver,
+  _getNewGlobalSessionSaver
+} from 'Services/extends/global-saver'
 
 Vue.use(Loading.directive)
 
@@ -39,11 +45,11 @@ export const vueInjecter = () => {
       Vue.prototype.$prompt = MessageBox.prompt
       Vue.prototype.$message = Message
 
-      Vue.prototype.$saver = new Saver({ globalNamespace: GLOBAL_NAME_SPACE }) // 全局localStorageSaver
-      Vue.prototype.$sessionSaver = new Saver({
-        globalNamespace: GLOBAL_NAME_SPACE,
-        isSession: true
-      }) // 全局sessionStorageSaver
+      Vue.prototype.$saver = globalSaver // 全局localStorageSaver
+      Vue.prototype.$sessionSaver = globalSessionSaver // 全局sessiontorageSaver
+
+      Vue.prototype.$getNewGlobalSaver = _getNewGlobalSaver
+      Vue.prototype.$getNewGlobalSessionSaver = _getNewGlobalSessionSaver
 
       Vue.prototype.$win = getGlobalThis()
 

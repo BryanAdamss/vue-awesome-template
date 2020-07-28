@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "Api/*": ["src/api/*"],
+      "Assets/*": ["src/assets/*"],
+      "Base/*": ["src/base/*"],
+      "Common/*": ["src/common/*"],
+      "Config/*": ["src/config/*"],
+      "Components/*": ["src/components/*"],
+      "Directives/*": ["src/directives/*"],
+      "Plugins/*": ["src/plugins/*"],
+      "Routes/*": ["src/routes/*"],
+      "Sass/*": ["src/sass/*"],
+      "Services/*": ["src/services/*"],
+      "Stores/*": ["src/stores/*"],
+      "Utils/*": ["src/utils/*"],
+      "Views/*": ["src/views/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

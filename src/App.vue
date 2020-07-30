@@ -26,6 +26,8 @@ import TopBar from 'Components/TopBar'
 
 import { LOADING_DEFAULT_CONFIG } from 'Config'
 
+import * as commonConst from 'Services/const/common'
+
 export default {
   name: 'App',
   components: {
@@ -33,6 +35,8 @@ export default {
     BaseLayoutVertical,
     BaseTransitionSlide
   },
+  // * 提供公用常量
+  provide: commonConst,
   data() {
     return {
       title: ''
@@ -49,6 +53,7 @@ export default {
       immediate: true
     }
   },
+
   created() {
     this.bindBusEvents()
     this.$once('hook:beforeDestroy', this.unbindBusEvents)

@@ -5,13 +5,6 @@
 
 import cssVars from 'css-vars-ponyfill'
 
-/**
- * 主题切换服务
- *
- * @export
- * @class ThemeService
- */
-
 export default class ThemeService {
   constructor() {
     this.styleEl = null

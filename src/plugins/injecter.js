@@ -9,6 +9,7 @@ import { Loading, Message, MessageBox } from 'element-ui'
 
 import bus from 'Plugins/event-bus'
 import api from 'Plugins/api-builder'
+import { constLoader } from 'Plugins/const-loader'
 
 import { GLOBAL_NAME_SPACE, BASE_URL, APP_INFO } from 'Config'
 import { throttle, debounce, getGlobalThis, getOrigin } from 'Utils'
@@ -24,6 +25,9 @@ Vue.use(Loading.directive)
 
 const isBuildMode = mode => process.env.BUILD_MODE === mode
 
+/**
+ * vue 注入器
+ */
 export const vueInjecter = () => {
   const prototypeMethods = {
     install: (Vue, options) => {
@@ -61,12 +65,19 @@ export const vueInjecter = () => {
 
       // origin
       Vue.prototype.$origin = getOrigin()
+
+      Vue.prototype.$constLoader = function(arg) {
+        constLoader(this, arg)
+      }
     }
   }
 
   Vue.use(prototypeMethods)
 }
 
+/**
+ * 全局注入器
+ */
 export const globalInjecter = () => {
   window[GLOBAL_NAME_SPACE] = {
     APP_INFO,

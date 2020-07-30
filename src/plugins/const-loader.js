@@ -3,7 +3,7 @@
  * @description 常量加载器
  */
 
-import { isEmpty } from 'Utils'
+import { isEmpty } from 'Utils/type-judge'
 
 export function constLoader(vue, constantObj) {
   if (isEmpty(constantObj) || !vue._isVue) {

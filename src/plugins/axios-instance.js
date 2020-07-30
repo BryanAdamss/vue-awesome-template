@@ -12,8 +12,6 @@ import {
   respFailFn
 } from 'Config/interceptors/axios-interceptor'
 
-// console.log('AXIOS_DEFAULT_CONFIG', AXIOS_DEFAULT_CONFIG)
-
 const axiosInstance = axios.create(AXIOS_DEFAULT_CONFIG)
 
 axiosInstance.interceptors.request.use(reqResolveFn, reqRejectFn)

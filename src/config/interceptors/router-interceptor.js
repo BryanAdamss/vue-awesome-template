@@ -3,7 +3,7 @@
  * @description router钩子及守卫
  */
 
-import { STATUS_OK } from 'Services/const/common'
+import { LOGED_STATUS } from 'Services/const/common'
 
 // 修改标题
 const handleModifyTitle = to => {
@@ -17,7 +17,7 @@ const checkLogin = (to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     const LOGGED = sessionStorage.getItem('__auth__logged')
 
-    if (!LOGGED || parseInt(LOGGED) !== STATUS_OK) {
+    if (!LOGGED || parseInt(LOGGED) !== LOGED_STATUS) {
       next({
         name: 'Login',
         query: {

@@ -1,6 +1,6 @@
 /**
  * @author GuangHui
- * @description element-ui 注册器
+ * @description 组件注册器
  */
 
 import Vue from 'vue'
@@ -48,6 +48,11 @@ import CollapseTransition from 'element-ui/lib/transitions/collapse-transition'
 
 import VueLazyload from 'vue-lazyload'
 
+/**
+ * element-ui组件注册器
+ *
+ * @export
+ */
 export function elementUiRegister() {
   Vue.use(Pagination)
   Vue.use(Dialog)
@@ -90,6 +95,9 @@ export function elementUiRegister() {
   Vue.component(CollapseTransition.name, CollapseTransition)
 }
 
+/**
+ * VueLazyload注册器
+ */
 export function vueLazyloadReigster() {
   Vue.use(VueLazyload, {
     loading: require('Assets/img/loading.gif')

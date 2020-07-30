@@ -49,7 +49,7 @@ export default {
     },
     applyTheme() {
       if (!this.themeService) {
-        import('Plugins/theme-service.js')
+        import(/* webpackChunkName:'ThemeService' */'Plugins/theme-service.js')
           .then(({ default: ThemeService }) => {
             this.themeService = new ThemeService()
 

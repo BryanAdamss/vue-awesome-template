@@ -3,6 +3,8 @@
  * @description router钩子及守卫
  */
 
+import { STATUS_OK } from 'Services/const/common'
+
 // 修改标题
 const handleModifyTitle = to => {
   if (to.meta && to.meta.title) {
@@ -14,8 +16,8 @@ const handleModifyTitle = to => {
 const checkLogin = (to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     const LOGGED = sessionStorage.getItem('__auth__logged')
-    // TODO:此处1需要改用const中的status_ok
-    if (!LOGGED || parseInt(LOGGED) !== 1) {
+
+    if (!LOGGED || parseInt(LOGGED) !== STATUS_OK) {
       next({
         name: 'Login',
         query: {

@@ -49,6 +49,7 @@ export default {
 .c-LinkList {
   @at-root #{&}-item {
     color: #333;
+
     cursor: pointer;
     @at-root #{&}.router-link-active {
       color: red;

@@ -30,14 +30,16 @@ export default {
 
 <style>
 .c-DragTest {
-  border: 1px solid blue;
   width: 300px;
   height: 300px;
+
+  border: 1px solid blue;
 }
 
 .c-Box {
   width: 100px;
   height: 100px;
+
   background-color: #f00;
 }
 </style>

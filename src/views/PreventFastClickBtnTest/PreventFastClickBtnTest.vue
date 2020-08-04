@@ -38,6 +38,7 @@ export default {
 <style lang="scss" scoped>
 .c-MyBtn {
   color: blue;
+
   cursor: pointer;
 }
 </style>

@@ -107,7 +107,7 @@
     </ul>
     <div
       v-go-to-top="{target:'#goTop'}"
-      style="position:fixed;bottom:40px;right:10px;"
+      style="position:fixed;right:10px;bottom:40px;"
     >
       GoToTop
     </div>

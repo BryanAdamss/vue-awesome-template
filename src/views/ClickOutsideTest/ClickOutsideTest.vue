@@ -33,9 +33,11 @@ export default {
 
 <style>
 .c-Box {
-  font-size: 16px;
   width: 100px;
   height: 100px;
+
+  font-size: 16px;
+
   background-color: #f00;
 }
 </style>

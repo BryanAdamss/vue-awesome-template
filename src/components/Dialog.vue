@@ -158,19 +158,21 @@ export default {
 
 <style lang="scss" scoped>
 .c-Dialog {
-  border-radius: 4px;
-  background-color: #fff;
 
   color: $mainTextColor;
 
+  background-color: #fff;
+  border-radius: 4px;
+
   &-hd {
-    border-radius: 4px 4px 0 0;
     background: $mainTone;
+    border-radius: 4px 4px 0 0;
   }
 
   &-bd {
-    background-color: #fff;
     padding: 8px 16px;
+
+    background-color: #fff;
     &.is-radius {
       border-radius: 0 0 4px 4px;
     }
@@ -184,16 +186,18 @@ export default {
 
 .c-Hd {
   display: flex;
-  font-size: 14px;
-  color: #fff;
   padding: 8px 16px;
+
+  color: #fff;
+  font-size: 14px;
   &-main {
     flex: 1 1 auto;
+    overflow: hidden;
+
+    line-height: 24px;
 
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 24px;
   }
   &-sub {
     flex: 0 0 auto;
@@ -201,35 +205,40 @@ export default {
 }
 
 .c-Close {
-  cursor: pointer;
+  position: relative;
+
   font-size: 24px;
   line-height: 22px;
+
+  cursor: pointer;
   @include inline-block();
-  position: relative;
   &:hover {
     opacity: 0.8;
   }
   &::after {
-    content: '';
     position: absolute;
     top: -2px;
-    left: -2px;
     right: -2px;
     bottom: -2px;
+    left: -2px;
+
+    content: '';
   }
 }
 
 .c-BtnWp {
-  text-align: right;
   padding: 0 24px 24px 24px;
+
+  text-align: right;
 }
 
 .c-Tips {
   @extend %textWrap;
 
-  font-size: 14px;
+  padding: 16px 8px;
+
   color: $subTextColor;
 
-  padding: 16px 8px;
+  font-size: 14px;
 }
 </style>

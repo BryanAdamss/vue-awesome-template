@@ -65,8 +65,9 @@ export default {
 <style lang="scss" scoped>
 .c-PostMessageTest {
   iframe {
-    border: 2px solid blue;
     margin: 20px 0 0 20px;
+
+    border: 2px solid blue;
   }
 }
 </style>

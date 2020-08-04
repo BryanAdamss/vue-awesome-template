@@ -19,8 +19,9 @@ export default {
 <style scoped>
 .c-ImgBox {
   height: 500px;
-  border: 1px solid blue;
   overflow-y: auto;
+
+  border: 1px solid blue;
   -webkit-overflow-scrolling: touch;
 }
 </style>

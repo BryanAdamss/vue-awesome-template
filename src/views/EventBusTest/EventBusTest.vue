@@ -40,8 +40,9 @@ export default {
 
 <style lang="scss" scoped>
 .c-EventBusTest {
-  background-color: #ddd;
   padding: 10px;
+
+  background-color: #ddd;
 }
 .c-Parent {
   display: flex;
@@ -50,10 +51,12 @@ export default {
 
 .c-Son {
   flex: 1 1 auto;
-  border: 1px solid #333;
-  padding: 10px;
-  word-break: break-all;
   margin-top: 10px;
+  padding: 10px;
+
+  word-break: break-all;
+
+  border: 1px solid #333;
   & + & {
     margin-left: 10px;
   }
@@ -61,9 +64,11 @@ export default {
 
 .c-Msg {
   min-height: 2em;
-  color: #333;
-  border: 1px solid #999;
   margin-top: 10px;
+
+  color: #333;
+
   background-color: #fff;
+  border: 1px solid #999;
 }
 </style>

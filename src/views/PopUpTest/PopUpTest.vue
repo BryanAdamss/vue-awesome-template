@@ -19,7 +19,11 @@
       :position="buttons[0].label"
       :isShow.sync="isShowCenter"
     >
-      <div style="background-color:#fff;height:100%;">
+      <div
+        style="height:100%;
+
+background-color:#fff;"
+      >
         测试modal
         <button
           type="button"
@@ -38,7 +42,11 @@
       :position="buttons[1].label"
       :isShow.sync="isShowTop"
     >
-      <div style="background-color:#fff;height:100%;">
+      <div
+        style="height:100%;
+
+background-color:#fff;"
+      >
         测试modal
         <button
           type="button"
@@ -57,7 +65,11 @@
       :position="buttons[2].label"
       :isShow.sync="isShowRight"
     >
-      <div style="background-color:#fff;height:100%;">
+      <div
+        style="height:100%;
+
+background-color:#fff;"
+      >
         测试modal
         <button
           type="button"
@@ -76,7 +88,11 @@
       :position="buttons[3].label"
       :isShow.sync="isShowBottom"
     >
-      <div style="background-color:#fff;height:100%;">
+      <div
+        style="height:100%;
+
+background-color:#fff;"
+      >
         测试modal
         <button
           type="button"
@@ -95,7 +111,11 @@
       :position="buttons[4].label"
       :isShow.sync="isShowLeft"
     >
-      <div style="background-color:#fff;height:100%;">
+      <div
+        style="height:100%;
+
+background-color:#fff;"
+      >
         测试modal
         <button
           type="button"

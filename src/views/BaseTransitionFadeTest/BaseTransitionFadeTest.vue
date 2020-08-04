@@ -67,8 +67,8 @@ export default {
 .c-BoxWp {
   display: flex;
   flex-direction: row;
-  width: 100%;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .c-Box {
@@ -77,8 +77,9 @@ export default {
   height: 50px;
   margin-top: 20px;
   margin-right: 10px;
+
   background-color: rgb(108, 141, 213);
-  box-shadow: rgba(108, 141, 213, 0.5) 0px 6px 20px;
   border-radius: 10px;
+  box-shadow: rgba(108, 141, 213, 0.5) 0px 6px 20px;
 }
 </style>

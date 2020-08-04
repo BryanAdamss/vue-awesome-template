@@ -51,9 +51,11 @@ export default {
 <style lang="scss" scoped>
 .c-Msg {
   min-height: 2em;
-  color: #333;
-  border: 1px solid #999;
   margin-top: 10px;
+
+  color: #333;
+
   background-color: #fff;
+  border: 1px solid #999;
 }
 </style>

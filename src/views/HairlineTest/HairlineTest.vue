@@ -54,7 +54,7 @@ export default {
   height:100px;
   margin-left:10px;
 
-  &+&{
+  & + &{
     margin-top:10px;
   }
 

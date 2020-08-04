@@ -26,7 +26,8 @@
     "release:major": "npm run release -r major",
     "release:minor": "npm run release -r minor",
     "release:patch": "npm run release -r patch",
-    "release:publish": "git push --follow-tags origin master"
+    "release:publish": "git push --follow-tags origin master",
+    "gen-color":"node gen-color.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -56,6 +57,7 @@
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/test-utils": "^1.0.3",
     "all-contributors-cli": "^6.16.0",
+    "ant-color-converter": "^1.0.0",
     "babel-eslint": "^10.1.0",
     "commitizen": "^4.1.2",
     "compression-webpack-plugin": "^4.0.0",

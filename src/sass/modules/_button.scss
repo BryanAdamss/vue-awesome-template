@@ -12,13 +12,15 @@ button, [type="button"], [type="submit"], [type="reset"] {
 }
 
 .c-Btn, .c-BorderBtn {
-    font-size: 16px;
-    cursor: pointer;
     width: 100%; // 实际宽度由外部网格容器来控制
-    padding: 0 .8em;
-    line-height: 2em;
     height: 2em;
+    padding: 0 .8em;
+
+    font-size: 16px;
+    line-height: 2em;
     text-align: center;
+
+    cursor: pointer;
     @include inline-block();
 }
 
@@ -30,17 +32,18 @@ a.c-Btn, a.c-BorderBtn {
 }
 
 .c-Btn {
-    background-color: #999;
     color: $mainButtonColor;
+
+    background-color: #999;
     border: none;
     @at-root #{&}:active {
         // 点击颜色加深
         box-shadow: 0 0 0px 1em rgba(0, 0, 0, 0.1) inset;
     }
     @at-root #{&}--primary {
+        color: $mainButtonColor;
         // 实色按钮
         background-color: $mainTone;
-        color: $mainButtonColor;
     }
     @at-root #{&}--radius {
         // 圆角按钮
@@ -53,18 +56,22 @@ a.c-Btn, a.c-BorderBtn {
 }
 
 .c-BorderBtn {
-    background-color: transparent;
     color: #999;
+
+    background-color: transparent;
     border: 1px solid #999;
     @at-root #{&}:active {
         color: darken(#999, 10%);
+
         border-color: darken(#999, 10%);
     }
     @at-root #{&}--primary {
         color: $mainTone;
+
         border-color: $mainTone;
         @at-root #{&}:active {
             color: darken($mainTone, 10%);
+
             border-color: darken($mainTone, 10%);
         }
     }

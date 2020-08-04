@@ -22,15 +22,16 @@ $bp_pc:80em !default;
 .c-Row {
     font-size: 0;
     [class*="c-Row-col"] { // 选择class中包含c-Row-col单词的元素
-        padding-left: $gridGutter/2;
+        position: relative;
+
         padding-right: $gridGutter/2;
-        @include inline-block($gridVerticalAlign);
+        padding-left: $gridGutter/2;
         // .c-Row设置font-size:0,所以列使用inital设置回浏览器默认值
         font-size: initial;
         font-size: 16px\9;
         // 由于在c-Row上可能应用u-textC来居中列，所以在列中将text-align置回正常值
         text-align: left;
-        position: relative;
+        @include inline-block($gridVerticalAlign);
         // 移除首个和最后个的padding
         @at-root #{&}:first-of-type{
             padding-left:0;

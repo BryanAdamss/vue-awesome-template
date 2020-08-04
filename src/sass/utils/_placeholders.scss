@@ -6,10 +6,11 @@
 
 // 去除表单默认样式
 %noAppearance {
+    outline: 0;
+
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    outline: 0;
 }
 
 // 禁用选择
@@ -34,17 +35,18 @@
 
 // 两端对齐
 %textJustify {
+    //去除伪元素所占空间,但%textJustify内部元素必须设置字体大小(因为继承的关系，他们font-size也为0,所以需要重置)
+    font-size:0;
     text-align: justify;
     @if $lte7 {
         text-justify: inter-ideograph \9;
     }
-    //去除伪元素所占空间,但%textJustify内部元素必须设置字体大小(因为继承的关系，他们font-size也为0,所以需要重置)
-    font-size:0;
     &:after {
-        content: '';
-        @include inline-block();
         width: 100%;
         height: 0;
+
+        content: '';
+        @include inline-block();
     }
 }
 
@@ -55,8 +57,9 @@
     }
     &:before,
     &:after {
-        content: "";
         display: table;
+
+        content: "";
     }
     &:after {
         clear: both;

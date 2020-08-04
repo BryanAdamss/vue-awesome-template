@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 // ---------------------------------------------
 // common-m.scss包含默认变量、自定义变量、_mixin、_funciton、_placeholder、_mediaQuery、_normalize、_typography、_helpers以及移动端自适应需要的字体设置
 // ---------------------------------------------
@@ -25,16 +25,18 @@
 html {
   @include htmlFont(M);
   height: 100%;
-  background-color: #fefefe;
   overflow: hidden;
+
+  background-color: #fefefe;
 }
 
 body {
   @include bodyFontSize(M);
-  background-color: #fff;
   height: 100%;
-  box-shadow: 0 0 0 1px red;
   overflow: hidden;
+
+  background-color: #fff;
+  box-shadow: 0 0 0 1px red;
 }
 
 body.is-hidden {

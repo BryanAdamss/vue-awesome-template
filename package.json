@@ -27,7 +27,8 @@
     "release:minor": "npm run release -r minor",
     "release:patch": "npm run release -r patch",
     "release:publish": "git push --follow-tags origin master",
-    "gen-color":"node gen-color.js"
+    "gen-color": "node gen-color",
+    "new:comp": "node node_modules/@bryanadamss/generate-file"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -42,6 +43,7 @@
     "vuex": "^3.4.0"
   },
   "devDependencies": {
+    "@bryanadamss/generate-file": "^1.1.7",
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
     "@ls-lint/ls-lint": "^1.9.0",

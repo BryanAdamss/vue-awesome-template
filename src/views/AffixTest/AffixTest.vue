@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="box">
+      asdjifajsiodfji
+    </div>
     <div>
       <p>占位行1</p>
       <p>占位行2</p>
@@ -80,6 +83,7 @@ export default {
 .c-AffixTest {
   background-color: red;
 }
+
 p {
   margin: 0;
   padding: 10px 0;

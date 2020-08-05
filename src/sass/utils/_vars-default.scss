@@ -115,8 +115,8 @@ $theme-dark: gen-var(theme-dark, $gray-9) !default;
 // ------------------------------------------
 // * 品牌色
 // ------------------------------------------
-$brand-primary: gen-var(brand-primary, $theme-primary) !default; // 主色
-$brand-minor: gen-var(brand-minor, $theme-danger) !default; // 辅色
+$brand-primary: gen-var(brand-primary, $blue-6) !default; // 主色
+$brand-minor: gen-var(brand-minor, $red-6) !default; // 辅色
 
 // ------------------------------------------
 // * 文本颜色

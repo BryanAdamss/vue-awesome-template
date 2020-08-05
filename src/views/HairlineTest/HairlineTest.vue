@@ -46,40 +46,39 @@ export default {
 
 <style lang="scss" scoped>
 .c-HairLineTest {
-
 }
 
-.c-Box{
-  width:100px;
-  height:100px;
-  margin-left:10px;
+.c-Box {
+  width: 100px;
+  height: 100px;
+  margin-left: 10px;
 
-  & + &{
-    margin-top:10px;
+  & + & {
+    margin-top: 10px;
   }
 
-  &.is-top{
-    @include setTopLine(red);
+  &.is-top {
+    @include setTopLine($brand-primary);
   }
 
-  &.is-right{
+  &.is-right {
     @include setRightLine(red);
   }
 
-  &.is-bottom{
+  &.is-bottom {
     @include setBottomLine(red);
   }
 
-  &.is-left{
+  &.is-left {
     @include setLeftLine(red);
   }
 
-  &.is-all{
+  &.is-all {
     @include setLines(red);
   }
 
-  &.is-radius{
-    @include setLines(red,(4px,8px,12px,16px));
+  &.is-radius {
+    @include setLines(red, (4px, 8px, 12px, 16px));
   }
 }
 </style>

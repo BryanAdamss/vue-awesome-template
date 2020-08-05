@@ -20,8 +20,8 @@ $theme-dark: gen-var(theme-dark, $gray-9);
 // ------------------------------------------
 // * 品牌色
 // ------------------------------------------
-$brand-primary: gen-var(brand-primary, $theme-primary); // 主色
-$brand-minor: gen-var(brand-minor, $theme-danger); // 辅色
+$brand-primary: gen-var(brand-primary, $blue-6); // 主色
+$brand-minor: gen-var(brand-minor, $red-6); // 辅色
 
 // ------------------------------------------
 // * 文本颜色

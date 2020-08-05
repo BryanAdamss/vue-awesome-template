@@ -170,9 +170,10 @@ module.exports = {
     'style-resources-loader': {
       preProcessor: 'scss',
       patterns: [
-        path.resolve(__dirname, 'src/sass/utils/_variablesCustom-m.scss'),
-        path.resolve(__dirname, 'src/sass/utils/_variables.scss'),
         path.resolve(__dirname, 'src/sass/utils/_function.scss'),
+        path.resolve(__dirname, 'src/sass/utils/_color-palette.scss'),
+        path.resolve(__dirname, 'src/sass/utils/_vars-default.scss'),
+        path.resolve(__dirname, 'src/sass/utils/_vars-m.scss'),
         path.resolve(__dirname, 'src/sass/utils/_mixins.scss'),
         path.resolve(__dirname, 'src/sass/utils/_mediaQuery.scss'),
         path.resolve(__dirname, 'src/sass/utils/_placeholders.scss')

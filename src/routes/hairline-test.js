@@ -1,10 +1,12 @@
 /**
- * @author ghchu
+ * @author GuangHui
  * @description haid-line 测试页
  */
 
 const HairlineTest = () =>
-  import(/* webpackChunkName:'HairlineTest' */ 'Views/HairlineTest/HairlineTest')
+  import(
+    /* webpackChunkName:'HairlineTest' */ 'Views/HairlineTest/HairlineTest'
+  )
 
 export default [
   {

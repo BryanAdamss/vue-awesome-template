@@ -174,7 +174,6 @@ module.exports = {
         path.resolve(__dirname, 'src/sass/utils/_color-palette.scss'),
         path.resolve(__dirname, 'src/sass/utils/_vars-default.scss'),
         path.resolve(__dirname, 'src/sass/utils/_vars-m.scss'),
-        path.resolve(__dirname, 'src/sass/utils/_root.scss'),
         path.resolve(__dirname, 'src/sass/utils/_mixins.scss'),
         path.resolve(__dirname, 'src/sass/utils/_mediaQuery.scss'),
         path.resolve(__dirname, 'src/sass/utils/_placeholders.scss')

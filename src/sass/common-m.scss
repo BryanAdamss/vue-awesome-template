@@ -17,6 +17,8 @@
 @import './base/_typography.scss';
 // 导入助手样式
 @import './helpers/_helpers.scss';
+// 导入:root样式
+@import './modules/_root.scss';
 // 导入自定义element loading样式
 @import './loading.scss';
 // ---------------------------------------------

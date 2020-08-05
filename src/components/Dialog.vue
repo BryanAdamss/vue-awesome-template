@@ -158,14 +158,13 @@ export default {
 
 <style lang="scss" scoped>
 .c-Dialog {
-
-  color: $mainTextColor;
+  color: $text-color-primary;
 
   background-color: #fff;
   border-radius: 4px;
 
   &-hd {
-    background: $mainTone;
+    background: $brand-primary;
     border-radius: 4px 4px 0 0;
   }
 
@@ -237,7 +236,7 @@ export default {
 
   padding: 16px 8px;
 
-  color: $subTextColor;
+  color: $text-color-regular;
 
   font-size: 14px;
 }

@@ -80,43 +80,49 @@ export default {
 
 <style lang="scss" scoped>
 .c-BaseConfirm {
-  max-width: 100%;
   min-width: rem(400px);
+  max-width: 100%;
+
+  font-size: 16px;
+
   background-color: #fff;
   border-radius: 0.2em;
-  font-size: 16px;
   &-hd {
     padding: rem(10px) rem(20px);
   }
   &-bd {
-    font-size: 1em;
-    color: $mainTextColor;
     padding: 0 rem(20px) rem(10px) rem(20px);
+
+    color: $text-color-primary;
+    font-size: 1em;
     @extend %textWrap;
   }
 }
 
 .c-BtnGroup {
+  position: relative;
+
   display: flex;
   justify-content: space-between;
-  position: relative;
   &::after {
     @include setTopLine();
   }
 }
 .c-Btn {
-  font-size: 1em;
-  color: $subTextColor;
-  text-align: center;
   flex: 1 1 auto;
+
+  color: $text-color-regular;
+  font-size: 1em;
   line-height: 2em;
+  text-align: center;
   &:active {
-    opacity: 0.8;
     background-color: #eee;
+    opacity: 0.8;
   }
   & + & {
     position: relative;
-    color: $mainTone;
+
+    color: $brand-primary;
     &::after {
       @include setLeftLine();
     }
@@ -124,10 +130,11 @@ export default {
 }
 
 .c-Title {
-  font-size: 1.125em;
-  font-weight: bold;
   margin: 0;
+
+  color: $text-color-primary;
+  font-weight: bold;
+  font-size: 1.125em;
   text-align: center;
-  color: $mainTextColor;
 }
 </style>

@@ -73,10 +73,9 @@ export default {
   text-align: center;
 
   &-main {
-
     margin: 0;
 
-    color: $mainTextColor;
+    color: $text-color-primary;
     font-weight: bold;
     font-size: 24px;
 

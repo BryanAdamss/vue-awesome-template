@@ -1,0 +1,158 @@
+/**
+ * @author GuangHui
+ * @description 默认变量
+ */
+
+@charset "UTF-8";
+
+// 导入调色板
+@import './_color-palette';
+
+// ------------------------------------------
+// * 命名空间
+// ------------------------------------------
+$namespace: gh !default;
+
+// ------------------------------------------
+// * 基础颜色
+// ------------------------------------------
+$white: $gray-1 !default;
+$black: $gray-13 !default;
+
+// ------------------------------------------
+// * 字体栈
+// ------------------------------------------
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  Ubuntu, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !default; // 无衬线字体
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+  'Liberation Mono', 'Courier New', monospace !default; // monospace
+
+// 字体Map(用于在root上生成css3变量)
+$fonts: (
+  'font-family-sans-serif': $font-family-sans-serif,
+  'font-family-monospace': $font-family-monospace
+) !default;
+
+// ------------------------------------------
+// * 尺寸
+// ------------------------------------------
+$space-base: 16px !default;
+$space-none: 0 !default;
+$space-tiny: $space-base / 4 !default;
+$space-small: $space-base / 2 !default;
+$space-large: $space-base * 1.5 !default;
+$space-huge: $space-base * 3 !default;
+
+// 尺寸Map(用于在root上生成css3变量)
+$spaces: (
+  'space-none': $space-none,
+  'space-tiny': $space-tiny,
+  'space-small': $space-small,
+  'space-base': $space-base,
+  'space-large': $space-large,
+  'space-huge': $space-huge
+) !default;
+
+// ------------------------------------------
+// * 字体大小
+// ------------------------------------------
+$font-size-base: 16px !default;
+$font-size-tiny: $font-size-base - 2 * 2 !default;
+$font-size-small: $font-size-base - 2 !default;
+$font-size-large: $font-size-base + 2 !default;
+$font-size-huge: $font-size-base + 2 * 2 !default;
+
+$font-size-h1: $font-size-base * 2.5 !default;
+$font-size-h2: $font-size-base * 2 !default;
+$font-size-h3: $font-size-base * 1.75 !default;
+$font-size-h4: $font-size-base * 1.5 !default;
+$font-size-h5: $font-size-base * 1.25 !default;
+$font-size-h6: $font-size-base !default;
+
+// 字体大小Map(用于在root上生成css3变量)
+$font-sizes: (
+  'font-size-tiny': $font-size-tiny,
+  'font-size-small': $font-size-small,
+  'font-size-base': $font-size-base,
+  'font-size-large': $font-size-large,
+  'font-size-huge': $font-size-huge,
+  'font-size-h1': $font-size-h1,
+  'font-size-h2': $font-size-h2,
+  'font-size-h3': $font-size-h3,
+  'font-size-h4': $font-size-h4,
+  'font-size-h5': $font-size-h5,
+  'font-size-h6': $font-size-h6
+) !default;
+
+// ------------------------------------------
+// * 行高
+// ------------------------------------------
+$line-height-base: 1.5 !default;
+$line-height-sm: 1.25 !default;
+$line-height-lg: 2 !default;
+
+// 行高Map(用于在root上生成css3变量)
+$line-heights: (
+  'line-height-sm': $line-height-sm,
+  'line-height-base': $line-height-base,
+  'line-height-lg': $line-height-lg
+) !default;
+
+// ------------------------------------------
+// * 主题色
+// ------------------------------------------
+$theme-primary: gen-var(theme-primary, $blue-6) !default;
+$theme-secondary: gen-var(theme-secondary, $gray-6) !default;
+$theme-success: gen-var(theme-success, $green-6) !default;
+$theme-info: gen-var(theme-info, $cyan-6) !default;
+$theme-warning: gen-var(theme-warning, $yellow-6) !default;
+$theme-danger: gen-var(theme-danger, $red-6) !default;
+
+$theme-light: gen-var(theme-light, $gray-5) !default;
+$theme-dark: gen-var(theme-dark, $gray-9) !default;
+
+// ------------------------------------------
+// * 品牌色
+// ------------------------------------------
+$brand-primary: gen-var(brand-primary, $theme-primary) !default; // 主色
+$brand-minor: gen-var(brand-minor, $theme-danger) !default; // 辅色
+
+// ------------------------------------------
+// * 文本颜色
+// ------------------------------------------
+$text-color-primary: gen-var(text-color-primary, $gray-10) !default;
+$text-color-regular: gen-var(text-color-regular, $gray-9) !default;
+$text-color-secondary: gen-var(text-color-secondary, $gray-8) !default;
+$text-color-placeholder: gen-var(text-color-placeholder, $gray-7) !default;
+
+// ------------------------------------------
+// * 文本大小
+// ------------------------------------------
+$text-size-base: gen-var(text-size-base, $font-size-base) !default;
+$text-size-small: gen-var(text-size-small, $font-size-small) !default;
+$text-size-tiny: gen-var(text-size-tiny, $font-size-tiny) !default;
+$text-size-large: gen-var(text-size-large, $font-size-large) !default;
+$text-size-huge: gen-var(text-size-huge, $font-size-huge) !default;
+
+// ------------------------------------------
+// * 字体栈
+// ------------------------------------------
+$font-sans-serif: gen-var(font-sans-serif, $font-family-sans-serif) !default;
+$font-monospace: gen-var(font-monospace, $font-family-monospace) !default;
+
+// ------------------------------------------
+// * 边框
+// ------------------------------------------
+$border-color: gen-var(border-color, $gray-5) !default;
+
+// ------------------------------------------
+// * 其它
+// ------------------------------------------
+$lte7: gen-var(lte7, false) !default; //是否兼容ie6-7
+$ie-filter: gen-var(
+  ie-filter,
+  false
+) !default; //是否为ie6-8开启css3滤镜兼容，常用于渐变背景
+
+$ui-width: 750px !default; // 设计图尺寸，用于rem()和设置html的字体大小

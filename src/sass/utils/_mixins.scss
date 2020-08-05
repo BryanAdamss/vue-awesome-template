@@ -21,125 +21,184 @@
   }
 }
 
-
 // 1px边框(伪元素+scale+media query)
-@mixin hairLine($directionMaps: bottom, $color: #ccc, $radius:(0, 0, 0, 0), $position: after) {
+@mixin hairLine(
+  $directionMaps: bottom,
+  $color: #ccc,
+  $radius: (
+    0,
+    0,
+    0,
+    0
+  ),
+  $position: after
+) {
   // 是否只有一个方向
   $isOnlyOneDir: string==type-of($directionMaps);
 
   @if ($isOnlyOneDir) {
-      $directionMaps: ($directionMaps);
+    $directionMaps: ($directionMaps);
   }
 
   // 设置border(用于dpr==1)
   @each $directionMap in $directionMaps {
-      border-#{$directionMap}: 1px solid $color;
+    border-#{$directionMap}: 1px solid $color;
   }
 
-  
   // 设置圆角
-  @if(list == type-of($radius)) {
+  @if (list == type-of($radius)) {
     // 判断圆角是list还是number
-      border-radius: nth($radius, 1) nth($radius, 2) nth($radius, 3) nth($radius, 4);
-  }
-  @else {
-      border-radius: $radius;
+    border-radius: nth($radius, 1)
+      nth($radius, 2)
+      nth($radius, 3)
+      nth($radius, 4);
+  } @else {
+    border-radius: $radius;
   }
 
   // 用于drp==2
   @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-      & {
-          position: relative;
+    & {
+      position: relative;
 
-          // 删除1像素密度比下的边框
-          @each $directionMap in $directionMaps {
-              border-#{$directionMap}: none;
-          }
+      // 删除1像素密度比下的边框
+      @each $directionMap in $directionMaps {
+        border-#{$directionMap}: none;
+      }
+    }
+
+    &::#{$position} {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      display: block;
+      box-sizing: border-box;
+      width: 200%;
+      height: 200%;
+      padding: 1px;
+
+      border: 0 solid $color;
+      transform: scale(0.5);
+      transform-origin: 0 0;
+
+      content: '';
+      pointer-events: none;
+
+      @each $directionMap in $directionMaps {
+        border-#{$directionMap}-width: 1px;
       }
 
-      &::#{$position} {
-          position: absolute;
-          top: 0;
-          left: 0;
-
-          display: block;
-          box-sizing: border-box;
-          width: 200%;
-          height: 200%;
-          padding: 1px;
-
-          border: 0 solid $color;
-          transform: scale(0.5);
-          transform-origin: 0 0;
-
-          content: "";
-          pointer-events: none;
-
-          @each $directionMap in $directionMaps {
-              border-#{$directionMap}-width: 1px;
-          }
-
-          // 判断圆角是list还是number
-          @if(list==type-of($radius)) {
-              border-radius: nth($radius, 1)*2 nth($radius, 2)*2 nth($radius, 3)*2 nth($radius, 4)*2;
-          }
-
-          @else {
-              border-radius: $radius*2;
-          }
-
+      // 判断圆角是list还是number
+      @if (list==type-of($radius)) {
+        border-radius: nth($radius, 1) *
+          2
+          nth($radius, 2) *
+          2
+          nth($radius, 3) *
+          2
+          nth($radius, 4) *
+          2;
+      } @else {
+        border-radius: $radius * 2;
       }
+    }
   }
 
   // 用于dpr==3
   @media only screen and (-webkit-min-device-pixel-ratio: 3) {
-      &::#{$position} {
-
-          // 判断圆角是list还是number
-          @if(list==type-of($radius)) {
-              border-radius: nth($radius, 1)*3 nth($radius, 2)*3 nth($radius, 3)*3 nth($radius, 4)*3;
-          }
-
-          @else {
-              border-radius: $radius*3;
-          }
-
-          width: 300%;
-          height: 300%;
-
-          transform: scale(0.3333);
+    &::#{$position} {
+      // 判断圆角是list还是number
+      @if (list==type-of($radius)) {
+        border-radius: nth($radius, 1) *
+          3
+          nth($radius, 2) *
+          3
+          nth($radius, 3) *
+          3
+          nth($radius, 4) *
+          3;
+      } @else {
+        border-radius: $radius * 3;
       }
+
+      width: 300%;
+      height: 300%;
+
+      transform: scale(0.3333);
+    }
   }
 }
 
- 
-
-
 // 设置上hairline
-@mixin setTopLine($color: #ccc, $radius:(0, 0, 0, 0), $position: after) {  
- @include hairLine(top,$color,0,$position)
+@mixin setTopLine(
+  $color: #ccc,
+  $radius: (
+    0,
+    0,
+    0,
+    0
+  ),
+  $position: after
+) {
+  @include hairLine(top, $color, 0, $position);
 }
 
 // 设置下hairline
-@mixin setBottomLine($color: #ccc, $radius:(0, 0, 0, 0), $position: after) {  
-  @include hairLine(bottom,$color,0,$position)
+@mixin setBottomLine(
+  $color: #ccc,
+  $radius: (
+    0,
+    0,
+    0,
+    0
+  ),
+  $position: after
+) {
+  @include hairLine(bottom, $color, 0, $position);
 }
 
 // 设置左hairline
-@mixin setLeftLine($color: #ccc, $radius:(0, 0, 0, 0), $position: after) {  
-  @include hairLine(left,$color,0,$position)
+@mixin setLeftLine(
+  $color: #ccc,
+  $radius: (
+    0,
+    0,
+    0,
+    0
+  ),
+  $position: after
+) {
+  @include hairLine(left, $color, 0, $position);
 }
 
 // 设置右hairline
-@mixin setRightLine($color: #ccc, $radius:(0, 0, 0, 0), $position: after) {  
-  @include hairLine(right,$color,0,$position)
+@mixin setRightLine(
+  $color: #ccc,
+  $radius: (
+    0,
+    0,
+    0,
+    0
+  ),
+  $position: after
+) {
+  @include hairLine(right, $color, 0, $position);
 }
 
 // 设置hairline(四条边)
-@mixin setLines($color: #ccc, $radius:(0, 0, 0, 0), $position: after) {  
-  @include hairLine((top,right,bottom,left),$color,$radius,$position)
+@mixin setLines(
+  $color: #ccc,
+  $radius: (
+    0,
+    0,
+    0,
+    0
+  ),
+  $position: after
+) {
+  @include hairLine((top, right, bottom, left), $color, $radius, $position);
 }
- 
 
 // 浮动
 @mixin float($side: left) {
@@ -154,16 +213,17 @@
   // 设置字体平滑
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  font-family: $font-sans-serif;
   @if (unquote($pageType) == PC) {
     font-size: 16px;
     line-height: 1.625;
-    font-family: $baseFontPC;
   } @else {
-    font-size: ($designWidth/10)/
-      ($designWidth/2) *
+    font-size: ($ui-width/10)/
+      ($ui-width/2) *
       100vw; // 设计图750，默认1rem为7.5，所以通过这种方式将html的font-size设置为75px，配套的px2rem中1rem也为75px；如果设置为font-size为7.5，可以做到rem、vw最终得到相同的px值，但是因为有字体大小限制(最小12px)，所以只能使用75px
     line-height: 1.5;
-    font-family: $baseFontM; // 为了不让基准字体无限变大或变小破坏布局，所以必须做一个限制
+    // 为了不让基准字体无限变大或变小破坏布局，所以必须做一个限制
     @media screen and (max-width: 320px) {
       // <320时字体统统为64px
       font-size: 64px;
@@ -228,14 +288,14 @@
 // 设置透明度
 @mixin opacity($opacity: 50) {
   opacity: $opacity / 100;
-  @if $filter {
+  @if $ie-filter {
     filter: alpha(opacity=$opacity);
   }
 }
 
 // 设置黑色半透明背景
 @mixin bgAlpha($bgcolor: rgba(0, 0, 0, 0.5)) {
-  @if $filter {
+  @if $ie-filter {
     filter: progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#{ie-hex-str($bgcolor)}', endColorstr='#{ie-hex-str($bgcolor)}');
   } @else {
     background-color: #333;

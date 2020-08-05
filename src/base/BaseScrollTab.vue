@@ -232,88 +232,99 @@ export default {
 
 <style lang="scss" scoped>
 .c-BaseScrollTab {
-  overflow: hidden;
-  padding-left: 30px;
-  padding-right: 30px;
-
   position: relative;
 
+  padding-right: 30px;
+  padding-left: 30px;
+  overflow: hidden;
+
   &.no-btn {
-    padding-left: 0;
     padding-right: 0;
+    padding-left: 0;
   }
 
   &-track {
-    overflow: hidden;
     position: relative;
+
+    overflow: hidden;
   }
 
   &-wp {
-    will-change: transform;
-    white-space: nowrap;
-    transition: transform 0.5s;
     font-size: 0;
+    white-space: nowrap;
+
+    transition: transform 0.5s;
+
+    will-change: transform;
   }
 
   &-text {
+    position: relative;
+
     max-width: 86px;
     padding: 16px;
+    overflow: hidden;
+
+    color: $text-color-primary;
     font-size: 16px;
-    color: $mainTextColor;
-    cursor: pointer;
-    text-align: center;
 
     white-space: nowrap;
-    overflow: hidden;
+    text-align: center;
     text-overflow: ellipsis;
 
-    position: relative;
+    cursor: pointer;
     &::after {
-      content: '';
       position: absolute;
-      bottom: 0;
-      background-color: $mainTone;
-      height: 3px;
-      left: 50%;
       right: 50%;
+      bottom: 0;
+      left: 50%;
+
+      height: 3px;
+
+      background-color: $brand-primary;
 
       transition: left 0.3s, right 0.3s;
+
+      content: '';
       will-change: left, right;
     }
 
     &:hover {
-      color: $mainTone;
+      color: $brand-primary;
     }
   }
 
   &-item {
     position: relative;
-    @include inline-block(middle);
 
     font-size: 14px;
+
     transition: color 0.3s;
+    @include inline-block(middle);
 
     &.is-active {
       .c-BaseScrollTab-text {
-        color: $mainTone;
+        color: $brand-primary;
       }
 
       .c-BaseScrollTab-text::after {
-        left: 0;
         right: 0;
+        left: 0;
       }
     }
   }
 
   &-btn {
-    cursor: pointer;
-
     position: absolute;
     top: 50%;
+
+    cursor: pointer;
+
     transition: transform 0.3s;
 
     &.is-prev {
       left: 2px;
+
       transform: translate3d(0, -50%, 0);
 
       &:hover {
@@ -323,6 +334,7 @@ export default {
 
     &.is-next {
       right: 2px;
+
       transform: translate3d(-2px, -50%, 0);
 
       &:hover {
@@ -333,13 +345,13 @@ export default {
     &.is-disabled {
       cursor: not-allowed;
       .icon {
-        color: $subTextColor;
+        color: $text-color-regular;
       }
     }
 
     .icon {
+      color: $text-color-primary;
       font-size: 14px;
-      color: $mainTextColor;
     }
   }
 }

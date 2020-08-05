@@ -72,6 +72,6 @@ export default {
 .c-Text {
   display: flex;
 
-  color: $mainTextColor;
+  color: $text-color-primary;
 }
 </style>

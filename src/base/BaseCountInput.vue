@@ -131,7 +131,7 @@ export default {
 <style lang="scss" scoped>
 .c-BaseCountInput {
   @include inline-block();
-  color: $mainTextColor;
+  color: $text-color-primary;
   font-size: 14px;
 
   &.is-bottom {

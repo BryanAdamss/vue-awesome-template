@@ -1,88 +1,88 @@
 @charset "UTF-8";
 // 移动端点击无高光
 %noHighLight {
-    -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 }
 
 // 去除表单默认样式
 %noAppearance {
-    outline: 0;
+  outline: 0;
 
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 // 禁用选择
 %noSelect {
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 // 禁用callOut
 %noCallOut {
-    -webkit-touch-callout: none;
+  -webkit-touch-callout: none;
 }
 
 // 文本换行
 %textWrap {
-    word-wrap: break-word;
-    word-break: break-all;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 // 两端对齐
 %textJustify {
-    //去除伪元素所占空间,但%textJustify内部元素必须设置字体大小(因为继承的关系，他们font-size也为0,所以需要重置)
-    font-size:0;
-    text-align: justify;
-    @if $lte7 {
-        text-justify: inter-ideograph \9;
-    }
-    &:after {
-        width: 100%;
-        height: 0;
+  //去除伪元素所占空间,但%textJustify内部元素必须设置字体大小(因为继承的关系，他们font-size也为0,所以需要重置)
+  font-size: 0;
+  text-align: justify;
+  @if $lte7 {
+    text-justify: inter-ideograph \9;
+  }
+  &:after {
+    width: 100%;
+    height: 0;
 
-        content: '';
-        @include inline-block();
-    }
+    content: '';
+    @include inline-block();
+  }
 }
 
 // 清除浮动
 %clearfix {
-    @if $lte7 {
-        *zoom: 1;
-    }
-    &:before,
-    &:after {
-        display: table;
+  @if $lte7 {
+    *zoom: 1;
+  }
+  &:before,
+  &:after {
+    display: table;
 
-        content: "";
-    }
-    &:after {
-        clear: both;
-        overflow: hidden;
-    }
+    content: '';
+  }
+  &:after {
+    clear: both;
+    overflow: hidden;
+  }
 }
 
 @mixin clearfix() {
-    @extend %clearfix;
+  @extend %clearfix;
 }
 
 // 设置box为border-box
 %borderBox {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 @mixin borderBox() {
-    @extend %borderBox;
+  @extend %borderBox;
 }
 
 // ie6/7 haslayout
 %zoom {
-    @if $lte7 {
-        *zoom: 1;
-    }
+  @if $lte7 {
+    *zoom: 1;
+  }
 }

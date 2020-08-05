@@ -1,0 +1,36 @@
+/**
+ * @author GuangHui
+ * @description 根css，用来挂载css变量
+ */
+
+:root {
+  // 命名空间
+  --namespace: #{$namespace};
+
+  // 调色板
+  @each $color, $value in $color-palette {
+    --#{$namespace}-#{$color}: #{$value};
+  }
+
+  // 尺寸
+  @each $name, $space in $spaces {
+    --#{$namespace}-#{$name}: #{$space};
+  }
+
+  // 字体栈
+  // Use `inspect` for lists so that quoted items keep the quotes.
+  // See https://github.com/sass/sass/issues/2383#issuecomment-336349172
+  @each $name, $font in $fonts {
+    --#{$namespace}-#{$name}: #{inspect($font)};
+  }
+
+  // 字体大小
+  @each $name, $size in $font-sizes {
+    --#{$namespace}-#{$name}: #{$size};
+  }
+
+  // 行高
+  @each $name, $height in $line-heights {
+    --#{$namespace}-#{$name}: #{$height};
+  }
+}

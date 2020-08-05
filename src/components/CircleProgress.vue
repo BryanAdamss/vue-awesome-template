@@ -148,7 +148,7 @@ export default {
     margin: 0;
     overflow: hidden;
 
-    color: $mainTextColor;
+    color: $text-color-primary;
     font-weight: bold;
     font-size: 24px;
 

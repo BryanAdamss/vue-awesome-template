@@ -1,218 +1,215 @@
 @charset "UTF-8";
 .c-Paginations {
-    color: #333;
+  color: #333;
+  font-size: 14px;
+  @at-root #{&}-size {
+    @include inline-block();
+  }
+  @at-root #{&}-select {
+    width: 3em;
+    height: 2em;
+    margin: 0 0 0 0.4em;
+
     font-size: 14px;
-    @at-root #{&}-size {
-        @include inline-block();
+    line-height: 2em;
+
+    border: 1px solid #bbb;
+    outline: none;
+  }
+  @at-root #{&}-main {
+    @include inline-block();
+    margin: 0 1em;
+  }
+  @at-root #{&}-list {
+    @include inline-block();
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+  }
+  @at-root #{&}-item {
+    @include inline-block();
+    width: 3em;
+    height: 2em;
+    padding: 0 0.4em;
+
+    text-align: center;
+
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    @at-root #{&}:hover {
+      background-color: #fafafa;
+      .c-Paginations-link {
+        color: #4fa2ff;
+      }
     }
-    @at-root #{&}-select {
-        width: 3em;
-        height: 2em;
-        margin: 0 0 0 .4em;
 
-        font-size: 14px;
-        line-height: 2em;
-
-        border: 1px solid #bbb;
-        outline: none;
+    @at-root #{&}:last-child {
+      border-right: 1px solid #ccc;
     }
-    @at-root #{&}-main {
-        @include inline-block();
-        margin: 0 1em;
+
+    @at-root #{&}.is-cur {
+      background-color: #4fa2ff;
+      border-color: #4fa2ff;
+      .c-Paginations-link {
+        color: #fff;
+      }
     }
-    @at-root #{&}-list {
-        @include inline-block();
-        margin: 0;
-        padding: 0;
+  }
+  @at-root #{&}-link {
+    display: block;
 
-        list-style: none;
+    color: #333;
+    line-height: 2em;
+    text-decoration: none;
+  }
+  @at-root #{&}-total {
+    @include inline-block();
+    margin-left: 0.2em;
+  }
+  @at-root #{&}-btn {
+    @include inline-block();
+    height: 2em;
+    margin-left: 0.5em;
+
+    color: $brand-primary;
+    line-height: 2em;
+
+    border: 1px solid #bbb;
+    @at-root #{&}:hover {
+      color: #4fa2ff;
     }
-    @at-root #{&}-item {
-        @include inline-block();
-        width: 3em;
-        height: 2em;
-        padding: 0 .4em;
+  }
+  @at-root #{&}-jumpfield {
+    @include inline-block();
+    width: 3em;
+    height: 2em;
+    padding: 0 0.5em;
 
-        text-align: center;
+    font-size: 14px;
+    line-height: 2em;
 
-        background-color: #fff;
-        border-top: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
-        border-left: 1px solid #ccc;
-        @at-root #{&}:hover {
-            background-color: #fafafa;
-            .c-Paginations-link {
-                color: #4fa2ff;
-            }
-        }
+    border: 1px solid #bbb;
+    outline: none;
+  }
+  @at-root #{&}-prev {
+    @include inline-block();
+    min-width: 2em;
+    height: 2em;
+    padding: 0 0.4em;
 
-        @at-root #{&}:last-child {
-            border-right: 1px solid #ccc;
-        }
+    color: #333;
+    line-height: 2em;
+    text-decoration: none;
 
-        @at-root #{&}.is-cur {
-            background-color: #4fa2ff;
-            border-color: #4fa2ff;
-            .c-Paginations-link {
-                color: #fff;
-            }
-        }
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    @at-root #{&}:hover {
+      color: #4fa2ff;
+
+      background-color: #fafafa;
     }
-    @at-root #{&}-link {
-        display: block;
+    @at-root #{&}.is-disabled {
+      color: #ddd;
 
-        color: #333;
-        line-height: 2em;
-        text-decoration: none;
+      background-color: #fafafa;
+      cursor: not-allowed;
+
+      pointer-events: none;
     }
-    @at-root #{&}-total {
-        @include inline-block();
-        margin-left: .2em;
+  }
+  @at-root #{&}-next {
+    @include inline-block();
+    min-width: 2em;
+    height: 2em;
+    padding: 0 0.4em;
+
+    color: #333;
+    line-height: 2em;
+    text-decoration: none;
+
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    @at-root #{&}:hover {
+      color: #4fa2ff;
+
+      background-color: #fafafa;
     }
-    @at-root #{&}-btn {
-        @include inline-block();
-        height: 2em;
-        margin-left: .5em;
+    @at-root #{&}.is-disabled {
+      color: #ddd;
 
-        color: $mainTone;
-        line-height: 2em;
+      background-color: #fafafa;
+      cursor: not-allowed;
 
-        border: 1px solid #bbb;
-        @at-root #{&}:hover {
-            color: #4fa2ff;
-        }
+      pointer-events: none;
     }
-    @at-root #{&}-jumpfield {
-        @include inline-block();
-        width: 3em;
-        height: 2em;
-        padding: 0 .5em;
+  }
+  @at-root #{&}-first {
+    @include inline-block();
+    min-width: 2em;
+    height: 2em;
+    padding: 0 0.4em;
 
-        font-size: 14px;
-        line-height: 2em;
+    color: #333;
+    line-height: 2em;
+    text-decoration: none;
 
-        border: 1px solid #bbb;
-        outline: none;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    @at-root #{&}:hover {
+      color: #4fa2ff;
+
+      background-color: #fafafa;
     }
-    @at-root #{&}-prev {
-        @include inline-block();
-        min-width: 2em;
-        height: 2em;
-        padding: 0 .4em;
+    @at-root #{&}.is-disabled {
+      color: #ddd;
 
-        color: #333;
-        line-height: 2em;
-        text-decoration: none;
+      background-color: #fafafa;
+      cursor: not-allowed;
 
-        border-top: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
-        border-left: 1px solid #ccc;
-        @at-root #{&}:hover {
-            color: #4fa2ff;
-
-            background-color: #fafafa;
-        }
-        @at-root #{&}.is-disabled {
-            color: #ddd;
-
-            background-color: #fafafa;
-            cursor: not-allowed;
-
-            pointer-events: none;
-        }
+      pointer-events: none;
     }
-    @at-root #{&}-next {
-        @include inline-block();
-        min-width: 2em;
-        height: 2em;
-        padding: 0 .4em;
+  }
+  @at-root #{&}-last {
+    @include inline-block();
+    min-width: 2em;
+    height: 2em;
+    padding: 0 0.4em;
 
-        color: #333;
-        line-height: 2em;
-        text-decoration: none;
+    color: #333;
+    line-height: 2em;
+    text-decoration: none;
 
-        border-top: 1px solid #ccc;
-        border-right: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
-        @at-root #{&}:hover {
-            color: #4fa2ff;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    @at-root #{&}:hover {
+      color: #4fa2ff;
 
-            background-color: #fafafa;
-        }
-        @at-root #{&}.is-disabled {
-            color: #ddd;
-
-            background-color: #fafafa;
-            cursor: not-allowed;
-
-            pointer-events: none;
-        }
+      background-color: #fafafa;
     }
-    @at-root #{&}-first {
-        @include inline-block();
-        min-width: 2em;
-        height: 2em;
-        padding: 0 .4em;
+    @at-root #{&}.is-disabled {
+      color: #ddd;
 
-        color: #333;
-        line-height: 2em;
-        text-decoration: none;
+      background-color: #fafafa;
+      cursor: not-allowed;
 
-        border-top: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
-        border-left: 1px solid #ccc;
-        @at-root #{&}:hover {
-            color: #4fa2ff;
-
-            background-color: #fafafa;
-        }
-        @at-root #{&}.is-disabled {
-            color: #ddd;
-
-            background-color: #fafafa;
-            cursor: not-allowed;
-
-            pointer-events: none;
-        }
+      pointer-events: none;
     }
-    @at-root #{&}-last {
-        @include inline-block();
-        min-width: 2em;
-        height: 2em;
-        padding: 0 .4em;
+  }
+  @at-root #{&}-jump {
+    @include inline-block();
+    min-width: 2em;
+    height: 2em;
+    padding: 0 0.4em;
 
-        color: #333;
-        line-height: 2em;
-        text-decoration: none;
-
-        border-top: 1px solid #ccc;
-        border-right: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
-        @at-root #{&}:hover {
-            color: #4fa2ff;
-
-            background-color: #fafafa;
-        }
-        @at-root #{&}.is-disabled {
-            color: #ddd;
-
-            background-color: #fafafa;
-            cursor: not-allowed;
-
-            pointer-events: none;
-        }
-    }
-    @at-root #{&}-jump {
-        @include inline-block();
-        min-width: 2em;
-        height: 2em;
-        padding: 0 .4em;
-
-        color: #333;
-        line-height: 2em;
-        text-decoration: none;
-    }
+    color: #333;
+    line-height: 2em;
+    text-decoration: none;
+  }
 }
-
-
-

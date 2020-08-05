@@ -1,0 +1,52 @@
+/**
+ * @author GuangHui
+ * @description 移动端变量
+ */
+@charset "UTF-8";
+
+// ------------------------------------------
+// * 主题色
+// ------------------------------------------
+$theme-primary: gen-var(theme-primary, $blue-6);
+$theme-secondary: gen-var(theme-secondary, $gray-6);
+$theme-success: gen-var(theme-success, $green-6);
+$theme-info: gen-var(theme-info, $cyan-6);
+$theme-warning: gen-var(theme-warning, $yellow-6);
+$theme-danger: gen-var(theme-danger, $red-6);
+
+$theme-light: gen-var(theme-light, $gray-5);
+$theme-dark: gen-var(theme-dark, $gray-9);
+
+// ------------------------------------------
+// * 品牌色
+// ------------------------------------------
+$brand-primary: gen-var(brand-primary, $theme-primary); // 主色
+$brand-minor: gen-var(brand-minor, $theme-danger); // 辅色
+
+// ------------------------------------------
+// * 文本颜色
+// ------------------------------------------
+$text-color-primary: gen-var(text-color-primary, $gray-10);
+$text-color-regular: gen-var(text-color-regular, $gray-9);
+$text-color-secondary: gen-var(text-color-secondary, $gray-8);
+$text-color-placeholder: gen-var(text-color-placeholder, $gray-7);
+
+// ------------------------------------------
+// * 文本大小
+// ------------------------------------------
+$text-size-base: gen-var(text-size-base, $font-size-base);
+$text-size-small: gen-var(text-size-small, $font-size-small);
+$text-size-tiny: gen-var(text-size-tiny, $font-size-tiny);
+$text-size-large: gen-var(text-size-large, $font-size-large);
+$text-size-huge: gen-var(text-size-huge, $font-size-huge);
+
+// ------------------------------------------
+// * 字体栈
+// ------------------------------------------
+$font-sans-serif: gen-var(font-sans-serif, $font-family-sans-serif);
+$font-monospace: gen-var(font-monospace, $font-family-monospace);
+
+// ------------------------------------------
+// * 边框
+// ------------------------------------------
+$border-color: gen-var(border-color, $gray-5);

@@ -3,12 +3,16 @@
     <BaseLayoutHorizontal>
       <template slot="side">
         <div
-          v-show="isShowBackBtn"
+
           class="c-TopBar-item"
           :style="{cursor:'pointer'}"
-          @click="onClickGoBack"
         >
-          &lt;返回
+          <span
+            v-show="isShowBackBtn"
+            @click="onClickGoBack"
+          >
+            &lt;返回
+          </span>
         </div>
       </template>
 

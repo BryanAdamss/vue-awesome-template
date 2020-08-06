@@ -48,11 +48,11 @@ export default {
 <style scoped lang="scss">
 .c-LinkList {
   @at-root #{&}-item {
-    color: #333;
+    color: $text-color-primary;
 
     cursor: pointer;
     @at-root #{&}.router-link-active {
-      color: red;
+      color: $brand-primary;
     }
   }
 }

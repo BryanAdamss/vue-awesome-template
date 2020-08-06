@@ -18,14 +18,7 @@
  * * ThemeChangeTest
  */
 
-const themeArr = [
-  ['gh-brand-primary', 'red'],
-  ['gh-text-size-huge', '30px'],
-  ['gh-gutter-base', '50px'],
-  ['gh-border-color', 'red'],
-  ['gh-theme-primary', 'red'],
-  ['gh-text-color-primary', 'red']
-]
+import axios from 'axios'
 
 export default {
   name: 'ThemeChangeTest',
@@ -53,23 +46,27 @@ export default {
       this.themeService = null
     },
     applyTheme() {
-      if (!this.themeService) {
-        this.$bus.$emit('global.loading.show')
-        import(/* webpackChunkName:'ThemeService' */'Plugins/theme-service.js')
-          .then(({ default: ThemeService }) => {
-            this.themeService = new ThemeService()
+      axios({
+        url: '/theme-dark.json'
+      }).then(({ data = [] }) => {
+        if (!this.themeService) {
+          this.$bus.$emit('global.loading.show')
+          import(/* webpackChunkName:'ThemeService' */'Plugins/theme-service.js')
+            .then(({ default: ThemeService }) => {
+              this.themeService = new ThemeService()
 
-            this.themeService.applyTheme(themeArr)
-          })
-          .catch(err => {
-            console.log(err)
-          })
-          .finally(() => {
-            this.$bus.$emit('global.loading.hide')
-          })
-      } else {
-        this.themeService.applyTheme(themeArr)
-      }
+              this.themeService.applyTheme(data)
+            })
+            .catch(err => {
+              console.log(err)
+            })
+            .finally(() => {
+              this.$bus.$emit('global.loading.hide')
+            })
+        } else {
+          this.themeService.applyTheme(data)
+        }
+      })
     }
   }
 }

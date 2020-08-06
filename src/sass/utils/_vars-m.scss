@@ -64,3 +64,8 @@ $gutter-tiny: gen-var(gutter-tiny, $space-tiny);
 $gutter-small: gen-var(gutter-small, $space-small);
 $gutter-large: gen-var(gutter-large, $space-large);
 $gutter-huge: gen-var(gutter-huge, $space-huge);
+
+// ------------------------------------------
+// * bg
+// ------------------------------------------
+$bg: gen-var(bg, $white);

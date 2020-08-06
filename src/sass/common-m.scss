@@ -29,7 +29,7 @@ html {
   height: 100%;
   overflow: hidden;
 
-  background-color: #fefefe;
+  background-color: #eee;
 }
 
 body {
@@ -38,6 +38,7 @@ body {
   overflow: hidden;
 
   background-color: #fff;
+  background-color: $bg;
   box-shadow: 0 0 0 1px red;
 }
 

@@ -83,38 +83,44 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
+
   width: 100%;
   height: 100%;
-  @include bgAlpha();
-  // * 屏蔽事件
-  pointer-events: none;
-  opacity: 0;
+
   transform: scale(1.15);
+  opacity: 0;
   // * 设置关闭时的过渡(根据google的用户体验原则，关闭要迅速，要快于开启)
   // * 一般的经验法则为(https://developers.google.com/web/fundamentals/design-and-ux/animations/asymmetric-animation-timing)：
   // * 对于用户交互触发的 UI 动画，例如视图变换或显示元素，采用快速前奏（短持续时间）和慢速结尾（较长持续时间）。
   // * 对于由代码触发的 UI 动画，例如错误或模态视图，采用较慢前奏（较长持续时间）和快速结尾（短持续时间）。
   transition: transform 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946),
     opacity 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+  // * 屏蔽事件
+  pointer-events: none;
   // * 开启加速
   will-change: transform, opacity;
+  @include bg-alpha();
   &.is-visible {
-    pointer-events: auto;
-    opacity: 1;
 
     transform: scale(1);
+    opacity: 1;
+
     transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946),
       opacity 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+
+    pointer-events: auto;
   }
   &-main {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate3d(-50%, -50%, 0);
+
     max-width: 80%;
     max-height: 80%;
     overflow-x: hidden;
     overflow-y: auto;
+
+    transform: translate3d(-50%, -50%, 0);
   }
 }
 </style>

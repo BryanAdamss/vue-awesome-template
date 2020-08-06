@@ -58,27 +58,27 @@ export default {
   }
 
   &.is-top {
-    @include setTopLine($brand-primary);
+    @include hairline-top($brand-primary);
   }
 
   &.is-right {
-    @include setRightLine(red);
+    @include hairline-right(red);
   }
 
   &.is-bottom {
-    @include setBottomLine(red);
+    @include hairline-bottom(red);
   }
 
   &.is-left {
-    @include setLeftLine(red);
+    @include hairline-left(red);
   }
 
   &.is-all {
-    @include setLines(red);
+    @include hairline-all(red);
   }
 
   &.is-radius {
-    @include setLines(red, (4px, 8px, 12px, 16px));
+    @include hairline-all(red, (4px, 8px, 12px, 16px));
   }
 }
 </style>

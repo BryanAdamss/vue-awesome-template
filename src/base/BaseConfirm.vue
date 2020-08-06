@@ -95,7 +95,7 @@ export default {
 
     color: $text-color-primary;
     font-size: 1em;
-    @extend %textWrap;
+    @extend %text-wrap;
   }
 }
 
@@ -105,7 +105,7 @@ export default {
   display: flex;
   justify-content: space-between;
   &::after {
-    @include setTopLine();
+    @include hairline-top();
   }
 }
 .c-Btn {
@@ -124,7 +124,7 @@ export default {
 
     color: $brand-primary;
     &::after {
-      @include setLeftLine();
+      @include hairline-left();
     }
   }
 }

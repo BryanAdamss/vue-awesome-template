@@ -232,7 +232,7 @@ export default {
 }
 
 .c-Tips {
-  @extend %textWrap;
+  @extend %text-wrap;
 
   padding: 16px 8px;
 

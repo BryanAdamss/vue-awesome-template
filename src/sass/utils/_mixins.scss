@@ -22,7 +22,11 @@
 }
 
 // 1px边框(伪元素+scale+media query)
-@mixin hairLine(
+// $directionMaps: 是个list类型可以传入多个方向, 也就是可以生成多个防线边框, 默认值为bottom, 你可以根据需要传入(top, left, bottom, right) 4个方向;
+// $color: 边框的颜色, 默认#ccc;
+// $radius: 圆角半径, 默认0;
+// $position是一个高级设置, 一般都不需要改动, 由于细边框的实现使用了css的伪类, 所以为了规避可能出现的样式冲突, 我们可以自己指定使用:after还是:before, 默认after;
+@mixin hairline(
   $directionMaps: bottom,
   $color: #ccc,
   $radius: (
@@ -131,7 +135,7 @@
 }
 
 // 设置上hairline
-@mixin setTopLine(
+@mixin hairline-top(
   $color: #ccc,
   $radius: (
     0,
@@ -141,11 +145,11 @@
   ),
   $position: after
 ) {
-  @include hairLine(top, $color, 0, $position);
+  @include hairline(top, $color, 0, $position);
 }
 
 // 设置下hairline
-@mixin setBottomLine(
+@mixin hairline-bottom(
   $color: #ccc,
   $radius: (
     0,
@@ -155,11 +159,11 @@
   ),
   $position: after
 ) {
-  @include hairLine(bottom, $color, 0, $position);
+  @include hairline(bottom, $color, 0, $position);
 }
 
 // 设置左hairline
-@mixin setLeftLine(
+@mixin hairline-left(
   $color: #ccc,
   $radius: (
     0,
@@ -169,11 +173,11 @@
   ),
   $position: after
 ) {
-  @include hairLine(left, $color, 0, $position);
+  @include hairline(left, $color, 0, $position);
 }
 
 // 设置右hairline
-@mixin setRightLine(
+@mixin hairline-right(
   $color: #ccc,
   $radius: (
     0,
@@ -183,11 +187,11 @@
   ),
   $position: after
 ) {
-  @include hairLine(right, $color, 0, $position);
+  @include hairline(right, $color, 0, $position);
 }
 
 // 设置hairline(四条边)
-@mixin setLines(
+@mixin hairline-all(
   $color: #ccc,
   $radius: (
     0,
@@ -197,7 +201,7 @@
   ),
   $position: after
 ) {
-  @include hairLine((top, right, bottom, left), $color, $radius, $position);
+  @include hairline((top, right, bottom, left), $color, $radius, $position);
 }
 
 // 浮动
@@ -209,7 +213,7 @@
 }
 
 // 设置html基本字体样式
-@mixin htmlFont($pageType: PC) {
+@mixin html-font($pageType: PC) {
   // 设置字体平滑
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -236,7 +240,7 @@
 }
 
 // 因为在移动端html的字体是根据视口变化的，所以body字体大小需要重新设置，让子元素能继承
-@mixin bodyFontSize($pageType: M) {
+@mixin body-font-size($pageType: M) {
   @if (unquote($pageType) ==M) {
     font-size: 16px;
     @media screen and (min-width: 375px) {
@@ -294,7 +298,7 @@
 }
 
 // 设置黑色半透明背景
-@mixin bgAlpha($bgcolor: rgba(0, 0, 0, 0.5)) {
+@mixin bg-alpha($bgcolor: rgba(0, 0, 0, 0.5)) {
   @if $ie-filter {
     filter: progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#{ie-hex-str($bgcolor)}', endColorstr='#{ie-hex-str($bgcolor)}');
   } @else {
@@ -317,8 +321,8 @@
   overflow: hidden;
 }
 
-// stickyFooter
-@mixin stickyFooter(
+// sticky-footer
+@mixin sticky-footer(
   $footerH,
   $wp: unquote('.c-Sticky'),
   $content: unquote('.c-Sticky-bd'),
@@ -366,7 +370,7 @@
 }
 
 // 设置移动端不同dpr屏幕下的字体大小
-@mixin fontSize($font-size) {
+@mixin font-size($font-size) {
   font-size: $font-size * 1px;
   [data-dpr='1'] & {
     font-size: $font-size * 0.5px;
@@ -380,7 +384,7 @@
 }
 
 // 设置双飞翼布局
-@mixin DoubleWing($leftWidth, $rightWidth) {
+@mixin double-wing($leftWidth, $rightWidth) {
   & {
     @include clearfix();
   }
@@ -421,7 +425,7 @@
 }
 
 // 波点背景(通过径向渐变生成，IE10+)
-@mixin bgPolka($size, $dot, $base, $accent) {
+@mixin bg-polka($size, $dot, $base, $accent) {
   // 单独一个波点图所占空间，波点半径，波点图背景色，波点的颜色
   background-color: $base;
   background-image: radial-gradient($accent $dot, transparent 0),
@@ -431,7 +435,7 @@
 }
 
 // 棋盘背景(通过线性渐变生成，IE9+)
-@mixin bgCheckboard($size, $base, $accent: rgba(0, 0, 0, 0.25)) {
+@mixin bg-checkboard($size, $base, $accent: rgba(0, 0, 0, 0.25)) {
   // 单个棋格子大小，棋盘背景色，棋格颜色
   background-color: $base;
   background-image: linear-gradient(
@@ -453,7 +457,7 @@
 }
 
 // 斜向切角
-@mixin bevelCorners($bg, $tl: 0, $tr: $tl, $br: $bl, $bl: $tr) {
+@mixin bevel-corners($bg, $tl: 0, $tr: $tl, $br: $bl, $bl: $tr) {
   background: linear-gradient(135deg, transparent $tl, $bg 0) top left,
     linear-gradient(225deg, transparent $tr, $bg 0) top right,
     linear-gradient(45deg, transparent $tr, $bg 0) bottom right,
@@ -465,7 +469,7 @@
 }
 
 // 弧形切角
-@mixin scoopCorners($bg, $tl: 0, $tr: $tl, $br: $bl, $bl: $tr) {
+@mixin scoop-corners($bg, $tl: 0, $tr: $tl, $br: $bl, $bl: $tr) {
   background: radial-gradient(circle at top left, transparent $tl, $bg 0) top
       left,
     radial-gradient(circle at top right, transparent $tr, $bg 0) top right,
@@ -478,7 +482,7 @@
 }
 
 // 图片保持宽高比
-@mixin aspectRatio($width: 16, $height: 9) {
+@mixin aspect-ratio($width: 16, $height: 9) {
   // 默认16:9
   @at-root #{&}::before {
     float: left; // 元素需要浮动，不然后面元素需要使用绝对定位
@@ -520,115 +524,6 @@
     &:first-child:nth-last-child(#{$n}),
     &:first-child:nth-last-child(#{$n}) ~ & {
       @content;
-    }
-  }
-}
-
-// 1px边框
-// $directionMaps: 是个list类型可以传入多个方向, 也就是可以生成多个防线边框, 默认值为bottom, 你可以根据需要传入(top, left, bottom, right) 4个方向;
-// $color: 边框的颜色, 默认#ccc;
-// $radius: 圆角半径, 默认0;
-// $position是一个高级设置, 一般都不需要改动, 由于细边框的实现使用了css的伪类, 所以为了规避可能出现的样式冲突, 我们可以自己指定使用:after还是:before, 默认after;
-@mixin thinBorder(
-  $directionMaps: bottom,
-  $color: #ccc,
-  $radius: (
-    0,
-    0,
-    0,
-    0
-  ),
-  $position: after
-) {
-  // 是否只有一个方向
-  $isOnlyOneDir: string==type-of($directionMaps);
-
-  @if ($isOnlyOneDir) {
-    $directionMaps: ($directionMaps);
-  }
-
-  @each $directionMap in $directionMaps {
-    border-#{$directionMap}: 1px solid $color;
-  }
-
-  // 判断圆角是list还是number
-  @if (list==type-of($radius)) {
-    border-radius: nth($radius, 1)
-      nth($radius, 2)
-      nth($radius, 3)
-      nth($radius, 4);
-  } @else {
-    border-radius: $radius;
-  }
-
-  @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-    & {
-      position: relative;
-
-      // 删除1像素密度比下的边框
-      @each $directionMap in $directionMaps {
-        border-#{$directionMap}: none;
-      }
-    }
-
-    &:#{$position} {
-      position: absolute;
-      top: 0;
-      left: 0;
-
-      display: block;
-      box-sizing: border-box;
-      width: 200%;
-      height: 200%;
-      padding: 1px;
-
-      border: 0 solid $color;
-      transform: scale(0.5);
-      transform-origin: 0 0;
-
-      content: '';
-      pointer-events: none;
-
-      @each $directionMap in $directionMaps {
-        border-#{$directionMap}-width: 1px;
-      }
-
-      // 判断圆角是list还是number
-      @if (list==type-of($radius)) {
-        border-radius: nth($radius, 1) *
-          2
-          nth($radius, 2) *
-          2
-          nth($radius, 3) *
-          2
-          nth($radius, 4) *
-          2;
-      } @else {
-        border-radius: $radius * 2;
-      }
-    }
-  }
-
-  @media only screen and (-webkit-min-device-pixel-ratio: 3) {
-    &:#{$position} {
-      // 判断圆角是list还是number
-      @if (list==type-of($radius)) {
-        border-radius: nth($radius, 1) *
-          3
-          nth($radius, 2) *
-          3
-          nth($radius, 3) *
-          3
-          nth($radius, 4) *
-          3;
-      } @else {
-        border-radius: $radius * 3;
-      }
-
-      width: 300%;
-      height: 300%;
-
-      transform: scale(0.3333);
     }
   }
 }

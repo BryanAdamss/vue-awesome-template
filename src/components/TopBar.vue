@@ -9,7 +9,7 @@
       >
         &lt;返回
       </div>
-      <div class="u-textC">
+      <div class="u-tac">
         {{ title }}
       </div>
     </BaseLayoutHorizontal>

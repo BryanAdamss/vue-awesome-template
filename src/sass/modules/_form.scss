@@ -17,7 +17,7 @@
   }
   @at-root input#{&} {
     // select如果noAppearance，chrome上会没有右侧箭头，所以只对input生效
-    @extend %noAppearance;
+    @extend %no-appearance;
   }
   @at-root #{&}:focus {
     // 聚焦阴影

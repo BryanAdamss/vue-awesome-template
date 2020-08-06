@@ -1,37 +1,37 @@
 @charset "UTF-8";
 // 通用助手样式
-.u-textL {
+.u-tal {
   text-align: left !important;
 }
 
-.u-textC {
+.u-tac {
   text-align: center !important;
 }
 
-.u-textR {
+.u-tar {
   text-align: right !important;
 }
 
-.u-textRtl {
+.u-rtl {
   direction: rtl !important;
 }
 
-.u-textBreak {
-  @extend %textWrap;
+.u-twrap {
+  @extend %text-wrap;
 }
 
-.u-textMainTone {
+.u-cbrand {
   color: $brand-primary !important;
 }
 
-.u-textSubTone {
+.u-cminor {
   color: $brand-minor !important;
 }
 
-.u-textWarn {
+.u-cwarn {
   color: $theme-warning !important;
 }
 
-.u-textDanger {
+.u-cdanger {
   color: $theme-danger !important;
 }

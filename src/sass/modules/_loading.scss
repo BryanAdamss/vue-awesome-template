@@ -24,7 +24,7 @@
     transform: translate3d(-50%, -50%, 0);
   }
   @at-root #{&}.has-bg {
-    @include bgAlpha();
+    @include bg-alpha();
   }
   @at-root #{&}.is-hided {
     display: none;

@@ -40,6 +40,6 @@ export default {
 
 <style lang="scss" scoped>
 .c-SwiperTest {
-  @extend %noSelect;
+  @extend %no-select;
 }
 </style>

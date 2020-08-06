@@ -52,17 +52,19 @@ export default {
     position: fixed;
     top: 50%;
     left: 50%;
+
     transform: translate3d(-50%, -50%, 0);
   }
   &.has-bg {
-    @include bgAlpha(rgba(0, 0, 0, 0.8));
-    border-radius: 0.2em;
+    @include bg-alpha(rgba(0, 0, 0, 0.8));
     padding: 0.5em;
+
+    border-radius: 0.2em;
   }
 }
 .c-Loading-text {
-  font-size: 0.8em;
   color: #fff;
-  @extend %textWrap;
+  font-size: 0.8em;
+  @extend %text-wrap;
 }
 </style>

@@ -47,7 +47,7 @@ export default {
 
 // * 这里没有导入sass变量及mixin是因为通过sass-resources-loader事先导入了
 .c-Home {
-  @include bgAlpha();
+  @include bg-alpha();
 }
 
 .c-Link {

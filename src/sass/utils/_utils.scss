@@ -4,10 +4,13 @@
 // ---------------------------------------------
 // 下面为默认变量、_mixin、_function、_mediaQuery、_placeholder的导入
 // ---------------------------------------------
-// 导入默认变量
-@import '_variables.scss';
+
 // 导入函数
 @import '_function.scss';
+// 导入调色板
+@import '_color-palette.scss';
+// 导入默认变量
+@import '_vars-default.scss';
 // 导入混合宏
 @import '_mixins.scss';
 // 导入媒体查询混合宏

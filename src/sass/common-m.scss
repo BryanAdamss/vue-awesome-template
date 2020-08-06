@@ -25,7 +25,7 @@
 // 设置移动端字体(实现自适应)
 // ---------------------------------------------
 html {
-  @include htmlFont(M);
+  @include html-font(M);
   height: 100%;
   overflow: hidden;
 
@@ -33,7 +33,7 @@ html {
 }
 
 body {
-  @include bodyFontSize(M);
+  @include body-font-size(M);
   height: 100%;
   overflow: hidden;
 

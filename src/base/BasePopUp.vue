@@ -117,26 +117,30 @@ export default {
   top: 0;
   left: 0;
 
-  &.has-shadow {
-    @include bgAlpha();
-  }
-  // * 屏蔽事件
-  pointer-events: none;
   opacity: 0;
   // * 设置关闭时的过渡
   transition: opacity 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+  // * 屏蔽事件
+  pointer-events: none;
   // * 开启加速
   will-change: opacity;
 
+  &.has-shadow {
+    @include bg-alpha();
+  }
+
   // * 展示时相关样式
   &.is-visible {
-    width: 100%;
-    height: 100%;
     z-index: 999;
 
-    pointer-events: auto;
+    width: 100%;
+    height: 100%;
+
     opacity: 1;
+
     transition: opacity 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+
+    pointer-events: auto;
 
     .c-BasePopUp-main {
       transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
@@ -158,23 +162,27 @@ export default {
     .c-BasePopUp-main {
       top: 50%;
       left: 50%;
-      transform: translate3d(-50%, -50%, 0);
+
       max-width: 80%;
       max-height: 80%;
+
+      transform: translate3d(-50%, -50%, 0);
     }
   }
 
   &.is-top .c-BasePopUp-main,
   &.is-bottom .c-BasePopUp-main {
-    left: 0;
     right: 0;
-    max-height: 80%;
+    left: 0;
+
     width: 100%;
+    max-height: 80%;
   }
 
   &.is-top {
     .c-BasePopUp-main {
       top: 0;
+
       transform: translateY(-100%);
     }
   }
@@ -182,6 +190,7 @@ export default {
   &.is-bottom {
     .c-BasePopUp-main {
       bottom: 0;
+
       transform: translateY(100%);
     }
   }
@@ -190,13 +199,15 @@ export default {
   &.is-right .c-BasePopUp-main {
     top: 0;
     bottom: 0;
-    height: 100%;
+
     max-width: 80%;
+    height: 100%;
   }
 
   &.is-right {
     .c-BasePopUp-main {
       right: 0;
+
       transform: translateX(100%);
     }
   }
@@ -204,16 +215,20 @@ export default {
   &.is-left {
     .c-BasePopUp-main {
       top: 0;
+
       transform: translateX(-100%);
     }
   }
 
   &-main {
     position: absolute;
+
     overflow-x: hidden;
     overflow-y: auto;
-    will-change: transform;
+
     transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+
+    will-change: transform;
   }
 }
 </style>

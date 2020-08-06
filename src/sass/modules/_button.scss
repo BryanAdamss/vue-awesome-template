@@ -3,7 +3,7 @@ button,
 [type='button'],
 [type='submit'],
 [type='reset'] {
-  @extend %noAppearance;
+  @extend %no-appearance;
 }
 
 //禁用状态的BorderBtn
@@ -33,9 +33,9 @@ button,
 a.c-Btn,
 a.c-BorderBtn {
   text-decoration: none;
-  @extend %noCallOut;
-  @extend %noSelect;
-  @extend %noHighLight;
+  @extend %no-callout;
+  @extend %no-select;
+  @extend %no-high-light;
 }
 
 .c-Btn {

@@ -69,7 +69,7 @@ $goldenRatio: 1.618033 !default;
   } @else if (unit($px) == rem) {
     @return $px;
   }
-  @return ($px/2)/ ($ui-width/10) * 1rem; // 750设计图上默认1rem为75px，量出来的px得先除以2再和rem相除
+  @return $px/($ui-width/10) * 1rem; // 750设计图上默认1rem为75px，量出来的px得先除以2再和rem相除
 }
 
 // px转vw

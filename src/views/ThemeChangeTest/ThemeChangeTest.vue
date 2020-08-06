@@ -46,27 +46,28 @@ export default {
       this.themeService = null
     },
     applyTheme() {
+      this.$bus.$emit('global.loading.show')
       axios({
         url: '/theme-dark.json'
-      }).then(({ data = [] }) => {
-        if (!this.themeService) {
-          this.$bus.$emit('global.loading.show')
-          import(/* webpackChunkName:'ThemeService' */'Plugins/theme-service.js')
-            .then(({ default: ThemeService }) => {
-              this.themeService = new ThemeService()
-
-              this.themeService.applyTheme(data)
-            })
-            .catch(err => {
-              console.log(err)
-            })
-            .finally(() => {
-              this.$bus.$emit('global.loading.hide')
-            })
-        } else {
-          this.themeService.applyTheme(data)
-        }
       })
+        .then(({ data = [] }) => {
+          if (!this.themeService) {
+            import(/* webpackChunkName:'ThemeService' */'Plugins/theme-service.js')
+              .then(({ default: ThemeService }) => {
+                this.themeService = new ThemeService()
+
+                this.themeService.applyTheme(data)
+              })
+              .catch(err => {
+                console.log(err)
+              })
+              .finally(() => {
+                this.$bus.$emit('global.loading.hide')
+              })
+          } else {
+            this.themeService.applyTheme(data)
+          }
+        })
     }
   }
 }

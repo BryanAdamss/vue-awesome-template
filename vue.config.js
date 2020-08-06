@@ -179,5 +179,19 @@ module.exports = {
         path.resolve(__dirname, 'src/sass/utils/_placeholders.scss')
       ]
     }
+  },
+  css: {
+    loaderOptions: {
+      css: {
+        // 这里的选项会传递给 css-loader
+      },
+      postcss: {
+        // 这里的选项会传递给 postcss-loader
+        plugins: [
+          // 使用自定义插件为不兼容css var的浏览器提供备选样式
+          require('./src/plugins/postcss-plugin-add-var-value.js')
+        ]
+      }
+    }
   }
 }

@@ -18,9 +18,13 @@
  * * ThemeChangeTest
  */
 
-const themeMap = new Map([
-  ['gh-brand-primary', 'red']
-])
+const themeArr = [
+  ['gh-brand-primary', 'red'],
+  ['gh-text-size-huge', '30px'],
+  ['gh-gutter-base', '50px'],
+  ['gh-border-color', 'blue'],
+  ['gh-theme-primary', 'yellow']
+]
 
 export default {
   name: 'ThemeChangeTest',
@@ -53,12 +57,12 @@ export default {
           .then(({ default: ThemeService }) => {
             this.themeService = new ThemeService()
 
-            this.themeService.applyTheme(themeMap)
+            this.themeService.applyTheme(themeArr)
           }).catch(err => {
             console.log(err)
           })
       } else {
-        this.themeService.applyTheme(themeMap)
+        this.themeService.applyTheme(themeArr)
       }
     }
   }
@@ -67,11 +71,17 @@ export default {
 
 <style lang="scss" scoped>
 .c-ThemeChangeTest {
+  * {
+    transition: 0.3s;
+  }
 }
 
 .c-Text {
   display: flex;
+  padding: $gutter-base;
 
   color: $brand-primary;
+
+  border: 1px solid $border-color;
 }
 </style>

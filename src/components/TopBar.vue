@@ -1,17 +1,28 @@
 <template>
   <div class="c-TopBar">
     <BaseLayoutHorizontal>
-      <div
-        v-show="isShowBackBtn"
-        slot="side"
-        :style="{cursor:'pointer'}"
-        @click="onClickGoBack"
-      >
-        &lt;返回
-      </div>
-      <div class="u-tac">
-        {{ title }}
-      </div>
+      <template slot="side">
+        <div
+          v-show="isShowBackBtn"
+          class="c-TopBar-item"
+          :style="{cursor:'pointer'}"
+          @click="onClickGoBack"
+        >
+          &lt;返回
+        </div>
+      </template>
+
+      <template>
+        <div
+          class="c-Title"
+          :title="title"
+          v-text="title"
+        />
+      </template>
+
+      <template slot="extra">
+        <div class="c-TopBar-item" />
+      </template>
     </BaseLayoutHorizontal>
   </div>
 </template>
@@ -66,3 +77,22 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.c-TopBar {
+  &-item {
+    min-width: 4em;
+
+    color: $text-color-primary;
+  }
+}
+
+.c-Title {
+  overflow: hidden;
+
+  color: $text-color-primary;
+  white-space: nowrap;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+</style>

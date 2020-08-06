@@ -32,12 +32,16 @@ export default {
   display: flex;
   flex-direction: row;
 }
+
 .c-BaseLayoutHorizontal-side {
   flex: 0 0 auto;
 }
+
 .c-BaseLayoutHorizontal-main {
   flex: 1 1 auto;
+  min-width: 0;
 }
+
 .c-BaseLayoutHorizontal-extra {
   flex: 0 0 auto;
 }

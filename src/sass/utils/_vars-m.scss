@@ -50,3 +50,17 @@ $font-monospace: gen-var(font-monospace, $font-family-monospace);
 // * 边框
 // ------------------------------------------
 $border-color: gen-var(border-color, $gray-5);
+
+// ------------------------------------------
+// * space
+// ------------------------------------------
+$space-base: rem(16px); // 利用rem重置基础space
+
+// ------------------------------------------
+// * gutter
+// ------------------------------------------
+$gutter-base: gen-var(gutter-base, $space-base);
+$gutter-tiny: gen-var(gutter-tiny, $space-tiny);
+$gutter-small: gen-var(gutter-small, $space-small);
+$gutter-large: gen-var(gutter-large, $space-large);
+$gutter-huge: gen-var(gutter-huge, $space-huge);

@@ -188,3 +188,31 @@ export function addStyle(el, styleObj) {
 
   el.style.cssText = newStyle
 }
+
+/**
+ * 判断是否支持css3 变量
+ *
+ * @export
+ * @returns 是否支持
+ */
+export function canSupportCssVar() {
+  const id = 'test-support-css-var'
+  const styleEl = document.createElement('style')
+  styleEl.innerText = styleEl.innerText = `:root{--${id}:-9999;}#${id}{position:absolute;top:-99999em;left:-99999em;z-index:var(--${id});opacity:0;font-size:0;width:0;height:0;pointer-events: none;}`
+
+  document.head.appendChild(styleEl)
+
+  const testSpan = document.createElement('span')
+  testSpan.id = id
+
+  document.body.appendChild(testSpan)
+
+  const styleObj = getStyle(testSpan)
+
+  const isSupport = !!styleObj && styleObj.zIndex === '-9999'
+
+  document.head.removeChild(styleEl)
+  document.body.removeChild(testSpan)
+
+  return isSupport
+}

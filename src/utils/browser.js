@@ -3,6 +3,8 @@
  * @description 浏览器判断
  */
 
+import { canSupportCssVar } from 'Utils/dom'
+
 export const inBrowser = typeof window !== 'undefined'
 
 const UA = inBrowser && window.navigator.userAgent.toLowerCase()
@@ -15,6 +17,8 @@ export const isIOS = UA && /iphone|ipad|ipod|ios/.test(UA)
 export const isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge
 export const isPhantomJS = UA && /phantomjs/.test(UA)
 export const isFF = UA && UA.match(/firefox\/(\d+)/)
+
+export const isSupportCssVar = canSupportCssVar()
 
 /**
  * 使用noopener打开一个新标签页

@@ -19,7 +19,7 @@
  */
 
 const themeMap = new Map([
-  ['text-color-primary', 'red']
+  ['gh-brand-primary', 'red']
 ])
 
 export default {
@@ -72,6 +72,6 @@ export default {
 .c-Text {
   display: flex;
 
-  color: $text-color-primary;
+  color: $brand-primary;
 }
 </style>

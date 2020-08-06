@@ -3,13 +3,9 @@
  * @description 主题切换服务
  */
 
-import cssVars from 'css-vars-ponyfill'
-
 export default class ThemeService {
   constructor() {
     this.styleEl = null
-    // ie不支持css var的降级解决方案
-    cssVars({ watch: true, silent: true })
   }
 
   /**

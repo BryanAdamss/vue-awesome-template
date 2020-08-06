@@ -15,6 +15,7 @@ import {
   vueLazyloadReigster
 } from 'Plugins/component-register'
 import { vconsoleProvider } from 'Plugins/vconsole-provider'
+import { ieCssVarCompat } from 'Plugins/ie-vars-compat'
 
 // * ----------------------------------------
 // * 注册组件
@@ -38,6 +39,11 @@ globalInjecter()
 // * vconsole
 // * ----------------------------------------
 vconsoleProvider()
+
+// * ----------------------------------------
+// * ie 兼容css3 vars
+// * ----------------------------------------
+ieCssVarCompat()
 
 // * ----------------------------------------
 // * 实例化vue

@@ -281,7 +281,7 @@ export default {
 
       height: 3px;
 
-      background-color: $brand-primary;
+      background-color: $theme-primary;
 
       transition: left 0.3s, right 0.3s;
 
@@ -290,7 +290,7 @@ export default {
     }
 
     &:hover {
-      color: $brand-primary;
+      color: $theme-primary;
     }
   }
 
@@ -304,7 +304,7 @@ export default {
 
     &.is-active {
       .c-BaseScrollTab-text {
-        color: $brand-primary;
+        color: $theme-primary;
       }
 
       .c-BaseScrollTab-text::after {

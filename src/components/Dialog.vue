@@ -164,7 +164,7 @@ export default {
   border-radius: 4px;
 
   &-hd {
-    background: $brand-primary;
+    background: $theme-primary;
     border-radius: 4px 4px 0 0;
   }
 

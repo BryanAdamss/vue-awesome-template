@@ -173,6 +173,11 @@ $gutter-large: gen-var(gutter-large, $space-large) !default;
 $gutter-huge: gen-var(gutter-huge, $space-huge) !default;
 
 // ------------------------------------------
+// * 背景
+// ------------------------------------------
+$bg:gen-var(bg,$white);
+
+// ------------------------------------------
 // * 其它
 // ------------------------------------------
 $lte7: gen-var(lte7, false) !default; //是否兼容ie6-7

@@ -122,7 +122,7 @@ export default {
   & + & {
     position: relative;
 
-    color: $brand-primary;
+    color: $theme-primary;
     &::after {
       @include hairline-left();
     }

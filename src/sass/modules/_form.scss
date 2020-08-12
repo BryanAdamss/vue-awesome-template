@@ -21,10 +21,10 @@
   }
   @at-root #{&}:focus {
     // 聚焦阴影
-    border-color: $brand-primary;
+    border-color: $theme-primary;
     outline: 0;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-      0 0 8px rgba($brand-primary, 0.6);
+      0 0 8px rgba($theme-primary, 0.6);
   }
   @at-root textarea#{&} {
     height: auto;
@@ -94,7 +94,7 @@
       margin-top: -0.5em;
 
       background-color: transparent;
-      border: 1px solid $brand-primary;
+      border: 1px solid $theme-primary;
       border-radius: 50%;
       // 外环
       content: '';
@@ -109,7 +109,7 @@
       height: 0.5em;
       margin-top: -0.25em;
 
-      background-color: $brand-primary;
+      background-color: $theme-primary;
       border-radius: 50%;
       opacity: 0;
 
@@ -161,7 +161,7 @@
       margin-top: -0.5em;
 
       background-color: transparent;
-      border: 1px solid $brand-primary;
+      border: 1px solid $theme-primary;
       // 外环
       content: '';
     }
@@ -175,7 +175,7 @@
       height: 0.5em;
       margin-top: -0.25em;
 
-      color: $brand-primary;
+      color: $theme-primary;
       font-size: 0.875em;
       font-family: $font-sans-serif;
       // 去除i标签自带的倾斜效果

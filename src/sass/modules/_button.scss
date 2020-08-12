@@ -39,7 +39,7 @@ a.c-BorderBtn {
 }
 
 .c-Btn {
-  color: $brand-primary;
+  color: $theme-primary;
 
   background-color: #999;
   border: none;
@@ -48,9 +48,9 @@ a.c-BorderBtn {
     box-shadow: 0 0 0px 1em rgba(0, 0, 0, 0.1) inset;
   }
   @at-root #{&}--primary {
-    color: $brand-primary;
+    color: $theme-primary;
     // 实色按钮
-    background-color: $brand-primary;
+    background-color: $theme-primary;
   }
   @at-root #{&}--radius {
     // 圆角按钮
@@ -73,13 +73,13 @@ a.c-BorderBtn {
     border-color: darken(#999, 10%);
   }
   @at-root #{&}--primary {
-    color: $brand-primary;
+    color: $theme-primary;
 
-    border-color: $brand-primary;
+    border-color: $theme-primary;
     @at-root #{&}:active {
-      color: darken($brand-primary, 10%);
+      color: darken($theme-primary, 10%);
 
-      border-color: darken($brand-primary, 10%);
+      border-color: darken($theme-primary, 10%);
     }
   }
   @at-root #{&}--radius {

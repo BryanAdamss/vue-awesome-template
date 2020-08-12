@@ -84,7 +84,7 @@ export default {
   display: flex;
   padding: $gutter-base;
 
-  color: $brand-primary;
+  color: $theme-primary;
 
   border: 1px solid $border-color;
 }

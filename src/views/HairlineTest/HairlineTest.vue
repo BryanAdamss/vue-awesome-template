@@ -58,7 +58,7 @@ export default {
   }
 
   &.is-top {
-    @include hairline-top($brand-primary);
+    @include hairline-top($theme-primary);
   }
 
   &.is-right {

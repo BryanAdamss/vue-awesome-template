@@ -52,7 +52,7 @@ export default {
 
     cursor: pointer;
     @at-root #{&}.router-link-active {
-      color: $brand-primary;
+      color: $theme-primary;
     }
   }
 }

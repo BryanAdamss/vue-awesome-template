@@ -52,10 +52,10 @@
     @at-root #{&}:hover {
       height: 8px;
 
-      background-color: $brand-primary;
+      background-color: $theme-primary;
     }
     @at-root #{&}.is-cur {
-      background-color: $brand-primary;
+      background-color: $theme-primary;
     }
   }
 }

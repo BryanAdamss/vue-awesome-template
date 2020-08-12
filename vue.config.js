@@ -132,13 +132,15 @@ const enableBundleAnalysis = config => {
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
   devServer: {
+    // https://github.com/chimurai/http-proxy-middleware
     proxy: {
       // * 经过下面配置 '/api/post'这个请求路径就会变成'http://jsonplaceholder.typicode.com/post'
       // 代理所有/api开头的请求
       '/api': {
         target: 'http://jsonplaceholder.typicode.com',
         ws: true,
-        changeOrigin: true,
+        changeOrigin: true, // changes the origin of the host header to the target URL
+        // secure:false, // 启用https
         pathRewrite: {
           // 将最终url中匹配正则的部分替换成对应字符串
           // 下面是将最终url中开头的/api替换成''

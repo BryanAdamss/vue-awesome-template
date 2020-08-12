@@ -8,7 +8,19 @@
 // * 主题色
 // ------------------------------------------
 $theme-primary: gen-var(theme-primary, $blue-6);
-$theme-secondary: gen-var(theme-secondary, $gray-6);
+$theme-primary-light: gen-var(theme-primary-light, $blue-5);
+$theme-primary-darken: gen-var(theme-primary-light, $blue-7);
+
+// ------------------------------------------
+// * 主题色补色
+// ------------------------------------------
+$theme-contrast: gen-var(theme-contrast, $yellow-6); 
+$theme-contrast-light: gen-var(theme-contrast, $yellow-5); 
+$theme-contrast-darken: gen-var(theme-contrast, $yellow-7); 
+
+// ------------------------------------------
+// * 功能色
+// ------------------------------------------
 $theme-success: gen-var(theme-success, $green-6);
 $theme-info: gen-var(theme-info, $cyan-6);
 $theme-warning: gen-var(theme-warning, $yellow-6);
@@ -16,12 +28,6 @@ $theme-danger: gen-var(theme-danger, $red-6);
 
 $theme-light: gen-var(theme-light, $gray-5);
 $theme-dark: gen-var(theme-dark, $gray-9);
-
-// ------------------------------------------
-// * 品牌色
-// ------------------------------------------
-$brand-primary: gen-var(brand-primary, $blue-6); // 主色
-$brand-minor: gen-var(brand-minor, $red-6); // 辅色
 
 // ------------------------------------------
 // * 文本颜色
@@ -52,9 +58,9 @@ $font-monospace: gen-var(font-monospace, $font-family-monospace);
 $border-color: gen-var(border-color, $gray-5);
 
 // ------------------------------------------
-// * space
+// ! 移动端利用rem重置基础space
 // ------------------------------------------
-$space-base: rem(16px); // 利用rem重置基础space
+$space-base: rem(16px);
 
 // ------------------------------------------
 // * gutter
@@ -66,6 +72,23 @@ $gutter-large: gen-var(gutter-large, $space-large);
 $gutter-huge: gen-var(gutter-huge, $space-huge);
 
 // ------------------------------------------
-// * bg
+// * 其它
 // ------------------------------------------
-$bg: gen-var(bg, $white);
+$lte7: gen-var(lte7, false); //是否兼容ie6-7
+$ie-filter: gen-var(
+  ie-filter,
+  false
+); //是否为ie6-8开启css3滤镜兼容，常用于渐变背景
+
+$ui-width: 750px; // 设计图尺寸，用于rem()和设置html的字体大小
+
+// ------------------------------------------
+// * 下面是每个模块的颜色配置
+// ------------------------------------------
+
+// ------------------------------------------
+// * 按钮
+// ------------------------------------------
+$btn-color-primary:gen-var(btn-color-primary,$theme-primary);
+$btn-color-primary-hover:gen-var(btn-color-primary-hover,$theme-primary-light);
+$btn-color-primary-active:gen-var(btn-color-primary-hover,$theme-primary-darken);

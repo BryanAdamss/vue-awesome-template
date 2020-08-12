@@ -8,6 +8,11 @@
 // 导入调色板
 @import './_color-palette';
 
+
+// ------------------------------------------
+// * 基础变量
+// ------------------------------------------
+
 // ------------------------------------------
 // * 命名空间
 // ------------------------------------------
@@ -99,11 +104,29 @@ $line-heights: (
   'line-height-lg': $line-height-lg
 ) !default;
 
+
+// ------------------------------------------
+// * 派生变量
+// ------------------------------------------
+
+
 // ------------------------------------------
 // * 主题色
 // ------------------------------------------
 $theme-primary: gen-var(theme-primary, $blue-6) !default;
-$theme-secondary: gen-var(theme-secondary, $gray-6) !default;
+$theme-primary-light: gen-var(theme-primary-light, $blue-5) !default;
+$theme-primary-darken: gen-var(theme-primary-light, $blue-7) !default;
+
+// ------------------------------------------
+// * 主题色补色
+// ------------------------------------------
+$theme-contrast: gen-var(theme-contrast, $yellow-6) !default; 
+$theme-contrast-light: gen-var(theme-contrast, $yellow-5) !default; 
+$theme-contrast-darken: gen-var(theme-contrast, $yellow-7) !default; 
+
+// ------------------------------------------
+// * 功能色
+// ------------------------------------------
 $theme-success: gen-var(theme-success, $green-6) !default;
 $theme-info: gen-var(theme-info, $cyan-6) !default;
 $theme-warning: gen-var(theme-warning, $yellow-6) !default;
@@ -111,12 +134,6 @@ $theme-danger: gen-var(theme-danger, $red-6) !default;
 
 $theme-light: gen-var(theme-light, $gray-5) !default;
 $theme-dark: gen-var(theme-dark, $gray-9) !default;
-
-// ------------------------------------------
-// * 品牌色
-// ------------------------------------------
-$brand-primary: gen-var(brand-primary, $blue-6) !default; // 主色
-$brand-minor: gen-var(brand-minor, $red-6) !default; // 辅色
 
 // ------------------------------------------
 // * 文本颜色
@@ -147,6 +164,15 @@ $font-monospace: gen-var(font-monospace, $font-family-monospace) !default;
 $border-color: gen-var(border-color, $gray-5) !default;
 
 // ------------------------------------------
+// * gutter
+// ------------------------------------------
+$gutter-base: gen-var(gutter-base, $space-base) !default;
+$gutter-tiny: gen-var(gutter-tiny, $space-tiny) !default;
+$gutter-small: gen-var(gutter-small, $space-small) !default;
+$gutter-large: gen-var(gutter-large, $space-large) !default;
+$gutter-huge: gen-var(gutter-huge, $space-huge) !default;
+
+// ------------------------------------------
 // * 其它
 // ------------------------------------------
 $lte7: gen-var(lte7, false) !default; //是否兼容ie6-7
@@ -156,3 +182,14 @@ $ie-filter: gen-var(
 ) !default; //是否为ie6-8开启css3滤镜兼容，常用于渐变背景
 
 $ui-width: 750px !default; // 设计图尺寸，用于rem()和设置html的字体大小
+
+// ------------------------------------------
+// * 下面是每个模块的颜色配置
+// ------------------------------------------
+
+// ------------------------------------------
+// * 按钮
+// ------------------------------------------
+$btn-color-primary:gen-var(btn-color-primary,$theme-primary) !default;
+$btn-color-primary-hover:gen-var(btn-color-primary-hover,$theme-primary-light) !default;
+$btn-color-primary-active:gen-var(btn-color-primary-hover,$theme-primary-darken) !default;

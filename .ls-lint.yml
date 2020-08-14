@@ -1,5 +1,5 @@
 ls:
-  src/*:
+  src:
     .js: kebab-case | PascalCase
     .vue: PascalCase
     .ts: camelCase | PascalCase

@@ -28,7 +28,9 @@
     "release:patch": "npm run release -r patch",
     "release:publish": "git push --follow-tags origin master",
     "gen-color": "node gen-color",
-    "new:comp": "node node_modules/@bryanadamss/generate-file"
+    "new:comp": "node node_modules/@bryanadamss/generate-file",
+    "stylelint": "stylelint",
+    "stylelint:fix": "stylelint --fix"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -103,22 +105,27 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "gitHooks": {
-    "pre-commit": "ls-lint && lint-staged"
-  },
   "husky": {
     "hooks": {
+      "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {
+    "*.{json,css,scss,less,sass,md,html,flow,ts,tsd}": [
+      "prettier --write",
+      "git add"
+    ],
     "*.{js,jsx,vue}": [
       "vue-cli-service lint",
       "git add"
     ],
-    "*.{json,css,scss,less,sass,md,html,flow,ts,tsd}": [
-      "prettier --write",
+    "*.{sass,scss,vue,css}": [
+      "stylelint --fix",
       "git add"
+    ],
+    "*": [
+      "ls-lint"
     ]
   }
 }

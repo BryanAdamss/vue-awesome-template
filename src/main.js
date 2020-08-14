@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 
-import './registerServiceWorker'
+import './register-service-worker'
 
 // * ----------------------------------------
 // * 导入插件

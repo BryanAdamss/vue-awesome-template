@@ -4,21 +4,21 @@
  */
 
 // * 首页可使用同步导入
-import Home from 'Views/Home/Home'
+import HomePage from 'Views/HomePage/HomePage'
 // * 同步导入（可优化成下面的动态导入）
 
 // * 使用异步载入
 const HomeChild1 = () =>
-  import(/* webpackChunkName:'HomeChild1' */ 'Views/Home/HomeChild1')
+  import(/* webpackChunkName:'HomeChild1' */ 'Views/HomePage/HomeChild1')
 
 const HomeChild2 = () =>
-  import(/* webpackChunkName:'HomeChild2' */ 'Views/Home/HomeChild2')
+  import(/* webpackChunkName:'HomeChild2' */ 'Views/HomePage/HomeChild2')
 
 export default [
   {
-    path: '/home',
-    name: 'Home',
-    component: Home,
+    path: '/home-page',
+    name: 'HomePage',
+    component: HomePage,
     // * 利用meta保存一些元信息，用来设置跳转后的title
     meta: {
       title: '首页'

@@ -94,7 +94,7 @@ npm run serve
 ├─src                             # 源目录
 |  ├─App.vue
 |  ├─main.js
-|  ├─registerServiceWorker.js
+|  ├─register-service-worker.js
 |  ├─views                        # 页面目录
 |  ├─utils                        # 常用工具
 |  ├─store                        # vuex 全局状态

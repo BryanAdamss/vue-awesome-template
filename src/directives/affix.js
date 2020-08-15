@@ -39,6 +39,7 @@ export default {
 
     // * affixed的回调
     const onAffixed = binding.value && binding.value.onAffixed
+    const onUnAffixed = binding.value && binding.value.onUnAffixed
 
     // 重设样式用
     const oldElStyle = el.style.cssText
@@ -100,6 +101,8 @@ export default {
           }
 
           el.classList && el.classList.remove('is-affixed')
+
+          onUnAffixed && onUnAffixed(el)
         }
 
         isAffixed = false

@@ -19,7 +19,7 @@ export function reqResolveFn(reqConf) {
 
 export function reqRejectFn(reqErr) {
   // 请求报错
-  globalLoading.hide()
+  globalLoading.end()
 
   return Promise.reject(reqErr)
 }
@@ -61,7 +61,7 @@ export function respSuccFn(respObj) {
 
 export function respFailFn(respErr) {
   // 响应失败
-  globalLoading.hide()
+  globalLoading.end()
 
   return Promise.reject(respErr)
 }

@@ -96,6 +96,7 @@ class GlobalLoading {
   }
 
   hide() {
+    this.count = 0
     this._hide()
     this._clean()
   }

@@ -18,6 +18,7 @@
 
 - 项目分层合理，经受住 10w 行业务代码项目实践检验
   - 分层思路参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)
+- 集成`css3 vars`主题切换服务，支持自定义主题
 - 集成`vue`全家桶(vuex、vue-router、axios)及各种最佳实践
 - 集成`element-ui`及各种自造轮子
 - 集成`webpack`优化最佳实践

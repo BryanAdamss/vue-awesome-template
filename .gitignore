@@ -26,3 +26,4 @@ pnpm-debug.log*
 
 output.js
 webpack.inspect.js
+webpack.inspect.prod.js

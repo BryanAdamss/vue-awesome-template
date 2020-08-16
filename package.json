@@ -16,7 +16,7 @@
     "lint": "vue-cli-service lint",
     "lint:fix": "vue-cli-service lint --fix",
     "inspect": "vue-cli-service inspect > webpack.inspect.js",
-    "inspect:production": "vue-cli-service inspect --mode production > webpack.inspect.js",
+    "inspect:production": "vue-cli-service inspect --mode production > webpack.inspect.prod.js",
     "commit": "git-cz",
     "contributor:add": "all-contributors add",
     "contributor:generate": "all-contributors generate",
@@ -30,7 +30,8 @@
     "gen-color": "node gen-color",
     "new:comp": "node node_modules/@bryanadamss/generate-file",
     "stylelint": "stylelint",
-    "stylelint:fix": "stylelint --fix"
+    "stylelint:fix": "stylelint --fix",
+    "treer": "treer -e project-structure.txt -i node_modules"
   },
   "dependencies": {
     "axios": "^0.19.2",

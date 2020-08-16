@@ -61,53 +61,59 @@ npm run serve
     "release:major": "npm run release -r major", // break change版本
     "release:minor": "npm run release -r minor", // feature 版本
     "release:patch": "npm run release -r patch", // fix 补丁版本
-    "release:publish": "git push --follow-tags origin master" // 发布到npm
+    "release:publish": "git push --follow-tags origin master", // 发布到npm
+    "gen-color": "node gen-color",// 生成sass调色板
+    "new:comp": "node node_modules/@bryanadamss/generate-file", // 生成vue模板文件
+    "stylelint": "stylelint", // 样式lint
+    "stylelint:fix": "stylelint --fix", // 样式修复
+    "treer": "treer -e project-structure.txt -i node_modules" // 查看当前项目结构树
   }
 ```
 
 ## 目录结构
 
 ```sh
-├─.all-contributorsrc             # all-contributors配置
-├─.browserslistrc                 # 浏览器兼容列表
-├─.env                            # 通用环境配置文件
-├─.env.analysis                   # 打包分析环境配置文件
-├─.env.development                # 开发环境配置文件
-├─.env.production                 # 生产环境配置文件
-├─.env.testing                    # 测试环境配置文件
-├─.eslintrc.js                    # eslint配置
+├─.all-contributorsrc                       # all-contributors配置
+├─.browserslistrc                           # 浏览器兼容列表
+├─.env                                      # 通用环境配置文件
+├─.env.analysis                             # 打包分析环境配置文件
+├─.env.development                          # 开发环境配置文件
+├─.env.production                           # 生产环境配置文件
+├─.env.testing                              # 测试环境配置文件
+├─.eslintrc.js                              # eslint配置
 ├─.gitignore
-├─.prettierrc                     # prettier配置
-├─.stylelintrc                    # style-lint配置
-├─babel.config.js                 # babel配置
-├─CHANGELOG.md                    # 更新记录
-├─commitlint.config.js            # commitlint配置
-├─.ls-lint.yml                    # ls-lint配置(命名检测)
-├─cypress.json                    # e2e测试配置
-├─jest.config.js                  # 单元测试配置
-├─LICENSE                         # 版权文件
+├─.prettierrc                               # prettier配置
+├─.stylelintrc                              # style-lint配置
+├─babel.config.js                           # babel配置
+├─CHANGELOG.md                              # 更新记录
+├─commitlint.config.js                      # commitlint配置
+├─.ls-lint.yml                              # ls-lint配置(命名检测)
+├─cypress.json                              # e2e测试配置
+├─jest.config.js                            # 单元测试配置
+├─LICENSE                                   # 版权文件
 ├─package-lock.json
 ├─package.json
-├─README.md                       # 文档
-├─vue.config.js                   # vue project配置文件
-├─tests                           # 测试用例文件夹
-├─src                             # 源目录
-|  ├─App.vue
-|  ├─main.js
-|  ├─register-service-worker.js
-|  ├─views                        # 页面目录
-|  ├─utils                        # 常用工具
-|  ├─store                        # vuex 全局状态
-|  ├─services                     # 业务service
-|  ├─sass                         # sass分层
-|  ├─routes                       # 路由模块
-|  ├─plugins                      # 项目插件
-|  ├─directives                   # vue 指令
-|  ├─config                       # 项目配置
-|  ├─components                   # 业务组件
-|  ├─base                         # 基础组件
-|  ├─assets                       # 静态资源
-├─public                          # 无需webpack处理的静态资源
+├─project-structure                         # 项目目录结构
+├─README.md                                 # 文档
+├─vue.config.js                             # vue project配置文件
+├─tests                                     # 测试用例文件夹
+├─src                                       # 源目录
+|  ├─App.vue                                # 根组件
+|  ├─main.js                                # 主入口
+|  ├─register-service-worker.js             # sw
+|  ├─views                                  # 页面目录
+|  ├─utils                                  # 常用工具
+|  ├─store                                  # vuex 全局状态
+|  ├─services                               # 业务service
+|  ├─sass                                   # sass分层
+|  ├─routes                                 # 路由模块
+|  ├─plugins                                # 项目插件
+|  ├─directives                             # vue 指令
+|  ├─config                                 # 项目配置
+|  ├─components                             # 业务组件
+|  ├─base                                   # 基础组件
+|  ├─assets                                 # 静态资源
+├─public                                    # 无需webpack处理的静态资源
 ```
 
 ## 基础组件
@@ -118,33 +124,33 @@ npm run serve
 ```sh
 ├─src
 |  ├─base
-|  |  ├─BaseAudio.vue                   # 音频播放组件
-|  |  ├─BaseBreadcrumb.vue              # 面包屑
-|  |  ├─BaseBreadcrumbItem.vue          # 面包屑-item
-|  |  ├─BaseBtnPreventFastClick.vue     # 防暴击按钮组件
-|  |  ├─BaseCircleProgress.vue          # 环形进度组件
-|  |  ├─BaseClickAreaExpand.vue         # 拓宽点击区域的按钮组件
-|  |  ├─BaseConfirm.vue                 # confirm组件
-|  |  ├─BaseCountInput.vue              # 计数input组件
-|  |  ├─BaseDynamicCursor.vue           # 动态游标tab组件
-|  |  ├─BaseFormulaRender.vue           # latex公式渲染组件
-|  |  ├─BaseLayoutHorizontal.vue        # 水平三分布局组件
-|  |  ├─BaseLayoutVertical.vue          # 垂直三分布局组件
-|  |  ├─BaseListTransition.vue          # 列表过渡组件
-|  |  ├─BaseLoading.vue                 # loading组件
-|  |  ├─BaseLoadingSpinner.vue          # loading-spinner组件
-|  |  ├─BaseModal.vue                   # 模态框组件
-|  |  ├─BaseNoOpenerAnchor.vue          # noopenner 锚点组件
-|  |  ├─BasePopUp.vue                   # popup组件
-|  |  ├─BaseScroll.vue                  # 移动端滚动组件
-|  |  ├─BaseScrollbar.vue               # 自定义滚动条组件
-|  |  ├─BaseScrollTab.vue               # 滚动tab组件
-|  |  ├─BaseSvgIcon.vue                 # svg icon组件
-|  |  ├─BaseTransitionFade.vue          # fade过渡动画组件
-|  |  ├─BaseTransitionSlide.vue         # slide过渡动画组件
-|  |  ├─BaseToast                       # toast组件
+|  |  ├─BaseAudio.vue                       # 音频播放组件
+|  |  ├─BaseBreadcrumb.vue                  # 面包屑
+|  |  ├─BaseBreadcrumbItem.vue              # 面包屑-item
+|  |  ├─BaseBtnPreventFastClick.vue         # 防暴击按钮组件
+|  |  ├─BaseCircleProgress.vue              # 环形进度组件
+|  |  ├─BaseClickAreaExpand.vue             # 拓宽点击区域的按钮组件
+|  |  ├─BaseConfirm.vue                     # confirm组件
+|  |  ├─BaseCountInput.vue                  # 计数input组件
+|  |  ├─BaseDynamicCursor.vue               # 动态游标tab组件
+|  |  ├─BaseFormulaRender.vue               # latex公式渲染组件
+|  |  ├─BaseLayoutHorizontal.vue            # 水平三分布局组件
+|  |  ├─BaseLayoutVertical.vue              # 垂直三分布局组件
+|  |  ├─BaseListTransition.vue              # 列表过渡组件
+|  |  ├─BaseLoading.vue                     # loading组件
+|  |  ├─BaseLoadingSpinner.vue              # loading-spinner组件
+|  |  ├─BaseModal.vue                       # 模态框组件
+|  |  ├─BaseNoOpenerAnchor.vue              # noopenner 锚点组件
+|  |  ├─BasePopUp.vue                       # popup组件
+|  |  ├─BaseScroll.vue                      # 移动端滚动组件
+|  |  ├─BaseScrollbar.vue                   # 自定义滚动条组件
+|  |  ├─BaseScrollTab.vue                   # 滚动tab组件
+|  |  ├─BaseSvgIcon.vue                     # svg icon组件
+|  |  ├─BaseTransitionFade.vue              # fade过渡动画组件
+|  |  ├─BaseTransitionSlide.vue             # slide过渡动画组件
+|  |  ├─BaseToast                           # toast组件
 |  |  |     └BaseToast.js
-|  |  ├─BaseSwiper                      # 轮播组件
+|  |  ├─BaseSwiper                          # 轮播组件
 |  |  |     ├─BaseSwiper.vue
 |  |  |     └BaseSwiperSlide.vue
 ```
@@ -156,7 +162,7 @@ npm run serve
 ```sh
 ├─src
 |  ├─components
-|     ├─Dialog.vue                      # 基于BasePopUp封装的弹窗组件
+|     ├─Dialog.vue                          # 基于BasePopUp封装的弹窗组件
 ```
 
 ## 常用插件
@@ -229,6 +235,11 @@ npm run serve
 
 ## 样式
 
+- **支持主题化配置**
+  - 使用`css3 vars`实现自定义主题
+  - 集成`css-vars-ponyfill`、`MutationObserver`兼容 IE
+  - 封装主题切换服务`theme-services`
+    - 具体见`src/views/ThemeChangeTest/ThemeChangeTest.vue`
 - 采用`scss`风格，根据功能进行分层
 - 集中在`src/sass`下
 
@@ -241,19 +252,22 @@ npm run serve
 |  |  |    ├─_c_imgSlider.scss
 |  |  |    └_c_pagination.scss
 |  |  ├─utils
+|  |  |   ├─_color-base.scss                # 基础色
+|  |  |   ├─_color-palette.scss             # 调色板(可用gen:color脚本根据_color-base生成)
 |  |  |   ├─_function.scss                  # sass function
 |  |  |   ├─_mediaQuery.scss                # 媒体查询
 |  |  |   ├─_mixins.scss                    # sass mixins
 |  |  |   ├─_placeholders.scss              # sass placeholder
 |  |  |   ├─_utils.scss                     # 工具集合
-|  |  |   ├─_variables.scss                 # 默认变量
-|  |  |   ├─_variablesCustom-m.scss         # 移动端变量
-|  |  |   └_variablesCustom.scss            # pc端变量
+|  |  |   ├─_vars-default.scss              # 默认变量
+|  |  |   ├─_vars-m.scss                    # 移动端变量
+|  |  |   └_vars.scss                       # 非pc端变量
 |  |  ├─modules
 |  |  |    ├─_animate.scss                  # 动画
 |  |  |    ├─_button.scss                   # 按钮
 |  |  |    ├─_form.scss                     # 表单
 |  |  |    ├─_loading.scss                  # loading
+|  |  |    ├─_root.scss                     # :root(挂载css3 vars)
 |  |  |    └_table.scss                     # 表格
 |  |  ├─layout
 |  |  |   ├─_grid.scss                      # 网格(弃用)

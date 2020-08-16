@@ -83,7 +83,7 @@ export const INDEX_ROUTES = [
     // * 每个路由需要取名，采用帕斯卡风格
     name: 'Index',
     redirect: {
-      name: 'Home'
+      name: 'HomePage'
     }
   }
 ]

@@ -8,7 +8,6 @@
 // 导入调色板
 @import './_color-palette';
 
-
 // ------------------------------------------
 // * 基础变量
 // ------------------------------------------
@@ -104,11 +103,20 @@ $line-heights: (
   'line-height-lg': $line-height-lg
 ) !default;
 
+// ------------------------------------------
+// * 开关
+// ------------------------------------------
+$lte7: false !default; //是否兼容ie6-7
+$ie-filter: false !default; //是否为ie6-8开启css3滤镜兼容，常用于渐变背景
+
+// ------------------------------------------
+// * 其它
+// ------------------------------------------
+$ui-width: 750px !default; // 设计图尺寸，用于rem()和设置html的字体大小
 
 // ------------------------------------------
 // * 派生变量
 // ------------------------------------------
-
 
 // ------------------------------------------
 // * 主题色
@@ -120,9 +128,9 @@ $theme-primary-darken: gen-var(theme-primary-light, $blue-7) !default;
 // ------------------------------------------
 // * 主题色补色
 // ------------------------------------------
-$theme-contrast: gen-var(theme-contrast, $yellow-6) !default; 
-$theme-contrast-light: gen-var(theme-contrast, $yellow-5) !default; 
-$theme-contrast-darken: gen-var(theme-contrast, $yellow-7) !default; 
+$theme-contrast: gen-var(theme-contrast, $yellow-6) !default;
+$theme-contrast-light: gen-var(theme-contrast, $yellow-5) !default;
+$theme-contrast-darken: gen-var(theme-contrast, $yellow-7) !default;
 
 // ------------------------------------------
 // * 功能色
@@ -175,18 +183,7 @@ $gutter-huge: gen-var(gutter-huge, $space-huge) !default;
 // ------------------------------------------
 // * 背景
 // ------------------------------------------
-$bg:gen-var(bg,$white);
-
-// ------------------------------------------
-// * 其它
-// ------------------------------------------
-$lte7: gen-var(lte7, false) !default; //是否兼容ie6-7
-$ie-filter: gen-var(
-  ie-filter,
-  false
-) !default; //是否为ie6-8开启css3滤镜兼容，常用于渐变背景
-
-$ui-width: 750px !default; // 设计图尺寸，用于rem()和设置html的字体大小
+$bg: gen-var(bg, $white);
 
 // ------------------------------------------
 // * 下面是每个模块的变量
@@ -195,6 +192,12 @@ $ui-width: 750px !default; // 设计图尺寸，用于rem()和设置html的字�
 // ------------------------------------------
 // * 按钮
 // ------------------------------------------
-$btn-color-primary:gen-var(btn-color-primary,$theme-primary) !default;
-$btn-color-primary-hover:gen-var(btn-color-primary-hover,$theme-primary-light) !default;
-$btn-color-primary-active:gen-var(btn-color-primary-hover,$theme-primary-darken) !default;
+$btn-color-primary: gen-var(btn-color-primary, $theme-primary) !default;
+$btn-color-primary-hover: gen-var(
+  btn-color-primary-hover,
+  $theme-primary-light
+) !default;
+$btn-color-primary-active: gen-var(
+  btn-color-primary-hover,
+  $theme-primary-darken
+) !default;

@@ -37,6 +37,7 @@
     "axios": "^0.19.2",
     "better-scroll": "^1.13.4",
     "core-js": "^3.6.5",
+    "driver.js": "^0.9.8",
     "element-ui": "^2.8.2",
     "mutationobserver-shim": "^0.3.7",
     "register-service-worker": "^1.7.1",

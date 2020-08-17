@@ -13,15 +13,15 @@ import { select } from 'Utils/select'
  * @returns
  */
 export function copyTextToClipboard(text) {
-  if (typeof text !== 'string') throw new Error('text必须为string类型')
-
-  let fakeEl = _genFakeCopyEl(text)
-  document.body.appendChild(fakeEl)
-
-  // eslint-disable-next-line
-  const selectedText = select(fakeEl)
-
   return new Promise((resolve, reject) => {
+    if (typeof text !== 'string') throw new Error('text必须为string类型')
+
+    let fakeEl = _genFakeCopyEl(text)
+    document.body.appendChild(fakeEl)
+
+    // eslint-disable-next-line
+    const selectedText = select(fakeEl)
+
     try {
       document.execCommand('copy')
     } catch (err) {

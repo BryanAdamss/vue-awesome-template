@@ -266,14 +266,21 @@ html {
 
 // 滚动条
 ::-webkit-scrollbar {
-  width: 2px;
-  height: 2px;
+  width: 6px !important;
+  height: 6px !important;
 
   background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
+  background-clip: padding-box;
+  border: 1px dashed transparent;
+  border-radius: 3px;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
 }
 
 ul,
@@ -305,9 +312,9 @@ textarea:focus {
 :disabled,
 [disabled],
 [aria-disabled] {
-  color: #ababab !important;
+  // color: #ababab !important;
 
-  background-color: #e6e6e6 !important;
+  // background-color: #e6e6e6 !important;
   cursor: not-allowed !important;
 
   pointer-events: none !important;

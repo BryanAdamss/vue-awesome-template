@@ -4,10 +4,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [2.1.0](https://github.com/BryanAdamss/vue-awesome-template/compare/v2.0.0...v2.1.0) (2020-06-28)
 
-
 ### Features
 
-* **version:** 添加standard-version支持 ([1a069fc](https://github.com/BryanAdamss/vue-awesome-template/commit/1a069fc87c04a0fc5a118533e0d55682c323341c))
+- **version:** 添加 standard-version 支持 ([1a069fc](https://github.com/BryanAdamss/vue-awesome-template/commit/1a069fc87c04a0fc5a118533e0d55682c323341c))
 
 ## [2.0.0](https://github.com/BryanAdamss/vue-awesome-template/compare/v1.4.0...v2.0.0) (2020-06-28)
 
@@ -39,7 +38,7 @@ All notable changes to this project will be documented in this file. See [standa
 - **theme:** 添加切换主题路由及测试组件 ([cb2da8b](https://github.com/BryanAdamss/vue-awesome-template/commit/cb2da8b2ecb9b92d3d0a4a159b360d08eb09d0f9))
 - **theme:** 调整主题服务实现并添加对应 cssvar 降级插件 ([57631fd](https://github.com/BryanAdamss/vue-awesome-template/commit/57631fdd606ca2d35ebad9753fd4ead2e9dc2696))
 - **thread-loader:** 添加 thread-loader ([7b15f47](https://github.com/BryanAdamss/vue-awesome-template/commit/7b15f47b6de836e3dd93ce0cc06c4cf76e597060))
-- **utils:** 添加 copyTextToClipBoard 及相关测试组件 ([b283ef0](https://github.com/BryanAdamss/vue-awesome-template/commit/b283ef056b72b6c6c48ebea052f347bf8defd28f))
+- **utils:** 添加 copyTextToClipboard 及相关测试组件 ([b283ef0](https://github.com/BryanAdamss/vue-awesome-template/commit/b283ef056b72b6c6c48ebea052f347bf8defd28f))
 - **utils:** 添加 getGlobalThis 方法 ([f383044](https://github.com/BryanAdamss/vue-awesome-template/commit/f3830448395a2cd08d0abb3590f415832bd1c96d))
 - **utils:** 添加 isFinite 函数 ([84027f5](https://github.com/BryanAdamss/vue-awesome-template/commit/84027f5b56444e88eec7142b181a55833f4ddfae))
 - **vue-router:** 添加 vue-router 异步模块加载出错处理机制 ([b36b114](https://github.com/BryanAdamss/vue-awesome-template/commit/b36b114ad80f8e91c0fe928b6f8b8d6e919b4b4d))

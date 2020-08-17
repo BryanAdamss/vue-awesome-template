@@ -12,7 +12,7 @@ import { select } from 'Utils/select'
  * @param {string} text 需要复制的文本
  * @returns
  */
-export function copyTextToClipBoard(text) {
+export function copyTextToClipboard(text) {
   if (typeof text !== 'string') throw new Error('text必须为string类型')
 
   let fakeEl = _genFakeCopyEl(text)

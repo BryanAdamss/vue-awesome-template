@@ -18,7 +18,7 @@
  */
 
 import { select } from 'Utils/select'
-import { copyTextToClipBoard } from 'Utils/copy'
+import { copyTextToClipboard } from 'Utils/copy'
 
 export default {
   name: 'CopyTextToClipBoardTest',
@@ -37,7 +37,7 @@ export default {
   mounted() {},
   methods: {
     handleClick() {
-      copyTextToClipBoard(this.text).then(selectedText => {
+      copyTextToClipboard(this.text).then(selectedText => {
         console.log('selectedText', selectedText)
 
         alert('拷贝成功，试试ctrl+v')

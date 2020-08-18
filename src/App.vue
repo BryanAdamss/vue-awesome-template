@@ -19,8 +19,8 @@
 /**
  * * App
  */
-import BaseTransitionSlide from 'Base/BaseTransitionSlide'
 import BaseLayoutVertical from 'Base/BaseLayoutVertical'
+import BaseTransitionSlide from 'Base/BaseTransitionSlide'
 
 import TopBar from 'Components/TopBar'
 

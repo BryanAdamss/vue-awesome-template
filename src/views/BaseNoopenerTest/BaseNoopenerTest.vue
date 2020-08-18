@@ -1,5 +1,5 @@
 <template>
-  <div class="c-BaseNoOpenerAnchorTest">
+  <div class="c-BaseNoopenerTest">
     <BaseNoOpenerAnchor
       class="c-Anchor"
       href="http://test.abc.com"
@@ -14,13 +14,13 @@
 
 <script>
 /**
- * * BaseNoOpenerAnchorTest
+ * * BaseNoopenerTest
  */
 
 import BaseNoOpenerAnchor from 'Base/BaseNoOpenerAnchor'
 
 export default {
-  name: 'BaseNoOpenerAnchorTest',
+  name: 'BaseNoopenerTest',
   components: {
     BaseNoOpenerAnchor
   },
@@ -43,6 +43,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.c-BaseNoOpenerAnchorTest {
+.c-BaseNoopenerTest {
+  color: red;
 }
 </style>

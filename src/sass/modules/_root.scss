@@ -9,7 +9,7 @@
 
   // 调色板
   @each $color, $value in $color-palette {
-    --#{$namespace}-#{$color}: #{$value};
+    --#{$namespace}-#{str-slice($color,2)}: #{$value};
   }
 
   // 尺寸

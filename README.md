@@ -19,6 +19,7 @@
 - 项目分层合理，经受住 10w 行业务代码项目实践检验
   - 分层思路参考[https://juejin.im/post/5b29c3bde51d45588d4d7110](https://juejin.im/post/5b29c3bde51d45588d4d7110)
 - 集成`css3 vars`主题切换服务，支持自定义主题
+  - 支持生成调色板`npm run color`
 - 集成`vue`全家桶(vuex、vue-router、axios)及各种最佳实践
 - 集成`element-ui`及各种自造轮子
 - 集成`webpack`优化最佳实践
@@ -63,11 +64,11 @@ npm run serve
     "release:minor": "npm run release -r minor", // feature 版本
     "release:patch": "npm run release -r patch", // fix 补丁版本
     "release:publish": "git push --follow-tags origin master", // 发布到npm
-    "gen-color": "node gen-color",// 生成sass调色板
     "new:comp": "node node_modules/@bryanadamss/generate-file", // 生成vue模板文件
     "stylelint": "stylelint", // 样式lint
     "stylelint:fix": "stylelint --fix", // 样式修复
-    "treer": "treer -e project-structure.txt -i node_modules" // 查看当前项目结构树
+    "treer": "treer -e project-structure.txt -i node_modules", // 查看当前项目结构树
+    "color": "color-palette --input src/sass/utils/_color-base.scss --output src/sass/utils/_color-palette.scss --sassMap" // 生成调色板
   }
 ```
 

@@ -2,6 +2,8 @@
   <BasePopUp
     :isShow.sync="dialogShow"
     :shadowClose="shadowClose"
+    :appendToBody="appendToBody"
+    :zIndex="zIndex"
   >
     <div
       :style="{
@@ -115,6 +117,14 @@ export default {
     confirmText: {
       type: String,
       default: '确定'
+    },
+    appendToBody: {
+      type: Boolean,
+      default: false
+    },
+    zIndex: {
+      type: [Number, String],
+      default: 9999
     }
   },
   data() {

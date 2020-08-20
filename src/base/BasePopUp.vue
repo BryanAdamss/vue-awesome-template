@@ -3,6 +3,7 @@
     ref="modal"
     :class="[positionClass,{'has-shadow':hasShadow},{'is-visible':isShow}]"
     class="c-BasePopUp"
+    :style="{'z-index':zIndex}"
     @click.stop="onShadowClick"
   >
     <div class="c-BasePopUp-main">
@@ -47,9 +48,16 @@ export default {
       // * 是否可见
       type: Boolean,
       default: false
+    },
+    appendToBody: {
+      type: Boolean,
+      default: false
+    },
+    zIndex: {
+      type: [Number, String],
+      default: 999
     }
   },
-
   computed: {
     positionClass() {
       const index = POSITIONS.indexOf(this.position)
@@ -57,28 +65,26 @@ export default {
       return `is-${name}`
     }
   },
-  activated() {
-    this._addWatch()
-  },
-  created() {
-    this._addWatch()
-  },
-  methods: {
-    _addWatch() {
-      // * 手动添加观测
-      const unwatch = this.$watch('isShow', (newVal, oldVal) => {
+  watch: {
+    isShow: {
+      handler: (newVal, oldVal) => {
         this._toggleBodyHidden(newVal)
         this.$emit('update:isShow', newVal)
-      }, {
-        immediate: true
-      })
+      },
+      immediate: true
+    }
+  },
+  mounted() {
+    if (this.appendToBody) document.body.appendChild(this.$el)
+  },
+  activated() {},
+  created() {},
+  beforeDestroy() {
+    this._toggleBodyHidden(false)
 
-      // * 销毁时，取消观测
-      this.$once('hook:beforeDestroy', () => {
-        this._toggleBodyHidden(false)
-        unwatch()
-      })
-    },
+    if (this.appendToBody && this.$el && this.$el.parentNode) this.$el.parentNode.removeChild(this.$el)
+  },
+  methods: {
     _toggleBodyHidden(val) {
       if (val) {
         document.body.classList.add('is-hidden')
@@ -131,8 +137,6 @@ export default {
 
   // * 展示时相关样式
   &.is-visible {
-    z-index: 999;
-
     width: 100%;
     height: 100%;
 

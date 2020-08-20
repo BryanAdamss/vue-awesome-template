@@ -166,6 +166,7 @@ module.exports = {
     // vue-cli-plugin-auto-alias 配置
     'vue-cli-plugin-auto-alias': {
       rootDirName: 'src',
+      case: 'pascalCase',
       alias: {}
     },
     // vue-cli-plugin-style-resources-loader 配置

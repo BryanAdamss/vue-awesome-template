@@ -50,8 +50,10 @@ npm run serve
     "test:unit": "vue-cli-service test:unit", // 单元测试
     "test:e2e": "vue-cli-service test:e2e", // e2e测试
     "ls-lint":"ls-lint",// 命名检测
-    "lint": "vue-cli-service lint", // lint
-    "lint:fix": "vue-cli-service lint --fix", // lint fix
+    "lint": "vue-cli-service lint", // eslint
+    "lint:fix": "vue-cli-service lint --fix", // eslint fix
+    "stylelint:fix": "stylelint --fix src/**/*.{sass,scss,vue,css,less,stylus}", // stylelint
+    "prettier": "prettier --write src/**/*.{json,css,scss,less,sass,md,html,flow,ts,tsd}", // prettier
     "inspect": "vue-cli-service inspect > webpack.inspect.js", // 检查development webpack配置
     "inspect:production": "vue-cli-service inspect --mode production > webpack.inspect.js", // 检查production webpack配置
     "commit": "git-cz", // git 提交
@@ -65,8 +67,6 @@ npm run serve
     "release:patch": "npm run release -r patch", // fix 补丁版本
     "release:publish": "git push --follow-tags origin master", // 发布到npm
     "new:comp": "node node_modules/@bryanadamss/generate-file", // 生成vue模板文件
-    "stylelint": "stylelint", // 样式lint
-    "stylelint:fix": "stylelint --fix", // 样式修复
     "treer": "treer -e project-structure.txt -i node_modules", // 查看当前项目结构树
     "color": "color-palette --input src/sass/utils/_color-base.scss --output src/sass/utils/_color-palette.scss --sassMap" // 生成调色板
   }

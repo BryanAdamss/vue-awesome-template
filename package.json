@@ -15,6 +15,8 @@
     "ls-lint": "ls-lint",
     "lint": "vue-cli-service lint",
     "lint:fix": "vue-cli-service lint --fix",
+    "stylelint:fix": "stylelint --fix src/**/*.{sass,scss,vue,css,less,stylus}",
+    "prettier": "prettier --write src/**/*.{json,css,scss,less,sass,md,html,flow,ts,tsd}",
     "inspect": "vue-cli-service inspect > webpack.inspect.js",
     "inspect:production": "vue-cli-service inspect --mode production > webpack.inspect.prod.js",
     "commit": "git-cz",
@@ -28,8 +30,6 @@
     "release:patch": "npm run release -r patch",
     "release:publish": "git push --follow-tags origin master",
     "new:comp": "node node_modules/@bryanadamss/generate-file",
-    "stylelint": "stylelint",
-    "stylelint:fix": "stylelint --fix",
     "treer": "treer -e project-structure.txt -i node_modules",
     "color": "color-palette --input src/sass/utils/_color-base.scss --output src/sass/utils/_color-palette.scss --sassMap"
   },
@@ -123,7 +123,7 @@
       "vue-cli-service lint",
       "git add"
     ],
-    "*.{sass,scss,vue,css}": [
+    "*.{sass,scss,vue,css,less,stylus}": [
       "stylelint --fix",
       "git add"
     ],

@@ -129,6 +129,33 @@ const enableBundleAnalysis = config => {
   }
 }
 
+// 将node_modules所有模块拆分成单独的包
+const splitAllNodeModulesVendors = config => {
+  if (process.env.NODE_ENV !== 'production') return
+
+  const splitChunks = config.optimization.get('splitChunks')
+
+  splitChunks.cacheGroups = {
+    ...splitChunks.cacheGroups,
+    vendor: {
+      test: /[\\/]node_modules[\\/]/,
+      name(module) {
+        const packageName = module.context.match(
+          /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+        )[1]
+        // 避免服务端不支持@
+        return `npm.${packageName.replace('@', '')}`
+      },
+      priority: 10
+    }
+  }
+
+  config.optimization.splitChunks({
+    ...config.optimization.get('splitChunks'),
+    ...splitChunks
+  })
+}
+
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
   devServer: {
@@ -161,6 +188,8 @@ module.exports = {
     enableGZip(config)
 
     enableBundleAnalysis(config)
+
+    splitAllNodeModulesVendors(config)
   },
   pluginOptions: {
     // vue-cli-plugin-auto-alias 配置

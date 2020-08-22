@@ -133,27 +133,29 @@ const enableBundleAnalysis = config => {
 const splitAllNodeModulesVendors = config => {
   if (process.env.NODE_ENV !== 'production') return
 
-  const splitChunks = config.optimization.get('splitChunks')
+  const oldConfig = config.optimization.get('splitChunks')
 
-  splitChunks.cacheGroups = {
-    ...splitChunks.cacheGroups,
-    vendor: {
-      test: /[\\/]node_modules[\\/]/,
-      name(module) {
-        const packageName = module.context.match(
-          /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-        )[1]
-        // 避免服务端不支持@
-        return `npm.${packageName.replace('@', '')}`
-      },
-      priority: 10
+  const newConfig = {
+    ...oldConfig,
+    cacheGroups: {
+      ...oldConfig.cacheGroups,
+      // 追加一个拆包规则，将node_modules拆成独立的包，适合http/2
+      // http/1.1 会有并发限制(chrome 6)
+      'single-vendor': {
+        test: /[\\/]node_modules[\\/]/,
+        name(module) {
+          const packageName = module.context.match(
+            /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+          )[1]
+          // 避免服务端不支持@
+          return `npm.${packageName.replace('@', '')}`
+        },
+        priority: 10
+      }
     }
   }
 
-  config.optimization.splitChunks({
-    ...config.optimization.get('splitChunks'),
-    ...splitChunks
-  })
+  config.optimization.splitChunks(newConfig)
 }
 
 module.exports = {

@@ -42,10 +42,11 @@ npm run serve
 
 ```js
   "scripts": {
-    "serve": "vue-cli-service serve", // 开发
-    "build": "vue-cli-service build", // 生产包
+    "serve": "vue-cli-service serve", // 本地环境
+    "build": "vue-cli-service build", // 部署到生产环境
     "build:modern": "vue-cli-service build --modern", // 现代打包模式
-    "build:testing": "vue-cli-service build --mode testing", // 测试环境
+    "build:dev": "vue-cli-service build --mode dev", // 部署到开发环境
+    "build:testing": "vue-cli-service build --mode testing", // 部署到测试环境
     "build:analysis": "vue-cli-service build --mode analysis", // 打包分析
     "test:unit": "vue-cli-service test:unit", // 单元测试
     "test:e2e": "vue-cli-service test:e2e", // e2e测试

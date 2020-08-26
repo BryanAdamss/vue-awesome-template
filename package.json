@@ -8,6 +8,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build:modern": "vue-cli-service build --modern",
+    "build:dev": "vue-cli-service build --mode dev",
     "build:testing": "vue-cli-service build --mode testing",
     "build:analysis": "vue-cli-service build --mode analysis",
     "test:unit": "vue-cli-service test:unit",

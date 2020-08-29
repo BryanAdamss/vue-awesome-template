@@ -1,9 +1,8 @@
 <template>
   <div class="c-PullupTest">
     <ul
-      ref="ul"
       v-pull-up="onPullup"
-      class="c-List"
+      class="c-PullupTest-list"
     >
       <li
         v-for="item in list"
@@ -57,12 +56,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .c-PullupTest {
-  height: 400px;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
+  &-list {
+    height: 400px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 
-  border: 1px solid blue;
+    border: 1px solid blue;
+  }
 }
 </style>

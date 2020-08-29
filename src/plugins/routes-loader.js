@@ -36,9 +36,9 @@ export default function routesLoader(defaultRoutes = []) {
   // ! require.context的入参不能使用变量传入，否则会报Critical dependency: require function is used in a way in which dependencies cannot be statically extracted错误
   // 导入Routes目录下所有非index.js的文件
   const files = require.context('Routes', false, /^(?!\.\/index\b).*\.js$/)
-  console.log(files.keys())
+
   const filteredKeys = getFilteredKeys(files.keys())
-  console.log(filteredKeys)
+
   filteredKeys.forEach(key => {
     const file = files(key)
 

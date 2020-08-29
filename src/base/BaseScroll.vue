@@ -42,7 +42,9 @@
           v-show="pullDownOptions.isPullingDown"
           class="c-PullDown-spinner"
         >
-          <BaseLoadingSpinner />
+          <BaseLoadingSpinner
+            size="32"
+          />
         </div>
         <div
           v-show="!pullDownOptions.isPullingDown"
@@ -112,12 +114,10 @@ export default {
       default: false
     },
     // * 是否保留原生滚动(默认不保留，使用模拟滚动)
+    // 'vertical', 'horizontal',false
     keepNativeScrollDirection: {
-      default: false,
-      validator: function(value) {
-        // * 值必须匹配下列字符串中的一个
-        return ['', 'vertical', 'horizontal'].indexOf(value) !== -1
-      }
+      type: [Boolean, String],
+      default: false
     },
 
     // * ---------是否派发相应事件的配置---------
@@ -455,49 +455,58 @@ export default {
 
 <style scoped>
 .c-BaseScroll {
+  position: relative;
+
   height: 100%;
   overflow: hidden;
-  position: relative;
 }
 
 .c-BaseScroll-pulldown {
   position: absolute;
   top: -40px;
-  left: 0;
   right: 0;
-  will-change: top;
+  left: 0;
+
   transform: translateZ(0);
+
+  will-change: top;
 }
 .c-PullDown {
-  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  font-size: 16px;
+
   color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 16px;
+
+  background: #eee;
 }
 .c-PullDown-spinner {
-  text-align: center;
   font-size: 0;
+  text-align: center;
 }
 
 .c-PullDown-text::before {
-  content: '⇣';
   display: inline-block;
-  will-change: transform;
-  transform-origin: center;
   height: 1em;
+
   line-height: 1em;
+
+  transform-origin: center;
+
   transition: transform 0.3s;
+
+  content: '⇣';
+  will-change: transform;
 }
 .c-PullDown-text.is-overPullDown::before {
   transform: rotate(180deg);
 }
 .c-PullUp {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 </style>

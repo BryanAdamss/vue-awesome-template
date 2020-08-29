@@ -5,36 +5,11 @@
       v-pull-up="onPullup"
       class="c-List"
     >
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-      <li>5</li>
-      <li>6</li>
-      <li>7</li>
-      <li>8</li>
-      <li>9</li>
-      <li>10</li>
-      <li>11</li>
-      <li>12</li>
-      <li>13</li>
-      <li>14</li>
-      <li>15</li>
-      <li>16</li>
-      <li>17</li>
-      <li>18</li>
-      <li>19</li>
-      <li>20</li>
-      <li>21</li>
-      <li>22</li>
-      <li>23</li>
-      <li>24</li>
-      <li>25</li>
-      <li>26</li>
-      <li>27</li>
-      <li>28</li>
-      <li>29</li>
-      <li>30</li>
+      <li
+        v-for="item in list"
+        :key="item"
+        v-text="item"
+      />
     </ul>
   </div>
 </template>
@@ -44,36 +19,46 @@
  * * PullupTest
  */
 
-// import pullUp from 'Directives/pull-up'
-
 export default {
   name: 'PullupTest',
-  // directives: {
-  //   pullUp
-  // },
+  data() {
+    return {
+      list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+    }
+  },
   methods: {
+    genNewLi() {
+      return new Promise((resolve, reject) => {
+        const delayMs = Math.floor(Math.random() * 1000 * 4)
+        console.log('delayMs', delayMs)
+
+        setTimeout(() => {
+          const len = Math.floor(Math.random() * 10 + 1)
+
+          resolve(new Array(len).fill(0).map(item => Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)))
+        }, delayMs)
+      })
+    },
     onPullup(pullupEnd) {
       console.log('onPullup')
-      // const getNewList = new Promise((resolve, reject) => {
-      //   setTimeout(() => {
-      //     const num = Math.random() * 10
-      //     console.log(num)
-      //     resolve(num)
-      //   }, 1500)
-      // }).then(num => {
-      //   console.log('timeEnd')
-      //   let $li = document.createElement('li')
-      //   $li.innerHTML = `new Li ${num}`
-      //   this.$refs.ul.appendChild($li)
-      //   pullupEnd()
-      // })
+      this.genNewLi()
+        .then(arr => {
+          console.log('new li arr:', arr)
+          this.list = this.list.concat(arr)
+
+          pullupEnd()
+        })
+        .catch(err => {
+          console.log(err)
+          pullupEnd()
+        })
     }
   }
 }
 </script>
 
 <style scoped>
-.c-List {
+.c-PullupTest {
   height: 400px;
   overflow: auto;
   -webkit-overflow-scrolling: touch;

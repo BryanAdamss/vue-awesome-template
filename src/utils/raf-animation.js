@@ -3,7 +3,7 @@
  * @description requestAnimationFrame动画
  */
 
-import { raf, caf } from 'Utils'
+import { caf, raf } from 'Utils'
 /**
  *
  * requestAnimationFrame动画

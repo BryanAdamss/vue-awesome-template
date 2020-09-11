@@ -6,15 +6,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import routesLoader from 'Plugins/routes-loader'
-import { ROUTER_DEFAULT_CONFIG, INDEX_ROUTES } from 'Config'
+import { INDEX_ROUTES, ROUTER_DEFAULT_CONFIG } from 'Config'
+import { routerOnErrorHandler } from 'Config/interceptors/router-error-handler'
 import {
-  scrollBehaviorFn as scrollBehavior,
   routerAfterEachFn,
-  routerBeforeEachFn
+  routerBeforeEachFn,
+  scrollBehaviorFn as scrollBehavior
 } from 'Config/interceptors/router-interceptor'
 
-import { routerOnErrorHandler } from 'Config/interceptors/router-error-handler'
+import routesLoader from 'Plugins/routes-loader'
 
 const routes = routesLoader(INDEX_ROUTES)
 

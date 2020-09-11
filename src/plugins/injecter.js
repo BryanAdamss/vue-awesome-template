@@ -2,23 +2,24 @@
  * @author GuangHui
  * @description 注入器
  */
+import { Loading, Message, MessageBox } from 'element-ui'
 import Vue from 'vue'
 
-import BaseToast from 'Base/BaseToast/BaseToast'
-import { Loading, Message, MessageBox } from 'element-ui'
+import { APP_INFO, BASE_URL, GLOBAL_NAME_SPACE } from 'Config'
 
-import bus from 'Plugins/event-bus'
 import api from 'Plugins/api-builder'
 import { constLoader } from 'Plugins/const-loader'
+import bus from 'Plugins/event-bus'
 
-import { GLOBAL_NAME_SPACE, BASE_URL, APP_INFO } from 'Config'
-import { throttle, debounce, getGlobalThis, getOrigin } from 'Utils'
+import { debounce, getGlobalThis, getOrigin, throttle } from 'Utils'
+
+import BaseToast from 'Base/BaseToast/BaseToast'
 
 import {
-  globalSaver,
-  globalSessionSaver,
   _getNewGlobalSaver,
-  _getNewGlobalSessionSaver
+  _getNewGlobalSessionSaver,
+  globalSaver,
+  globalSessionSaver
 } from 'Services/extends/global-saver'
 
 Vue.use(Loading.directive)

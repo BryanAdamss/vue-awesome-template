@@ -3,49 +3,49 @@
  * @description 组件注册器
  */
 
-import Vue from 'vue'
+import 'element-ui/lib/theme-chalk/index.css'
+
 import {
-  Pagination,
-  Dialog,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  Input,
-  InputNumber,
-  Radio,
-  RadioButton,
-  RadioGroup,
+  Breadcrumb,
+  BreadcrumbItem,
+  Button,
+  Carousel,
+  CarouselItem,
   Checkbox,
   CheckboxButton,
   CheckboxGroup,
-  Select,
-  Option,
-  Popover,
-  Button,
-  Table,
-  TableColumn,
-  DatePicker,
-  Tooltip,
-  Breadcrumb,
-  BreadcrumbItem,
-  Form,
-  FormItem,
-  Tabs,
-  TabPane,
-  Tree,
-  Icon,
-  Row,
   Col,
-  Progress,
-  Carousel,
-  CarouselItem,
   Collapse,
   CollapseItem,
-  Scrollbar
+  DatePicker,
+  Dialog,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  Form,
+  FormItem,
+  Icon,
+  Input,
+  InputNumber,
+  Option,
+  Pagination,
+  Popover,
+  Progress,
+  Radio,
+  RadioButton,
+  RadioGroup,
+  Row,
+  Scrollbar,
+  Select,
+  Table,
+  TableColumn,
+  TabPane,
+  Tabs,
+  Tooltip,
+  Tree
 } from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
 import CollapseTransition from 'element-ui/lib/transitions/collapse-transition'
-
+import Vue from 'vue'
 import VueLazyload from 'vue-lazyload'
 
 /**

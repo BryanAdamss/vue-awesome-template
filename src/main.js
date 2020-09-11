@@ -1,20 +1,21 @@
-import Vue from 'vue'
-import App from './App'
-
 import './register-service-worker'
+
+import Vue from 'vue'
 
 // * ----------------------------------------
 // * 导入插件
 // * ----------------------------------------
-import router from 'Plugins/router-instance'
-import store from 'Plugins/vuex-instance'
-import { vueInjecter, globalInjecter } from 'Plugins/injecter'
-import { directiveRegister, filterRegister } from 'Plugins/register'
 import {
   elementUiRegister,
   vueLazyloadReigster
 } from 'Plugins/component-register'
+import { globalInjecter, vueInjecter } from 'Plugins/injecter'
+import { directiveRegister, filterRegister } from 'Plugins/register'
+import router from 'Plugins/router-instance'
 import { vconsoleProvider } from 'Plugins/vconsole-provider'
+import store from 'Plugins/vuex-instance'
+
+import App from './App'
 
 // * ----------------------------------------
 // * 注册组件

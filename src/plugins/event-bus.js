@@ -4,6 +4,7 @@
  */
 
 import Vue from 'vue'
+
 import { GLOBAL_NAME_SPACE } from 'Config'
 
 const bus =

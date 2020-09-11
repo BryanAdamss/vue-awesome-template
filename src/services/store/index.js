@@ -2,10 +2,10 @@
  * @author GuangHui
  * @description 全局状态管理入口
  */
-import state from './states'
-import mutations from './mutations'
-import * as getters from './getters'
 import * as actions from './actions'
+import * as getters from './getters'
+import mutations from './mutations'
+import state from './states'
 
 export default {
   state,

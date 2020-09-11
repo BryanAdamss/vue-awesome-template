@@ -3,9 +3,10 @@
  * @description 上拉指令
  */
 
+import Vue from 'vue'
+
 import { eventListenerPassiveSupported, throttle } from 'Utils'
 
-import Vue from 'vue'
 import BaseLoadingSpinner from 'Base/BaseLoadingSpinner'
 
 const ExtendLoading = Vue.extend({

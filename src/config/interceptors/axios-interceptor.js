@@ -3,10 +3,11 @@
  * @description axios拦截器
  */
 
-import { isEmpty } from 'Utils/type-judge'
+import { GLOBAL_LOADING_DEFAULT_CONFIG, GLOBAL_NAME_SPACE } from 'Config'
+
 import GlobalLoading from 'Plugins/global-loading'
 
-import { GLOBAL_NAME_SPACE, GLOBAL_LOADING_DEFAULT_CONFIG } from 'Config'
+import { isEmpty } from 'Utils/type-judge'
 
 const globalLoading = new GlobalLoading(GLOBAL_LOADING_DEFAULT_CONFIG)
 

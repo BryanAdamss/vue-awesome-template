@@ -23,10 +23,10 @@
  */
 
 import {
-  mapGetters,
-  mapMutations,
   // mapActions,
-  createNamespacedHelpers
+  createNamespacedHelpers,
+  mapGetters,
+  mapMutations
 } from 'vuex' // * 使用 createNamespacedHelpers 创建基于某个命名空间辅助函数
 
 import store from './store'

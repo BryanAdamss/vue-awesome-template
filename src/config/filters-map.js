@@ -3,15 +3,15 @@
  * @description filtersMap
  */
 
+import NumberToChinese from 'Plugins/num-to-chn'
+
 import {
   dateFormat,
-  str2kebab,
+  fixedDecimal,
   ms2hms,
   num2percentage,
-  fixedDecimal
+  str2kebab
 } from 'Utils'
-
-import NumberToChinese from 'Plugins/num-to-chn'
 
 const num2chn = new NumberToChinese()
 const numberToChn = val => num2chn.transform(val)

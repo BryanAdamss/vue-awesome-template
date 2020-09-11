@@ -13,9 +13,9 @@
  * * ConstLoaderTest
  */
 
-import ConstLoaderTestChild from './ConstLoaderTestChild'
-
 import * as constLoaderTestConst from 'Services/const/const-loader-test'
+
+import ConstLoaderTestChild from './ConstLoaderTestChild'
 
 export default {
   name: 'ConstLoaderTest',

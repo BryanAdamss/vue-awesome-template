@@ -19,12 +19,12 @@
 /**
  * * App
  */
+import { LOADING_DEFAULT_CONFIG } from 'Config'
+
 import BaseLayoutVertical from 'Base/BaseLayoutVertical'
 import BaseTransitionSlide from 'Base/BaseTransitionSlide'
 
 import TopBar from 'Components/TopBar'
-
-import { LOADING_DEFAULT_CONFIG } from 'Config'
 
 import * as commonConst from 'Services/const/common'
 

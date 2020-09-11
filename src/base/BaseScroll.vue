@@ -61,6 +61,7 @@
 
 <script>
 import BScroll from 'better-scroll'
+
 import BaseLoadingSpinner from 'Base/BaseLoadingSpinner'
 
 /**

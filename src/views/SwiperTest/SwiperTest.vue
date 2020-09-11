@@ -19,10 +19,10 @@
  * * SwiperTest
  */
 
-import BaseSwiper from 'Base/BaseSwiper/BaseSwiper'
-import BaseFormulaRender from 'Base/BaseFormulaRender'
-
 import MOCK_DATA from 'Views/FormulaRenderTest/mock-data'
+
+import BaseFormulaRender from 'Base/BaseFormulaRender'
+import BaseSwiper from 'Base/BaseSwiper/BaseSwiper'
 
 export default {
   name: 'SwiperTest',

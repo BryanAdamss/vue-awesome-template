@@ -4,10 +4,9 @@
 
 import vuexInstance from 'Plugins/vuex-instance'
 
+import actions from './actions'
 import moduleA from './module-a'
 import moduleB from './module-b'
-
-import actions from './actions'
 
 const MODULE_NAME = 'VuexTest'
 

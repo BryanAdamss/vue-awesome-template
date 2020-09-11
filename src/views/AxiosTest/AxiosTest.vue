@@ -26,8 +26,9 @@
 
 import BaseLoading from 'Base/BaseLoading'
 
-import Post from './models/Post'
 import { formatGetPostRes } from 'Services/translator/axios-test'
+
+import Post from './models/Post'
 
 export default {
   name: 'AxiosTest',

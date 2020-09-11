@@ -17,8 +17,8 @@
  * * CopyTextToClipBoardTest
  */
 
-import { select } from 'Utils/select'
 import { copyTextToClipboard } from 'Utils/copy'
+import { select } from 'Utils/select'
 
 export default {
   name: 'CopyTextToClipBoardTest',

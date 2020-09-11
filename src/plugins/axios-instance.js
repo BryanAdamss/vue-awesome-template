@@ -4,12 +4,13 @@
  */
 
 import axios from 'axios'
+
 import { AXIOS_DEFAULT_CONFIG } from 'Config'
 import {
-  reqResolveFn,
   reqRejectFn,
-  respSuccFn,
-  respFailFn
+  reqResolveFn,
+  respFailFn,
+  respSuccFn
 } from 'Config/interceptors/axios-interceptor'
 
 const axiosInstance = axios.create(AXIOS_DEFAULT_CONFIG)

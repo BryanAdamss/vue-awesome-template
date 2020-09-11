@@ -5,13 +5,14 @@
 
 import { stringify } from 'qs'
 
-import { assert } from 'Utils'
-import { isEmpty } from 'Utils/type-judge'
 import { API_DEFAULT_CONFIG } from 'Config'
 
-import API_MAP from 'Services/api'
-
 import axios from 'Plugins/axios-instance'
+
+import { assert } from 'Utils'
+import { isEmpty } from 'Utils/type-judge'
+
+import API_MAP from 'Services/api'
 
 class ApiBuilder {
   constructor(options) {

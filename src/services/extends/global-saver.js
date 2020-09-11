@@ -3,9 +3,9 @@
  * @description 全局Storage
  */
 
-import Saver from 'Plugins/saver'
-
 import { GLOBAL_NAME_SPACE } from 'Config'
+
+import Saver from 'Plugins/saver'
 
 /**
  * 生成全局的localStorage

@@ -9,6 +9,7 @@ module.exports = {
   parserOptions: {
     parser: 'babel-eslint'
   },
+  plugins: ['simple-import-sort'], // 添加import排序插件
   rules: {
     // 在类成员之间出现空行
     'lines-between-class-members': 'warn',
@@ -38,7 +39,46 @@ module.exports = {
     'no-void': 'off',
     // console、debugger
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    // eslint-plugin-simple-import-sort
+    // 使用其自定义排序 https://github.com/lydell/eslint-plugin-simple-import-sort/#custom-grouping
+    'simple-import-sort/sort': [
+      'error',
+      {
+        groups: [
+          // Side effect imports.
+          ['^\\u0000'],
+          // Packages.
+          // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
+          ['^@?\\w'],
+
+          // 通用->具体(项目->业务)
+          ['^Config'],
+          ['^Plugins'],
+
+          ['^Utils'],
+          ['^Directives'],
+          ['^Assets'],
+          ['^Sass'],
+          ['^Routes'],
+          ['^Views'],
+
+          ['^Base'],
+          ['^Components'],
+
+          ['^Services'],
+
+          // Absolute imports and other imports such as Vue-style `@/foo`.
+          // Anything that does not start with a dot.
+          ['^[^.]'],
+          // Relative imports.
+          // Anything that starts with a dot.
+          ['^\\.']
+        ]
+      }
+    ],
+    'sort-imports': 'off',
+    'import/order': 'off'
   },
   overrides: [
     {

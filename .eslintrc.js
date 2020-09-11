@@ -77,8 +77,8 @@ module.exports = {
         ]
       }
     ],
-    'sort-imports': 'off',
-    'import/order': 'off'
+    'sort-imports': 'off', // 关闭可能影响simple-import-sort效果的自带排序规则
+    'import/order': 'off' // 关闭可能影响simple-import-sort效果的自带排序规则
   },
   overrides: [
     {

@@ -38,7 +38,7 @@ npm i
 npm run serve
 ```
 
-- 命令
+- scripts
 
 ```js
   "scripts": {
@@ -52,7 +52,7 @@ npm run serve
     "test:e2e": "vue-cli-service test:e2e", // e2e测试
     "ls-lint":"ls-lint",// 命名检测
     "lint": "vue-cli-service lint", // eslint
-    "lint:fix": "vue-cli-service lint --fix", // eslint fix
+    "lint:fix": "vue-cli-service lint --fix src tests/unit tests/e2e/specs --ext .js,.vue",, // eslint fix
     "stylelint:fix": "stylelint --fix src/**/*.{sass,scss,vue,css,less,stylus}", // stylelint
     "prettier": "prettier --write src/**/*.{json,css,scss,less,sass,md,html,flow,ts,tsd}", // prettier
     "inspect": "vue-cli-service inspect > webpack.inspect.js", // 检查development webpack配置

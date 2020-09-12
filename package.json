@@ -15,7 +15,7 @@
     "test:e2e": "vue-cli-service test:e2e",
     "ls-lint": "ls-lint",
     "lint": "vue-cli-service lint",
-    "lint:fix": "vue-cli-service lint --fix",
+    "lint:fix": "vue-cli-service lint --fix src tests/unit tests/e2e/specs --ext .js,.vue",
     "stylelint:fix": "stylelint --fix src/**/*.{sass,scss,vue,css,less,stylus}",
     "prettier": "prettier --write src/**/*.{json,css,scss,less,sass,md,html,flow,ts,tsd}",
     "inspect": "vue-cli-service inspect > webpack.inspect.js",

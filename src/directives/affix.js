@@ -29,14 +29,6 @@ export default {
     const $interval =
       binding.value && binding.value.interval ? binding.value.interval : 20
 
-    // * affixed后的位置(可接收任意样式)
-    const fixedElPos =
-      binding.value && binding.value.fixedElPos
-        ? binding.value.fixedElPos
-        : {
-          top: 0
-        }
-
     // * affixed的回调
     const onAffixed = binding.value && binding.value.onAffixed
     const onUnAffixed = binding.value && binding.value.onUnAffixed
@@ -71,6 +63,15 @@ export default {
         })
 
         el.parentNode.insertBefore(fakeEl, el) // 在实际元素之前添加占位元素
+
+        // * affixed后的位置(可接收任意样式)，fixedElPos可以是一个工厂函数
+        let fixedElPos = { top: 0 }
+        if (binding.value && binding.value.fixedElPos) {
+          fixedElPos =
+            typeof binding.value.fixedElPos === 'function'
+              ? binding.value.fixedElPos()
+              : binding.value.fixedElPos
+        }
 
         // 为实际元素添加样式
         addStyle(el, {
@@ -119,9 +120,12 @@ export default {
     // * clean
     if (el.__vueAffixScrollHandler__) {
       if (el.__vueAffixFakeEl__) {
-        el.__vueAffixFakeEl__.parentNode.removeChild(el.__vueAffixFakeEl__)
+        // ! 黑科技解决路由切换动画时，提前移除DOM节点导致布局错乱的问题
+        setTimeout(() => {
+          el.__vueAffixFakeEl__.parentNode.removeChild(el.__vueAffixFakeEl__)
 
-        el.__vueAffixFakeEl__ = null
+          el.__vueAffixFakeEl__ = null
+        }, 300)
       }
 
       el.__vueAffixContainer__.removeEventListener(

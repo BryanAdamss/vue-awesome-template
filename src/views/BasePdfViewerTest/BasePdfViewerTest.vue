@@ -1,6 +1,6 @@
 <template>
   <div class="c-BasePdfViewerTest">
-    <BasePDFViewer />
+    <BasePdfViewer />
   </div>
 </template>
 
@@ -9,11 +9,11 @@
  * * BasePdfViewerTest
  */
 
-import BasePDFViewer from 'Base/BasePDFViewer/BasePDFViewer'
+import BasePdfViewer from 'Base/BasePdfViewer/BasePdfViewer'
 
 export default {
   name: 'BasePdfViewerTest',
-  components: { BasePDFViewer },
+  components: { BasePdfViewer },
   mixins: [],
   props: {},
   data() {

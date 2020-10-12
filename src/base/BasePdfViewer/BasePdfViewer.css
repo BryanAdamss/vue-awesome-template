@@ -1,0 +1,27 @@
+.c-BasePdfViewer {
+}
+
+.c-BasePdfViewer-main {
+  padding: 10px;
+
+  background-color: #414141;
+}
+
+.c-BasePdfViewer-text {
+  color: #fff;
+  text-align: center;
+}
+
+.c-PDFViewerWp {
+}
+
+.c-PDFViewer .page {
+  margin-right: auto;
+  margin-left: auto;
+
+  background-color: #fff;
+}
+
+.c-PDFViewer .page + .page {
+  margin-top: 10px;
+}

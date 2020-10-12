@@ -71,13 +71,35 @@ const setStatics = config => {
   const customs = {
     head: {
       css: ['formula/katex/katex.css'],
-      js: ['js/flexible-custom.js', 'js/fastclick-custom.js']
+      js: [{
+        attrs:['async'],
+        path:'js/flexible-custom.js'
+      },{
+        attrs:['async'],
+        path:'js/fastclick-custom.js'
+      }]
     },
     body: {
       js: [
-        'formula/katex/katex.min.js',
-        'formula/mathjax/MathJax.js?config=TeX-AMS_CHTML',
-        'formula/mathjax-config-cutom.js'
+        {
+          attrs: ['defer'], // 追加到script上的attr
+          path: 'formula/katex/katex.min.js'
+        },
+        {
+          attrs: ['defer'],
+          path: 'formula/mathjax/MathJax.js?config=TeX-AMS_CHTML'
+        },
+        {
+          attrs: ['defer'],
+          path: 'formula/mathjax-config-cutom.js'
+        },
+        {
+          noBaseURL:true, // 不需要拼接baseURL
+          path:'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.js',
+        },{
+          noBaseURL:true,
+          path:'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/web/pdf_viewer.js'
+        }
       ]
     }
   }

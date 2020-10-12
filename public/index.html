@@ -97,8 +97,8 @@
     <% htmlWebpackPlugin.options.customs.head.js.forEach(function(item){ %>
     <script
       type="text/javascript"
-      async
-      src="<%= BASE_URL %><%= item %>"
+      <%= item.attrs ? item.attrs.join(' '):'' %>
+      src="<%= BASE_URL %><%= item.path || item %>"
     ></script>
     <% }) %>
     <!-- customs.head.js -->
@@ -148,8 +148,8 @@
     <% htmlWebpackPlugin.options.customs.body.js.forEach(function(item){ %>
     <script
       type="text/javascript"
-      defer
-      src="<%= BASE_URL %><%= item %>"
+      <%= item.attrs ? item.attrs.join(' '):'' %>
+      src="<%= item.noBaseURL ? item.path : BASE_URL + (item.path || item) %>"
     ></script>
     <% }) %>
     <!-- customs.body.js end -->

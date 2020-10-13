@@ -167,9 +167,11 @@ export default {
         cMapPacked: CMAP_PACKED
       })
 
-      loadingTask.onProgress = this.handleLoadingTaskProcessChange
+      loadingTask.onProgress = this.handleLoadingTaskProcessChange // 监听加载进度
 
-      loadingTask.promise.then(this.handleLoadingTaskSuccess, this.handleLoadingTaskFail)
+      loadingTask.promise
+        .then(this.handleLoadingTaskSuccess)
+        .catch(this.handleLoadingTaskFail)
     },
     /**
      * 初始化抓手工具

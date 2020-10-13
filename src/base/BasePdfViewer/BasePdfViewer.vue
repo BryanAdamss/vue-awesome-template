@@ -12,17 +12,41 @@
           />
         </div>
       </slot>
-      <div class="c-BasePdfViewer-loading">
-        <slot
-          v-if="isLoading"
-          name="loading"
-          v-bind="{loaded,total}"
+    </div>
+    <div class="c-BasePdfViewer-opt">
+      <slot
+        name="zoom-in"
+        v-bind="{zoomIn}"
+      >
+        <button
+          type="button"
+          @click="zoomIn"
         >
-          <p class="c-BasePdfViewer-text">
-            {{ percentage }}%
-          </p>
-        </slot>
-      </div>
+          zoom-in
+        </button>
+      </slot>
+      <slot
+        name="zoom-out"
+        v-bind="{zoomOut}"
+      >
+        <button
+          type="button"
+          @click="zoomOut"
+        >
+          zoom-out
+        </button>
+      </slot>
+    </div>
+    <div class="c-BasePdfViewer-loading">
+      <slot
+        v-if="isLoading"
+        name="loading"
+        v-bind="{loaded,total}"
+      >
+        <p class="c-BasePdfViewer-text">
+          {{ percentage }}%
+        </p>
+      </slot>
     </div>
   </div>
 </template>

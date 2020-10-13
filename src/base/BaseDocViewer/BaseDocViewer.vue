@@ -13,30 +13,51 @@
         </div>
       </slot>
     </div>
-    <div class="c-BasePdfViewer-opt">
-      <slot
-        name="zoom-in"
-        v-bind="{zoomIn}"
+
+    <transition
+      name="el-fade-in"
+      mode="out-in"
+    >
+      <div
+        v-if="!isLoading"
+        class="c-BasePdfViewer-opt"
       >
-        <button
-          type="button"
-          @click="zoomIn"
+        <slot
+          name="zoom-in"
+          v-bind="{zoomIn}"
         >
-          zoom-in
-        </button>
-      </slot>
-      <slot
-        name="zoom-out"
-        v-bind="{zoomOut}"
-      >
-        <button
-          type="button"
-          @click="zoomOut"
+          <button
+            type="button"
+            @click="zoomIn"
+          >
+            zoom-in
+          </button>
+        </slot>
+        <slot
+          name="zoom-out"
+          v-bind="{zoomOut}"
         >
-          zoom-out
-        </button>
-      </slot>
-    </div>
+          <button
+            type="button"
+            @click="zoomOut"
+          >
+            zoom-out
+          </button>
+        </slot>
+        <slot
+          name="zoom-reset"
+          v-bind="{zoomReset}"
+        >
+          <button
+            type="button"
+            @click="zoomReset"
+          >
+            zoom-reset
+          </button>
+        </slot>
+      </div>
+    </transition>
+
     <div class="c-BasePdfViewer-loading">
       <slot
         v-if="isLoading"
@@ -73,9 +94,12 @@ export default {
   props: {
     url: {
       type: String,
-      // ! TODO:mock
-      // required: true,
-      default: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf'
+      required: true
+    },
+    // 是否需要抓手工具
+    needHandTool: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -118,21 +142,22 @@ export default {
 
       const { EventBus, PDFLinkService, PDFViewer } = pdfjsViewer
 
-      const eventBus = new EventBus()
+      this.eventBus = new EventBus()
 
-      this.pdfLinkService = new PDFLinkService({ eventBus })
+      this.pdfLinkService = new PDFLinkService({ eventBus: this.eventBus })
 
       this.pdfViewer = new PDFViewer({
         container: document.getElementById('pdf-container'),
         viewer: document.getElementById('pdf-viewer'),
-        eventBus,
+        eventBus: this.eventBus,
         linkService: this.pdfLinkService,
-        textLayerMode: 0 // 禁用文本
+        textLayerMode: 0, // 禁用文本
+        useOnlyCssZoom: true
       })
 
       this.pdfLinkService.setViewer(this.pdfViewer)
 
-      eventBus.on('pagesinit', this.handlePagesInit) // 监听页面初始化
+      this.eventBus.on('pagesinit', this.handlePagesInit) // 监听页面初始化
 
       this.isLoading = true
       // 加载文档
@@ -147,11 +172,35 @@ export default {
       loadingTask.promise.then(this.handleLoadingTaskSuccess, this.handleLoadingTaskFail)
     },
     /**
+     * 初始化抓手工具
+     */
+    initHandTool() {
+      if (this.pdfCursorTools) return
+
+      import('./lib/pdf-cursor-tools')
+        .then(({ CursorTool, PDFCursorTools }) => {
+          if (!CursorTool || !PDFCursorTools) throw new Error('load pdf-cursor-tools error')
+
+          this.pdfCursorTools = new PDFCursorTools({
+            container: document.getElementById('pdf-container'),
+            eventBus: this.eventBus,
+            cursorToolOnLoad: CursorTool.HAND
+          })
+          this.$emit('init-hand-tool-success', this.pdfCursorTools)
+        })
+        .catch(err => {
+          console.log('initHandTool', err)
+          this.$emit('init-hand-tool-error', err)
+        })
+    },
+    /**
      * 处理页面初始化完成
      */
     handlePagesInit() {
       // 页面初始化完成，此时可对页面进行一些初始设置，例如缩放
-      this.pdfViewer.currentScaleValue = 'page-width'
+      this.fitPageWidth()
+
+      this.needHandTool && this.initHandTool() // 初始化抓手工具
     },
     /**
      * 处理文档加载任务进度变化
@@ -184,6 +233,20 @@ export default {
       this.$emit('loading.task.error', err)
     },
     /**
+     * 设置缩放为页面宽度
+     */
+    fitPageWidth() {
+      this.pdfViewer &&
+      this.pdfViewer.currentScaleValue !== 'page-width' &&
+      (this.pdfViewer.currentScaleValue = 'page-width')
+    },
+    /**
+     * 缩放重置
+     */
+    zoomReset() {
+      this.fitPageWidth()
+    },
+    /**
      * 放大
      */
     zoomIn(ticks) {
@@ -213,4 +276,4 @@ export default {
 }
 </script>
 
-<style src="./BasePdfViewer.css"></style>
+<style src="./index.css"></style>

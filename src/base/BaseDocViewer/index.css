@@ -2,12 +2,17 @@
   position: relative;
   z-index: 1;
 
+  height: 100%;
+
   padding: 10px;
+  overflow: hidden;
 
   background-color: #414141;
 }
 
 .c-BasePdfViewer-main {
+  height: 100%;
+  overflow: hidden;
 }
 
 .c-BasePdfViewer-loading {
@@ -24,7 +29,21 @@
   text-align: center;
 }
 
+.c-BasePdfViewer-opt {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2;
+}
+
 .c-PDFViewerWp {
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.c-PDFViewerWp.grab-to-pan-grab {
+  cursor: grab;
 }
 
 .c-PDFViewer .page {
@@ -32,6 +51,8 @@
   margin-left: auto;
 
   background-color: #fff;
+
+  will-change: width, height;
 }
 
 .c-PDFViewer .page + .page {

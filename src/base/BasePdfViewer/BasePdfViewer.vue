@@ -20,7 +20,7 @@
           :fileName="fileName"
           :pageNum="pageNum"
           :pageCount="pageCount"
-          :loadSuccess="loadSuccess"
+          :showPage="loadSuccess"
           @zoom-in="zoomIn"
           @zoom-out="zoomOut"
           @zoom-reset="zoomReset"
@@ -104,13 +104,13 @@ export default {
       loaded: 0, // 已加载尺寸
 
       pageNum: 1, // 页码
+      pageCount: 0, // 总页数
 
       isLoading: false,
       loadSuccess: false,
       loadFail: false,
 
-      pdfViewer: null,
-      pageCount: 0
+      pdfViewer: null
     }
   },
   computed: {
@@ -305,7 +305,7 @@ export default {
     /**
      * 缩小
      */
-    zoomOut: function pdfViewZoomOut(ticks) {
+    zoomOut(ticks) {
       if (!this.pdfViewer) return
 
       let newScale = this.pdfViewer.currentScale

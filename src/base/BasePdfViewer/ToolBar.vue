@@ -8,11 +8,11 @@
     </div>
     <div class="c-ToolBar-side">
       <div class="c-Opt">
-        <div class="c-Opt-item">
-          <span
-            v-show="loadSuccess"
-            class="c-Text"
-          >
+        <div
+          v-if="showPage"
+          class="c-Opt-item"
+        >
+          <span class="c-Text">
             <span v-text="pageNum" />
             /
             <span v-text="pageCount" />
@@ -65,7 +65,7 @@ export default {
       type: String,
       default: ''
     },
-    loadSuccess: {
+    showPage: {
       type: Boolean,
       default: false
     },

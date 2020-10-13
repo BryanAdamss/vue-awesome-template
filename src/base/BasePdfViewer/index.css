@@ -6,6 +6,8 @@
 
   overflow: hidden;
 
+  font-size: 16px;
+
   background-color: #414141;
 }
 
@@ -23,7 +25,7 @@
   overflow: hidden;
 }
 
-.c-BasePdfViewer-loading {
+.c-BasePdfViewer-tips {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -34,6 +36,7 @@
 
 .c-BasePdfViewer-text {
   color: #fff;
+  font-size: 16px;
   text-align: center;
 }
 

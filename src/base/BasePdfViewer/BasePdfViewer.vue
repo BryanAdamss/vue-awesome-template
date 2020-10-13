@@ -1,56 +1,73 @@
 <template>
   <div class="c-BasePdfViewer">
     <div class="c-BasePdfViewer-hd">
-      <div class="c-ToolBar">
-        <div class="c-ToolBar-main">
-          <p
-            class="c-FileName"
-            v-text="fileName"
-          />
-        </div>
-        <div class="c-ToolBar-side">
-          <div class="c-Opt">
-            <div class="c-Opt-item">
-              <span
-                v-show="!isLoading"
-                class="c-Text"
-              >
-                <span v-text="pageNum" />
-                /
-                <span v-text="pageCount" />
-              </span>
-            </div>
+      <!-- 工具栏 -->
+      <slot
+        name="tool-bar"
+        v-bind="{
+          fileName,
+          pageNum,
+          pageCount,
+          zoomIn,
+          zoomOut,
+          zoomReset,
+          isLoading,
+          loadFail,
+          loadSuccess
+        }"
+      >
+        <div class="c-ToolBar">
+          <div class="c-ToolBar-main">
+            <p
+              class="c-FileName"
+              v-text="fileName"
+            />
+          </div>
+          <div class="c-ToolBar-side">
+            <div class="c-Opt">
+              <div class="c-Opt-item">
+                <span
+                  v-show="loadSuccess"
+                  class="c-Text"
+                >
+                  <span v-text="pageNum" />
+                  /
+                  <span v-text="pageCount" />
+                </span>
+              </div>
 
-            <div
-              class="c-Opt-item"
-              title="放大"
-              @click="zoomIn"
-            >
-              <span class="c-Icon">
-                +
-              </span>
-            </div>
-            <div
-              class="c-Opt-item"
-              title="缩小"
-              @click="zoomOut"
-            >
-              <span class="c-Icon">
-                -
-              </span>
-            </div>
-            <div
-              class="c-Opt-item"
-              title="还原"
-              @click="zoomReset"
-            >
-              <span class="c-Icon">
-                ⭯
-              </span>
+              <div
+                class="c-Opt-item"
+                title="放大"
+                @click="zoomIn"
+              >
+                <span class="c-Icon">
+                  +
+                </span>
+              </div>
+              <div
+                class="c-Opt-item"
+                title="缩小"
+                @click="zoomOut"
+              >
+                <span class="c-Icon">
+                  -
+                </span>
+              </div>
+              <div
+                class="c-Opt-item"
+                title="还原"
+                @click="zoomReset"
+              >
+                <span class="c-Icon">
+                  ⭯
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </slot>
+      <!-- 工具栏 end -->
     </div>
     <div class="c-BasePdfViewer-main">
       <!-- viewer -->
@@ -67,7 +84,7 @@
       </slot>
       <!-- viewer -->
 
-      <div class="c-BasePdfViewer-loading">
+      <div class="c-BasePdfViewer-tips">
         <slot
           v-if="isLoading"
           name="loading"
@@ -75,6 +92,14 @@
         >
           <p class="c-BasePdfViewer-text">
             {{ percentage }}%
+          </p>
+        </slot>
+        <slot
+          v-if="loadFail"
+          name="tips"
+        >
+          <p class="c-BasePdfViewer-text">
+            加载出错，请尝试其它方式预览
           </p>
         </slot>
       </div>
@@ -120,6 +145,8 @@ export default {
       pageNum: 1, // 页码
 
       isLoading: false,
+      loadSuccess: false,
+      loadFail: false,
 
       pdfViewer: null,
       pageCount: 0
@@ -270,6 +297,7 @@ export default {
       this.pageCount = pdfDocument.numPages
 
       this.isLoading = false
+      this.loadSuccess = true
 
       this.$emit('loading.task.success', pdfDocument)
     },
@@ -280,6 +308,7 @@ export default {
       console.log('loadingTask.promise', err)
 
       this.isLoading = false
+      this.loadFail = true
 
       this.$emit('loading.task.error', err)
     },
@@ -301,6 +330,8 @@ export default {
      * 放大
      */
     zoomIn(ticks) {
+      if (!this.pdfViewer) return
+
       let newScale = this.pdfViewer.currentScale
       do {
         newScale = (newScale * DEFAULT_SCALE_DELTA).toFixed(2)
@@ -314,6 +345,8 @@ export default {
      * 缩小
      */
     zoomOut: function pdfViewZoomOut(ticks) {
+      if (!this.pdfViewer) return
+
       let newScale = this.pdfViewer.currentScale
       do {
         newScale = (newScale / DEFAULT_SCALE_DELTA).toFixed(2)
@@ -322,12 +355,6 @@ export default {
       } while (--ticks && newScale > MIN_SCALE)
 
       this.pdfViewer.currentScaleValue = newScale
-    },
-    /**
-     * 下载
-     */
-    download() {
-
     }
   }
 }

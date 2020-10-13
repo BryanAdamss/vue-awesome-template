@@ -11,6 +11,14 @@
   background-color: #323639;
 }
 
+@media screen and (max-width: 600px) {
+  .c-ToolBar {
+    padding: 4px 10px;
+
+    font-size: 12px;
+  }
+}
+
 .c-ToolBar-main {
   flex: 1 1 auto;
   min-width: 0;

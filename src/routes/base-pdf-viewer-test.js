@@ -3,16 +3,16 @@
  * @description base-pdf-viewer-test 测试页
  */
 
-const BaseDocViewerTest = () =>
-  import(/* webpackChunkName:'BaseDocViewerTest' */ 'Views/BaseDocViewerTest/BaseDocViewerTest')
+const BasePdfViewerTest = () =>
+  import(/* webpackChunkName:'BasePdfViewerTest' */ 'Views/BasePdfViewerTest/BasePdfViewerTest')
 
 export default [
   {
     path: '/base-pdf-viewer-test',
-    name: 'BaseDocViewerTest',
-    component: BaseDocViewerTest,
+    name: 'BasePdfViewerTest',
+    component: BasePdfViewerTest,
     meta: {
-      title: '测试BaseDocViewerTest'
+      title: '测试BasePdfViewerTest'
     }
   }
 ]

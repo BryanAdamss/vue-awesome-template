@@ -1,7 +1,60 @@
 <template>
   <div class="c-BasePdfViewer">
+    <div class="c-BasePdfViewer-hd">
+      <div class="c-ToolBar">
+        <div class="c-ToolBar-main">
+          <p
+            class="c-FileName"
+            v-text="fileName"
+          />
+        </div>
+        <div class="c-ToolBar-side">
+          <div class="c-Opt">
+            <div class="c-Opt-item">
+              <span
+                v-show="!isLoading"
+                class="c-Text"
+              >
+                <span v-text="pageNum" />
+                /
+                <span v-text="pageCount" />
+              </span>
+            </div>
+
+            <div
+              class="c-Opt-item"
+              title="放大"
+              @click="zoomIn"
+            >
+              <span class="c-Icon">
+                +
+              </span>
+            </div>
+            <div
+              class="c-Opt-item"
+              title="缩小"
+              @click="zoomOut"
+            >
+              <span class="c-Icon">
+                -
+              </span>
+            </div>
+            <div
+              class="c-Opt-item"
+              title="还原"
+              @click="zoomReset"
+            >
+              <span class="c-Icon">
+                ⭯
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="c-BasePdfViewer-main">
-      <slot>
+      <!-- viewer -->
+      <slot v-bind="{pdfViewer}">
         <div
           id="pdf-container"
           class="c-PDFViewerWp"
@@ -12,62 +65,19 @@
           />
         </div>
       </slot>
-    </div>
+      <!-- viewer -->
 
-    <transition
-      name="el-fade-in"
-      mode="out-in"
-    >
-      <div
-        v-if="!isLoading"
-        class="c-BasePdfViewer-opt"
-      >
+      <div class="c-BasePdfViewer-loading">
         <slot
-          name="zoom-in"
-          v-bind="{zoomIn}"
+          v-if="isLoading"
+          name="loading"
+          v-bind="{loaded,total}"
         >
-          <button
-            type="button"
-            @click="zoomIn"
-          >
-            zoom-in
-          </button>
-        </slot>
-        <slot
-          name="zoom-out"
-          v-bind="{zoomOut}"
-        >
-          <button
-            type="button"
-            @click="zoomOut"
-          >
-            zoom-out
-          </button>
-        </slot>
-        <slot
-          name="zoom-reset"
-          v-bind="{zoomReset}"
-        >
-          <button
-            type="button"
-            @click="zoomReset"
-          >
-            zoom-reset
-          </button>
+          <p class="c-BasePdfViewer-text">
+            {{ percentage }}%
+          </p>
         </slot>
       </div>
-    </transition>
-
-    <div class="c-BasePdfViewer-loading">
-      <slot
-        v-if="isLoading"
-        name="loading"
-        v-bind="{loaded,total}"
-      >
-        <p class="c-BasePdfViewer-text">
-          {{ percentage }}%
-        </p>
-      </slot>
     </div>
   </div>
 </template>
@@ -107,13 +117,27 @@ export default {
       total: 0, // 总尺寸
       loaded: 0, // 已加载尺寸
 
-      isLoading: false
+      pageNum: 1, // 页码
+
+      isLoading: false,
+
+      pdfViewer: null,
+      pageCount: 0
     }
   },
   computed: {
+    /**
+     * 加载百分比
+     */
     percentage() {
       const per = Number(this.loaded / this.total * 100)
       return Number.isNaN(per) ? '0' : per.toFixed(2)
+    },
+    /**
+     * 文件名
+     */
+    fileName() {
+      return this.getFileNameFromURL(this.url)
     }
   },
   watch: {},
@@ -129,9 +153,9 @@ export default {
     init() {
       if (
         !window.pdfjsLib ||
-      !window.pdfjsLib.getDocument ||
-      !window.pdfjsViewer ||
-      !window.pdfjsViewer.PDFViewer
+        !window.pdfjsLib.getDocument ||
+        !window.pdfjsViewer ||
+        !window.pdfjsViewer.PDFViewer
       ) {
         console.log('😢请先引入pdfjs和pdfjsViewer')
         return
@@ -158,6 +182,7 @@ export default {
       this.pdfLinkService.setViewer(this.pdfViewer)
 
       this.eventBus.on('pagesinit', this.handlePagesInit) // 监听页面初始化
+      this.eventBus.on('pagechanging', this.handlePageChanging) // 监听页码变化
 
       this.isLoading = true
       // 加载文档
@@ -179,7 +204,7 @@ export default {
     initHandTool() {
       if (this.pdfCursorTools) return
 
-      import('./lib/pdf-cursor-tools')
+      import(/* webpackChunkName:'pdf-cursor-tools' */'./lib/pdf-cursor-tools')
         .then(({ CursorTool, PDFCursorTools }) => {
           if (!CursorTool || !PDFCursorTools) throw new Error('load pdf-cursor-tools error')
 
@@ -194,6 +219,28 @@ export default {
           console.log('initHandTool', err)
           this.$emit('init-hand-tool-error', err)
         })
+    },
+    /**
+     * 从url解析文件名
+     */
+    getFileNameFromURL(url) {
+      let title = pdfjsLib.getFilenameFromUrl(url) || url
+      try {
+        title = decodeURIComponent(title)
+      } catch (e) {
+      // decodeURIComponent may throw URIError,
+      // fall back to using the unprocessed url in that case
+      }
+
+      return title
+    },
+    /**
+     * 处理页码变化
+     */
+    handlePageChanging(obj) {
+      obj.pageNumber != null && (this.pageNum = Number(obj.pageNumber))
+
+      this.$emit('pdf-page-changing', obj)
     },
     /**
      * 处理页面初始化完成
@@ -219,6 +266,8 @@ export default {
       this.pdfViewer.setDocument(pdfDocument)
 
       this.pdfLinkService.setDocument(pdfDocument, null)
+
+      this.pageCount = pdfDocument.numPages
 
       this.isLoading = false
 
@@ -273,6 +322,12 @@ export default {
       } while (--ticks && newScale > MIN_SCALE)
 
       this.pdfViewer.currentScaleValue = newScale
+    },
+    /**
+     * 下载
+     */
+    download() {
+
     }
   }
 }

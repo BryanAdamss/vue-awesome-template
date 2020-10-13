@@ -16,56 +16,15 @@
           loadSuccess
         }"
       >
-        <div class="c-ToolBar">
-          <div class="c-ToolBar-main">
-            <p
-              class="c-FileName"
-              v-text="fileName"
-            />
-          </div>
-          <div class="c-ToolBar-side">
-            <div class="c-Opt">
-              <div class="c-Opt-item">
-                <span
-                  v-show="loadSuccess"
-                  class="c-Text"
-                >
-                  <span v-text="pageNum" />
-                  /
-                  <span v-text="pageCount" />
-                </span>
-              </div>
-
-              <div
-                class="c-Opt-item"
-                title="放大"
-                @click="zoomIn"
-              >
-                <span class="c-Icon">
-                  +
-                </span>
-              </div>
-              <div
-                class="c-Opt-item"
-                title="缩小"
-                @click="zoomOut"
-              >
-                <span class="c-Icon">
-                  -
-                </span>
-              </div>
-              <div
-                class="c-Opt-item"
-                title="还原"
-                @click="zoomReset"
-              >
-                <span class="c-Icon">
-                  ⭯
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ToolBar
+          :fileName="fileName"
+          :pageNum="pageNum"
+          :pageCount="pageCount"
+          :loadSuccess="loadSuccess"
+          @zoom-in="zoomIn"
+          @zoom-out="zoomOut"
+          @zoom-reset="zoomReset"
+        />
       </slot>
       <!-- 工具栏 end -->
     </div>
@@ -114,6 +73,8 @@
  * * 参照https://github.com/mozilla/pdf.js/blob/master/examples/components/simpleviewer.js实现
  */
 
+import ToolBar from './ToolBar'
+
 const DEFAULT_SCALE_DELTA = 1.1
 const MIN_SCALE = 0.25
 const MAX_SCALE = 10.0
@@ -124,7 +85,7 @@ const CMAP_PACKED = true
 
 export default {
   name: 'BasePdfViewer',
-  components: {},
+  components: { ToolBar },
   mixins: [],
   props: {
     url: {
@@ -360,4 +321,4 @@ export default {
 }
 </script>
 
-<style src="./index.css"></style>
+<style src="./BasePdfViewer.css"></style>

@@ -1,0 +1,60 @@
+.c-ToolBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 20px;
+
+  color: #fff;
+  font-size: 16px;
+
+  background-color: #323639;
+}
+
+.c-ToolBar-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.c-ToolBar-side {
+  flex: 0 0 auto;
+}
+
+.c-ToolBar-main + .c-ToolBar-side {
+  margin-left: 10px;
+}
+
+.c-FileName {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-align: left;
+  text-overflow: ellipsis;
+}
+
+.c-Opt {
+  display: flex;
+  align-items: center;
+}
+
+.c-Opt-item {
+  min-width: 1em;
+  padding-right: 0.4em;
+  padding-left: 0.4em;
+
+  text-align: center;
+
+  cursor: pointer;
+}
+
+.c-Icon {
+  display: inline-block;
+
+  font-weight: bold;
+  font-size: 16px;
+
+  user-select: none;
+}

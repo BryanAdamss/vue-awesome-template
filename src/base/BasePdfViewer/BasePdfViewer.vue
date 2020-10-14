@@ -88,6 +88,7 @@ export default {
   components: { ToolBar },
   mixins: [],
   props: {
+    // 资源url
     url: {
       type: String,
       required: true
@@ -110,7 +111,7 @@ export default {
       loadSuccess: false,
       loadFail: false,
 
-      pdfViewer: null
+      pdfViewer: null // PDFViewer实例
     }
   },
   computed: {
@@ -133,6 +134,8 @@ export default {
   created() {},
   mounted() {
     this.init()
+
+    this.$once('hook:beforeDestory', this.clean)
   },
   methods: {
     /**
@@ -148,20 +151,27 @@ export default {
         console.log('😢请先引入pdfjs和pdfjsViewer')
         return
       }
+      const container = document.getElementById('pdf-container')
+      const viewer = document.getElementById('pdf-viewer')
+      if (!container || !viewer) return
+
+      this.container = container
+      this.viewer = viewer
 
       // 设置woker
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.worker.js'
 
       const { EventBus, PDFLinkService, PDFViewer } = pdfjsViewer
 
-      this.eventBus = new EventBus()
+      const eventBus = new EventBus()
+      this.eventBus = eventBus
 
-      this.pdfLinkService = new PDFLinkService({ eventBus: this.eventBus })
+      this.pdfLinkService = new PDFLinkService({ eventBus })
 
       this.pdfViewer = new PDFViewer({
-        container: document.getElementById('pdf-container'),
-        viewer: document.getElementById('pdf-viewer'),
-        eventBus: this.eventBus,
+        container,
+        viewer,
+        eventBus,
         linkService: this.pdfLinkService,
         textLayerMode: 0, // 禁用文本
         useOnlyCssZoom: true
@@ -169,8 +179,8 @@ export default {
 
       this.pdfLinkService.setViewer(this.pdfViewer)
 
-      this.eventBus.on('pagesinit', this.handlePagesInit) // 监听页面初始化
-      this.eventBus.on('pagechanging', this.handlePageChanging) // 监听页码变化
+      eventBus.on('pagesinit', this.handlePagesInit) // 监听页面初始化
+      eventBus.on('pagechanging', this.handlePageChanging) // 监听页码变化
 
       this.isLoading = true
       // 加载文档
@@ -197,7 +207,7 @@ export default {
           if (!CursorTool || !PDFCursorTools) throw new Error('load pdf-cursor-tools error')
 
           this.pdfCursorTools = new PDFCursorTools({
-            container: document.getElementById('pdf-container'),
+            container: this.container,
             eventBus: this.eventBus,
             cursorToolOnLoad: CursorTool.HAND
           })
@@ -285,13 +295,37 @@ export default {
      * 缩放重置
      */
     zoomReset() {
+      // 保存旧滚动位置、缩放比例以计算新位置
+      const {
+        scrollTop: oldScrollTop,
+        scrollLeft: oldScrollLeft
+      } = this.container
+      const oldScale = this.pdfViewer.currentScale
+
       this.fitPageWidth()
+
+      this.back2OldPos(
+        this.container,
+        {
+          oldScrollTop,
+          oldScrollLeft,
+          oldScale,
+          newScale: this.pdfViewer.currentScale
+        }
+      )
     },
     /**
      * 放大
      */
     zoomIn(ticks) {
-      if (!this.pdfViewer) return
+      if (!this.pdfViewer || !this.container) return
+
+      // 保存旧滚动位置、缩放比例以计算新位置
+      const {
+        scrollTop: oldScrollTop,
+        scrollLeft: oldScrollLeft
+      } = this.container
+      const oldScale = this.pdfViewer.currentScale
 
       let newScale = this.pdfViewer.currentScale
       do {
@@ -301,12 +335,29 @@ export default {
       } while (--ticks && newScale < MAX_SCALE)
 
       this.pdfViewer.currentScaleValue = newScale
+
+      this.back2OldPos(
+        this.container,
+        {
+          oldScrollTop,
+          oldScrollLeft,
+          oldScale,
+          newScale
+        }
+      )
     },
     /**
      * 缩小
      */
     zoomOut(ticks) {
-      if (!this.pdfViewer) return
+      if (!this.pdfViewer || !this.container) return
+
+      // 保存旧滚动位置、缩放比例以计算新位置
+      const {
+        scrollTop: oldScrollTop,
+        scrollLeft: oldScrollLeft
+      } = this.container
+      const oldScale = this.pdfViewer.currentScale
 
       let newScale = this.pdfViewer.currentScale
       do {
@@ -316,6 +367,55 @@ export default {
       } while (--ticks && newScale > MIN_SCALE)
 
       this.pdfViewer.currentScaleValue = newScale
+
+      this.back2OldPos(
+        this.container,
+        {
+          oldScrollTop,
+          oldScrollLeft,
+          oldScale,
+          newScale
+        }
+      )
+    },
+    /**
+     * 返回之前滚动位置
+     */
+    back2OldPos(el, pos) {
+      if (!el) return
+
+      const {
+        scrollTop: newScrollTop,
+        scrollLeft: newScrollLeft
+      } = this.calcNewScrollPos(pos)
+
+      el.scrollTop = newScrollTop
+      el.scrollLeft = newScrollLeft
+    },
+    /**
+     * 计算新滚动位置
+     */
+    calcNewScrollPos({ oldScrollTop, oldScrollLeft, oldScale, newScale }) {
+      const rate = newScale / oldScale
+
+      return {
+        scrollLeft: oldScrollLeft * rate,
+        scrollTop: oldScrollTop * rate
+      }
+    },
+    /**
+     * 清理
+     */
+    clean() {
+      debugger
+      this.pdfViewer && (this.pdfViewer = null)
+      this.container && (this.container = null)
+      this.viewer && (this.viewer = null)
+
+      this.pdfCursorTools &&
+      this.pdfCursorTools.handTool &&
+      typeof this.pdfCursorTools.handTool.deactivate === 'function' &&
+      this.pdfCursorTools.handTool.deactivate()
     }
   }
 }

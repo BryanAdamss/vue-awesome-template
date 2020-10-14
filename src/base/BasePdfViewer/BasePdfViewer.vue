@@ -77,6 +77,15 @@ const DEFAULT_SCALE_DELTA = 1.1
 const MIN_SCALE = 0.25
 const MAX_SCALE = 10.0
 
+// 预置缩放
+const CUSTOM_SCALE = Object.freeze({
+  AUTO: 'auto', // 自动缩放
+  PAGE_WIDTH: 'page-width', // 适合页宽
+  PAGE_ACTUAL: 'page-actual', // 实际大小
+  PAGE_FIT: 'page-fit', // 适合页面
+  PAGE_HEIGHT: 'page-height'// 适合页高
+})
+
 // 字符map目录
 const CMAP_URL = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/cmaps/'
 const CMAP_PACKED = true
@@ -104,6 +113,11 @@ export default {
     workerSrc: {
       type: String,
       default: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.worker.js'
+    },
+    // 用户指定的初始缩放
+    scale: {
+      type: [String, Number],
+      default: ''
     }
   },
   data() {
@@ -118,7 +132,9 @@ export default {
       loadSuccess: false,
       loadFail: false,
 
-      pdfViewer: null // PDFViewer实例
+      pdfViewer: null, // PDFViewer实例
+
+      defaultScale: '' // 默认缩放
     }
   },
   computed: {
@@ -252,11 +268,28 @@ export default {
      * 此时可对页面进行一些初始设置，例如缩放
      */
     handlePagesInit() {
-      this.fitPageWidth() // 适应页面宽度
+      this.setInitScale()// 设置初始缩放
 
       this.needHandTool && this.initHandTool() // 初始化抓手工具
 
       this.$emit('pdf-pagesinit', this.pdfViewer)
+    },
+    /**
+     * 设置初始缩放
+     */
+    setInitScale() {
+      if (!this.pdfViewer || !this.container) return
+
+      const { width } = this.pdfViewer.getPageView(this.pdfViewer.currentPageNumber)
+
+      const { width: wpW } = this.container.getBoundingClientRect()
+
+      // 页面较宽，则用页面宽度，若视口较大，则将页面放大到视口大小
+      this.defaultScale = width > wpW
+        ? CUSTOM_SCALE.PAGE_ACTUAL
+        : CUSTOM_SCALE.PAGE_WIDTH
+
+      this.setScale(this.scale || this.defaultScale) // 设置默认缩放，用户定义的优先
     },
     /**
      * 处理文档加载任务进度变化
@@ -303,7 +336,7 @@ export default {
       const oldPos = this.getOldScrollPos()
 
       const newScale = this.getZoomInNewScale(this.pdfViewer.currentScale, ticks)
-      this.pdfViewer.currentScaleValue = newScale
+      this.setScale(newScale)
 
       this.back2OldPos(
         this.container,
@@ -338,7 +371,7 @@ export default {
       const oldPos = this.getOldScrollPos()
 
       const newScale = this.getZoomOutNewScale(this.pdfViewer.currentScale, ticks)
-      this.pdfViewer.currentScaleValue = newScale
+      this.setScale(newScale)
 
       this.back2OldPos(
         this.container,
@@ -370,7 +403,7 @@ export default {
       // 保存旧滚动位置、缩放比例以计算新位置
       const oldPos = this.getOldScrollPos()
 
-      this.fitPageWidth()
+      this.setScale(this.defaultScale)
 
       this.back2OldPos(
         this.container,
@@ -381,15 +414,15 @@ export default {
       )
     },
     /**
-     * 设置缩放为页面宽度
+     * 设置缩放
      */
-    fitPageWidth() {
+    setScale(val) {
       // currentScaleValue string类型，支持预定义字符串
       // currentScale number类型，currentScaleValue会映射到一个具体的currentScale上
       // 设置二者，内部都会调用相同的_setScale，内部会尝试parseFloat
       this.pdfViewer &&
-      this.pdfViewer.currentScaleValue !== 'page-width' &&
-      (this.pdfViewer.currentScaleValue = 'page-width')
+      this.pdfViewer.currentScaleValue !== val &&
+      (this.pdfViewer.currentScaleValue = val)
     },
     /**
      * 返回之前滚动位置

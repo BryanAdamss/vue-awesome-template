@@ -67,6 +67,7 @@
  * * BasePdfViewer
  * * pdf预览(预览+缩放)
  * * 参照https://github.com/mozilla/pdf.js/blob/master/examples/components/simpleviewer.js实现
+ * * 兼容到ie11，ie10存在图片无法展示的问题
  */
 
 import ErrorTips from './ErrorTips'

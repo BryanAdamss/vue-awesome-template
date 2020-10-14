@@ -388,13 +388,10 @@ export default {
     back2OldPos(el, pos) {
       if (!el) return
 
-      const {
-        scrollTop: newScrollTop,
-        scrollLeft: newScrollLeft
-      } = this.calcNewScrollPos(pos)
+      const { scrollTop, scrollLeft } = this.calcNewScrollPos(pos)
 
-      el.scrollTop = newScrollTop
-      el.scrollLeft = newScrollLeft
+      el.scrollTop = scrollTop
+      el.scrollLeft = scrollLeft
     },
     /**
      * 获取旧滚动位置、缩放信息
@@ -423,7 +420,6 @@ export default {
      * 清理
      */
     clean() {
-      debugger
       this.pdfViewer && (this.pdfViewer = null)
       this.container && (this.container = null)
       this.viewer && (this.viewer = null)

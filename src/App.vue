@@ -8,7 +8,7 @@
     <BaseTransitionSlide>
       <!-- 因为自定义指令clickOutside在document上绑定了点击事件,会在指令的unbind时移除事件 -->
       <!-- 但是因为keep-alive会缓存组件，导致指令unbind不会触发，所以这里keep-alive需要排除ClickOutsideTest组件，强行让其触发unbind -->
-      <keep-alive :exclude="['ClickOutsideTest','AffixTest']">
+      <keep-alive :exclude="exclude">
         <router-view />
       </keep-alive>
     </BaseTransitionSlide>
@@ -39,7 +39,8 @@ export default {
   provide: commonConst,
   data() {
     return {
-      title: ''
+      title: '',
+      exclude: ['ClickOutsideTest', 'AffixTest', 'BasePdfViewerTest']
     }
   },
   watch: {

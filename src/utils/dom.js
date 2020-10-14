@@ -218,26 +218,27 @@ export function canSupportCssVar() {
 }
 
 /**
- * 查看当前元素是否命中某一css选择器字符串
+ * 查看某元素是否命中css选择器字符串
  * https://developer.mozilla.org/zh-CN/docs/Web/API/Element/matches
  * https://blog.csdn.net/king_xing/article/details/50460580
- * 使用时:el[matchesSelector]('css选择器字符串')
  *
  * @export
+ * @param {Element} el 需要检测的el
+ * @param {String} selector css选择器字符串
+ * @returns 是否命中
  */
-export function matchesSelector() {
-  let matchesSelector;
-  ['webkitM', 'mozM', 'm', 'msM', 'o'].some(function (prefix) {
-    let name = prefix + 'atches'
-    if (name in document.documentElement) {
-      matchesSelector = name
-    }
-    name += 'Selector'
-    if (name in document.documentElement) {
-      matchesSelector = name
-    }
-    return matchesSelector // If found, then truthy, and [].some() ends.
-  })
+export function matches(el, selector) {
+  const fn = Element.prototype.matches ||
+  Element.prototype.matchesSelector ||
+  Element.prototype.mozMatchesSelector ||
+  Element.prototype.msMatchesSelector ||
+  Element.prototype.oMatchesSelector ||
+  Element.prototype.webkitMatchesSelector || function(s) {
+    var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+      i = matches.length
+    while (--i >= 0 && matches.item(i) !== this) {}
+    return i > -1
+  }
 
-  return matchesSelector
+  return fn.call(el, selector)
 }

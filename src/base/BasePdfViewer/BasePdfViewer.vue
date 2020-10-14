@@ -97,6 +97,11 @@ export default {
     needHandTool: {
       type: Boolean,
       default: true
+    },
+    // worker地址
+    workerSrc: {
+      type: String,
+      default: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.worker.js'
     }
   },
   data() {
@@ -159,7 +164,7 @@ export default {
       this.viewer = viewer
 
       // 设置woker
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.worker.js'
+      pdfjsLib.GlobalWorkerOptions.workerSrc = this.workerSrc
 
       const { EventBus, PDFLinkService, PDFViewer } = pdfjsViewer
 
@@ -238,16 +243,18 @@ export default {
     handlePageChanging(obj) {
       obj.pageNumber != null && (this.pageNum = Number(obj.pageNumber))
 
-      this.$emit('pdf-page-changing', obj)
+      this.$emit('pdf-pagechanging', obj)
     },
     /**
      * 处理页面初始化完成
+     * 此时可对页面进行一些初始设置，例如缩放
      */
     handlePagesInit() {
-      // 页面初始化完成，此时可对页面进行一些初始设置，例如缩放
-      this.fitPageWidth()
+      this.fitPageWidth() // 适应页面宽度
 
       this.needHandTool && this.initHandTool() // 初始化抓手工具
+
+      this.$emit('pdf-pagesinit', this.pdfViewer)
     },
     /**
      * 处理文档加载任务进度变化

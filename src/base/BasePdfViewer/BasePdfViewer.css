@@ -34,12 +34,6 @@
   transform: translate3d(-50%, -50%, 0);
 }
 
-.c-BasePdfViewer-text {
-  color: #fff;
-  font-size: 16px;
-  text-align: center;
-}
-
 .c-BasePdfViewer-opt {
   position: absolute;
   right: 20px;

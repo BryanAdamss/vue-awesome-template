@@ -49,17 +49,13 @@
           name="loading"
           v-bind="{loaded,total}"
         >
-          <p class="c-BasePdfViewer-text">
-            {{ percentage }}%
-          </p>
+          <PercentageLoading :percentage="percentage" />
         </slot>
         <slot
           v-if="loadFail"
           name="tips"
         >
-          <p class="c-BasePdfViewer-text">
-            加载出错，请尝试其它方式预览
-          </p>
+          <ErrorTips />
         </slot>
       </div>
     </div>
@@ -73,6 +69,8 @@
  * * 参照https://github.com/mozilla/pdf.js/blob/master/examples/components/simpleviewer.js实现
  */
 
+import ErrorTips from './ErrorTips'
+import PercentageLoading from './PercentageLoading'
 import ToolBar from './ToolBar'
 
 const DEFAULT_SCALE_DELTA = 1.1
@@ -85,7 +83,11 @@ const CMAP_PACKED = true
 
 export default {
   name: 'BasePdfViewer',
-  components: { ToolBar },
+  components: {
+    ToolBar,
+    ErrorTips,
+    PercentageLoading
+  },
   mixins: [],
   props: {
     // 资源url

@@ -181,8 +181,11 @@ GrabToPan.prototype = {
 };
 
 // Get the correct (vendor-prefixed) name of the matches method.
+// ! 2020-1014-1949增加'msM','o'前缀，以支持ie11的拖拽
+// https://developer.mozilla.org/zh-CN/docs/Web/API/Element/matches
+// https://blog.csdn.net/king_xing/article/details/50460580
 let matchesSelector;
-["webkitM", "mozM", "m"].some(function (prefix) {
+["webkitM", "mozM", "m",'msM','o'].some(function (prefix) {
   let name = prefix + "atches";
   if (name in document.documentElement) {
     matchesSelector = name;

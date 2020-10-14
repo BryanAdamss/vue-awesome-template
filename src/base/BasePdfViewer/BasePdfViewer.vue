@@ -283,37 +283,7 @@ export default {
 
       this.$emit('loading.task.error', err)
     },
-    /**
-     * 设置缩放为页面宽度
-     */
-    fitPageWidth() {
-      this.pdfViewer &&
-      this.pdfViewer.currentScaleValue !== 'page-width' &&
-      (this.pdfViewer.currentScaleValue = 'page-width')
-    },
-    /**
-     * 缩放重置
-     */
-    zoomReset() {
-      // 保存旧滚动位置、缩放比例以计算新位置
-      const {
-        scrollTop: oldScrollTop,
-        scrollLeft: oldScrollLeft
-      } = this.container
-      const oldScale = this.pdfViewer.currentScale
 
-      this.fitPageWidth()
-
-      this.back2OldPos(
-        this.container,
-        {
-          oldScrollTop,
-          oldScrollLeft,
-          oldScale,
-          newScale: this.pdfViewer.currentScale
-        }
-      )
-    },
     /**
      * 放大
      */
@@ -321,30 +291,33 @@ export default {
       if (!this.pdfViewer || !this.container) return
 
       // 保存旧滚动位置、缩放比例以计算新位置
-      const {
-        scrollTop: oldScrollTop,
-        scrollLeft: oldScrollLeft
-      } = this.container
-      const oldScale = this.pdfViewer.currentScale
+      const oldPos = this.getOldScrollPos()
 
-      let newScale = this.pdfViewer.currentScale
+      const newScale = this.getZoomInNewScale(this.pdfViewer.currentScale, ticks)
+      this.pdfViewer.currentScaleValue = newScale
+
+      this.back2OldPos(
+        this.container,
+        {
+          ...oldPos,
+          newScale
+        }
+      )
+    },
+    /**
+     * 获取缩大的新比例
+     */
+    getZoomInNewScale(currentScale, ticks) {
+      if (currentScale == null) return
+
+      let newScale = currentScale
       do {
         newScale = (newScale * DEFAULT_SCALE_DELTA).toFixed(2)
         newScale = Math.ceil(newScale * 10) / 10
         newScale = Math.min(MAX_SCALE, newScale)
       } while (--ticks && newScale < MAX_SCALE)
 
-      this.pdfViewer.currentScaleValue = newScale
-
-      this.back2OldPos(
-        this.container,
-        {
-          oldScrollTop,
-          oldScrollLeft,
-          oldScale,
-          newScale
-        }
-      )
+      return newScale
     },
     /**
      * 缩小
@@ -353,30 +326,61 @@ export default {
       if (!this.pdfViewer || !this.container) return
 
       // 保存旧滚动位置、缩放比例以计算新位置
-      const {
-        scrollTop: oldScrollTop,
-        scrollLeft: oldScrollLeft
-      } = this.container
-      const oldScale = this.pdfViewer.currentScale
+      const oldPos = this.getOldScrollPos()
 
-      let newScale = this.pdfViewer.currentScale
+      const newScale = this.getZoomOutNewScale(this.pdfViewer.currentScale, ticks)
+      this.pdfViewer.currentScaleValue = newScale
+
+      this.back2OldPos(
+        this.container,
+        {
+          ...oldPos,
+          newScale
+        }
+      )
+    },
+    /**
+     * 获取缩小的新比例
+     */
+    getZoomOutNewScale(currentScale, ticks) {
+      if (currentScale == null) return
+
+      let newScale = currentScale
       do {
         newScale = (newScale / DEFAULT_SCALE_DELTA).toFixed(2)
         newScale = Math.floor(newScale * 10) / 10
         newScale = Math.max(MIN_SCALE, newScale)
       } while (--ticks && newScale > MIN_SCALE)
 
-      this.pdfViewer.currentScaleValue = newScale
+      return newScale
+    },
+    /**
+     * 缩放重置
+     */
+    zoomReset() {
+      // 保存旧滚动位置、缩放比例以计算新位置
+      const oldPos = this.getOldScrollPos()
+
+      this.fitPageWidth()
 
       this.back2OldPos(
         this.container,
         {
-          oldScrollTop,
-          oldScrollLeft,
-          oldScale,
-          newScale
+          ...oldPos,
+          newScale: this.pdfViewer.currentScale
         }
       )
+    },
+    /**
+     * 设置缩放为页面宽度
+     */
+    fitPageWidth() {
+      // currentScaleValue string类型，支持预定义字符串
+      // currentScale number类型，currentScaleValue会映射到一个具体的currentScale上
+      // 设置二者，内部都会调用相同的_setScale，内部会尝试parseFloat
+      this.pdfViewer &&
+      this.pdfViewer.currentScaleValue !== 'page-width' &&
+      (this.pdfViewer.currentScaleValue = 'page-width')
     },
     /**
      * 返回之前滚动位置
@@ -391,6 +395,18 @@ export default {
 
       el.scrollTop = newScrollTop
       el.scrollLeft = newScrollLeft
+    },
+    /**
+     * 获取旧滚动位置、缩放信息
+     */
+    getOldScrollPos() {
+      if (!this.pdfViewer || !this.container) return {}
+
+      return {
+        oldScrollTop: this.container.scrollTop,
+        oldScrollLeft: this.container.scrollLeft,
+        oldScale: this.pdfViewer.currentScale
+      }
     },
     /**
      * 计算新滚动位置

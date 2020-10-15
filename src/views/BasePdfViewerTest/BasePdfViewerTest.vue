@@ -5,7 +5,7 @@
   >
     <BasePdfViewer
       style="background-color:rgba(0,0,0,0.4);"
-      :resourcePath="'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf'"
+      :resourcePath="'/compressed.tracemonkey-pldi-09.pdf'"
     />
   </div>
 </template>

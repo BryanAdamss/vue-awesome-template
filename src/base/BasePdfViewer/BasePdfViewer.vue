@@ -303,6 +303,8 @@ export default {
      * 处理文档加载任务成功
      */
     handleLoadingTaskSuccess(pdfDocument) {
+      this.pdfDocument = pdfDocument // destory时用
+
       // 文档加载完成，为viewer和其它可能的服务指定document
       this.pdfViewer.setDocument(pdfDocument)
 
@@ -471,6 +473,11 @@ export default {
       this.pdfCursorTools.handTool &&
       typeof this.pdfCursorTools.handTool.deactivate === 'function' &&
       this.pdfCursorTools.handTool.deactivate()
+
+      if (this.pdfDocument) {
+        this.pdfDocument.destroy()
+        this.pdfDocument = null
+      }
     }
   }
 }

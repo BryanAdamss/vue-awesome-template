@@ -3,7 +3,10 @@
     class="c-BasePdfViewerTest"
     style="height:100%;"
   >
-    <BasePdfViewer :url="'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf'" />
+    <BasePdfViewer
+      style="background-color:rgba(0,0,0,0.4);"
+      :url="'https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/PDFOpenParameters.pdf'"
+    />
   </div>
 </template>
 

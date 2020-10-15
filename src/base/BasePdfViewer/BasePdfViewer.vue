@@ -101,7 +101,7 @@ export default {
   mixins: [],
   props: {
     // 资源url
-    url: {
+    resourcePath: {
       type: String,
       required: true
     },
@@ -150,7 +150,7 @@ export default {
      * 文件名
      */
     fileName() {
-      return this.getFileNameFromURL(this.url)
+      return this.getFileNameFromURL(this.resourcePath)
     }
   },
   watch: {},
@@ -209,7 +209,7 @@ export default {
       this.isLoading = true
       // 加载文档
       const loadingTask = pdfjsLib.getDocument({
-        url: this.url,
+        url: this.resourcePath,
         cMapUrl: CMAP_URL,
         cMapPacked: CMAP_PACKED
       })

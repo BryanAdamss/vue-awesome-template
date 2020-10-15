@@ -56,7 +56,18 @@ const setCDN = config => {
         var: 'ELEMENT',
         path: 'lib/index.js',
         style: 'lib/theme-chalk/index.css'
-      }
+      },
+      {
+        name: 'pdfjs-dist',
+        var: 'pdfjsLib',
+        path: 'es5/build/pdf.js',
+      },
+      {
+        name: 'pdfjs-dist/web/pdf_viewer',
+        var: 'pdfjsViewer',
+        path: 'es5/web/pdf_viewer.js',
+      },
+   
     ],
     prodUrl: '//cdn.jsdelivr.net/npm/:name@:version/:path'
   }
@@ -93,13 +104,13 @@ const setStatics = config => {
           attrs: ['defer'],
           path: 'formula/mathjax-config-cutom.js'
         },
-        {
-          noBaseURL:true, // 不需要拼接baseURL
-          path:'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.js',
-        },{
-          noBaseURL:true,
-          path:'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/web/pdf_viewer.js'
-        }
+        // {
+        //   noBaseURL:true, // 不需要拼接baseURL
+        //   path:'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.js',
+        // },{
+        //   noBaseURL:true,
+        //   path:'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/web/pdf_viewer.js'
+        // }
       ]
     }
   }

@@ -69,6 +69,8 @@
  * * 参照https://github.com/mozilla/pdf.js/blob/master/examples/components/simpleviewer.js实现
  * * 兼容到ie11，ie10存在图片无法展示的问题
  */
+import * as pdfjsLib from 'pdfjs-dist'
+import * as pdfjsViewer from 'pdfjs-dist/web/pdf_viewer'
 
 import ErrorTips from './ErrorTips'
 import PercentageLoading from './PercentageLoading'
@@ -167,12 +169,12 @@ export default {
      */
     init() {
       if (
-        !window.pdfjsLib ||
-        !window.pdfjsLib.getDocument ||
-        !window.pdfjsViewer ||
-        !window.pdfjsViewer.PDFViewer
+        !pdfjsLib ||
+        !pdfjsLib.getDocument ||
+        !pdfjsViewer ||
+        !pdfjsViewer.PDFViewer
       ) {
-        console.log('😢请先引入pdfjs和pdfjsViewer')
+        console.error('😢请先引入pdfjs和pdfjsViewer')
         return
       }
       const container = document.getElementById('pdf-container')
@@ -246,6 +248,7 @@ export default {
      * 从url解析文件名
      */
     getFileNameFromURL(url) {
+      if (!pdfjsLib) return url
       let title = pdfjsLib.getFilenameFromUrl(url) || url
       try {
         title = decodeURIComponent(title)

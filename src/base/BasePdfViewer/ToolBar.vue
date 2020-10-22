@@ -2,6 +2,7 @@
   <div class="c-ToolBar">
     <div class="c-ToolBar-main">
       <p
+        v-if="fileName"
         class="c-FileName"
         v-text="fileName"
       />

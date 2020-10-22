@@ -121,6 +121,10 @@ export default {
     scale: {
       type: [String, Number],
       default: ''
+    },
+    fileName: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -147,12 +151,6 @@ export default {
     percentage() {
       const per = Number(this.loaded / this.total * 100)
       return Number.isNaN(per) ? '0' : per.toFixed(2)
-    },
-    /**
-     * 文件名
-     */
-    fileName() {
-      return this.getFileNameFromURL(this.resourcePath)
     }
   },
   watch: {},
@@ -243,21 +241,6 @@ export default {
           console.log('initHandTool', err)
           this.$emit('init-hand-tool-error', err)
         })
-    },
-    /**
-     * 从url解析文件名
-     */
-    getFileNameFromURL(url) {
-      if (!pdfjsLib) return url
-      let title = pdfjsLib.getFilenameFromUrl(url) || url
-      try {
-        title = decodeURIComponent(title)
-      } catch (e) {
-      // decodeURIComponent may throw URIError,
-      // fall back to using the unprocessed url in that case
-      }
-
-      return title
     },
     /**
      * 处理页码变化

@@ -47,27 +47,44 @@ const setCDN = config => {
         path: 'dist/vuex.min.js'
       },
       {
-        name: 'css-vars-ponyfill',
-        var: 'cssVars',
-        path: 'dist/css-vars-ponyfill.min.js'
-      },
-      {
         name: 'element-ui',
         var: 'ELEMENT',
         path: 'lib/index.js',
         style: 'lib/theme-chalk/index.css'
       },
       {
+        name: 'axios',
+        var: 'axios',
+        path: 'dist/axios.min.js',
+      },
+      {
+        name: 'css-vars-ponyfill',
+        var: 'cssVars',
+        path: 'dist/css-vars-ponyfill.min.js'
+      },
+      {
         name: 'pdfjs-dist',
         var: 'pdfjsLib',
         path: 'es5/build/pdf.js',
+        version:'2.5.207'
       },
       {
-        name: 'pdfjs-dist/web/pdf_viewer',
+        name: 'pdfjs-dist',
         var: 'pdfjsViewer',
         path: 'es5/web/pdf_viewer.js',
+        version:'2.5.207'
       },
-   
+      {
+        name: 'velocity-animate',
+        var: 'Velocity',
+        path: 'velocity.min.js',
+      },
+      {
+        name: 'better-scroll',
+        var: 'BScroll',
+        path: 'dist/bscroll.min.js',
+        version:'1.15.2'
+      },      
     ],
     prodUrl: '//cdn.jsdelivr.net/npm/:name@:version/:path'
   }

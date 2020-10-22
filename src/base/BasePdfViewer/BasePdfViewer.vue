@@ -76,6 +76,10 @@ import ErrorTips from './ErrorTips'
 import PercentageLoading from './PercentageLoading'
 import ToolBar from './ToolBar'
 
+// 兼容CDN引入
+window.pdfjsLib && (pdfjsLib = window.pdfjsLib)
+window.pdfjsViewer && (pdfjsViewer = window.pdfjsViewer)
+
 const DEFAULT_SCALE_DELTA = 1.1
 const MIN_SCALE = 0.25
 const MAX_SCALE = 10.0
@@ -172,8 +176,7 @@ export default {
         !pdfjsViewer ||
         !pdfjsViewer.PDFViewer
       ) {
-        console.error('😢请先引入pdfjs和pdfjsViewer')
-        return
+        throw new Error('😢请先引入pdfjs和pdfjsViewer')
       }
       const container = document.getElementById('pdf-container')
       const viewer = document.getElementById('pdf-viewer')

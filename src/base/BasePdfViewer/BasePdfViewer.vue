@@ -126,6 +126,7 @@ export default {
       type: [String, Number],
       default: ''
     },
+    // 文件名
     fileName: {
       type: String,
       default: ''

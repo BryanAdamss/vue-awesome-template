@@ -63,18 +63,6 @@ const setCDN = config => {
         path: 'dist/css-vars-ponyfill.min.js'
       },
       {
-        name: 'pdfjs-dist',
-        var: 'pdfjsLib',
-        path: 'es5/build/pdf.js',
-        version:'2.5.207'
-      },
-      {
-        name: 'pdfjs-dist',
-        var: 'pdfjsViewer',
-        path: 'es5/web/pdf_viewer.js',
-        version:'2.5.207'
-      },
-      {
         name: 'velocity-animate',
         var: 'Velocity',
         path: 'velocity.min.js',
@@ -121,13 +109,13 @@ const setStatics = config => {
           attrs: ['defer'],
           path: 'formula/mathjax-config-cutom.js'
         },
-        // {
-        //   noBaseURL:true, // 不需要拼接baseURL
-        //   path:'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.js',
-        // },{
-        //   noBaseURL:true,
-        //   path:'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/web/pdf_viewer.js'
-        // }
+        {
+          noBaseURL:true, // 不需要拼接baseURL
+          path:'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.js',
+        },{
+          noBaseURL:true,
+          path:'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/web/pdf_viewer.js'
+        }
       ]
     }
   }

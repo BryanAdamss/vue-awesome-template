@@ -7,6 +7,7 @@
       style="background-color:rgba(0,0,0,0.4);"
       :resourcePath="'/compressed.tracemonkey-pldi-09.pdf'"
       fileName="compressed.tracemonkey-pldi-09.pdf"
+      scale="page-width"
     />
   </div>
 </template>

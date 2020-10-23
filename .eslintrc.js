@@ -96,6 +96,8 @@ module.exports = {
     katex: false,
     MathJax: false,
     Vconsole: false,
-    FastClick: false
+    FastClick: false,
+    pdfjsLib: false,
+    pdfjsViewer: false
   }
 }

@@ -68,17 +68,14 @@
  * * pdf预览(预览+缩放)
  * * 参照https://github.com/mozilla/pdf.js/blob/master/examples/components/simpleviewer.js实现
  * * 兼容到ie11，ie10存在图片无法展示的问题
+ * * 需要通过CDN引入下面js (2.5.207版本)
+ * * pdfjs-dist/es5/build/pdf.js
+ * * pdfjs-dist/es5/web/pdf_viewer.js
  */
-import * as pdfjsLib from 'pdfjs-dist'
-import * as pdfjsViewer from 'pdfjs-dist/web/pdf_viewer'
 
 import ErrorTips from './ErrorTips'
 import PercentageLoading from './PercentageLoading'
 import ToolBar from './ToolBar'
-
-// 兼容CDN引入
-window.pdfjsLib && (pdfjsLib = window.pdfjsLib)
-window.pdfjsViewer && (pdfjsViewer = window.pdfjsViewer)
 
 const DEFAULT_SCALE_DELTA = 1.1
 const MIN_SCALE = 0.25
@@ -172,13 +169,14 @@ export default {
      */
     init() {
       if (
-        !pdfjsLib ||
-        !pdfjsLib.getDocument ||
-        !pdfjsViewer ||
-        !pdfjsViewer.PDFViewer
+        !window.pdfjsLib ||
+        !window.pdfjsLib.getDocument ||
+        !window.pdfjsViewer ||
+        !window.pdfjsViewer.PDFViewer
       ) {
-        throw new Error('😢请先引入pdfjs和pdfjsViewer')
+        throw new Error('😢请先引入pdfjsLib和pdfjsViewer')
       }
+
       const container = document.getElementById('pdf-container')
       const viewer = document.getElementById('pdf-viewer')
       if (!container || !viewer) return
@@ -187,9 +185,9 @@ export default {
       this.viewer = viewer
 
       // 设置woker
-      pdfjsLib.GlobalWorkerOptions.workerSrc = this.workerSrc
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = this.workerSrc
 
-      const { EventBus, PDFLinkService, PDFViewer } = pdfjsViewer
+      const { EventBus, PDFLinkService, PDFViewer } = window.pdfjsViewer
 
       const eventBus = new EventBus()
       this.eventBus = eventBus
@@ -212,7 +210,7 @@ export default {
 
       this.isLoading = true
       // 加载文档
-      const loadingTask = pdfjsLib.getDocument({
+      const loadingTask = window.pdfjsLib.getDocument({
         url: this.resourcePath,
         cMapUrl: CMAP_URL,
         cMapPacked: CMAP_PACKED
@@ -396,7 +394,7 @@ export default {
       // 保存旧滚动位置、缩放比例以计算新位置
       const oldPos = this.getOldScrollPos()
 
-      this.setScale(this.defaultScale)
+      this.setScale(this.scale || this.defaultScale)
 
       this.back2OldPos(
         this.container,

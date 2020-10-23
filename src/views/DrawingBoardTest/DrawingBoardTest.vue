@@ -71,7 +71,7 @@
  * * DrawingBoardTest
  */
 
-import DrawingBoard from 'Plugins/drawing-board'
+import DrawingBoard from '@bryanadamss/drawing-board'
 
 export default {
   name: 'DrawingBoardTest',

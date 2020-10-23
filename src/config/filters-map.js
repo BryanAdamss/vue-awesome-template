@@ -3,7 +3,7 @@
  * @description filtersMap
  */
 
-import NumberToChinese from 'Plugins/num-to-chn'
+import Num2Chn from '@bryanadamss/num2chn'
 
 import {
   dateFormat,
@@ -13,7 +13,7 @@ import {
   str2kebab
 } from 'Utils'
 
-const num2chn = new NumberToChinese()
+const num2chn = new Num2Chn()
 const numberToChn = val => num2chn.transform(val)
 
 export default {

@@ -72,7 +72,17 @@ const setCDN = config => {
         var: 'BScroll',
         path: 'dist/bscroll.min.js',
         version:'1.15.2'
-      },      
+      },
+      {
+        name: '@bryanadamss/num2chn',
+        var: 'num2Chn',
+        path: 'dist/num2chn.umd.js',
+      },
+      {
+        name: '@bryanadamss/drawing-board',
+        var: 'DrawingBoard',
+        path: 'dist/drawing-board.umd.js',
+      },
     ],
     prodUrl: '//cdn.jsdelivr.net/npm/:name@:version/:path'
   }

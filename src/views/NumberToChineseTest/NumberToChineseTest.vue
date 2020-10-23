@@ -17,7 +17,7 @@
  * * NumberToChineseTest
  */
 
-import Num2Chn from 'Plugins/num-to-chn'
+import Num2Chn from '@bryanadamss/num2chn'
 const numberToChn = new Num2Chn()
 
 export default {

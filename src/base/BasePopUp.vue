@@ -55,7 +55,7 @@ export default {
     },
     zIndex: {
       type: [Number, String],
-      default: 999
+      default: 1
     }
   },
   computed: {
@@ -67,7 +67,7 @@ export default {
   },
   watch: {
     isShow: {
-      handler: (newVal, oldVal) => {
+      handler(newVal, oldVal) {
         this._toggleBodyHidden(newVal)
         this.$emit('update:isShow', newVal)
       },

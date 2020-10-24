@@ -3,7 +3,11 @@
  * @description 开启vconsole
  */
 
-import { VCONSOLE_DEBUG } from 'Config'
+import {
+  VCONSOLE_DEBUG,
+  VCONSOLE_ENABLE_COUNT,
+  VCONSOLE_ENABLE_INTERVAL
+} from 'Config'
 
 const loadVconsole = () => {
   let script = document.createElement('script')
@@ -36,7 +40,7 @@ export function vconsoleProvider() {
     count++
     clearTimeout(timer)
     // 点击10次加载vconsole
-    if (count >= 10) {
+    if (count >= VCONSOLE_ENABLE_COUNT) {
       clearTimeout(timer)
       count = 0
 
@@ -55,7 +59,7 @@ export function vconsoleProvider() {
       timer = setTimeout(() => {
         clearTimeout(timer)
         count = 0
-      }, 200)
+      }, VCONSOLE_ENABLE_INTERVAL)
     }
   }
 

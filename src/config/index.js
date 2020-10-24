@@ -108,6 +108,8 @@ export const VUEX_DEFAULT_CONFIG = {
 
 // 开启vconsole
 export const VCONSOLE_DEBUG = true
+export const VCONSOLE_ENABLE_COUNT = 4
+export const VCONSOLE_ENABLE_INTERVAL = 300
 
 // 是否启用ie css3 vars兼容
 export const ENABLE_IE_CSS_VARS_COMPAT = true

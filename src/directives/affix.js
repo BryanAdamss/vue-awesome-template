@@ -125,6 +125,12 @@ export default {
       }
     }
 
+    // 修复多次绑定问题
+    if (el.__affixScrollHandler__) {
+      $container.removeEventListener('scroll', el.__affixScrollHandler__, false)
+      window.removeEventListener('resize', el.__affixScrollHandler__, false)
+    }
+
     el.__affixScrollHandler__ = throttle(scrollHandler, $interval)
     el.__affixContainer__ = $container
 

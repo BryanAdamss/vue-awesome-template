@@ -40,12 +40,11 @@
           您的浏览器不支持<code>audio</code>标签
 
           <source
-            v-for="(sour,index) in src"
+            v-for="(sour, index) in src"
             :key="index"
             :src="sour.src"
             :type="sour.type"
           >
-
         </audio>
       </template>
       <template v-else>
@@ -94,13 +93,13 @@
         @mouseup="progressClickHandler"
       >
         <div
-          :style="{ width:`${bufferedProgress}%`}"
+          :style="{ width: `${bufferedProgress}%` }"
           class="c-Track"
         />
 
         <div
           ref="bar"
-          :style="{ left:`${progressLeft}px`} "
+          :style="{ left: `${progressLeft}px` }"
           class="c-Bar"
           @mousedown.stop="barMousedownHandler"
         >
@@ -108,9 +107,7 @@
             v-if="isLoading"
             class="c-Bar-loading"
           >
-            <BaseLoadingSpinner
-              size="12px"
-            />
+            <BaseLoadingSpinner size="12px" />
           </div>
           <div
             v-else
@@ -219,35 +216,42 @@ export default {
     bufferedProgress() {
       if (!this.buffered || !this.duration) return 0
 
-      return this.buffered / this.duration * 100
+      return (this.buffered / this.duration) * 100
     }
   },
-  watch: {
-
-  },
+  watch: {},
   beforeCreate() {},
-  created() {
-  },
+  created() {},
   mounted() {
     this.volume = this.$refs.audio.volume
     this.progressW = this.$refs.progress.offsetWidth
     this.barW = this.$refs.bar.offsetWidth
 
     this.$once('hook:beforeDesotryed', () => {
-      window.onresize = null
+      window.removeEventListener('resize', this.handleResize, false)
     })
 
-    window.onresize = () => {
-      this.progressW = this.$refs.progress.offsetWidth
-      this.barW = this.$refs.bar.offsetWidth
-    }
+    window.addEventListener('resize', this.handleResize, false)
   },
   methods: {
+    /**
+     * 处理页面resize
+     */
+    handleResize() {
+      this.updateSize()
+    },
+    /**
+     * 更新尺寸
+     */
+    updateSize() {
+      this.progressW = this.$refs.progress.offsetWidth
+      this.barW = this.$refs.bar.offsetWidth
+    },
     volumeClickHandler(e) {
       this.$refs.audio.muted = !this.$refs.audio.muted
     },
     progressClickHandler(e) {
-      this.curTime = e.offsetX / this.progressW * this.duration
+      this.curTime = (e.offsetX / this.progressW) * this.duration
       this.$refs.audio.currentTime = this.curTime
 
       if (this.isPaused) this.play()
@@ -271,6 +275,8 @@ export default {
     },
     barMousedownHandler(e) {
       this.isBarDraging = true
+      this.$refs.audio.pause() // 暂停播放
+
       const lastPageX = e.pageX
       let lastProgressLeft = this.progressLeft
 
@@ -286,7 +292,7 @@ export default {
         e.stopPropagation()
 
         this.progressLeft = lastProgressLeft
-        this.curTime = lastProgressLeft / this.progressW * this.duration
+        this.curTime = (lastProgressLeft / this.progressW) * this.duration
         this.$refs.audio.currentTime = this.curTime
 
         if (this.isPaused) this.play()
@@ -301,7 +307,10 @@ export default {
       document.addEventListener('mouseup', barMouseupHandler, true)
     },
     _getSafeProgressLeft(left) {
-      return Math.max(Math.min(left, this.progressRightLimit), this.progressLeftLimit)
+      return Math.max(
+        Math.min(left, this.progressRightLimit),
+        this.progressLeftLimit
+      )
     },
     // 事件处理器
     abortHandler(e) {
@@ -411,14 +420,19 @@ export default {
       this.$emit('suspend')
     },
     timeupdateHandler(e) {
+      // 拖拽时，无需更新
+      if (this.isBarDraging) return
+
       console.log(e.type)
 
       this.curTime = this.$refs.audio.currentTime
-      if (this.$refs.audio.buffered.length !== 0) this.buffered = this.$refs.audio.buffered.end(0)
+      if (this.$refs.audio.buffered.length !== 0) {
+        this.buffered = this.$refs.audio.buffered.end(0)
+      }
 
-      // 拖拽时，禁止自动更新bar位置
-      if (this.isBarDraging) return
-      this.progressLeft = this._getSafeProgressLeft(this.progress * this.progressW)
+      this.progressLeft = this._getSafeProgressLeft(
+        this.progress * this.progressW
+      )
 
       this.$emit('timeupdate', this.curTime)
     },
@@ -443,14 +457,16 @@ export default {
 
 <style lang="scss" scoped>
 .c-BaseAudio {
-  font-size: 16px;
   display: inline-flex;
   align-items: center;
-  background: #fff;
-  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 2px;
-  padding: 4px 10px;
   justify-content: center;
+  padding: 4px 10px;
+
+  font-size: 16px;
+
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
   &-main + &-sub,
   &-sub + &-extra {
     margin-left: 6px;
@@ -460,107 +476,127 @@ export default {
     min-width: 40px;
   }
   &-extra {
-    flex: 0 0 auto;
-
     display: flex;
+    flex: 0 0 auto;
     align-items: center;
   }
 }
 .c-Audio {
   position: absolute;
+
   width: 1px;
   height: 1px;
+
   opacity: 0;
+
   pointer-events: none;
 }
 
 .c-Btn {
+  position: relative;
+
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+
   background: #eee;
+  border-radius: 50%;
   cursor: pointer;
-  position: relative;
+
   transition: background 0.3s;
   &:hover {
     background: #dfdfdf;
   }
   &.is-playing {
     &::after {
-      content: '';
       position: absolute;
       top: 50%;
       left: 50%;
-      margin-top: -6px;
-      margin-left: -4px;
+
       width: 8px;
       height: 12px;
-      border-left: 3px solid #666;
+      margin-top: -6px;
+      margin-left: -4px;
+
       border-right: 3px solid #666;
+      border-left: 3px solid #666;
+
+      content: '';
     }
   }
   &.is-paused {
     &::after {
-      content: '';
       position: absolute;
       top: 50%;
       left: 50%;
-      margin-top: -6px;
-      margin-left: -2px;
+
       width: 0;
       height: 0;
+      margin-top: -6px;
+      margin-left: -2px;
+
       border: 8px solid transparent;
-      border-left-color: #666;
       border-top-width: 6px;
       border-bottom-width: 6px;
+      border-left-color: #666;
+
+      content: '';
     }
   }
 }
 
 .c-Progress {
-  background-color: #c2c2c2;
   position: relative;
+
+  background-color: #c2c2c2;
   border-radius: 2px;
 }
 
 .c-Track {
-  height: 4px;
   width: 0;
-  border-radius: 2px;
-  will-change: width;
+  height: 4px;
+
   background-color: #9c9c9c;
+  border-radius: 2px;
+
   transition: width 0.3s;
+
+  will-change: width;
 }
 
 .c-Bar {
   position: absolute;
   top: 50%;
+
   transform: translateY(-50%);
+
   will-change: left;
   &-circle {
     width: 12px;
     height: 12px;
-    border-radius: 50%;
+
     background-color: #666;
+    border-radius: 50%;
     cursor: pointer;
+
     transition: box-shadow 0.3s;
     &:hover {
       box-shadow: 0 0 0 3px #666;
     }
   }
   &-loading {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #666;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 12px;
+    height: 12px;
+
+    background-color: #666;
+    border-radius: 50%;
   }
 }
 
 .c-Info {
-  font-size: 14px;
   color: #333;
+  font-size: 14px;
 }
 </style>

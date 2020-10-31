@@ -99,7 +99,7 @@
 
         <div
           ref="bar"
-          :style="{ left: `${progressLeft}px` }"
+          :style="{ transform: `translateX(${progressLeft}px)` }"
           class="c-Bar"
           @mousedown.stop="barMousedownHandler"
         >
@@ -124,17 +124,33 @@
       <div class="c-Info">
         {{ curTime | toMMSS }}/{{ duration | toMMSS }}
       </div>
-      <!-- TODO:需要完善音量调节 -->
-      <!-- <div class="c-Volume">
-        <div
-          class="c-Volume-main"
-          @click="volumeClickHandler">
-          音量
+
+      <!-- 音量调节 -->
+      <div class="c-Volume">
+        <div class="c-Volume-main">
+          <div class="c-Volume-control">
+            <span
+              class="c-Volume-subtract"
+              @click="handleVolumeSubtractClick"
+            >-</span>
+            <span
+              class="c-Volume-text"
+            >{{ volume| single }}</span>
+            <span
+              class="c-Volume-add"
+              @click="handleVolumeAddClick"
+            >+</span>
+          </div>
+          <div
+            class="c-Volume-icon"
+            :class="{'is-muted':isMuted}"
+            @click="volumeClickHandler"
+          >
+            🕪
+          </div>
         </div>
-        <div class="c-Volume-sub">
-          调节器
-        </div>
-      </div> -->
+      </div>
+      <!-- 音量调节 end -->
     </div>
   </div>
 </template>
@@ -157,6 +173,9 @@ export default {
       const m = Math.floor(second / 60)
 
       return `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`
+    },
+    single(val) {
+      return val.toFixed(1)
     }
   },
   mixins: [],
@@ -189,9 +208,6 @@ export default {
     }
   },
   computed: {
-    isMuted() {
-      return this.volume === 0
-    },
     btnClass() {
       if (this.isPlaying) {
         return 'is-playing'
@@ -217,6 +233,9 @@ export default {
       if (!this.buffered || !this.duration) return 0
 
       return (this.buffered / this.duration) * 100
+    },
+    isMuted() {
+      return this.volume === 0
     }
   },
   watch: {},
@@ -247,8 +266,22 @@ export default {
       this.progressW = this.$refs.progress.offsetWidth
       this.barW = this.$refs.bar.offsetWidth
     },
+    handleVolumeSubtractClick() {
+      const volume = Math.max(this.volume - 0.1, 0)
+      this.$refs.audio.volume = volume
+      this.volume = volume
+    },
+    handleVolumeAddClick() {
+      this.$refs.audio.muted = false
+
+      const volume = Math.min(this.volume + 0.1, 1)
+      this.$refs.audio.volume = volume
+      this.volume = volume
+    },
     volumeClickHandler(e) {
       this.$refs.audio.muted = !this.$refs.audio.muted
+
+      this.volume = 0
     },
     progressClickHandler(e) {
       this.curTime = (e.offsetX / this.progressW) * this.duration
@@ -285,7 +318,7 @@ export default {
         const disX = e.pageX - lastPageX
         const newPos = this._getSafeProgressLeft(this.progressLeft + disX)
 
-        this.$refs.bar.style.left = `${newPos}px`
+        this.$refs.bar.style.transform = `translateX(${newPos}px)`
         lastProgressLeft = newPos
       }
       const barMouseupHandler = e => {
@@ -420,21 +453,20 @@ export default {
       this.$emit('suspend')
     },
     timeupdateHandler(e) {
-      // 拖拽时，无需更新
-      if (this.isBarDraging) return
-
       console.log(e.type)
 
       this.curTime = this.$refs.audio.currentTime
+      this.$emit('timeupdate', this.curTime)
+
       if (this.$refs.audio.buffered.length !== 0) {
         this.buffered = this.$refs.audio.buffered.end(0)
       }
 
+      // 拖拽时，音乐需播放，但bar无需更新
+      if (this.isBarDraging) return
       this.progressLeft = this._getSafeProgressLeft(
         this.progress * this.progressW
       )
-
-      this.$emit('timeupdate', this.curTime)
     },
     volumechangeHandler(e) {
       console.log(e.type)
@@ -460,7 +492,7 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 10px;
+  padding: 0.375em 0.625em;
 
   font-size: 16px;
 
@@ -469,11 +501,11 @@ export default {
   box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
   &-main + &-sub,
   &-sub + &-extra {
-    margin-left: 6px;
+    margin-left: 0.375em;
   }
   &-sub {
     flex: 1 1 auto;
-    min-width: 40px;
+    min-width: 2.5em;
   }
   &-extra {
     display: flex;
@@ -495,8 +527,8 @@ export default {
 .c-Btn {
   position: relative;
 
-  width: 28px;
-  height: 28px;
+  width: 1.75em;
+  height: 1.75em;
 
   background: #eee;
   border-radius: 50%;
@@ -512,13 +544,13 @@ export default {
       top: 50%;
       left: 50%;
 
-      width: 8px;
-      height: 12px;
-      margin-top: -6px;
-      margin-left: -4px;
+      width: 0.5em;
+      height: 0.75em;
+      margin-top: -0.375em;
+      margin-left: -0.25em;
 
-      border-right: 3px solid #666;
-      border-left: 3px solid #666;
+      border-right: 0.1875em solid #666;
+      border-left: 0.1875em solid #666;
 
       content: '';
     }
@@ -531,12 +563,12 @@ export default {
 
       width: 0;
       height: 0;
-      margin-top: -6px;
-      margin-left: -2px;
+      margin-top: -0.375em;
+      margin-left: -0.125em;
 
-      border: 8px solid transparent;
-      border-top-width: 6px;
-      border-bottom-width: 6px;
+      border: 0.5em solid transparent;
+      border-top-width: 0.375em;
+      border-bottom-width: 0.375em;
       border-left-color: #666;
 
       content: '';
@@ -552,27 +584,46 @@ export default {
 }
 
 .c-Track {
+  position: relative;
+  z-index:1;
+
   width: 0;
-  height: 4px;
+  height: 0.25em;
 
   background-color: #9c9c9c;
-  border-radius: 2px;
+  border-radius: 0.125em;
+  cursor: pointer;
 
-  transition: width 0.3s;
+  transition: width 0.3s,height .3s;
 
-  will-change: width;
+  will-change: width,height;
+  &::after{
+   position: absolute;
+    top: -0.25em;
+    right: -0.25em;
+    bottom: -0.25em;
+    left: -0.25em;
+    z-index:2;
+
+    content: '';
+  }
 }
 
 .c-Bar {
   position: absolute;
   top: 50%;
+  z-index:3;
 
-  transform: translateY(-50%);
+  width: 0.75em;
+  height: 0.75em;
 
-  will-change: left;
+  margin-top:-0.375em;
+
+  will-change: transform;
+
   &-circle {
-    width: 12px;
-    height: 12px;
+    width:100%;
+    height:100%;
 
     background-color: #666;
     border-radius: 50%;
@@ -587,8 +638,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 12px;
-    height: 12px;
+    width: 0.75em;
+    height: 0.75em;
 
     background-color: #666;
     border-radius: 50%;
@@ -597,6 +648,85 @@ export default {
 
 .c-Info {
   color: #333;
-  font-size: 14px;
+
+  &+.c-Volume{
+    margin-left: 0.375em;
+  }
+}
+
+.c-Volume{
+  &-main{
+   position: relative;
+   z-index:1;
+    &:hover{
+      .c-Volume-control{
+        transform: translateX(0);
+
+        opacity: 1;
+      }
+    }
+  }
+
+  &-icon{
+
+    position: relative;
+    z-index: 1;
+
+    cursor: pointer;
+    &:hover{
+      opacity: .8;
+    }
+
+    &.is-muted::after{
+      position: absolute;
+      top:0;
+      right:0;
+      bottom:0;
+      left:0;
+      z-index: 2;
+
+      color:red;
+      text-align:center;
+
+      content:"/";
+    }
+  }
+
+  &-control{
+  position: absolute;
+  right:1em;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-right: .2em;
+  padding-left: .2em;
+
+  background-color: #fff;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
+
+   transform: translateX(10%);
+   opacity: 0;
+
+   transition: opacity .3s,transform ease-in .3s;
+
+    user-select: none;
+  }
+
+  &-add,&-subtract{
+    min-width: 1em;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    &:hover{
+      font-weight:bold;
+
+      opacity: .8;
+    }
+  }
 }
 </style>

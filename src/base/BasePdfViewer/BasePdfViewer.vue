@@ -269,14 +269,14 @@ export default {
     setInitScale() {
       if (!this.pdfViewer || !this.container) return
 
-      const { width } = this.pdfViewer.getPageView(this.pdfViewer.currentPageNumber)
+      const { width } = this.pdfViewer.getPageView(0) // 取首页宽度
 
       const { width: wpW } = this.container.getBoundingClientRect()
 
-      // 页面较宽，则用页面宽度，若视口较大，则将页面放大到视口大小
-      this.defaultScale = width > wpW
-        ? CUSTOM_SCALE.PAGE_ACTUAL
-        : CUSTOM_SCALE.PAGE_WIDTH
+      // pdf宽度 >= 容器宽度，则将其缩小到容器宽度；若pdf宽度 < 容器宽度，则保持不变
+      this.defaultScale = width >= wpW
+        ? CUSTOM_SCALE.PAGE_WIDTH
+        : CUSTOM_SCALE.PAGE_ACTUAL
 
       this.setScale(this.scale || this.defaultScale) // 设置默认缩放，用户定义的优先
     },

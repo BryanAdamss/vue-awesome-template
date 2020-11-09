@@ -124,7 +124,7 @@ export default {
     },
     zIndex: {
       type: [Number, String],
-      default: 9999
+      default: 1
     }
   },
   data() {

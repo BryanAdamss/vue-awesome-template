@@ -15,7 +15,6 @@
       :ref="`modal-${buttons[0].label}`"
       :shadowClose="true"
       :emitShadowClickEvent="true"
-      :emitVisibleChangeEvent="true"
       :position="buttons[0].label"
       :isShow.sync="isShowCenter"
     >
@@ -34,7 +33,6 @@
       :ref="`modal-${buttons[1].label}`"
       :shadowClose="true"
       :emitShadowClickEvent="true"
-      :emitVisibleChangeEvent="true"
       :position="buttons[1].label"
       :isShow.sync="isShowTop"
     >
@@ -53,7 +51,6 @@
       :ref="`modal-${buttons[2].label}`"
       :shadowClose="true"
       :emitShadowClickEvent="true"
-      :emitVisibleChangeEvent="true"
       :position="buttons[2].label"
       :isShow.sync="isShowRight"
     >
@@ -72,7 +69,6 @@
       :ref="`modal-${buttons[3].label}`"
       :shadowClose="true"
       :emitShadowClickEvent="true"
-      :emitVisibleChangeEvent="true"
       :position="buttons[3].label"
       :isShow.sync="isShowBottom"
     >
@@ -91,7 +87,6 @@
       :ref="`modal-${buttons[4].label}`"
       :shadowClose="true"
       :emitShadowClickEvent="true"
-      :emitVisibleChangeEvent="true"
       :position="buttons[4].label"
       :isShow.sync="isShowLeft"
     >

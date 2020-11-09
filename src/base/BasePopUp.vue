@@ -4,6 +4,8 @@
  * * BasePopUp
  */
 
+import IndexManager from 'Services/extends/index-manager'
+
 const POSITIONS = ['top', 'right', 'bottom', 'left']
 
 export default {
@@ -36,11 +38,13 @@ export default {
     },
     appendToBody: {
       type: Boolean,
-      default: false
+      default: true
     },
     zIndex: {
       type: [Number, String],
-      default: 1
+      default() {
+        return (new IndexManager()).add()
+      }
     }
   },
   computed: {
@@ -62,6 +66,7 @@ export default {
     }
   },
   mounted() {
+    console.log('mounted')
     if (this.appendToBody) document.body.appendChild(this.$el)
   },
   activated() {},

@@ -19,11 +19,7 @@
       :position="buttons[0].label"
       :isShow.sync="isShowCenter"
     >
-      <div
-        style="height:100%;
-
-background-color:#fff;"
-      >
+      <div class="c-Box">
         测试modal
         <button
           type="button"
@@ -31,7 +27,7 @@ background-color:#fff;"
         >
           &times;
         </button>
-        <h1>{{ buttons[0].label }} <br> 查看控制台输出</h1>
+        <div>{{ buttons[0].label }} <br> 查看控制台输出</div>
       </div>
     </BasePopUp>
     <BasePopUp
@@ -42,11 +38,7 @@ background-color:#fff;"
       :position="buttons[1].label"
       :isShow.sync="isShowTop"
     >
-      <div
-        style="height:100%;
-
-background-color:#fff;"
-      >
+      <div class="c-Box">
         测试modal
         <button
           type="button"
@@ -54,7 +46,7 @@ background-color:#fff;"
         >
           &times;
         </button>
-        <h1>{{ buttons[1].label }} <br> 查看控制台输出</h1>
+        <div>{{ buttons[1].label }} <br> 查看控制台输出</div>
       </div>
     </BasePopUp>
     <BasePopUp
@@ -65,11 +57,7 @@ background-color:#fff;"
       :position="buttons[2].label"
       :isShow.sync="isShowRight"
     >
-      <div
-        style="height:100%;
-
-background-color:#fff;"
-      >
+      <div class="c-Box">
         测试modal
         <button
           type="button"
@@ -77,7 +65,7 @@ background-color:#fff;"
         >
           &times;
         </button>
-        <h1>{{ buttons[2].label }} <br> 查看控制台输出</h1>
+        <div>{{ buttons[2].label }} <br> 查看控制台输出</div>
       </div>
     </BasePopUp>
     <BasePopUp
@@ -88,11 +76,7 @@ background-color:#fff;"
       :position="buttons[3].label"
       :isShow.sync="isShowBottom"
     >
-      <div
-        style="height:100%;
-
-background-color:#fff;"
-      >
+      <div class="c-Box">
         测试modal
         <button
           type="button"
@@ -100,7 +84,7 @@ background-color:#fff;"
         >
           &times;
         </button>
-        <h1>{{ buttons[3].label }} <br> 查看控制台输出</h1>
+        <div>{{ buttons[3].label }} <br> 查看控制台输出</div>
       </div>
     </BasePopUp>
     <BasePopUp
@@ -111,11 +95,7 @@ background-color:#fff;"
       :position="buttons[4].label"
       :isShow.sync="isShowLeft"
     >
-      <div
-        style="height:100%;
-
-background-color:#fff;"
-      >
+      <div class="c-Box">
         测试modal
         <button
           type="button"
@@ -123,7 +103,7 @@ background-color:#fff;"
         >
           &times;
         </button>
-        <h1>{{ buttons[4].label }} <br> 查看控制台输出</h1>
+        <div>{{ buttons[4].label }} <br> 查看控制台输出</div>
       </div>
     </BasePopUp>
   </div>
@@ -187,3 +167,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.c-Box{
+  height:100%;
+
+  background-color: #fff;
+}
+</style>

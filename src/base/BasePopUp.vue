@@ -1,18 +1,3 @@
-<template>
-  <div
-    ref="modal"
-    :class="[positionClass,{'has-shadow':hasShadow},{'is-visible':isShow}]"
-    class="c-BasePopUp"
-    :style="{'z-index':zIndex}"
-    @click.stop="onShadowClick"
-  >
-    <div class="c-BasePopUp-main">
-      <slot>
-        BasePopUp
-      </slot>
-    </div>
-  </div>
-</template>
 
 <script>
 /**
@@ -70,6 +55,8 @@ export default {
       handler(newVal, oldVal) {
         this._toggleBodyHidden(newVal)
         this.$emit('update:isShow', newVal)
+
+        if (newVal === false) this.$emit('close', false)
       },
       immediate: true
     }
@@ -113,6 +100,35 @@ export default {
 
       this.emitShadowClickEvent && this.$emit('onShadowClick', e)
     }
+  },
+  render(h) {
+    const child = h(
+      'div',
+      {
+        class: {
+          'c-BasePopUp-main': true
+        }
+      },
+      this.$scopedSlots.default() || 'BasePopUp'
+    )
+
+    const wrap = h(
+      'div', {
+        class: {
+          'c-BasePopUp': true,
+          [this.positionClass]: true,
+          'has-shadow': this.hasShadow,
+          'is-visible': this.isShow
+        },
+        ref: 'modal',
+        on: {
+          click: this.onShadowClick
+        }
+      },
+      [child]
+    )
+
+    return wrap
   }
 }
 </script>

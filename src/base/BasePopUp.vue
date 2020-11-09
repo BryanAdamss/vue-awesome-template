@@ -109,7 +109,9 @@ export default {
           'c-BasePopUp-main': true
         }
       },
-      this.$scopedSlots.default() || 'BasePopUp'
+      this.$scopedSlots.default
+        ? this.$scopedSlots.default()
+        : 'BasePopUp'
     )
 
     const wrap = h(
@@ -123,6 +125,9 @@ export default {
         ref: 'modal',
         on: {
           click: this.onShadowClick
+        },
+        style: {
+          zIndex: this.zIndex
         }
       },
       [child]

@@ -1,5 +1,5 @@
 <template>
-  <div class="c-Home">
+  <div class="c-HomePage">
     <LinkList />
     <router-link
       :to="{ name: 'HomeChild1' }"
@@ -24,7 +24,7 @@
 
 <script>
 /**
- * * Home
+ * * HomePage
  */
 
 import BaseTransitionSlide from 'Base/BaseTransitionSlide'
@@ -33,7 +33,7 @@ import LinkList from 'Components/LinkList'
 
 export default {
   // * 组件需命名，采用帕斯卡风格
-  name: 'Home',
+  name: 'HomePage',
   components: {
     BaseTransitionSlide,
     LinkList
@@ -46,7 +46,7 @@ export default {
 // ! sass中无法使用，必须用相对路径
 
 // * 这里没有导入sass变量及mixin是因为通过sass-resources-loader事先导入了
-.c-Home {
+.c-HomePage {
   @include bg-alpha();
 }
 

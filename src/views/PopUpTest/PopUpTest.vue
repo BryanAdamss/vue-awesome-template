@@ -150,12 +150,6 @@ export default {
       this[`isShow${pos.replace(/^\S/, function(s) { return s.toUpperCase() })}`] = true
       this.curPopUpName = popUpName
     },
-    onShadowClick(e) {
-      console.log('onShadowClick', e)
-    },
-    onVisibleChange(newVal, oldVal) {
-      console.log('onVisibleChange', newVal, oldVal)
-    },
     closeModal(pos) {
       this[`isShow${pos.replace(/^\S/, function(s) { return s.toUpperCase() })}`] = false
     }
@@ -164,8 +158,8 @@ export default {
 </script>
 
 <style lang="scss">
-.c-Box{
-  height:100%;
+.c-Box {
+  height: 100%;
 
   background-color: #fff;
 }

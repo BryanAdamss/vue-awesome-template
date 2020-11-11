@@ -9,7 +9,7 @@
         :key=" item.id || index "
         :class="[`is-${pos}`, isActive(item)]"
         class="c-BaseDynamicCursor-item"
-        @click="$emit('cursorClick',item,index)"
+        @click="$emit('cursor-click',item,index)"
       >
         <slot v-bind="{item,index}">
           {{ item.text || item }}

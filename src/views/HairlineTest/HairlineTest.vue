@@ -1,22 +1,22 @@
 <template>
-  <div class="c-HairLineTest">
-    <div class="c-Box is-right">
+  <div class="c-HairlineTest">
+    <div class="c-TestBox is-right">
       right
     </div>
-    <div class="c-Box is-top">
+    <div class="c-TestBox is-top">
       top
     </div>
-    <div class="c-Box is-bottom">
+    <div class="c-TestBox is-bottom">
       bottom
     </div>
-    <div class="c-Box is-left">
+    <div class="c-TestBox is-left">
       left
     </div>
-    <div class="c-Box is-all">
+    <div class="c-TestBox is-all">
       all
     </div>
 
-    <div class="c-Box is-radius">
+    <div class="c-TestBox is-radius">
       radius
     </div>
   </div>
@@ -24,11 +24,11 @@
 
 <script>
 /**
- * * HairLineTest
+ * * HairlineTest
  */
 
 export default {
-  name: 'HairLineTest',
+  name: 'HairlineTest',
   components: {},
   mixins: [],
   props: {},
@@ -45,10 +45,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.c-HairLineTest {
+.c-HairlineTest {
 }
 
-.c-Box {
+.c-TestBox {
   width: 100px;
   height: 100px;
   margin-left: 10px;
@@ -62,23 +62,23 @@ export default {
   }
 
   &.is-right {
-    @include hairline-right(red);
+    @include hairline-right($theme-primary);
   }
 
   &.is-bottom {
-    @include hairline-bottom(red);
+    @include hairline-bottom($theme-primary);
   }
 
   &.is-left {
-    @include hairline-left(red);
+    @include hairline-left($theme-primary);
   }
 
   &.is-all {
-    @include hairline-all(red);
+    @include hairline-all($theme-primary);
   }
 
   &.is-radius {
-    @include hairline-all(red, (4px, 8px, 12px, 16px));
+    @include hairline-all($theme-primary, (4px, 8px, 12px, 16px));
   }
 }
 </style>

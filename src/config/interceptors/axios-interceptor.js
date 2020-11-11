@@ -36,7 +36,7 @@ export function respSuccFn(respObj) {
   ) {
     !respObj.config._noShowDefaultError &&
       window[GLOBAL_NAME_SPACE].$bus.$emit(
-        'business.response.incorrect',
+        'business-response-incorrect',
         '服务器异常，请稍后重试。'
       )
 
@@ -53,7 +53,7 @@ export function respSuccFn(respObj) {
     default:
       !respObj.config._noShowDefaultError &&
         window[GLOBAL_NAME_SPACE].$bus.$emit(
-          'business.response.incorrect',
+          'business-response-incorrect',
           '服务器异常，请稍后重试。'
         )
       return Promise.reject(resData)

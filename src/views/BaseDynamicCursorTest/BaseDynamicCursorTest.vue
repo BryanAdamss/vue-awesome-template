@@ -19,7 +19,7 @@
       color="#f00"
       pos="left"
     >
-      <template v-slot="item">
+      <template #default="item">
         <p style="padding-left:20px;">
           {{ item }}
         </p>

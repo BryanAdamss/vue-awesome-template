@@ -46,7 +46,7 @@ export default {
     if (this.emitVisibleChangeEvent) {
       // * 手动添加观测
       const unwatch = this.$watch('isCanVisible', (newVal, oldVal) => {
-        this.$emit('onVisibleChange', newVal, oldVal)
+        this.$emit('visible-change', newVal, oldVal)
       })
       // * 销毁时，取消观测
       this.$once('hook:beforeDestroy', () => {
@@ -72,7 +72,7 @@ export default {
         this.close()
       }
 
-      this.$emit('onShadowClick', e)
+      this.$emit('shadow-click', e)
     }
   }
 }
@@ -101,7 +101,6 @@ export default {
   will-change: transform, opacity;
   @include bg-alpha();
   &.is-visible {
-
     transform: scale(1);
     opacity: 1;
 

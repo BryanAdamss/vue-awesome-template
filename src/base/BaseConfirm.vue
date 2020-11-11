@@ -20,7 +20,7 @@
         <div class="c-BtnGroup">
           <div
             class="c-Btn"
-            @click.stop="onClickCancel"
+            @click.stop="handleCancel"
           >
             取消
           </div>
@@ -66,12 +66,12 @@ export default {
     close() {
       this.$refs.popup.close()
     },
-    onClickCancel() {
-      this.$emit('onClickCancel')
+    handleCancel() {
+      this.$emit('click-cancel')
       this.close()
     },
     onClickOk() {
-      this.$emit('onClickOk')
+      this.$emit('click-ok')
       this.close()
     }
   }

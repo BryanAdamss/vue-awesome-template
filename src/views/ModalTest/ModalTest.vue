@@ -5,8 +5,8 @@
       :shadowClose="true"
       :emitShadowClickEvent="true"
       :emitVisibleChangeEvent="true"
-      @onShadowClick="onShadowClick"
-      @onVisibleChange="onVisibleChange"
+      @shadow-click="onShadowClick"
+      @visible-change="onVisibleChange"
     >
       <div style="background-color:#fff">
         测试modal

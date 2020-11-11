@@ -19,7 +19,7 @@
           :sep="homeRoute.sep || globalSep"
           :sepIconClassName=" homeRoute.sepIconClassName || globalSepIconClassName"
           :text="homeRoute.text"
-          @itemClick="handleHomeClick(homeRoute)"
+          @item-click="handleHomeClick(homeRoute)"
         />
       </template>
       <!-- 首页 end -->
@@ -36,7 +36,7 @@
             :sep="route.sep || globalSep"
             :sepIconClassName=" route.sepIconClassName || globalSepIconClassName"
             :text="route.text"
-            @itemClick="$router.go(route.step)"
+            @item-click="$router.go(route.step)"
           />
         </template>
         <!-- 传入step end -->
@@ -50,7 +50,7 @@
             :sep="route.sep || globalSep"
             :sepIconClassName=" route.sepIconClassName || globalSepIconClassName"
             :text="route.text"
-            @itemClick="$router.push(route)"
+            @item-click="$router.push(route)"
           />
         </template>
         <!-- 传入name、path end -->
@@ -64,7 +64,7 @@
             :sep="route.sep || globalSep"
             :sepIconClassName=" route.sepIconClassName || globalSepIconClassName"
             :text="route.text"
-            @itemClick="$win.location.href = route.href"
+            @item-click="$win.location.href = route.href"
           />
         </template>
         <!-- 传入href end -->
@@ -81,7 +81,7 @@
             :text="route.text"
           />
         </template>
-        <!-- 纯文本 end-->
+        <!-- 纯文本 end -->
       </slot>
     </template>
   </div>
@@ -182,10 +182,10 @@ export default {
 
 <style lang="scss" scoped>
 .c-BaseBreadcrumb {
-  font-size: 12px;
-  color: #999;
-
   padding-top: 1em;
   padding-bottom: 1em;
+
+  color: #999;
+  font-size: 12px;
 }
 </style>

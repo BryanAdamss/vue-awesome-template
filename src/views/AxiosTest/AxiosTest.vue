@@ -35,6 +35,22 @@ export default {
   components: {
     BaseLoading
   },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      // * 如果是从AxiosListDetailTest页面返回，则读取绑定在$root上的scrollTop
+      if (from.name === 'AxiosListDetailTest') {
+        alert('列表将被设置到原先位置')
+        const lastScrollTop = vm.$root.$_scrollTop
+        setTimeout(() => {
+          // * 因为返回时有个300ms的动画，导致设置不生效，所以延迟了400ms，肉眼基本上看不到滚动过程
+          // * 实际生产时，需要根据动画时间调整延迟
+          vm.$refs.list.scrollTop = lastScrollTop
+          // * 删除$root上绑定的数据
+          delete vm.$root.$_scrollTop
+        }, 400)
+      }
+    })
+  },
   data() {
     return {
       posts: [],
@@ -56,22 +72,6 @@ export default {
     }).catch(err => {
       this.isLoading = false
       console.log('err', err)
-    })
-  },
-  beforeRouteEnter(to, from, next) {
-    next(vm => {
-      // * 如果是从AxiosListDetailTest页面返回，则读取绑定在$root上的scrollTop
-      if (from.name === 'AxiosListDetailTest') {
-        alert('列表将被设置到原先位置')
-        const lastScrollTop = vm.$root.$_scrollTop
-        setTimeout(() => {
-          // * 因为返回时有个300ms的动画，导致设置不生效，所以延迟了400ms，肉眼基本上看不到滚动过程
-          // * 实际生产时，需要根据动画时间调整延迟
-          vm.$refs.list.scrollTop = lastScrollTop
-          // * 删除$root上绑定的数据
-          delete vm.$root.$_scrollTop
-        }, 400)
-      }
     })
   },
   methods: {

@@ -8,9 +8,9 @@
     </button>
     <BaseConfirm
       ref="confirm"
-      :title="'我是新标题'"
-      @onClickCancel="onClickCancel"
-      @onClickOk="onClickOk"
+      title="我是新标题"
+      @click-cancel="onClickCancel"
+      @click-ok="onClickOk"
     >
       <!-- <div slot="header">我是自定义标题</div> -->
       我是测试内容

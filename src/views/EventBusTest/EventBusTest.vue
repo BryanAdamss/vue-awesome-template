@@ -31,7 +31,7 @@ export default {
     }
   },
   created() {
-    this.$bus.$on('grandson1MsgToParent', msg => {
+    this.$bus.$on('grandson1-msg-to-parent', msg => {
       this.msg = msg
     })
   }

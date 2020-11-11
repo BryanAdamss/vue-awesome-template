@@ -103,7 +103,7 @@ export default {
         this.close()
       }
 
-      this.emitShadowClickEvent && this.$emit('onShadowClick', e)
+      this.emitShadowClickEvent && this.$emit('shadow-click', e)
     }
   },
   render(h) {

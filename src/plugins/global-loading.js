@@ -13,8 +13,8 @@ import Bus from 'Plugins/event-bus'
  */
 class GlobalLoading {
   constructor({
-    showEventName = 'global.loading.show', // loading show时派发的事件名
-    hideEventName = 'global.loading.hide', // loading hide时派发的事件名
+    showEventName = 'global-loading-show', // loading show时派发的事件名
+    hideEventName = 'global-loading-hide', // loading hide时派发的事件名
     minReqTime = 400, // loading展示所需要的最少请求时间，请求时间超过400ms才会展示loading
     maxCombinTime = 200, // 两次独立loading合并的最大间隔时间
     debug = false // 调试模式

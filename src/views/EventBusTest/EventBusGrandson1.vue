@@ -27,13 +27,13 @@ export default {
   methods: {
     sendMsg() {
       this.$bus.$emit(
-        'grandson1Msg',
+        'grandson1-msg',
         `我是来自EventBusGrandson1的消息${(Math.random() * 10).toFixed(2)}`
       )
     },
     sendMsg2() {
       this.$bus.$emit(
-        'grandson1MsgToParent',
+        'grandson1-msg-to-parent',
         `我是来自EventBusGrandson1要发送给parent的消息${(
           Math.random() * 10
         ).toFixed(2)}`

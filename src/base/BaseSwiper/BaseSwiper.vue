@@ -22,7 +22,7 @@
 
 <script>
 /**
- * * Swiper
+ * * BaseSwiper
  * * @author GuangHui
  * * @description 通用swiper组件
  */
@@ -30,7 +30,7 @@
 import BaseSwiperSlide from './BaseSwiperSlide'
 
 export default {
-  name: 'Swiper',
+  name: 'BaseSwiper',
   components: {
     BaseSwiperSlide
   },
@@ -217,12 +217,14 @@ export default {
 .c-BaseSwiper {
   position: relative;
   z-index: 1;
+
   overflow: hidden;
   &-wp {
-    overflow: hidden;
     height: 100%;
-    @include clearfix();
+    overflow: hidden;
+
     will-change: transform;
+    @include clearfix();
   }
 }
 </style>

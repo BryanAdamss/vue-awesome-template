@@ -303,7 +303,7 @@ export default {
       this.isLoading = false
       this.loadSuccess = true
 
-      this.$emit('loading.task.success', pdfDocument)
+      this.$emit('loading-task-success', pdfDocument)
     },
     /**
      * 处理文档加载任务失败
@@ -314,7 +314,7 @@ export default {
       this.isLoading = false
       this.loadFail = true
 
-      this.$emit('loading.task.error', err)
+      this.$emit('loading-task-error', err)
     },
 
     /**

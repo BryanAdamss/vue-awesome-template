@@ -46,7 +46,7 @@ export default {
       this.themeService = null
     },
     applyTheme() {
-      this.$bus.$emit('global.loading.show')
+      this.$bus.$emit('global-loading-show')
       axios({
         url: '/theme-dark.json'
       })
@@ -62,7 +62,7 @@ export default {
                 console.log(err)
               })
               .finally(() => {
-                this.$bus.$emit('global.loading.hide')
+                this.$bus.$emit('global-loading-hide')
               })
           } else {
             this.themeService.applyTheme(data)

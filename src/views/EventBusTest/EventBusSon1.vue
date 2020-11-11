@@ -33,14 +33,14 @@ export default {
     }
   },
   created() {
-    this.$bus.$on('son2Msg', msg => {
+    this.$bus.$on('son2-msg', msg => {
       this.msg = msg
     })
   },
   methods: {
     sendMsg() {
       this.$bus.$emit(
-        'son1Msg',
+        'son1-msg',
         `我是来自EventBusSon1的消息${(Math.random() * 10).toFixed(2)}`
       )
     }

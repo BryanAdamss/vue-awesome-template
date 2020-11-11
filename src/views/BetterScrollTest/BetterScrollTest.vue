@@ -6,13 +6,13 @@
       :pullDownRefresh="true"
       :pullUpLoad="true"
       style="height:100%;"
-      @beforeScroll="onBeforeScroll"
+      @before-scroll="onBeforeScroll"
       @scroll="onScroll"
-      @scrollToBottom="onScrollToBottom"
-      @scrollEnd="onScrollEnd"
-      @refreshEnd="onRefreshEnd"
-      @pullingDown="onPullingDown"
-      @pullingUp="onPullingUp"
+      @scroll-to-bottom="onScrollToBottom"
+      @scroll-end="onScrollEnd"
+      @refresh-end="onRefreshEnd"
+      @pulling-down="onPullingDown"
+      @pulling-up="onPullingUp"
     >
       <ul>
         <li>1</li>

@@ -25,10 +25,10 @@
     <span
       :title="text"
       class="c-BaseBreadcrumbItem-text"
-      @click="$emit('itemClick')"
+      @click="$emit('item-click')"
       v-text="text"
     />
-    <!-- 文案 end-->
+    <!-- 文案 end -->
 
     <!-- 分隔符 -->
     <template v-if="needSep">
@@ -113,19 +113,20 @@ export default {
 
 <style lang="scss" scoped>
 .c-BaseBreadcrumbItem {
-  font-size: 12px;
   color: #262626;
+  font-size: 12px;
   &.is-link {
-    cursor: pointer;
     color: #999;
+
+    cursor: pointer;
     &:hover {
       color: darken($color: #999, $amount: 20);
     }
   }
 
   &-sep {
-    margin-left: 0.5em;
     margin-right: 0.5em;
+    margin-left: 0.5em;
   }
 }
 </style>

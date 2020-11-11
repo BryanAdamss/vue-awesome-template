@@ -31,17 +31,17 @@ export default {
     }
   },
   created() {
-    this.$bus.$on('son1Msg', msg => {
+    this.$bus.$on('son1-msg', msg => {
       this.msg = msg
     })
-    this.$bus.$on('grandson1Msg', msg => {
+    this.$bus.$on('grandson1-msg', msg => {
       this.msg2 = msg
     })
   },
   methods: {
     sendMsg() {
       this.$bus.$emit(
-        'son2Msg',
+        'son2-msg',
         `我是来自EventBusSon2的消息${(Math.random() * 10).toFixed(2)}`
       )
     }

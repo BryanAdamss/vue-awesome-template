@@ -314,7 +314,7 @@ export default {
       // * 派发beforeScroll事件
       if (this.listenBeforeScroll) {
         this.scroll.on('beforeScrollStart', () => {
-          this.$emit('beforeScroll')
+          this.$emit('before-scroll')
         })
       }
 
@@ -329,7 +329,7 @@ export default {
       if (this.listenScrollToBottom) {
         this.scroll.on('scrollEnd', () => {
           if (this.scroll.y <= this.scroll.maxScrollY + 50) {
-            this.$emit('scrollToBottom')
+            this.$emit('scroll-to-bottom')
           }
         })
       }
@@ -337,14 +337,14 @@ export default {
       // * 派发滚动结束事件
       if (this.listenScrollEnd) {
         this.scroll.on('scrollEnd', pos => {
-          this.$emit('scrollEnd', pos)
+          this.$emit('scroll-end', pos)
         })
       }
 
       // * 派发刷新结束事件
       if (this.listenRefreshEnd) {
         this.scroll.on('refresh', () => {
-          this.$emit('refreshEnd')
+          this.$emit('refresh-end')
         })
       }
 
@@ -371,7 +371,7 @@ export default {
         this.pullDownOptions.isPullingDown = true
         // * 解绑
         this.scroll.off('scroll', this._onPullDownScroll)
-        this.$emit('pullingDown')
+        this.$emit('pulling-down')
       })
     },
     // * 初始化上拉加载
@@ -382,7 +382,7 @@ export default {
 
       this.scroll.on('pullingUp', () => {
         this.pullUpOptions.isPullUpLoading = true
-        this.$emit('pullingUp')
+        this.$emit('pulling-up')
       })
     },
     // * 下拉刷新时的滚动处理函数

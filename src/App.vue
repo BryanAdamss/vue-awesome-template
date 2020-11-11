@@ -62,21 +62,21 @@ export default {
   methods: {
     bindBusEvents() {
       // 接口报错弹窗
-      this.$bus.$on('business.response.incorrect', msg => {
+      this.$bus.$on('business-response-incorrect', msg => {
         // 接口返回code不为200时默认弹窗
         if (!msg) return
         this.$message(msg)
       })
 
       // 展示loading
-      this.$bus.$on('global.loading.show', config => {
+      this.$bus.$on('global-loading-show', config => {
         if (!this.loading) {
           this.loading = this.$loading(Object.assign({}, LOADING_DEFAULT_CONFIG, config))
         }
       })
 
       // 隐藏loading
-      this.$bus.$on('global.loading.hide', () => {
+      this.$bus.$on('global-loading-hide', () => {
         if (this.loading) {
           this.loading.close()
           this.loading = null
@@ -90,5 +90,5 @@ export default {
 }
 </script>
 
-<!--全局公用样式-->
+<!-- 全局公用样式 -->
 <style lang="scss" src="Sass/common-m.scss"></style>

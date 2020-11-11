@@ -3,7 +3,7 @@
     :width="currentSize.width"
     :height="currentSize.height"
     :viewBox="box"
-    class="gf-icon"
+    class="c-BaseSvgIcon"
     version="1.1"
   >
     <use :xlink:href="icon.id" />
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'SvgIcon',
+  name: 'BaseSvgIcon',
   props: {
     name: {
       type: String,
@@ -120,8 +120,9 @@ export default {
 </script>
 
 <style>
-.gf-icon {
+.c-BaseSvgIcon {
   display: inline-block;
+
   fill: currentColor;
 }
 </style>

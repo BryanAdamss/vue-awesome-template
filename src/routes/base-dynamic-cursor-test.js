@@ -3,18 +3,18 @@
  * @description base-dynamic-cursor-test 测试页
  */
 
-const BaseDynamicCurosrTest = () =>
+const BaseDynamicCursorTest = () =>
   import(
-    /* webpackChunkName:'BaseDynamicCurosrTest' */ 'Views/BaseDynamicCurosrTest/BaseDynamicCurosrTest'
+    /* webpackChunkName:'BaseDynamicCursorTest' */ 'Views/BaseDynamicCursorTest/BaseDynamicCursorTest'
   )
 
 export default [
   {
     path: '/base-dynamic-cursor-test',
-    name: 'BaseDynamicCurosrTest',
-    component: BaseDynamicCurosrTest,
+    name: 'BaseDynamicCursorTest',
+    component: BaseDynamicCursorTest,
     meta: {
-      title: '测试BaseDynamicCurosrTest'
+      title: '测试BaseDynamicCursorTest'
     }
   }
 ]

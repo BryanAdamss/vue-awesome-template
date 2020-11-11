@@ -3,30 +3,54 @@
  * @description axios拦截器
  */
 
+import { Message } from 'element-ui'
+
 import { GLOBAL_LOADING_DEFAULT_CONFIG, GLOBAL_NAME_SPACE } from 'Config'
 
 import GlobalLoading from 'Plugins/global-loading'
 
 import { isEmpty } from 'Utils/type-judge'
 
+import { OFFLINE_MSG } from 'Services/const/common'
+
 const globalLoading = new GlobalLoading(GLOBAL_LOADING_DEFAULT_CONFIG)
 
+/**
+ * 请求拦截
+ *
+ * @export
+ * @param {Object} reqConf 请求配置
+ * @returns 请求配置
+ */
 export function reqResolveFn(reqConf) {
-  // 请求拦截
   globalLoading.start()
+
+  !navigator.onLine && Message(OFFLINE_MSG)
 
   return reqConf
 }
 
+/**
+ * 请求报错
+ *
+ * @export
+ * @param {Error} reqErr 错误
+ * @returns 错误
+ */
 export function reqRejectFn(reqErr) {
-  // 请求报错
   globalLoading.end()
 
   return Promise.reject(reqErr)
 }
 
+/**
+ * 响应成功
+ *
+ * @export
+ * @param {Object} respObj
+ * @returns 响应体
+ */
 export function respSuccFn(respObj) {
-  // 响应成功
   globalLoading.end()
 
   if (
@@ -60,8 +84,14 @@ export function respSuccFn(respObj) {
   }
 }
 
+/**
+ * 响应失败
+ *
+ * @export
+ * @param {Error} respErr 错误
+ * @returns 错误
+ */
 export function respFailFn(respErr) {
-  // 响应失败
   globalLoading.end()
 
   return Promise.reject(respErr)

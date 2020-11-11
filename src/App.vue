@@ -1,9 +1,6 @@
 <template>
   <BaseLayoutVertical class="c-App">
-    <TopBar
-      slot="header"
-      :title="title"
-    />
+    <TopBar slot="header" :title="title" />
 
     <BaseTransitionSlide>
       <!-- 因为自定义指令clickOutside在document上绑定了点击事件,会在指令的unbind时移除事件 -->
@@ -60,6 +57,9 @@ export default {
     this.$once('hook:beforeDestroy', this.unbindBusEvents)
   },
   methods: {
+    /**
+     * 绑定event-bus事件
+     */
     bindBusEvents() {
       // 接口报错弹窗
       this.$bus.$on('business-response-incorrect', msg => {
@@ -71,7 +71,9 @@ export default {
       // 展示loading
       this.$bus.$on('global-loading-show', config => {
         if (!this.loading) {
-          this.loading = this.$loading(Object.assign({}, LOADING_DEFAULT_CONFIG, config))
+          this.loading = this.$loading(
+            Object.assign({}, LOADING_DEFAULT_CONFIG, config)
+          )
         }
       })
 
@@ -82,7 +84,15 @@ export default {
           this.loading = null
         }
       })
+
+      // 监听network变化
+      this.$bus.$on('network-change', online => {
+        !online && this.$toast({ message: commonConst.OFFLINE_MSG })
+      })
     },
+    /**
+     * 解绑event-bus事件
+     */
     unbindBusEvents() {
       this.$bus && this.$bus.$off()
     }

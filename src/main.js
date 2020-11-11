@@ -10,6 +10,7 @@ import {
   vueLazyloadReigster
 } from 'Plugins/component-register'
 import { globalInjecter, vueInjecter } from 'Plugins/injecter'
+import { bindNetworkChangeEvent } from 'Plugins/network-detector'
 import { directiveRegister, filterRegister } from 'Plugins/register'
 import router from 'Plugins/router-instance'
 import { vconsoleProvider } from 'Plugins/vconsole-provider'
@@ -39,6 +40,11 @@ globalInjecter()
 // * vconsole
 // * ----------------------------------------
 vconsoleProvider()
+
+// * ----------------------------------------
+// * 绑定网络变化事件
+// * ----------------------------------------
+bindNetworkChangeEvent()
 
 // * ----------------------------------------
 // * 实例化vue

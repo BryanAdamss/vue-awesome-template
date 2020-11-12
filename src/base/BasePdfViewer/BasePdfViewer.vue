@@ -30,31 +30,18 @@
     </div>
     <div class="c-BasePdfViewer-main">
       <!-- viewer -->
-      <slot v-bind="{pdfViewer}">
-        <div
-          id="pdf-container"
-          class="c-PDFViewerWp"
-        >
-          <div
-            id="pdf-viewer"
-            class="c-PDFViewer"
-          />
+      <slot v-bind="{ pdfViewer }">
+        <div id="pdf-container" class="c-PDFViewerWp">
+          <div id="pdf-viewer" class="c-PDFViewer" />
         </div>
       </slot>
       <!-- viewer -->
 
       <div class="c-BasePdfViewer-tips">
-        <slot
-          v-if="isLoading"
-          name="loading"
-          v-bind="{loaded,total}"
-        >
+        <slot v-if="isLoading" name="loading" v-bind="{ loaded, total }">
           <PercentageLoading :percentage="percentage" />
         </slot>
-        <slot
-          v-if="loadFail"
-          name="tips"
-        >
+        <slot v-if="loadFail" name="tips">
           <ErrorTips />
         </slot>
       </div>
@@ -87,7 +74,7 @@ const CUSTOM_SCALE = Object.freeze({
   PAGE_WIDTH: 'page-width', // 适合页宽
   PAGE_ACTUAL: 'page-actual', // 实际大小
   PAGE_FIT: 'page-fit', // 适合页面
-  PAGE_HEIGHT: 'page-height'// 适合页高
+  PAGE_HEIGHT: 'page-height' // 适合页高
 })
 
 // 字符map目录
@@ -116,7 +103,8 @@ export default {
     // worker地址
     workerSrc: {
       type: String,
-      default: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.worker.js'
+      default:
+        'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.worker.js'
     },
     // 用户指定的初始缩放
     scale: {
@@ -151,7 +139,7 @@ export default {
      * 加载百分比
      */
     percentage() {
-      const per = Number(this.loaded / this.total * 100)
+      const per = Number((this.loaded / this.total) * 100)
       return Number.isNaN(per) ? '0' : per.toFixed(2)
     }
   },
@@ -228,9 +216,10 @@ export default {
     initHandTool() {
       if (this.pdfCursorTools) return
 
-      import(/* webpackChunkName:'pdf-cursor-tools' */'./lib/pdf-cursor-tools')
+      import(/* webpackChunkName:'pdf-cursor-tools' */ './lib/pdf-cursor-tools')
         .then(({ CursorTool, PDFCursorTools }) => {
-          if (!CursorTool || !PDFCursorTools) throw new Error('load pdf-cursor-tools error')
+          if (!CursorTool || !PDFCursorTools)
+            throw new Error('load pdf-cursor-tools error')
 
           this.pdfCursorTools = new PDFCursorTools({
             container: this.container,
@@ -257,7 +246,7 @@ export default {
      * 此时可对页面进行一些初始设置，例如缩放
      */
     handlePagesInit() {
-      this.setInitScale()// 设置初始缩放
+      this.setInitScale() // 设置初始缩放
 
       this.needHandTool && this.initHandTool() // 初始化抓手工具
 
@@ -274,9 +263,8 @@ export default {
       const { width: wpW } = this.container.getBoundingClientRect()
 
       // pdf宽度 >= 容器宽度，则将其缩小到容器宽度；若pdf宽度 < 容器宽度，则保持不变
-      this.defaultScale = width >= wpW
-        ? CUSTOM_SCALE.PAGE_WIDTH
-        : CUSTOM_SCALE.PAGE_ACTUAL
+      this.defaultScale =
+        width >= wpW ? CUSTOM_SCALE.PAGE_WIDTH : CUSTOM_SCALE.PAGE_ACTUAL
 
       this.setScale(this.scale || this.defaultScale) // 设置默认缩放，用户定义的优先
     },
@@ -326,16 +314,16 @@ export default {
       // 保存旧滚动位置、缩放比例以计算新位置
       const oldPos = this.getOldScrollPos()
 
-      const newScale = this.getZoomInNewScale(this.pdfViewer.currentScale, ticks)
+      const newScale = this.getZoomInNewScale(
+        this.pdfViewer.currentScale,
+        ticks
+      )
       this.setScale(newScale)
 
-      this.back2OldPos(
-        this.container,
-        {
-          ...oldPos,
-          newScale
-        }
-      )
+      this.back2OldPos(this.container, {
+        ...oldPos,
+        newScale
+      })
     },
     /**
      * 获取缩大的新比例
@@ -361,16 +349,16 @@ export default {
       // 保存旧滚动位置、缩放比例以计算新位置
       const oldPos = this.getOldScrollPos()
 
-      const newScale = this.getZoomOutNewScale(this.pdfViewer.currentScale, ticks)
+      const newScale = this.getZoomOutNewScale(
+        this.pdfViewer.currentScale,
+        ticks
+      )
       this.setScale(newScale)
 
-      this.back2OldPos(
-        this.container,
-        {
-          ...oldPos,
-          newScale
-        }
-      )
+      this.back2OldPos(this.container, {
+        ...oldPos,
+        newScale
+      })
     },
     /**
      * 获取缩小的新比例
@@ -396,13 +384,10 @@ export default {
 
       this.setScale(this.scale || this.defaultScale)
 
-      this.back2OldPos(
-        this.container,
-        {
-          ...oldPos,
-          newScale: this.pdfViewer.currentScale
-        }
-      )
+      this.back2OldPos(this.container, {
+        ...oldPos,
+        newScale: this.pdfViewer.currentScale
+      })
     },
     /**
      * 设置缩放
@@ -412,8 +397,8 @@ export default {
       // currentScale number类型，currentScaleValue会映射到一个具体的currentScale上
       // 设置二者，内部都会调用相同的_setScale，内部会尝试parseFloat
       this.pdfViewer &&
-      this.pdfViewer.currentScaleValue !== val &&
-      (this.pdfViewer.currentScaleValue = val)
+        this.pdfViewer.currentScaleValue !== val &&
+        (this.pdfViewer.currentScaleValue = val)
     },
     /**
      * 返回之前滚动位置
@@ -458,9 +443,9 @@ export default {
       this.viewer && (this.viewer = null)
 
       this.pdfCursorTools &&
-      this.pdfCursorTools.handTool &&
-      typeof this.pdfCursorTools.handTool.deactivate === 'function' &&
-      this.pdfCursorTools.handTool.deactivate()
+        this.pdfCursorTools.handTool &&
+        typeof this.pdfCursorTools.handTool.deactivate === 'function' &&
+        this.pdfCursorTools.handTool.deactivate()
 
       if (this.pdfDocument) {
         this.pdfDocument.destroy()

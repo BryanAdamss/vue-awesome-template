@@ -1,4 +1,3 @@
-
 <script>
 /**
  * * BasePopUp
@@ -43,7 +42,7 @@ export default {
     zIndex: {
       type: [Number, String],
       default() {
-        return (new IndexManager()).add()
+        return new IndexManager().add()
       }
     }
   },
@@ -74,7 +73,8 @@ export default {
   beforeDestroy() {
     this._toggleBodyHidden(false)
 
-    if (this.appendToBody && this.$el && this.$el.parentNode) this.$el.parentNode.removeChild(this.$el)
+    if (this.appendToBody && this.$el && this.$el.parentNode)
+      this.$el.parentNode.removeChild(this.$el)
   },
   methods: {
     _toggleBodyHidden(val) {
@@ -114,13 +114,12 @@ export default {
           'c-BasePopUp-main': true
         }
       },
-      this.$scopedSlots.default
-        ? this.$scopedSlots.default()
-        : 'BasePopUp'
+      this.$scopedSlots.default ? this.$scopedSlots.default() : 'BasePopUp'
     )
 
     const wrap = h(
-      'div', {
+      'div',
+      {
         class: {
           'c-BasePopUp': true,
           [this.positionClass]: true,

@@ -13,7 +13,7 @@ import bus from 'Plugins/event-bus'
 
 import { debounce, getGlobalThis, getOrigin, throttle } from 'Utils'
 
-import BaseToast from 'Base/BaseToast/BaseToast'
+import BaseToast from 'Base/BaseToast'
 
 import {
   _getNewGlobalSaver,

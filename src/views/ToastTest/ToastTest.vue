@@ -1,10 +1,10 @@
 <template>
   <div class="c-ToastTest">
-    <button
-      type="button"
-      @click.stop="showToast"
-    >
-      点击展示toast
+    <button type="button" @click.stop="showToast">
+      我停留的时间很长
+    </button>
+    <button type="button" @click.stop="showToastWithText">
+      传递纯文本
     </button>
   </div>
 </template>
@@ -18,8 +18,12 @@ export default {
   methods: {
     showToast() {
       this.$toast({
-        message: '测试Toast'
+        msg: '我停留的时间很长',
+        duration: 15000
       })
+    },
+    showToastWithText() {
+      this.$toast('传递纯文本')
     }
   }
 }

@@ -9,7 +9,9 @@ const instanceMap = new Map()
 
 export const getInstanceMap = () => instanceMap
 
-export const append2Body = (compOptions, propsData = {}) => {
+export const getInstanceByUid = uid => instanceMap.get(uid)
+
+export const appendComp2Body = (compOptions, propsData = {}) => {
   const CompClazz = Vue.extend(compOptions)
   let instance = new CompClazz({ propsData })
 
@@ -27,12 +29,11 @@ export const append2Body = (compOptions, propsData = {}) => {
 
   instanceMap.set(_uid, instance)
 
-  return () => removeFromBody(_uid)
+  return _uid
 }
 
-export const removeFromBody = uid => {
-  const instance = instanceMap.get(uid)
+export const removeCompFromBody = uid => {
+  const instance = getInstanceByUid(uid)
   if (!instance) return
-  console.log(' instance.$destroy', instance.$destroy)
   instance.$destroy()
 }

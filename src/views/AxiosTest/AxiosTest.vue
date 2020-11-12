@@ -1,14 +1,11 @@
 <template>
   <div class="c-AxiosTest">
     <h2>测试axios返回的数据</h2>
-    <ul
-      ref="list"
-      class="c-List"
-    >
+    <ul ref="list" class="c-List">
       <li
         v-for="post in posts"
         :key="post.id"
-        :class="{'is-overLen':post.isTitleOverLength()}"
+        :class="{ 'is-overLen': post.isTitleOverLength() }"
         class="c-List-item"
         @click.stop="onListItemClick(post)"
       >
@@ -60,19 +57,24 @@ export default {
   created() {
     this.isLoading = true
     // * 测试axios
-    this.$api['common/getPost']({}, {
-      // _noShowDefaultError: true
-    }).then(res => {
-      console.log(res)
-      this.posts = formatGetPostRes(res).map(post => new Post(post))
+    this.$api['common/getPost'](
+      {},
+      {
+        // _noShowDefaultError: true
+      }
+    )
+      .then(res => {
+        console.log(res)
+        this.posts = formatGetPostRes(res).map(post => new Post(post))
 
-      console.log(this.posts)
+        console.log(this.posts)
 
-      this.isLoading = false
-    }).catch(err => {
-      this.isLoading = false
-      console.log('err', err)
-    })
+        this.isLoading = false
+      })
+      .catch(err => {
+        this.isLoading = false
+        console.log('err', err)
+      })
   },
   methods: {
     onListItemClick(post) {
@@ -93,7 +95,7 @@ export default {
 }
 </script>
 
- <style lang="scss" scoped>
+<style lang="scss" scoped>
 .c-List {
   height: 500px;
   overflow: auto;

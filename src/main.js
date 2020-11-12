@@ -52,6 +52,7 @@ bindNetworkChangeEvent()
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+/* eslint-disable vue/require-name-property */
 new Vue({
   router,
   store,

@@ -1,18 +1,11 @@
 <template>
   <div class="c-ToolBar">
     <div class="c-ToolBar-main">
-      <p
-        v-if="fileName"
-        class="c-FileName"
-        v-text="fileName"
-      />
+      <p v-if="fileName" class="c-FileName" v-text="fileName" />
     </div>
     <div class="c-ToolBar-side">
       <div class="c-Opt">
-        <div
-          v-if="showPage"
-          class="c-Opt-item"
-        >
+        <div v-if="showPage" class="c-Opt-item">
           <span class="c-Text">
             <span v-text="pageNum" />
             /
@@ -20,31 +13,19 @@
           </span>
         </div>
 
-        <div
-          class="c-Opt-item"
-          title="放大"
-          @click="$emit('zoom-in')"
-        >
+        <div class="c-Opt-item" title="放大" @click="$emit('zoom-in')">
           <span class="c-Icon">
             +
           </span>
         </div>
-        <div
-          class="c-Opt-item"
-          title="缩小"
-          @click="$emit('zoom-out')"
-        >
+        <div class="c-Opt-item" title="缩小" @click="$emit('zoom-out')">
           <span class="c-Icon">
             -
           </span>
         </div>
-        <div
-          class="c-Opt-item"
-          title="还原"
-          @click="$emit('zoom-reset')"
-        >
+        <div class="c-Opt-item" title="还原" @click="$emit('zoom-reset')">
           <span class="c-Icon">
-            ⭯
+            ↺
           </span>
         </div>
       </div>

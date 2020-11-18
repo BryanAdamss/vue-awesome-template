@@ -1,13 +1,11 @@
 <template>
-  <div
-    class="c-BasePdfViewerTest"
-    style="height:100%;"
-  >
+  <div class="c-BasePdfViewerTest" style="height:80vh;">
     <BasePdfViewer
       style="background-color:rgba(0,0,0,0.4);"
-      :resourcePath="'/compressed.tracemonkey-pldi-09.pdf'"
+      resourcePath="/compressed.tracemonkey-pldi-09.pdf"
       fileName="compressed.tracemonkey-pldi-09.pdf"
       scale="page-width"
+      :needPinch="true"
     />
   </div>
 </template>
@@ -38,6 +36,5 @@ export default {
 
 <style lang="scss" scoped>
 .c-BasePdfViewerTest {
-
 }
 </style>

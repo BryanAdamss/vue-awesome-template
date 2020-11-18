@@ -55,7 +55,7 @@ const setCDN = config => {
       {
         name: 'axios',
         var: 'axios',
-        path: 'dist/axios.min.js',
+        path: 'dist/axios.min.js'
       },
       {
         name: 'css-vars-ponyfill',
@@ -65,24 +65,24 @@ const setCDN = config => {
       {
         name: 'velocity-animate',
         var: 'Velocity',
-        path: 'velocity.min.js',
+        path: 'velocity.min.js'
       },
       {
         name: 'better-scroll',
         var: 'BScroll',
         path: 'dist/bscroll.min.js',
-        version:'1.15.2'
+        version: '1.15.2'
       },
       {
         name: '@bryanadamss/num2chn',
         var: 'num2Chn',
-        path: 'dist/num2chn.umd.js',
+        path: 'dist/num2chn.umd.js'
       },
       {
         name: '@bryanadamss/drawing-board',
         var: 'DrawingBoard',
-        path: 'dist/drawing-board.umd.js',
-      },
+        path: 'dist/drawing-board.umd.js'
+      }
     ],
     prodUrl: '//cdn.jsdelivr.net/npm/:name@:version/:path'
   }
@@ -97,13 +97,16 @@ const setStatics = config => {
   const customs = {
     head: {
       css: ['formula/katex/katex.css'],
-      js: [{
-        attrs:['async'],
-        path:'js/flexible-custom.js'
-      },{
-        attrs:['async'],
-        path:'js/fastclick-custom.js'
-      }]
+      js: [
+        {
+          attrs: ['async'],
+          path: 'js/flexible-custom.js'
+        },
+        {
+          attrs: ['async'],
+          path: 'js/fastclick-custom.js'
+        }
+      ]
     },
     body: {
       js: [
@@ -120,11 +123,18 @@ const setStatics = config => {
           path: 'formula/mathjax-config-cutom.js'
         },
         {
-          noBaseURL:true, // 不需要拼接baseURL
-          path:'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.js',
-        },{
-          noBaseURL:true,
-          path:'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/web/pdf_viewer.js'
+          noBaseURL: true, // 不需要拼接baseURL
+          path:
+            'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.js'
+        },
+        {
+          noBaseURL: true,
+          path:
+            'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/web/pdf_viewer.js'
+        },
+        {
+          noBaseURL: true,
+          path: 'https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js'
         }
       ]
     }

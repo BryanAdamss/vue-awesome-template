@@ -115,6 +115,11 @@ export default {
     fileName: {
       type: String,
       default: ''
+    },
+    // 捏合缩放
+    needPinch: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -250,7 +255,26 @@ export default {
 
       this.needHandTool && this.initHandTool() // 初始化抓手工具
 
+      this.needPinch && this.initPinchGestures() // 初始化捏合缩放
+
       this.$emit('pdf-pagesinit', this.pdfViewer)
+    },
+    /**
+     * 初始化捏合缩放手势
+     */
+    initPinchGestures() {
+      if (!window.Hammer) throw new Error('😢请先引入hammerjs')
+
+      if (!this.container) return
+
+      this.mc = new window.Hammer.Manager(this.container, {
+        // https://github.com/hammerjs/hammer.js/issues/854
+        touchAction: 'manipulation' // 允许默认的滚动和缩放
+      })
+      this.mc.add([new window.Hammer.Pinch()])
+
+      this.mc.on('pinchin', this.zoomOut)
+      this.mc.on('pinchout', this.zoomIn)
     },
     /**
      * 设置初始缩放
@@ -438,6 +462,8 @@ export default {
      * 清理
      */
     clean() {
+      this.mc && this.mc.destroy() // 销毁hammer
+
       this.pdfViewer && (this.pdfViewer = null)
       this.container && (this.container = null)
       this.viewer && (this.viewer = null)

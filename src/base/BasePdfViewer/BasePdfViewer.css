@@ -18,9 +18,13 @@
   z-index: 1;
 
   flex: 1 1 auto;
+  height: 100%;
 
   padding: 10px;
   overflow: hidden;
+
+  will-change: scroll-position;
+  scroll-behavior: smooth;
 }
 
 .c-BasePdfViewer-tips {

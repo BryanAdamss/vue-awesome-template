@@ -61,6 +61,8 @@ module.exports = {
     // 组件必须命名
     'vue/require-name-property': 'warn',
 
+    'vue/singleline-html-element-content-newline': 'off', // 关闭单html标签，内容需换行，因为其和prettier冲突
+
     // 设置缩进
     // indent: ['error', 2, { SwitchCase: 1 }],
     // 关闭reject必须返回一个error

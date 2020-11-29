@@ -1,11 +1,7 @@
 <template>
   <div class="c-BaseAudio">
     <div class="c-BaseAudio-main">
-      <div
-        :class="btnClass"
-        class="c-Btn"
-        @click="togglePlay"
-      />
+      <div :class="btnClass" class="c-Btn" @click="togglePlay" />
 
       <template v-if="isSrcArray">
         <audio
@@ -44,7 +40,7 @@
             :key="index"
             :src="sour.src"
             :type="sour.type"
-          >
+          />
         </audio>
       </template>
       <template v-else>
@@ -83,19 +79,9 @@
       </template>
     </div>
 
-    <div
-      v-if="showProgress"
-      class="c-BaseAudio-sub"
-    >
-      <div
-        ref="progress"
-        class="c-Progress"
-        @mouseup="progressClickHandler"
-      >
-        <div
-          :style="{ width: `${bufferedProgress}%` }"
-          class="c-Track"
-        />
+    <div v-if="showProgress" class="c-BaseAudio-sub">
+      <div ref="progress" class="c-Progress" @mouseup="progressClickHandler">
+        <div :style="{ width: `${bufferedProgress}%` }" class="c-Track" />
 
         <div
           ref="bar"
@@ -103,47 +89,30 @@
           class="c-Bar"
           @mousedown.stop="barMousedownHandler"
         >
-          <div
-            v-if="isLoading"
-            class="c-Bar-loading"
-          >
+          <div v-if="isLoading" class="c-Bar-loading">
             <BaseLoadingSpinner size="12px" />
           </div>
-          <div
-            v-else
-            class="c-Bar-circle"
-          />
+          <div v-else class="c-Bar-circle" />
         </div>
       </div>
     </div>
 
-    <div
-      v-if="showTime"
-      class="c-BaseAudio-extra"
-    >
-      <div class="c-Info">
-        {{ curTime | toMMSS }}/{{ duration | toMMSS }}
-      </div>
+    <div v-if="showTime" class="c-BaseAudio-extra">
+      <div class="c-Info">{{ curTime | toMMSS }}/{{ duration | toMMSS }}</div>
 
       <!-- 音量调节 -->
       <div class="c-Volume">
         <div class="c-Volume-main">
           <div class="c-Volume-control">
-            <span
-              class="c-Volume-subtract"
-              @click="handleVolumeSubtractClick"
-            >-</span>
-            <span
-              class="c-Volume-text"
-            >{{ volume| single }}</span>
-            <span
-              class="c-Volume-add"
-              @click="handleVolumeAddClick"
-            >+</span>
+            <span class="c-Volume-subtract" @click="handleVolumeSubtractClick"
+              >-</span
+            >
+            <span class="c-Volume-text">{{ volume | single }}</span>
+            <span class="c-Volume-add" @click="handleVolumeAddClick">+</span>
           </div>
           <div
             class="c-Volume-icon"
-            :class="{'is-muted':isMuted}"
+            :class="{ 'is-muted': isMuted }"
             @click="volumeClickHandler"
           >
             🕪
@@ -585,7 +554,7 @@ export default {
 
 .c-Track {
   position: relative;
-  z-index:1;
+  z-index: 1;
 
   width: 0;
   height: 0.25em;
@@ -594,16 +563,16 @@ export default {
   border-radius: 0.125em;
   cursor: pointer;
 
-  transition: width 0.3s,height .3s;
+  transition: width 0.3s, height 0.3s;
 
-  will-change: width,height;
-  &::after{
-   position: absolute;
+  will-change: width, height;
+  &::after {
+    position: absolute;
     top: -0.25em;
     right: -0.25em;
     bottom: -0.25em;
     left: -0.25em;
-    z-index:2;
+    z-index: 2;
 
     content: '';
   }
@@ -612,18 +581,18 @@ export default {
 .c-Bar {
   position: absolute;
   top: 50%;
-  z-index:3;
+  z-index: 3;
 
   width: 0.75em;
   height: 0.75em;
 
-  margin-top:-0.375em;
+  margin-top: -0.375em;
 
   will-change: transform;
 
   &-circle {
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
 
     background-color: #666;
     border-radius: 50%;
@@ -649,17 +618,17 @@ export default {
 .c-Info {
   color: #333;
 
-  &+.c-Volume{
+  & + .c-Volume {
     margin-left: 0.375em;
   }
 }
 
-.c-Volume{
-  &-main{
-   position: relative;
-   z-index:1;
-    &:hover{
-      .c-Volume-control{
+.c-Volume {
+  &-main {
+    position: relative;
+    z-index: 1;
+    &:hover {
+      .c-Volume-control {
         transform: translateX(0);
 
         opacity: 1;
@@ -667,65 +636,65 @@ export default {
     }
   }
 
-  &-icon{
-
+  &-icon {
     position: relative;
     z-index: 1;
 
     cursor: pointer;
-    &:hover{
-      opacity: .8;
+    &:hover {
+      opacity: 0.8;
     }
 
-    &.is-muted::after{
+    &.is-muted::after {
       position: absolute;
-      top:0;
-      right:0;
-      bottom:0;
-      left:0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
       z-index: 2;
 
-      color:red;
-      text-align:center;
+      color: red;
+      text-align: center;
 
-      content:"/";
+      content: '/';
     }
   }
 
-  &-control{
-  position: absolute;
-  right:1em;
-  z-index: 2;
+  &-control {
+    position: absolute;
+    right: 1em;
+    z-index: 2;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  padding-right: .2em;
-  padding-left: .2em;
+    padding-right: 0.2em;
+    padding-left: 0.2em;
 
-  background-color: #fff;
-  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
 
-   transform: translateX(10%);
-   opacity: 0;
+    transform: translateX(10%);
+    opacity: 0;
 
-   transition: opacity .3s,transform ease-in .3s;
+    transition: opacity 0.3s, transform ease-in 0.3s;
 
     user-select: none;
   }
 
-  &-add,&-subtract{
+  &-add,
+  &-subtract {
     min-width: 1em;
 
     text-align: center;
 
     cursor: pointer;
 
-    &:hover{
-      font-weight:bold;
+    &:hover {
+      font-weight: bold;
 
-      opacity: .8;
+      opacity: 0.8;
     }
   }
 }

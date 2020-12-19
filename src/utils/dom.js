@@ -263,3 +263,109 @@ export function supportWebp() {
     return false
   }
 }
+
+/**
+ * 生成svg文本
+ *
+ * @export
+ * @param {*} [{
+ *   width = 300,
+ *   height = 150,
+ *   fontSize = 14,
+ *   fontFamily = 'system-ui, sans-serif',
+ *   color = '#a2a9b6',
+ *   opacity = 1,
+ *   x = 50,
+ *   y = 50,
+ *   content = 'svg测试文本',
+ *   transform = 'rotate(0,0,0)'
+ * }={}]
+ * @return {String} svg字符串（未转义）
+ */
+export function genSvgText({
+  width = 300,
+  height = 150,
+  fontSize = 14,
+  fontFamily = 'system-ui, sans-serif',
+  color = '#a2a9b6',
+  opacity = 1,
+  x = 50,
+  y = 50,
+  content = 'svg测试文本',
+  rotate = 0
+} = {}) {
+  const size =
+    width === 300 && height === 150
+      ? ''
+      : ` width="${width}" height="${height}"`
+
+  const fill = color === '#000000' || color === '#000' ? '' : ` fill="${color}"`
+
+  const fillOpacity = opacity === 1 ? '' : ` fill-opacity="${opacity}"`
+
+  const fontF = fontFamily ? ` font-family="${fontFamily}"` : ''
+
+  // 旋转除2参考：https://www.zhangxinxu.com/wordpress/2015/10/understand-svg-transform/
+  const transformAttr =
+    rotate && size
+      ? ` transform="rotate(${rotate}, ${width / 2} ,${height / 2})"`
+      : ''
+
+  return `<svg${size} xmlns="http://www.w3.org/2000/svg"><text x="${x}%" y="${y}%" font-size="${fontSize}"${fill}${fillOpacity}${fontF}${transformAttr} text-anchor="middle" dominant-baseline="middle">${content}</text></svg>`
+}
+
+/**
+ * 安全转义svg字符串
+ *
+ * @export
+ * @param {String} svg svg字符串
+ * @return {String} 转移后的svg字符串
+ */
+export function escapeSvg(svg) {
+  return svg
+    .trim()
+    .trim()
+    .replace(/\n/g, '')
+    .replace(/"/g, "'")
+    .replace(/%/g, '%25')
+    .replace(/#/g, '%23')
+    .replace(/{/g, '%7B')
+    .replace(/}/g, '%7D')
+    .replace(/</g, '%3C')
+    .replace(/>/g, '%3E')
+}
+
+/**
+ * 生成内联svg
+ *
+ * @export
+ * @param {String} svg 未转义的svg字符串
+ * @return {String} 转义后的内联svg字符串
+ * 参考：
+ * https://www.zhangxinxu.com/wordpress/2020/10/text-as-css-background-image/
+ * https://www.zhangxinxu.com/wordpress/2015/10/understand-svg-transform/
+ * https://www.zhangxinxu.com/wordpress/2018/08/css-svg-background-image-base64-encode/
+ */
+export function makeSvgInline(svg) {
+  return `data:image/svg+xml;utf8,${escapeSvg(svg)}`
+}
+
+/**
+ * 生成水印svg(包含默认属性)
+ *
+ * @export
+ * @param {Object} params
+ * @return {String} 转义后的内联svg字符串
+ */
+export function watermarkSvg(params = {}) {
+  return makeSvgInline(
+    genSvgText({
+      rotate: -45,
+      width: 200,
+      height: 200,
+      opacity: 0.5,
+      content: '水印',
+      ...params
+    })
+  )
+}

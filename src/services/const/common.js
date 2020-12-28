@@ -12,3 +12,6 @@ export const LOGED_STATUS = 1
 
 // 断网提示
 export const OFFLINE_MSG = '您的网络断开了'
+
+// token过期
+export const TOKEN_EXPIRED = 4003

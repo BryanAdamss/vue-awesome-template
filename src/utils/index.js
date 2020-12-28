@@ -537,16 +537,6 @@ export function getGlobalThis() {
 }
 
 /**
- * 超时取消promise执行
- *
- * @export
- * @param {Promise|Function} promise Promise实例或返回Promise实例的函数
- * @param {Number} timeout 超时时间，单位毫秒
- * @param {String} [msg='timeout'] 超时提示
- * @return {Function} 超时可取消promise执行的方法
- */
-
-/**
  * 超时取消单个、多个promise执行
  *
  * @export

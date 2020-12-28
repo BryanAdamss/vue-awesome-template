@@ -3,7 +3,7 @@
  * * BasePopUp
  */
 
-import IndexManager from 'Services/extends/index-manager'
+import IndexManager from 'Plugins/index-manager'
 
 const POSITIONS = ['top', 'right', 'bottom', 'left']
 

@@ -2,7 +2,7 @@
   <div class="c-PopUpTest">
     <div>
       <button
-        v-for="(btn,btnIndex) in buttons"
+        v-for="(btn, btnIndex) in buttons"
         :key="btnIndex"
         type="button"
         @click="onButtonClick(btn.label)"
@@ -20,13 +20,13 @@
     >
       <div class="c-Box">
         测试modal
-        <button
-          type="button"
-          @click.stop="closeModal(buttons[0].label)"
-        >
+        <button type="button" @click.stop="closeModal(buttons[0].label)">
           &times;
         </button>
-        <div>{{ buttons[0].label }} <br> 查看控制台输出</div>
+        <div>
+          {{ buttons[0].label }} <br />
+          查看控制台输出
+        </div>
       </div>
     </BasePopUp>
     <BasePopUp
@@ -38,13 +38,13 @@
     >
       <div class="c-Box">
         测试modal
-        <button
-          type="button"
-          @click.stop="closeModal(buttons[1].label)"
-        >
+        <button type="button" @click.stop="closeModal(buttons[1].label)">
           &times;
         </button>
-        <div>{{ buttons[1].label }} <br> 查看控制台输出</div>
+        <div>
+          {{ buttons[1].label }} <br />
+          查看控制台输出
+        </div>
       </div>
     </BasePopUp>
     <BasePopUp
@@ -56,13 +56,13 @@
     >
       <div class="c-Box">
         测试modal
-        <button
-          type="button"
-          @click.stop="closeModal(buttons[2].label)"
-        >
+        <button type="button" @click.stop="closeModal(buttons[2].label)">
           &times;
         </button>
-        <div>{{ buttons[2].label }} <br> 查看控制台输出</div>
+        <div>
+          {{ buttons[2].label }} <br />
+          查看控制台输出
+        </div>
       </div>
     </BasePopUp>
     <BasePopUp
@@ -74,13 +74,13 @@
     >
       <div class="c-Box">
         测试modal
-        <button
-          type="button"
-          @click.stop="closeModal(buttons[3].label)"
-        >
+        <button type="button" @click.stop="closeModal(buttons[3].label)">
           &times;
         </button>
-        <div>{{ buttons[3].label }} <br> 查看控制台输出</div>
+        <div>
+          {{ buttons[3].label }} <br />
+          查看控制台输出
+        </div>
       </div>
     </BasePopUp>
     <BasePopUp
@@ -92,13 +92,13 @@
     >
       <div class="c-Box">
         测试modal
-        <button
-          type="button"
-          @click.stop="closeModal(buttons[4].label)"
-        >
+        <button type="button" @click.stop="closeModal(buttons[4].label)">
           &times;
         </button>
-        <div>{{ buttons[4].label }} <br> 查看控制台输出</div>
+        <div>
+          {{ buttons[4].label }} <br />
+          查看控制台输出
+        </div>
       </div>
     </BasePopUp>
   </div>
@@ -147,11 +147,19 @@ export default {
     onButtonClick(pos) {
       const popUpName = 'modal-' + pos
       console.log(this.$refs[popUpName])
-      this[`isShow${pos.replace(/^\S/, function(s) { return s.toUpperCase() })}`] = true
+      this[
+        `isShow${pos.replace(/^\S/, function(s) {
+          return s.toUpperCase()
+        })}`
+      ] = true
       this.curPopUpName = popUpName
     },
     closeModal(pos) {
-      this[`isShow${pos.replace(/^\S/, function(s) { return s.toUpperCase() })}`] = false
+      this[
+        `isShow${pos.replace(/^\S/, function(s) {
+          return s.toUpperCase()
+        })}`
+      ] = false
     }
   }
 }

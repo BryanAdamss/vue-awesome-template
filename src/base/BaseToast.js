@@ -3,8 +3,8 @@
  * @description toast
  */
 
-import IndexManager from 'Services/extends/index-manager'
-import { appendComp2Body, removeCompFromBody } from 'Services/extends/portals'
+import IndexManager from 'Plugins/index-manager'
+import { appendComp2Body, removeCompFromBody } from 'Plugins/portals'
 
 const styleFactory = () => ({
   position: 'fixed',

@@ -7,11 +7,16 @@ export default class IndexManager {
   static MIN = Math.pow(2, -53)
   static MAX = Math.pow(2, 53)
 
-  static ZERO=0
+  static ZERO = 0
   static NEGATIVE = -1
 
   static isSafeNumber(n) {
-    return typeof n === 'number' && !isNaN(n) && n < IndexManager.MAX && n > IndexManager.MIN
+    return (
+      typeof n === 'number' &&
+      !isNaN(n) &&
+      n < IndexManager.MAX &&
+      n > IndexManager.MIN
+    )
   }
 
   static getInstance(opts) {
@@ -27,9 +32,11 @@ export default class IndexManager {
   }
 
   init({ inital = 1, step = 1 } = {}) {
-    if (!IndexManager.isSafeNumber(inital)) throw new Error('not a safe inital index')
+    if (!IndexManager.isSafeNumber(inital))
+      throw new Error('not a safe inital index')
 
-    if (!IndexManager.isSafeNumber(step) || step === IndexManager.ZERO) throw new Error('not a vaild step')
+    if (!IndexManager.isSafeNumber(step) || step === IndexManager.ZERO)
+      throw new Error('not a vaild step')
 
     this._index = Math.max(inital, IndexManager.MIN)
     this._oldIndex = this._index
@@ -53,7 +60,7 @@ export default class IndexManager {
   }
 
   subtract() {
-    return (this.index = Math.max((this.index - this.step), IndexManager.MIN))
+    return (this.index = Math.max(this.index - this.step, IndexManager.MIN))
   }
 
   getOldIndex() {

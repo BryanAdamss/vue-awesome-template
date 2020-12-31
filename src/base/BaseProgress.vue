@@ -42,7 +42,7 @@ export default {
   background: linear-gradient(-45deg, #368fff, #05c1ae);
   background-size: 400% 100%;
 
-  transition: width ease-in-out 0.5s;
+  transition: width ease-in-out 0.3s;
 
   animation: gradient 1s ease-in-out infinite normal;
 

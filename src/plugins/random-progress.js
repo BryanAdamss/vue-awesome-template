@@ -12,9 +12,18 @@ import {
 } from 'Plugins/portals'
 
 export default class RandomProgress {
-  constructor({ limit = 90, initial = 0, max = 100 } = {}) {
+  constructor({
+    limit = 90,
+    initial = 0,
+    max = 100,
+    stepMin = 0,
+    stepMax = 3,
+    onInstanceMounted = null
+  } = {}) {
     this.limit = limit
     this.max = max
+    this.stepMin = stepMin
+    this.stepMax = stepMax
 
     this.isDone = false
 
@@ -30,6 +39,7 @@ export default class RandomProgress {
 
     this.rafId = null
     this.compOptions = null
+
     this.instanceUid = null
   }
 
@@ -82,7 +92,7 @@ export default class RandomProgress {
     }
 
     this.propsData.progress = Math.min(
-      this.propsData.progress + Math.random(),
+      this.propsData.progress + (Math.random() * this.stepMax + this.stepMin),
       this.limit
     )
 
@@ -141,6 +151,16 @@ export default class RandomProgress {
   }
 
   /**
+   * 处理progress过渡动画结束
+   *
+   * @memberof RandomProgress
+   */
+  _onProgressTransitionEnd() {
+    console.log('progress-transition-end')
+    this.propsData.progress >= this.propsData.max && this.remove()
+  }
+
+  /**
    * 初始化BaseProgress
    *
    * @memberof RandomProgress
@@ -149,9 +169,7 @@ export default class RandomProgress {
     this.instanceUid = appendComp2Body(compOptions, this.propsData, {
       // mounted及之后的生命周期钩子，才会被触发
       'hook:mounted': this._onInstanceMounted.bind(this),
-      'progress-transition-end': () => {
-        this.propsData.progress === this.propsData.max && this.remove()
-      }
+      'progress-transition-end': this._onProgressTransitionEnd.bind(this)
     })
   }
 

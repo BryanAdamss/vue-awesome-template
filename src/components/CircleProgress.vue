@@ -5,16 +5,9 @@
       :progressOption="baseCircleProgressOption"
     />
 
-    <div
-      :style="styleObj"
-      class="c-CircleProgress-bd"
-    >
+    <div :style="styleObj" class="c-CircleProgress-bd">
       <slot>
-        <h2
-          :title="text"
-          class="c-CircleProgress-text"
-          v-text="text"
-        />
+        <h2 :title="text" class="c-CircleProgress-text" v-text="text" />
 
         <p
           v-if="info"
@@ -30,7 +23,7 @@
 <script>
 /**
  * * CircleProgress
- * * 圆形进度条
+ * * 环形进度条
  */
 
 import BaseCircleProgress from 'Base/BaseCircleProgress'

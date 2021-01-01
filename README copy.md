@@ -21,7 +21,7 @@
 - 集成`css3 vars`主题切换服务，支持自定义主题
   - 支持生成调色板`npm run color`
 - 集成`vue`全家桶(vuex、vue-router、axios)及各种最佳实践
-- 集成`element-ui`、各种自造轮子
+- 集成`element-ui`及各种自造轮子
 - 集成`webpack`优化最佳实践
 - 注释完备
   - 每一个`commit`都有详细注释，可供新手学习
@@ -121,7 +121,7 @@ npm run serve
 
 ## 基础组件
 
-- 除了项目本身已经集成的`element-ui`相关组件，你还可以使用一些`自造的基础组件`，这些组件是与业务无关的，可以跨业务、跨项目使用
+- 除了项目本身已经集成的`element-ui`相关组件，你还可以使用一些`自造的基础组件`，这些组件是与业务无关的，可以跨业务、跨项目使用(后期考虑直接打成一个`npm包`发布到`npm`上管理)
 - 位于`src/base`目录下
 
 ```sh
@@ -156,8 +156,6 @@ npm run serve
 |  |  ├─BaseSwiper                          # 轮播组件
 |  |  |     ├─BaseSwiper.vue
 |  |  |     └BaseSwiperSlide.vue
-|  |  ├─BasePdfViewer                       # pdf预览组件
-|  |  |     └BasePdfViewer.vue
 ```
 
 ## 业务组件
@@ -168,10 +166,9 @@ npm run serve
 ├─src
 |  ├─components
 |     ├─Dialog.vue                          # 基于BasePopUp封装的弹窗组件
-|     ├─CircleProgress.vue                  # 环形进度条
 ```
 
-## 插件
+## 常用插件
 
 - 主要集中在`src/plugins`下
 

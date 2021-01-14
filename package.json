@@ -42,6 +42,7 @@
     "core-js": "^3.6.5",
     "driver.js": "^0.9.8",
     "element-ui": "^2.8.2",
+    "mathjs": "^8.1.1",
     "mutationobserver-shim": "^0.3.7",
     "pdfjs-dist": "2.5.207",
     "register-service-worker": "^1.7.1",

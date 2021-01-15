@@ -137,7 +137,7 @@ export function computPosition(x, y, data = []) {
  */
 export function getTouchOffset(pageX, pageY, elOrCache) {
   if (pageX == null || pageY == null || elOrCache == null)
-    throw new Error('缺少关键参数')
+    throw new Error('pageX pageY elOrCache can not be empty')
 
   const data = elOrCache instanceof Node ? getDataByEl(elOrCache) : elOrCache
 

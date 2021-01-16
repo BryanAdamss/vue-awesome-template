@@ -7,7 +7,7 @@
   // * 部分特殊文件类型(.vue)特殊处理
   // * 例如：
   // * .vue(html + js)使用eslint + eslint-plugin-vue做lint
-  // * eslint和prettier冲突的地方，使用extends eslint-config-prettier关闭冲突规则
+  // * eslint和prettier冲突的地方，使用eslint-config-prettier关闭冲突规则
   // * eslint-config-prettier需放在extends数组最后
   // * 由于不使用eslint autoFix，所以无需使用eslint-plugin-prettier来添加prettier规则
   // * .vue(css)使用stylelint + autoFix来做lint和格式化
@@ -33,6 +33,17 @@
   // * ------------------
   // * eslint相关
   // * 仅使用其lint功能，format交给prettier
+  // * 部分特殊场景
+  // * 如vue-cli2中使用 'plugin:vue/recommended'时，会存在部分规则和prettier冲突
+  // * 并且vue/recommended更合理，希望使用vue/recommended规则时
+  // * 则可以使用eslint格式化vue
+  // * 针对vue单独启动eslint autoFix（需关闭prettier）如下
+  // "prettier.disableLanguages": ["vue"],
+  // "[vue]": {
+  //   "editor.codeActionsOnSave": {
+  //     "source.fixAll.eslint": true
+  //   }
+  // },
   // * ------------------
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": false // eslint自动修复仅能修复部分格式问题，这部分使用prettier，所以关闭保存时自动修复

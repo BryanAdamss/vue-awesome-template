@@ -38,16 +38,16 @@
   // * 并且vue/recommended更合理，希望使用vue/recommended规则时
   // * 则可以使用eslint格式化vue
   // * 针对vue单独启动eslint autoFix（需关闭prettier）如下
-  // "prettier.disableLanguages": ["vue"],
-  // "[vue]": {
-  //   "editor.codeActionsOnSave": {
-  //     "source.fixAll.eslint": true
-  //   }
-  // },
-  // * ------------------
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": false // eslint自动修复仅能修复部分格式问题，这部分使用prettier，所以关闭保存时自动修复
+  "prettier.disableLanguages": ["vue"],
+  "[vue]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
   },
+  // * 若不需要eslint格式化vue，使用prettier，则用下面配置
+  // "editor.codeActionsOnSave": {
+  //   "source.fixAll.eslint": false // eslint自动修复仅能修复部分格式问题，这部分使用prettier，所以关闭保存时自动修复
+  // },
   "eslint.format.enable": false, // 关闭eslint format功能，vscode-eslint 2.0.4后支持将其设置formatter，由于使用prettier,所以关闭
   "eslint.alwaysShowStatus": true, // 始终展示eslint状态
 

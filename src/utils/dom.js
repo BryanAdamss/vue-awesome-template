@@ -196,13 +196,15 @@ export function addStyle(el, styleObj) {
  * @returns 是否支持
  */
 export function canSupportCssVar() {
+  if (canSupportCssVar.isSupport != null) return canSupportCssVar.isSupport
+
   const id = 'test-support-css-var'
-  const styleEl = document.createElement('style')
+  let styleEl = document.createElement('style')
   styleEl.innerText = styleEl.innerText = `:root{--${id}:-9999;}#${id}{position:absolute;top:-99999em;left:-99999em;z-index:var(--${id});opacity:0;font-size:0;width:0;height:0;pointer-events: none;}`
 
   document.head.appendChild(styleEl)
 
-  const testSpan = document.createElement('span')
+  let testSpan = document.createElement('span')
   testSpan.id = id
 
   document.body.appendChild(testSpan)
@@ -213,6 +215,10 @@ export function canSupportCssVar() {
 
   document.head.removeChild(styleEl)
   document.body.removeChild(testSpan)
+  styleEl = null
+  testSpan = null
+
+  canSupportCssVar.isSupport = isSupport
 
   return isSupport
 }

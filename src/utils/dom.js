@@ -4,6 +4,7 @@
  */
 
 import { str2kebab } from 'Utils'
+import { isEmpty } from 'Utils/type-judge'
 
 /**
  * 添加样式类
@@ -374,4 +375,74 @@ export function watermarkSvg(params = {}) {
       ...params
     })
   )
+}
+
+/**
+ * 加载css
+ *
+ * @export
+ * @param {String} href css地址
+ * @param {Object} [options={ rel: 'stylesheet' }] 额外options
+ * @return {Promise}  promise实例
+ */
+export function loadCss(href, options = { rel: 'stylesheet' }) {
+  return new Promise((resolve, reject) => {
+    if (typeof href !== 'string') return reject('must specify href(string)')
+
+    let link = document.createElement('link')
+    link.href = href
+
+    const op = Object.assign({}, { rel: 'stylesheet' }, options)
+    !isEmpty(op) &&
+      Object.entries(op).forEach(([key, val]) => (link[key] = val))
+
+    document.head.appendChild(link)
+
+    link.onload = () => {
+      link = null
+      resolve()
+    }
+
+    link.onerror = () => {
+      document.head.removeChild(link)
+
+      link = null
+      reject(new Error(`load css failed:${href}`))
+    }
+  })
+}
+
+/**
+ * 加载js
+ *
+ * @export
+ * @param {String} src script地址
+ * @param {Object} [options={ type: 'text/javascript' }] 额外options
+ * @return {Promise}  promise实例
+ */
+export function loadJs(src, options = { type: 'text/javascript' }) {
+  return new Promise((resolve, reject) => {
+    if (typeof src !== 'string') return reject('must specify src(string)')
+
+    let script = document.createElement('script')
+    script.src = src
+
+    const op = Object.assign({}, { type: 'text/javascript' }, options)
+    !isEmpty(op) &&
+      Object.entries(op).forEach(([key, val]) => (script[key] = val))
+
+    document.body.appendChild(script)
+
+    script.onload = () => {
+      script = null
+      resolve()
+    }
+
+    script.onerror = () => {
+      document.body.removeChild(script)
+      script = null
+
+      reject(new Error(`load js failed:${src}`))
+    }
+  })
 }

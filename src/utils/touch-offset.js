@@ -1,5 +1,5 @@
 /**
- * @author ghchu
+ * @author GuangHui
  * @description 获取TouchEvent的offsetX
  * TouchEvent没有offsetX，通过矩阵计算模拟offsetX
  * 支持transform rotate

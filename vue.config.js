@@ -110,21 +110,12 @@ const setStatics = config => {
     },
     body: {
       js: [
-        {
-          // attrs: ['defer'],  // 可以追加到script上的attr
-          noBaseURL: true, // 不需要拼接baseURL
-          path:
-            'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.js'
-        },
-        {
-          noBaseURL: true,
-          path:
-            'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/web/pdf_viewer.js'
-        },
-        {
-          noBaseURL: true,
-          path: 'https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js'
-        }
+        // {
+        //   // attrs: ['defer'],  // 可以追加到script上的attr
+        //   noBaseURL: true, // 不需要拼接baseURL
+        //   path:
+        //     'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.js'
+        // },
       ]
     }
   }

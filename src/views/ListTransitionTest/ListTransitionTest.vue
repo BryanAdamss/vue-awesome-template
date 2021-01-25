@@ -1,11 +1,7 @@
 <template>
   <div class="c-ListTransitionTest">
     <BaseListTransition tag="ul">
-      <li
-        v-for="(item, index) in list"
-        :key="item.msg"
-        :data-index="index"
-      >
+      <li v-for="(item, index) in list" :key="item.msg" :data-index="index">
         {{ item.msg }}
         <span @click="deleteItem(index)">&times;</span>
       </li>

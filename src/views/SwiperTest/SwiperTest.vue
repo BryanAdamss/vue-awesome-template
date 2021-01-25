@@ -1,16 +1,7 @@
 <template>
-  <BaseSwiper
-    :slides="items"
-    class="c-SwiperTest"
-  >
-    <div
-      slot-scope="{slide}"
-      v-text="slide.rawHtml"
-    />
-    <BaseFormulaRender
-      slot-scope="{slide}"
-      :htmlString="slide.rawHtml"
-    />
+  <BaseSwiper :slides="items" class="c-SwiperTest">
+    <div slot-scope="{ slide }" v-text="slide.rawHtml" />
+    <BaseFormulaRender slot-scope="{ slide }" :htmlString="slide.rawHtml" />
   </BaseSwiper>
 </template>
 

@@ -4,7 +4,9 @@
  */
 
 const ScrollbarTest = () =>
-  import(/* webpackChunkName:'ScrollbarTest' */ 'Views/ScrollbarTest/ScrollbarTest')
+  import(
+    /* webpackChunkName:'ScrollbarTest' */ 'Views/ScrollbarTest/ScrollbarTest'
+  )
 
 export default [
   {

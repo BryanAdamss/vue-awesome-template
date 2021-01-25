@@ -1,19 +1,15 @@
 <template>
   <div class="c-BaseScrollTabTest">
-    <BaseScrollTab
-      ref="scrollTab"
-      :dataList="tabList"
-      @change="handleChange"
-    >
-      <template v-slot="{ item, index }">
+    <BaseScrollTab ref="scrollTab" :dataList="tabList" @change="handleChange">
+      <template #default="{ item, index }">
         <div>{{ index }}、{{ item.text }}</div>
       </template>
 
-      <template v-slot:prev>
+      <template #prev>
         <i class="el-icon-arrow-left" />
       </template>
 
-      <template v-slot:next>
+      <template #next>
         <i class="el-icon-arrow-right" />
       </template>
     </BaseScrollTab>
@@ -24,35 +20,35 @@
     <button @click="$refs.scrollTab.movePage(-1)">
       next page
     </button>
-    <br>
+    <br />
     <button @click="$refs.scrollTab.go(-3)">
       向后位移 3步
     </button>
     <button @click="$refs.scrollTab.go(3)">
       向前位移 3步
     </button>
-    <br>
+    <br />
     <button @click="$refs.scrollTab.go(-1)">
       向后位移 1
     </button>
     <button @click="$refs.scrollTab.go(1)">
       向前位移 1
     </button>
-    <br>
+    <br />
     <button @click="$refs.scrollTab.go(-5)">
       向后位移 5
     </button>
     <button @click="$refs.scrollTab.go(5)">
       向前位移 5
     </button>
-    <br>
+    <br />
     <button @click="$refs.scrollTab.go(-7)">
       向后位移 7
     </button>
     <button @click="$refs.scrollTab.go(7)">
       向前位移 7
     </button>
-    <br>
+    <br />
     <button @click="$refs.scrollTab.goTo(1)">
       跳到 1
     </button>

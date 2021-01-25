@@ -27,12 +27,13 @@ export default {
 .c-BaseClickAreaExpand {
   position: relative;
   &::after {
-    content: '';
     position: absolute;
     top: -1em;
     right: -1em;
     bottom: -1em;
     left: -1em;
+
+    content: '';
   }
 }
 </style>

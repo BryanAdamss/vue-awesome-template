@@ -4,7 +4,9 @@
  */
 
 const PreventFastClickBtnTest = () =>
-  import(/* webpackChunkName:'PreventFastClickBtnTest' */ 'Views/PreventFastClickBtnTest/PreventFastClickBtnTest')
+  import(
+    /* webpackChunkName:'PreventFastClickBtnTest' */ 'Views/PreventFastClickBtnTest/PreventFastClickBtnTest'
+  )
 
 export default [
   {

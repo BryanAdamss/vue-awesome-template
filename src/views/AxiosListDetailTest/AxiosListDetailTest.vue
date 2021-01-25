@@ -1,7 +1,7 @@
 <template>
   <div class="c-AxiosListDetailTest">
-    从AxiosTest传递过来的id为{{ id }}
-    <br> {{ $route.query.fromRouteName }}的滚动位置:{{ $route.query.scrollTop }}
+    从AxiosTest传递过来的id为{{ id }} <br />
+    {{ $route.query.fromRouteName }}的滚动位置:{{ $route.query.scrollTop }}
   </div>
 </template>
 
@@ -11,13 +11,6 @@
  */
 export default {
   name: 'AxiosListDetailTest',
-  props: {
-    // * 这个id将会在AxiosTest通过动态参数($route.params)带过来
-    id: {
-      type: [Number, String],
-      default: '--'
-    }
-  },
   beforeRouteLeave(to, from, next) {
     // * 如果需要跳转到fromRouteName(由AxiosTest页面通过query传递过来的)对应路由，则需要带上对应scrollTop
     const { fromRouteName, scrollTop } = this.$route.query
@@ -37,6 +30,13 @@ export default {
       this.$root.$_scrollTop = scrollTop
     }
     next()
+  },
+  props: {
+    // * 这个id将会在AxiosTest通过动态参数($route.params)带过来
+    id: {
+      type: [Number, String],
+      default: '--'
+    }
   }
 }
 </script>

@@ -23,8 +23,7 @@ export default {
   computed: {},
   watch: {},
   beforeCreate() {},
-  created() {
-  },
+  created() {},
   mounted() {},
   methods: {
     download() {

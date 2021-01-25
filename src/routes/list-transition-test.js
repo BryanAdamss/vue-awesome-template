@@ -4,7 +4,9 @@
  */
 
 const ListTransitionTest = () =>
-  import(/* webpackChunkName:'ListTransitionTest' */ 'Views/ListTransitionTest/ListTransitionTest')
+  import(
+    /* webpackChunkName:'ListTransitionTest' */ 'Views/ListTransitionTest/ListTransitionTest'
+  )
 
 export default [
   {

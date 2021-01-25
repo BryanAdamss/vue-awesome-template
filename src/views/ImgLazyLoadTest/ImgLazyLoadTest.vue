@@ -4,8 +4,8 @@
       <img
         v-for="n in 50"
         :key="n"
-        v-lazy="`http://placehold.it/200x${n+1}0`"
-      >
+        v-lazy="`http://placehold.it/200x${n + 1}0`"
+      />
     </div>
   </div>
 </template>

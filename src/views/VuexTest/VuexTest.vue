@@ -6,12 +6,12 @@
     </div>
 
     <span>moduleANameLen：{{ moduleANameLen }}</span>
-    <div @click="setModuleAName({moduleAName:Math.random().toString()})">
+    <div @click="setModuleAName({ moduleAName: Math.random().toString() })">
       点击设置模块A Vuex
     </div>
 
     <span>moduleBNameLen：{{ moduleBNameLen }}</span>
-    <div @click="setModuleBName({ moduleBName:Math.random().toString() })">
+    <div @click="setModuleBName({ moduleBName: Math.random().toString() })">
       点击设置模块B Vuex
     </div>
   </div>
@@ -43,18 +43,6 @@ const {
 
 export default {
   name: 'VuexTest',
-  data() {
-    return {
-      count: 0
-    }
-  },
-  computed: {
-    ...mapGetters(['globalTestObjName']), // 全局getter
-    // ...mapGetters('VuexTest/moduleA', ['moduleANameLen']), // 使用传参形式获取模块a下的getter
-    ...mapGettersForModuleA(['moduleANameLen']), // 使用模块a专有mapGetter获取模块a下的getter
-    // ...mapGetters('VuexTest/moduleB', ['moduleBNameLen']), // 模块b下的getter
-    ...mapGettersForModuleB(['moduleBNameLen']) // 使用模块b专有mapGetter获取模块b下的getter
-  },
   beforeRouteEnter(to, from, next) {
     // 路由进入时注册模块
     if (!window.installed) {
@@ -71,6 +59,19 @@ export default {
     })
     next()
   },
+  data() {
+    return {
+      count: 0
+    }
+  },
+  computed: {
+    ...mapGetters(['globalTestObjName']), // 全局getter
+    // ...mapGetters('VuexTest/moduleA', ['moduleANameLen']), // 使用传参形式获取模块a下的getter
+    ...mapGettersForModuleA(['moduleANameLen']), // 使用模块a专有mapGetter获取模块a下的getter
+    // ...mapGetters('VuexTest/moduleB', ['moduleBNameLen']), // 模块b下的getter
+    ...mapGettersForModuleB(['moduleBNameLen']) // 使用模块b专有mapGetter获取模块b下的getter
+  },
+
   methods: {
     change() {
       this.setGlobalTestObj({

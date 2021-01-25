@@ -7,62 +7,36 @@
   >
     <div
       :style="{
-        width:typeof width==='string' ? width :`${width}px`
+        width: typeof width === 'string' ? width : `${width}px`
       }"
       class="c-Dialog"
     >
       <slot name="hd">
         <div class="c-Dialog-hd">
           <div class="c-Hd">
-            <div
-              :title="title"
-              class="c-Hd-main"
-              v-text="title"
-            />
+            <div :title="title" class="c-Hd-main" v-text="title" />
 
             <div class="c-Hd-sub">
-              <span
-                class="c-Close"
-                title="关闭弹窗"
-                @click="close"
-              >&times;</span>
+              <span class="c-Close" title="关闭弹窗" @click="close"
+                >&times;</span
+              >
             </div>
           </div>
         </div>
       </slot>
-      <div
-        :class="{'is-radius':!$slots.ft}"
-        class="c-Dialog-bd"
-      >
+      <div :class="{ 'is-radius': !$slots.ft }" class="c-Dialog-bd">
         <slot>
-          <p
-            class="c-Tips"
-            v-text="content"
-          />
+          <p class="c-Tips" v-text="content" />
         </slot>
       </div>
-      <div
-        class="c-Dialog-ft"
-      >
-        <slot
-          v-bind="{ close,open }"
-          name="ft"
-        >
-          <div
-            v-if="type !=='custom'"
-            class="c-BtnWp"
-          >
+      <div class="c-Dialog-ft">
+        <slot v-bind="{ close, open }" name="ft">
+          <div v-if="type !== 'custom'" class="c-BtnWp">
             <template v-if="type === 'confirm'">
-              <button
-                @click="handleCancel"
-                v-text="cancelText"
-              />
+              <button @click="handleCancel" v-text="cancelText" />
             </template>
 
-            <button
-              @click="handleConfirm"
-              v-text="confirmText"
-            />
+            <button @click="handleConfirm" v-text="confirmText" />
           </div>
         </slot>
       </div>

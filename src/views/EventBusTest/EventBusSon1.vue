@@ -1,16 +1,11 @@
 <template>
   <div class="c-EventBusSon1">
     EventBusSon1
-    <br>
-    <button
-      type="button"
-      @click="sendMsg"
-    >
+    <br />
+    <button type="button" @click="sendMsg">
       发消息给son2
     </button>
-    <div class="c-Msg">
-      接收son2的消息:{{ msg }}
-    </div>
+    <div class="c-Msg">接收son2的消息:{{ msg }}</div>
     <EventBusGrandson1 />
   </div>
 </template>

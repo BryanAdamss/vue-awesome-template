@@ -1,13 +1,10 @@
 <template>
-  <div
-    ref="main"
-    class="c-BaseScrollbar"
-  >
+  <div ref="main" class="c-BaseScrollbar">
     <div
       ref="bd"
       :style="{
         width: `${bdW}px`,
-        height:`${bdH}px`
+        height: `${bdH}px`
       }"
       class="c-BaseScrollbar-bd"
       @scroll="scrollHandler"
@@ -18,13 +15,13 @@
     <div
       ref="horizontalTrack"
       class="c-BaseScrollbar-scroller is-horizontal"
-      @mousedown="clickTrackHandler($event,'h')"
+      @mousedown="clickTrackHandler($event, 'h')"
     >
       <div
         ref="horizontalThumb"
-        :style="{width:horizontalThumbW,transform:`translateX(${moveX}%)`}"
+        :style="{ width: horizontalThumbW, transform: `translateX(${moveX}%)` }"
         class="c-BaseScrollbar-thumb"
-        @mousedown="clickThumbHandler($event,'h')"
+        @mousedown="clickThumbHandler($event, 'h')"
       />
     </div>
 
@@ -35,7 +32,7 @@
     >
       <div
         ref="verticalThumb"
-        :style="{height:verticalThumbH,transform:`translateY(${moveY}%)`}"
+        :style="{ height: verticalThumbH, transform: `translateY(${moveY}%)` }"
         class="c-BaseScrollbar-thumb"
         @mousedown="clickThumbHandler($event)"
       />
@@ -75,10 +72,10 @@ export default {
       return this.mainH + this.scrollbarW
     },
     horizontalThumbW() {
-      return this.mainW / this.viewW * 100 + '%'
+      return (this.mainW / this.viewW) * 100 + '%'
     },
     verticalThumbH() {
-      return this.mainH / this.viewH * 100 + '%'
+      return (this.mainH / this.viewH) * 100 + '%'
     }
   },
   mounted() {
@@ -95,8 +92,8 @@ export default {
     scrollHandler() {
       const { scrollLeft, scrollTop } = this.$refs.bd
 
-      this.moveY = ((scrollTop * 100) / this.mainH)
-      this.moveX = ((scrollLeft * 100) / this.mainW)
+      this.moveY = (scrollTop * 100) / this.mainH
+      this.moveX = (scrollLeft * 100) / this.mainW
     },
     clickThumbHandler(e, dir) {
       if (e.ctrlKey || e.button === 2) {
@@ -107,29 +104,41 @@ export default {
 
       if (dir) {
         // 水平方向
-        this.X = (e.currentTarget.offsetWidth - (e.clientX - e.currentTarget.getBoundingClientRect().left))
+        this.X =
+          e.currentTarget.offsetWidth -
+          (e.clientX - e.currentTarget.getBoundingClientRect().left)
       } else {
         // 垂直方向
-        this.Y = (e.currentTarget.offsetHeight - (e.clientY - e.currentTarget.getBoundingClientRect().top))
+        this.Y =
+          e.currentTarget.offsetHeight -
+          (e.clientY - e.currentTarget.getBoundingClientRect().top)
       }
     },
     clickTrackHandler(e, dir) {
       if (dir) {
         // 点击水平轨道
-        const offset = Math.abs(e.target.getBoundingClientRect().left - e.clientX)
+        const offset = Math.abs(
+          e.target.getBoundingClientRect().left - e.clientX
+        )
 
         const thumbHalf = this.$refs.horizontalThumb.offsetWidth / 2
-        const thumbPositionPercentage = ((offset - thumbHalf) * 100 / this.$refs.main.offsetWidth)
+        const thumbPositionPercentage =
+          ((offset - thumbHalf) * 100) / this.$refs.main.offsetWidth
 
-        this.$refs.bd.scrollLeft = (thumbPositionPercentage * this.$refs.bd.scrollWidth / 100)
+        this.$refs.bd.scrollLeft =
+          (thumbPositionPercentage * this.$refs.bd.scrollWidth) / 100
       } else {
         // 点击垂直轨道
-        const offset = Math.abs(e.target.getBoundingClientRect().top - e.clientY)
+        const offset = Math.abs(
+          e.target.getBoundingClientRect().top - e.clientY
+        )
 
         const thumbHalf = this.$refs.verticalThumb.offsetHeight / 2
-        const thumbPositionPercentage = ((offset - thumbHalf) * 100 / this.$refs.main.offsetHeight)
+        const thumbPositionPercentage =
+          ((offset - thumbHalf) * 100) / this.$refs.main.offsetHeight
 
-        this.$refs.bd.scrollTop = (thumbPositionPercentage * this.$refs.bd.scrollHeight / 100)
+        this.$refs.bd.scrollTop =
+          (thumbPositionPercentage * this.$refs.bd.scrollHeight) / 100
       }
     },
     startDrag(e, dir) {
@@ -138,12 +147,28 @@ export default {
 
       if (dir) {
         // 水平
-        document.addEventListener('mousemove', this.horizontalMouseMoveDocumentHandler, false)
-        document.addEventListener('mouseup', this.horizontalMouseUpDocumentHandler, false)
+        document.addEventListener(
+          'mousemove',
+          this.horizontalMouseMoveDocumentHandler,
+          false
+        )
+        document.addEventListener(
+          'mouseup',
+          this.horizontalMouseUpDocumentHandler,
+          false
+        )
       } else {
         // 垂直
-        document.addEventListener('mousemove', this.verticalMouseMoveDocumentHandler, false)
-        document.addEventListener('mouseup', this.verticalMouseUpDocumentHandler, false)
+        document.addEventListener(
+          'mousemove',
+          this.verticalMouseMoveDocumentHandler,
+          false
+        )
+        document.addEventListener(
+          'mouseup',
+          this.verticalMouseUpDocumentHandler,
+          false
+        )
       }
       document.onselectstart = () => false
     },
@@ -153,17 +178,27 @@ export default {
 
       if (!prevPage) return
 
-      const offset = ((this.$refs.horizontalTrack.getBoundingClientRect().left - e.clientX) * -1)
-      const thumbClickPosition = (this.$refs.horizontalThumb.offsetWidth - prevPage)
-      const thumbPositionPercentage = ((offset - thumbClickPosition) * 100 / this.$refs.horizontalTrack.offsetWidth)
+      const offset =
+        (this.$refs.horizontalTrack.getBoundingClientRect().left - e.clientX) *
+        -1
+      const thumbClickPosition =
+        this.$refs.horizontalThumb.offsetWidth - prevPage
+      const thumbPositionPercentage =
+        ((offset - thumbClickPosition) * 100) /
+        this.$refs.horizontalTrack.offsetWidth
 
-      this.$refs.bd.scrollLeft = (thumbPositionPercentage * this.$refs.bd.scrollWidth / 100)
+      this.$refs.bd.scrollLeft =
+        (thumbPositionPercentage * this.$refs.bd.scrollWidth) / 100
     },
     horizontalMouseUpDocumentHandler(e) {
       this.cursorDown = false
       this.X = 0
 
-      document.removeEventListener('mousemove', this.horizontalMouseMoveDocumentHandler, false)
+      document.removeEventListener(
+        'mousemove',
+        this.horizontalMouseMoveDocumentHandler,
+        false
+      )
 
       document.onselectstart = null
     },
@@ -173,18 +208,27 @@ export default {
 
       if (!prevPage) return
 
-      const offset = ((this.$refs.verticalTrack.getBoundingClientRect().top - e.clientY) * -1)
-      const thumbClickPosition = (this.$refs.verticalThumb.offsetHeight - prevPage)
-      const thumbPositionPercentage = ((offset - thumbClickPosition) * 100 / this.$refs.verticalTrack.offsetHeight)
+      const offset =
+        (this.$refs.verticalTrack.getBoundingClientRect().top - e.clientY) * -1
+      const thumbClickPosition =
+        this.$refs.verticalThumb.offsetHeight - prevPage
+      const thumbPositionPercentage =
+        ((offset - thumbClickPosition) * 100) /
+        this.$refs.verticalTrack.offsetHeight
 
-      this.$refs.bd.scrollTop = (thumbPositionPercentage * this.$refs.bd.scrollHeight / 100)
+      this.$refs.bd.scrollTop =
+        (thumbPositionPercentage * this.$refs.bd.scrollHeight) / 100
     },
 
     verticalMouseUpDocumentHandler(e) {
       this.cursorDown = false
       this.Y = 0
 
-      document.removeEventListener('mousemove', this.verticalMouseMoveDocumentHandler, false)
+      document.removeEventListener(
+        'mousemove',
+        this.verticalMouseMoveDocumentHandler,
+        false
+      )
 
       document.onselectstart = null
     }
@@ -194,11 +238,11 @@ export default {
 
 <style lang="scss" scoped>
 .c-BaseScrollbar {
+  position: relative;
+
   width: 100%;
   height: 100%;
   overflow: hidden;
-
-  position: relative;
 
   &:hover {
     .c-BaseScrollbar-thumb {
@@ -207,16 +251,18 @@ export default {
   }
   &-bd {
     overflow: auto;
+
     background-color: #eee;
   }
 
   &-scroller {
     position: absolute;
+
     font-size: 0;
     &.is-horizontal {
-      left: 2px;
       right: 2px;
       bottom: 2px;
+      left: 2px;
 
       height: 6px;
       .c-BaseScrollbar-thumb {
@@ -241,8 +287,9 @@ export default {
 
     opacity: 0;
 
-    will-change: opacity;
     transition: opacity 0.6s;
+
+    will-change: opacity;
   }
 }
 </style>

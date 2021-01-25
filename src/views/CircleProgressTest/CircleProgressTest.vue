@@ -6,8 +6,8 @@
       :strokeWidth="8"
       :startColor="[51, 163, 238]"
       :endColor="[51, 163, 238]"
-      :text="`80%`"
-      :info="'比率'"
+      text="80%"
+      info="比率"
     />
 
     <CircleProgress
@@ -16,15 +16,12 @@
       :strokeWidth="8"
       :startColor="[5, 193, 174]"
       :endColor="[5, 193, 174]"
-      :text="`60%`"
-      :info="'自定义文案'"
+      text="60%"
+      info="自定义文案"
     >
       <template>
         <div class="c-Info">
-          <p
-            class="c-Info-main"
-            v-text="`60%`"
-          />
+          <p class="c-Info-main" v-text="`60%`" />
 
           <div class="c-Info-sub">
             <div class="c-Info-text">

@@ -3,11 +3,11 @@
     <BaseBreadcrumb
       :needHome="true"
       :homeRoute="homeRoute"
-      :globalSep="'/'"
+      globalSep="/"
       :routeList="routeList"
     />
 
-    <hr>
+    <hr />
     <p>使用slot-scope 自定义样式</p>
 
     <BaseBreadcrumb
@@ -15,16 +15,14 @@
       :homeRoute="homeRoute"
       :routeList="routeList"
     >
-      <template
-        v-slot:home="{ needHome }"
-      >
+      <template #home="{ needHome }">
         <p>home</p>
         {{ needHome }}
         {{ homeRoute }}
-        <hr>
+        <hr />
       </template>
 
-      <template v-slot="route">
+      <template #default="route">
         <p>routeItem:</p>
 
         {{ route }}

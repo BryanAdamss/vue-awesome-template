@@ -5,37 +5,13 @@
     x-mlns="http://www.w3.org/200/svg"
   >
     <defs>
-      <linearGradient
-        :id="outGradientId"
-        x1="1"
-        y1="0"
-        x2="0"
-        y2="0"
-      >
-        <stop
-          :stop-color="arcOption.outArcStartColor"
-          offset="0%"
-        />
-        <stop
-          :stop-color="arcOption.outArcEndColor"
-          offset="100%"
-        />
+      <linearGradient :id="outGradientId" x1="1" y1="0" x2="0" y2="0">
+        <stop :stop-color="arcOption.outArcStartColor" offset="0%" />
+        <stop :stop-color="arcOption.outArcEndColor" offset="100%" />
       </linearGradient>
-      <linearGradient
-        :id="innerGradientId"
-        x1="1"
-        y1="0"
-        x2="0"
-        y2="0"
-      >
-        <stop
-          :stop-color="arcOption.innerArcStartColor"
-          offset="0%"
-        />
-        <stop
-          :stop-color="arcOption.innerArcEndColor"
-          offset="100%"
-        />
+      <linearGradient :id="innerGradientId" x1="1" y1="0" x2="0" y2="0">
+        <stop :stop-color="arcOption.innerArcStartColor" offset="0%" />
+        <stop :stop-color="arcOption.innerArcEndColor" offset="100%" />
       </linearGradient>
     </defs>
     <circle
@@ -51,7 +27,7 @@
       :cx="option.cx"
       :cy="option.cy"
       :stroke-width="option.strokeWidth"
-      :stroke-dasharray="`0,1000000`"
+      stroke-dasharray="0,1000000"
       :stroke="`url('#${innerGradientId}')`"
       transform="rotate(-90)"
       transform-origin="center"
@@ -113,7 +89,7 @@ export default {
     innerGradientId() {
       return `innerGradient_${Math.random()}`
     },
-    arcOption () {
+    arcOption() {
       const arcConfig = {}
       const circleLength = Math.floor(2 * Math.PI * this.option.radius)
       // 如果此时小于0.5 则只需要显示最外层的圆弧 里面的圆弧不需要画了
@@ -131,16 +107,25 @@ export default {
         arcConfig.outDurtion = (0.5 / this.progress) * time + 's' //
         arcConfig.innerArcLength = this.progress * circleLength
         arcConfig.innerInitArcLength = 0.5 * circleLength // 为动画做准备 此时从中间开始
-        arcConfig.innerDurtion = ((this.progress - 0.5) / this.progress) * time + 's' // 为动画做准备 此时从中间开始
+        arcConfig.innerDurtion =
+          ((this.progress - 0.5) / this.progress) * time + 's' // 为动画做准备 此时从中间开始
       }
       const tansfromColor = arr => `rgb(${arr[0]},${arr[1]},${arr[2]})`
       arcConfig.outArcStartColor = tansfromColor(this.option.startColor)
-      arcConfig.outArcEndColor = tansfromColor(this.option.startColor.map((color, index) => color + (this.option.endColor[index] - color) / 2))
+      arcConfig.outArcEndColor = tansfromColor(
+        this.option.startColor.map(
+          (color, index) => color + (this.option.endColor[index] - color) / 2
+        )
+      )
       arcConfig.innerArcStartColor = tansfromColor(this.option.endColor)
-      arcConfig.innerArcEndColor = tansfromColor(this.option.startColor.map((color, index) => color + (this.option.endColor[index] - color) / 2))
+      arcConfig.innerArcEndColor = tansfromColor(
+        this.option.startColor.map(
+          (color, index) => color + (this.option.endColor[index] - color) / 2
+        )
+      )
       return arcConfig
     },
-    option () {
+    option() {
       // 所有进度条的可配置项
       const baseOption = {
         radius: 100,

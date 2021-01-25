@@ -1,7 +1,7 @@
 <template>
   <div
     ref="modal"
-    :class="{'is-visible':isCanVisible}"
+    :class="{ 'is-visible': isCanVisible }"
     class="c-BaseModal"
     @click.stop="onShadowClick"
   >

@@ -4,7 +4,9 @@
  */
 
 const TimeCounterTest = () =>
-  import(/* webpackChunkName:'TimeCounterTest' */ 'Views/TimeCounterTest/TimeCounterTest')
+  import(
+    /* webpackChunkName:'TimeCounterTest' */ 'Views/TimeCounterTest/TimeCounterTest'
+  )
 
 export default [
   {

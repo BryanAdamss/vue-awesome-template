@@ -1,24 +1,11 @@
 <template>
-  <span
-    :class="{ 'is-link':isLink }"
-    class="c-BaseBreadcrumbItem"
-  >
-
+  <span :class="{ 'is-link': isLink }" class="c-BaseBreadcrumbItem">
     <template v-if="needIcon">
-
       <!-- 图标 -->
-      <span
-        v-if="iconClassName"
-        class="c-BaseBreadcrumbItem-icon"
-      >
-
-        <i
-          :class="[iconClassName]"
-        />
-
+      <span v-if="iconClassName" class="c-BaseBreadcrumbItem-icon">
+        <i :class="[iconClassName]" />
       </span>
       <!-- 图标 end -->
-
     </template>
 
     <!-- 文案 -->
@@ -32,30 +19,18 @@
 
     <!-- 分隔符 -->
     <template v-if="needSep">
-
       <template v-if="sepIconClassName">
         <!-- 图标分隔符 -->
-        <i
-          :class="[sepIconClassName]"
-          class="c-BaseBreadcrumbItem-sep"
-        />
+        <i :class="[sepIconClassName]" class="c-BaseBreadcrumbItem-sep" />
         <!-- 图标分隔符 end -->
-
       </template>
       <template v-else>
-
         <!-- 字符分隔符 -->
-        <span
-          class="c-BaseBreadcrumbItem-sep"
-          v-text="sep"
-        />
+        <span class="c-BaseBreadcrumbItem-sep" v-text="sep" />
         <!-- 字符分隔符 end -->
-
       </template>
-
     </template>
     <!-- 分隔符 end -->
-
   </span>
 </template>
 

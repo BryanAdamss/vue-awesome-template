@@ -1,8 +1,5 @@
 <template>
-  <transition
-    :name="transitionName"
-    mode="out-in"
-  >
+  <transition :name="transitionName" mode="out-in">
     <slot />
   </transition>
 </template>
@@ -33,21 +30,22 @@ export default {
 .slide-left-leave-active,
 .slide-right-enter-active,
 .slide-right-leave-active {
-  will-change: transform, opacity;
   transition: transform 0.3s, opacity 0.3s;
+
+  will-change: transform, opacity;
 }
 
 .slide-left-enter,
 .slide-right-leave-to {
-  opacity: 0;
   -webkit-transform: translate(30px, 0);
   transform: translate(30px, 0);
+  opacity: 0;
 }
 
 .slide-right-enter,
 .slide-left-leave-to {
-  opacity: 0;
   -webkit-transform: translate(-30px, 0);
   transform: translate(-30px, 0);
+  opacity: 0;
 }
 </style>

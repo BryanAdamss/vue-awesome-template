@@ -1,10 +1,6 @@
 <template>
   <div class="c-ClickAreaExpandTest">
-    <BaseClickAreaExpand
-      class="c-MyBtn"
-      tag="div"
-      @click="onClick"
-    >
+    <BaseClickAreaExpand class="c-MyBtn" tag="div" @click="onClick">
       我的点击范围被扩大啦
     </BaseClickAreaExpand>
   </div>

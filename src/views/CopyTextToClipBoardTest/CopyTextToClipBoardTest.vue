@@ -1,10 +1,6 @@
 <template>
   <div class="c-CopyTextToClipBoardTest">
-    <input
-      ref="copyInputEl"
-      v-model="text"
-      type="text"
-    >
+    <input ref="copyInputEl" v-model="text" type="text" />
     <button @click="handleClick">
       拷贝输入框内容
     </button>
@@ -37,16 +33,18 @@ export default {
   mounted() {},
   methods: {
     handleClick() {
-      copyTextToClipboard(this.text).then(selectedText => {
-        console.log('selectedText', selectedText)
+      copyTextToClipboard(this.text)
+        .then(selectedText => {
+          console.log('selectedText', selectedText)
 
-        alert('拷贝成功，试试ctrl+v')
-      }).catch(err => {
-        alert('拷贝失败，可以手动ctrl+c复制')
-        console.log(err)
+          alert('拷贝成功，试试ctrl+v')
+        })
+        .catch(err => {
+          alert('拷贝失败，可以手动ctrl+c复制')
+          console.log(err)
 
-        select(this.$refs.copyInputEl)
-      })
+          select(this.$refs.copyInputEl)
+        })
     }
   }
 }

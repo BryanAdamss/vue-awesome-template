@@ -1,7 +1,10 @@
 <template>
   <div class="c-ThemeChangeTest">
     <p class="c-Text">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem asperiores, vel officia accusantium sed, nobis non quibusdam quam eos iusto eveniet provident, culpa incidunt ab reprehenderit veritatis! Animi, doloremque sapiente?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem asperiores,
+      vel officia accusantium sed, nobis non quibusdam quam eos iusto eveniet
+      provident, culpa incidunt ab reprehenderit veritatis! Animi, doloremque
+      sapiente?
     </p>
 
     <button @click="handleBtnClick">
@@ -49,25 +52,26 @@ export default {
       this.$bus.$emit('global-loading-show')
       axios({
         url: '/theme-dark.json'
-      })
-        .then(({ data = [] }) => {
-          if (!this.themeService) {
-            import(/* webpackChunkName:'ThemeService' */'Plugins/theme-service.js')
-              .then(({ default: ThemeService }) => {
-                this.themeService = new ThemeService()
+      }).then(({ data = [] }) => {
+        if (!this.themeService) {
+          import(
+            /* webpackChunkName:'ThemeService' */ 'Plugins/theme-service.js'
+          )
+            .then(({ default: ThemeService }) => {
+              this.themeService = new ThemeService()
 
-                this.themeService.applyTheme(data)
-              })
-              .catch(err => {
-                console.log(err)
-              })
-              .finally(() => {
-                this.$bus.$emit('global-loading-hide')
-              })
-          } else {
-            this.themeService.applyTheme(data)
-          }
-        })
+              this.themeService.applyTheme(data)
+            })
+            .catch(err => {
+              console.log(err)
+            })
+            .finally(() => {
+              this.$bus.$emit('global-loading-hide')
+            })
+        } else {
+          this.themeService.applyTheme(data)
+        }
+      })
     }
   }
 }

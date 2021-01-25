@@ -4,7 +4,9 @@
  */
 
 const EventBusTest = () =>
-  import(/* webpackChunkName:'EventBusTest' */ 'Views/EventBusTest/EventBusTest')
+  import(
+    /* webpackChunkName:'EventBusTest' */ 'Views/EventBusTest/EventBusTest'
+  )
 
 export default [
   {

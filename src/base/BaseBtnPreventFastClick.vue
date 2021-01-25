@@ -17,19 +17,19 @@ export default {
 
     const $_debouncedClickHandler = listeners.click
       ? debounce(
-        listeners.click,
-        300,
-        true // * 首次点击需要立即执行
-      )
+          listeners.click,
+          300,
+          true // * 首次点击需要立即执行
+        )
       : null
 
     const newData = $_debouncedClickHandler
       ? {
-        ...data,
-        on: {
-          click: $_debouncedClickHandler
+          ...data,
+          on: {
+            click: $_debouncedClickHandler
+          }
         }
-      }
       : data
 
     return h(props.tag, newData, children)

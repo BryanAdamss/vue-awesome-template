@@ -4,7 +4,9 @@
  */
 
 const DebounceThrottleTest = () =>
-  import(/* webpackChunkName:'DebounceThrottleTest' */ 'Views/DebounceThrottleTest/DebounceThrottleTest')
+  import(
+    /* webpackChunkName:'DebounceThrottleTest' */ 'Views/DebounceThrottleTest/DebounceThrottleTest'
+  )
 
 export default [
   {

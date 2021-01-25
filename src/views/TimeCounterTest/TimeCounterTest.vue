@@ -1,9 +1,9 @@
 <template>
   <div class="c-TimeCounterTest">
     {{ time }}
-    <br>
+    <br />
     开始时间：{{ startTime }}
-    <br>
+    <br />
     结束时间：{{ endTime }}
   </div>
 </template>

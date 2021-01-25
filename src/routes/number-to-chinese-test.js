@@ -4,7 +4,9 @@
  */
 
 const NumberToChineseTest = () =>
-  import(/* webpackChunkName:'NumberToChineseTest' */ 'Views/NumberToChineseTest/NumberToChineseTest')
+  import(
+    /* webpackChunkName:'NumberToChineseTest' */ 'Views/NumberToChineseTest/NumberToChineseTest'
+  )
 
 export default [
   {

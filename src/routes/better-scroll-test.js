@@ -4,7 +4,9 @@
  */
 
 const BetterScrollTest = () =>
-  import(/* webpackChunkName:'BetterScrollTest' */ 'Views/BetterScrollTest/BetterScrollTest')
+  import(
+    /* webpackChunkName:'BetterScrollTest' */ 'Views/BetterScrollTest/BetterScrollTest'
+  )
 
 export default [
   {

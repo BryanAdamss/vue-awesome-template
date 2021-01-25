@@ -5,10 +5,7 @@
     :style="customStyle"
     class="c-BaseBreadcrumb"
   >
-    <slot
-      v-bind="{ needHome,homeRoute }"
-      name="home"
-    >
+    <slot v-bind="{ needHome, homeRoute }" name="home">
       <!-- 首页 -->
       <template v-if="needHome">
         <BaseBreadcrumbItem
@@ -17,7 +14,9 @@
           :iconClassName="homeRoute.iconClassName"
           :needSep="!!(routeList && routeList.length)"
           :sep="homeRoute.sep || globalSep"
-          :sepIconClassName=" homeRoute.sepIconClassName || globalSepIconClassName"
+          :sepIconClassName="
+            homeRoute.sepIconClassName || globalSepIconClassName
+          "
           :text="homeRoute.text"
           @item-click="handleHomeClick(homeRoute)"
         />
@@ -25,7 +24,7 @@
       <!-- 首页 end -->
     </slot>
 
-    <template v-for="(route,index) in routeList">
+    <template v-for="(route, index) in routeList">
       <slot v-bind="route">
         <!-- 传入step -->
         <template v-if="route.step">
@@ -34,7 +33,7 @@
             :iconClassName="route.iconClassName"
             :needSep="index !== routeList.length - 1"
             :sep="route.sep || globalSep"
-            :sepIconClassName=" route.sepIconClassName || globalSepIconClassName"
+            :sepIconClassName="route.sepIconClassName || globalSepIconClassName"
             :text="route.text"
             @item-click="$router.go(route.step)"
           />
@@ -48,7 +47,7 @@
             :iconClassName="route.iconClassName"
             :needSep="index !== routeList.length - 1"
             :sep="route.sep || globalSep"
-            :sepIconClassName=" route.sepIconClassName || globalSepIconClassName"
+            :sepIconClassName="route.sepIconClassName || globalSepIconClassName"
             :text="route.text"
             @item-click="$router.push(route)"
           />
@@ -62,7 +61,7 @@
             :iconClassName="route.iconClassName"
             :needSep="index !== routeList.length - 1"
             :sep="route.sep || globalSep"
-            :sepIconClassName=" route.sepIconClassName || globalSepIconClassName"
+            :sepIconClassName="route.sepIconClassName || globalSepIconClassName"
             :text="route.text"
             @item-click="$win.location.href = route.href"
           />
@@ -77,7 +76,7 @@
             :needSep="index !== routeList.length - 1"
             :isLink="false"
             :sep="route.sep || globalSep"
-            :sepIconClassName=" route.sepIconClassName || globalSepIconClassName"
+            :sepIconClassName="route.sepIconClassName || globalSepIconClassName"
             :text="route.text"
           />
         </template>
@@ -120,7 +119,7 @@ export default {
           step: null, // $router.go 跳转步数
 
           name: '', // 路由名
-          path: ''// 路由path
+          path: '' // 路由path
         }
       }
     },

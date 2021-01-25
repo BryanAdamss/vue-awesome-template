@@ -1,18 +1,12 @@
 <template>
   <div class="c-BaseLayoutVertical">
-    <div
-      v-if="this.$slots.header"
-      class="c-BaseLayoutVertical-hd"
-    >
+    <div v-if="this.$slots.header" class="c-BaseLayoutVertical-hd">
       <slot name="header" />
     </div>
     <div class="c-BaseLayoutVertical-bd">
       <slot />
     </div>
-    <div
-      v-if="this.$slots.footer"
-      class="c-BaseLayoutVertical-ft"
-    >
+    <div v-if="this.$slots.footer" class="c-BaseLayoutVertical-ft">
       <slot name="footer" />
     </div>
   </div>
@@ -40,14 +34,15 @@ export default {
   flex: 0 0 auto;
 }
 .c-BaseLayoutVertical-bd {
+  position: relative;
+  z-index: 1;
+
   flex: 1 1 auto;
   height: 100%;
   overflow: auto;
-  -webkit-overflow-scrolling: touch;
   /* 优化滚动性能 */
   will-change: scroll-position;
-  position: relative;
-  z-index: 1;
+  -webkit-overflow-scrolling: touch;
 }
 .c-BaseLayoutVertical-ft {
   flex: 0 0 auto;

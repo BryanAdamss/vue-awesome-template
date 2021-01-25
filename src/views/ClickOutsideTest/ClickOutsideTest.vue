@@ -1,10 +1,6 @@
 <template>
   <div class="c-ClickOutsideTest">
-    <div
-      ref="clickOutsideEl"
-      v-click-outside="onClickOutside"
-      class="c-Box"
-    >
+    <div ref="clickOutsideEl" v-click-outside="onClickOutside" class="c-Box">
       只有点我外侧才会触发clickOutside指令
     </div>
   </div>

@@ -1,26 +1,20 @@
 <template>
-  <div
-    ref="gallery"
-    class="c-BaseScrollTab"
-  >
-    <div
-      ref="track"
-      class="c-BaseScrollTab-track"
-    >
+  <div ref="gallery" class="c-BaseScrollTab">
+    <div ref="track" class="c-BaseScrollTab-track">
       <div
         ref="wp"
-        :style="{transform : `translateX(${offset}px)` }"
+        :style="{ transform: `translateX(${offset}px)` }"
         class="c-BaseScrollTab-wp"
       >
         <!-- item -->
         <div
-          v-for="(item,index) in formatedDataList"
+          v-for="(item, index) in formatedDataList"
           :key="index"
-          :class="[index === curIndex ? 'is-active' : '',customItemClass]"
+          :class="[index === curIndex ? 'is-active' : '', customItemClass]"
           class="c-BaseScrollTab-item"
-          @click="clickHandler(index,item)"
+          @click="clickHandler(index, item)"
         >
-          <slot v-bind="{item,index}">
+          <slot v-bind="{ item, index }">
             <div
               :title="item.text"
               class="c-BaseScrollTab-text"
@@ -35,7 +29,7 @@
     <!-- prev btn -->
     <div
       v-if="showBtn"
-      :class="{'is-disabled':isPrevDisabled}"
+      :class="{ 'is-disabled': isPrevDisabled }"
       class="c-BaseScrollTab-btn is-prev"
       title="上一页"
       @click="movePage(1)"
@@ -51,7 +45,7 @@
     <!-- next btn -->
     <div
       v-if="showBtn"
-      :class="{'is-disabled':isNextDisabled}"
+      :class="{ 'is-disabled': isNextDisabled }"
       class="c-BaseScrollTab-btn is-next"
       title="下一页"
       @click="movePage(-1)"
@@ -186,7 +180,9 @@ export default {
       // dir 方向
       // 点击了活动元素右侧元素，dir -1，移动距离为两个元素间距离
       // 点击了活动元素左侧元素，dir 1，移动距离为两个元素间距离
-      const distance = Math.abs(this.formatedDataList[end]._left - this.formatedDataList[start]._left)
+      const distance = Math.abs(
+        this.formatedDataList[end]._left - this.formatedDataList[start]._left
+      )
 
       this.move(dir, distance)
     },
@@ -225,7 +221,6 @@ export default {
         target._left = item.offsetLeft
       })
     }
-
   }
 }
 </script>

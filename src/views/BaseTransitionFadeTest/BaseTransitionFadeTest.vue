@@ -6,15 +6,11 @@
     <p>点击删除</p>
 
     <div class="c-BoxWp">
-      <BaseTransitionFade
-        group
-        tag="ul"
-      >
+      <BaseTransitionFade group tag="ul">
         <template>
           <li
             v-for="(item, index) in list"
             :key="item"
-
             @click="remove(index)"
             v-text="item"
           />

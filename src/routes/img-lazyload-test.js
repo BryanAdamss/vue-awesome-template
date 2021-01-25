@@ -4,7 +4,9 @@
  */
 
 const ImgLazyLoadTest = () =>
-  import(/* webpackChunkName:'ImgLazyLoadTest' */ 'Views/ImgLazyLoadTest/ImgLazyLoadTest')
+  import(
+    /* webpackChunkName:'ImgLazyLoadTest' */ 'Views/ImgLazyLoadTest/ImgLazyLoadTest'
+  )
 
 export default [
   {

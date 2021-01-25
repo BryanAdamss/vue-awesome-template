@@ -4,7 +4,9 @@
  */
 
 const FormulaRenderTest = () =>
-  import(/* webpackChunkName:'FormulaRenderTest' */ 'Views/FormulaRenderTest/FormulaRenderTest')
+  import(
+    /* webpackChunkName:'FormulaRenderTest' */ 'Views/FormulaRenderTest/FormulaRenderTest'
+  )
 
 export default [
   {

@@ -13,12 +13,7 @@
       <p>占位行7</p>
       <p>占位行8</p>
       <p>占位行9</p>
-      <p
-        ref="test"
-        v-affix="affixProps"
-        class="c-AffixTest"
-        @click="test"
-      >
+      <p ref="test" v-affix="affixProps" class="c-AffixTest" @click="test">
         测试affix
       </p>
       <p>占位行10</p>
@@ -61,11 +56,13 @@ export default {
     this.affixProps = {
       container: '.c-BaseLayoutVertical-bd', // 滚动容器
       threshold, // 触发affixed阈值
-      fixedElPos: { // fixed元素的位置
+      fixedElPos: {
+        // fixed元素的位置
         top: '35px'
         // left: '50%',
       },
-      onAffixed(el) { // 触发affixed回调
+      onAffixed(el) {
+        // 触发affixed回调
         console.log('fixed元素为:', el)
       },
       interval: 20 // 滚动事件触发频率

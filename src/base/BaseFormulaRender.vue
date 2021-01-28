@@ -21,11 +21,12 @@ export default {
   },
   data() {
     return {
-      html: '',
-      id: uuid()
+      html: ''
     }
   },
   created() {
+    this.id = uuid()
+
     katex
       .render(this.htmlString)
       .then(katexedStr => {

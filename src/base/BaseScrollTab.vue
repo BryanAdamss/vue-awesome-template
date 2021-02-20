@@ -171,7 +171,7 @@ export default {
     },
     // 初始化当前index
     initCurIndex(id) {
-      const index = this.dataList.findIndex(item => item.stuId === id)
+      const index = this.dataList.findIndex(item => item.id === id)
       if (index > -1) this.curIndex = index
     },
     // 按步数位移

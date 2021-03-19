@@ -1,67 +1,23 @@
 {
-  // * ------------------
-  // * 格式化相关
-  // * 主要思路(适用于vscode v1.51.0版本后)
-  // * 所有文件类型都使用prettier插件来做格式化
-  // * 关闭其他插件的格式化功能（vetur、eslint autofix、eslint format）
-  // * 部分特殊文件类型(.vue)特殊处理
-  // * 例如：
-  // * .vue(html + js)使用eslint + eslint-plugin-vue做lint
-  // * eslint和prettier冲突的地方，使用eslint-config-prettier关闭冲突规则
-  // * eslint-config-prettier需放在extends数组最后
-  // * 由于不使用eslint autoFix，所以无需使用eslint-plugin-prettier来添加prettier规则
-  // * .vue(css)使用stylelint + autoFix来做lint和格式化
-  // * ------------------
-  // 保存时自动格式化。需要借助格式化器；
-  // 若此项为false，则所有格式化器（pretter插件）不能在保存时自动格式化；
-  // 通过npm包安装的格式化器如prettier、ESLint不受此项限制。
   "editor.formatOnSave": true,
-  // 自vscode更新到1.51.0版本后，默认格式化器为null，需要手动指定
-  // 设置默认格式化器为pretter
+
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  // prettier插件配置
-  // 读取配置的优先级如下
-  // .prettierrc文件 > .editorconfig > prettier插件选项
-  // 2019-1113-vscode pretter插件，不会再读取prettier插件选项，改为读取.prettierrc文件https://github.com/prettier/prettier-vscode#migrating-from-versions-2x
+
   "prettier.tabWidth": 2,
   "prettier.singleQuote": true,
   "prettier.semi": false,
+  "prettier.printWidth": 80,
 
-  // 关闭vetur格式化功能，仅用其高亮、语法提示功能
   "vetur.format.enable": false,
 
-  // * ------------------
-  // * eslint相关
-  // * 仅使用其lint功能，format交给prettier
-  // * 部分特殊场景
-  // * 如vue-cli2中使用 'plugin:vue/recommended'时，会存在部分规则和prettier冲突
-  // * 并且vue/recommended更合理，希望使用vue/recommended规则时
-  // * 则可以使用eslint格式化vue
-  // * 针对vue单独启动eslint autoFix（需关闭prettier）如下
-  "prettier.disableLanguages": ["vue"],
-  "[vue]": {
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    }
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
   },
-  // * 若不需要eslint格式化vue，使用prettier，则用下面配置
-  // "editor.codeActionsOnSave": {
-  //   "source.fixAll.eslint": false // eslint自动修复仅能修复部分格式问题，这部分使用prettier，所以关闭保存时自动修复
-  // },
-  "eslint.format.enable": false, // 关闭eslint format功能，vscode-eslint 2.0.4后支持将其设置formatter，由于使用prettier,所以关闭
-  "eslint.alwaysShowStatus": true, // 始终展示eslint状态
 
-  // * ------------------
-  // * stylelint相关
-  // * 主要思路：
-  // * 使用vscode插件stylelint-plus插件做lint，并开启autoFixOnSave做格式化
-  // * 由于stylelint-plus内部自带stylelint，项目中可不需要再安装stylelint包
-  // * stylelint-plus机制和vscode eslint插件机制类似，会读取项目中的stylelint配置文件
-  // * 若项目无配置文件，则使用自带的默认配置
-  // * 项目配置中若声明了plugins，则需要使用npm 安装对应的plugins包
-  // * 由于vscode自带css、less、scss的校验，为避免重复检查，可选择关闭vscode的校验
-  // * ------------------
-  "stylelint.autoFixOnSave": true,
+  "eslint.format.enable": false,
+  "eslint.alwaysShowStatus": true,
+
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false

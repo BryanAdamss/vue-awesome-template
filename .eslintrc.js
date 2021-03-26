@@ -82,6 +82,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     // eslint-plugin-simple-import-sort
     // 使用其自定义排序 https://github.com/lydell/eslint-plugin-simple-import-sort/#custom-grouping
+    // eslint-plugin-simple-import-sort v6.0版本后，此规则调整为simple-import-sort/imports
     'simple-import-sort/sort': [
       'error',
       {

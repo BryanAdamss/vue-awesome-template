@@ -106,7 +106,6 @@ npm run serve
 |  ├─register-service-worker.js             # sw
 |  ├─views                                  # 页面目录
 |  ├─utils                                  # 常用工具
-|  ├─store                                  # vuex 全局状态
 |  ├─services                               # 业务service
 |  ├─sass                                   # sass分层
 |  ├─routes                                 # 路由模块

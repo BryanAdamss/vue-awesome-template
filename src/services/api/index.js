@@ -3,8 +3,16 @@
  * @description 接口入口
  */
 
-import common from './common'
+import { importAll } from "Plugins/import-all"
 
-export default {
-  common
-}
+const apis = importAll(
+  require.context('./', false, /^(?!\.\/index\b).*\.js$/)
+)
+
+const apiMap ={}
+
+apis && apis.length && apis.forEach(({camelModuleName, module}) => {
+	apiMap[camelModuleName] = module
+})
+
+export default apiMap

@@ -1,9 +1,6 @@
 <template>
   <div class="c-DebounceThrottleTest">
-    <ul
-      style="height:200px;overflow:auto;"
-      @scroll="onScroll"
-    >
+    <ul style="height:200px;overflow:auto;" @scroll="onScroll">
       <li>验证节流throttle函数，滚动并查看控制台</li>
       <li>1</li>
       <li>2</li>

@@ -1,16 +1,10 @@
 <template>
   <div class="c-HomePage">
     <LinkList />
-    <router-link
-      :to="{ name: 'HomeChild1' }"
-      class="c-Link"
-    >
+    <router-link :to="{ name: 'HomeChild1' }" class="c-Link">
       ToHomeChild1
     </router-link>
-    <router-link
-      :to="{ name: 'HomeChild2' }"
-      class="c-Link"
-    >
+    <router-link :to="{ name: 'HomeChild2' }" class="c-Link">
       ToHomeChild2
     </router-link>
     <!-- Home子路由出口 -->

@@ -12,10 +12,8 @@
 export default {
   name: 'ConstLoaderTestChild',
   components: {},
-  inject: [
-    'CHILD_NAME'
-  ],
   mixins: [],
+  inject: ['CHILD_NAME'],
   props: {},
   data() {
     return {}

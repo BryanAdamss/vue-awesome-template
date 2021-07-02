@@ -1,24 +1,18 @@
 <template>
-  <component
-    :is="tag"
-    class="c-BaseDynamicCursor"
-  >
-    <template v-for="(item,index) in list">
+  <component :is="tag" class="c-BaseDynamicCursor">
+    <template v-for="(item, index) in list">
       <component
         :is="itemTag"
-        :key=" item.id || index "
+        :key="item.id || index"
         :class="[`is-${pos}`, isActive(item)]"
         class="c-BaseDynamicCursor-item"
-        @click="$emit('cursor-click',item,index)"
+        @click="$emit('cursor-click', item, index)"
       >
-        <slot v-bind="{item,index}">
+        <slot v-bind="{ item, index }">
           {{ item.text || item }}
         </slot>
 
-        <span
-          :style="cursorStyleObj"
-          class="c-BaseDynamicCursor-cursor"
-        />
+        <span :style="cursorStyleObj" class="c-BaseDynamicCursor-cursor" />
       </component>
     </template>
   </component>
@@ -85,7 +79,8 @@ export default {
       const w = typeof this.size === 'number' ? `${this.size}px` : this.size
       return {
         [`border-${this.pos}`]: `${w} ${this.type} ${this.color}`,
-        [this.pos]: typeof this.offset === 'number' ? `${this.offset}px` : this.offset
+        [this.pos]:
+          typeof this.offset === 'number' ? `${this.offset}px` : this.offset
       }
     }
   },
@@ -95,7 +90,11 @@ export default {
   mounted() {},
   methods: {
     isActive(item) {
-      return this.activeId === item.id || this.activeId === item.text || this.activeId === item ? 'is-active' : ''
+      return this.activeId === item.id ||
+        this.activeId === item.text ||
+        this.activeId === item
+        ? 'is-active'
+        : ''
     }
   }
 }

@@ -107,8 +107,8 @@ export const VUEX_DEFAULT_CONFIG = {
 // * ----------------------------------------
 
 // 开启vconsole
-export const VCONSOLE_DEBUG = true
-export const VCONSOLE_ENABLE_COUNT = 4
+export const VCONSOLE_DEBUG = process.env.VUE_APP_TARGET_SERVER !== 'prod'
+export const VCONSOLE_ENABLE_COUNT = 10
 export const VCONSOLE_ENABLE_INTERVAL = 300
 
 // 是否启用ie css3 vars兼容

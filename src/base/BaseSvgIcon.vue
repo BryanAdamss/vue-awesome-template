@@ -31,13 +31,13 @@ export default {
       default: null
     }
   },
-  data () {
+  data() {
     return {
       xml: null
     }
   },
   computed: {
-    baseSize () {
+    baseSize() {
       let size = this.size
       size = Number(size)
       if (isNaN(size) || size <= 0) {
@@ -45,7 +45,7 @@ export default {
       }
       return size
     },
-    icon  () {
+    icon() {
       if (!this.xml) {
         return {
           width: 0,
@@ -60,16 +60,16 @@ export default {
         id: '#' + this.xml.default.id
       }
     },
-    box () {
+    box() {
       return `0 0 ${this.icon.width} ${this.icon.height}`
     },
-    scale () {
+    scale() {
       if (this.icon.height) {
         return this.icon.width / this.icon.height
       }
       return 1
     },
-    currentSize () {
+    currentSize() {
       let height = this.height
       let width = this.width
       // 不传递 width 与 height，就当做正方形处理，size 字段生效
@@ -103,18 +103,26 @@ export default {
     }
   },
   watch: {
-    async name (val) {
+    async name(val) {
       if (!val) {
         return
       }
-      this.xml = await import(/* webpackMode: 'lazy-once', webpackChunkName: 'icon-svg' */ 'Assets/svgs/' + this.name + '.svg')
+      this.xml = await import(
+        /* webpackMode: 'lazy-once', webpackChunkName: 'icon-svg' */ 'Assets/svgs/' +
+          this.name +
+          '.svg'
+      )
     }
   },
-  async created () {
+  async created() {
     if (!this.name) {
       return
     }
-    this.xml = await import(/* webpackMode: 'lazy-once', webpackChunkName: 'icon-svg' */ 'Assets/svgs/' + this.name + '.svg')
+    this.xml = await import(
+      /* webpackMode: 'lazy-once', webpackChunkName: 'icon-svg' */ 'Assets/svgs/' +
+        this.name +
+        '.svg'
+    )
   }
 }
 </script>

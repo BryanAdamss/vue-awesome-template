@@ -1,12 +1,10 @@
 <template>
   <div class="c-NumberToChineseTest">
     <ul>
-      <li
-        v-for="(item,index) in items"
-        :key="index"
-      >
-        {{ item }}<br> {{ item | numberToChn }}
-        <hr>
+      <li v-for="(item, index) in items" :key="index">
+        {{ item }}<br />
+        {{ item | numberToChn }}
+        <hr />
       </li>
     </ul>
   </div>

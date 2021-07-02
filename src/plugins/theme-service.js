@@ -3,7 +3,7 @@
  * @description 主题切换服务
  */
 
-import { isSupportCssVar } from 'Utils/browser'
+import { canSupportCssVar } from 'Utils/dom'
 
 export default class ThemeService {
   constructor() {
@@ -21,7 +21,7 @@ export default class ThemeService {
     if (!Array.isArray(themeArr) || !themeArr.length) return
 
     if (typeof MutationObserver === 'function') {
-      if (isSupportCssVar) {
+      if (canSupportCssVar()) {
         this._apply(themeArr)
       } else {
         this._loadCssVarsPonyfill().then(res => {
@@ -30,7 +30,7 @@ export default class ThemeService {
       }
     } else {
       this._loadMutationObserverPolyfill().then(() => {
-        if (isSupportCssVar) {
+        if (canSupportCssVar()) {
           this._apply(themeArr)
         } else {
           this._loadCssVarsPonyfill().then(res => {

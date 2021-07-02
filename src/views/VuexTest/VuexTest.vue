@@ -6,12 +6,12 @@
     </div>
 
     <span>moduleANameLen：{{ moduleANameLen }}</span>
-    <div @click="setModuleAName({moduleAName:Math.random().toString()})">
+    <div @click="setModuleAName({ moduleAName: Math.random().toString() })">
       点击设置模块A Vuex
     </div>
 
     <span>moduleBNameLen：{{ moduleBNameLen }}</span>
-    <div @click="setModuleBName({ moduleBName:Math.random().toString() })">
+    <div @click="setModuleBName({ moduleBName: Math.random().toString() })">
       点击设置模块B Vuex
     </div>
   </div>
@@ -29,7 +29,7 @@ import {
   mapMutations
 } from 'vuex' // * 使用 createNamespacedHelpers 创建基于某个命名空间辅助函数
 
-import store from './store'
+import storeRegisterMixins from "./store/store-register-mixins";
 
 const {
   mapGetters: mapGettersForModuleA,
@@ -43,6 +43,7 @@ const {
 
 export default {
   name: 'VuexTest',
+ mixins:[storeRegisterMixins],
   data() {
     return {
       count: 0
@@ -55,22 +56,7 @@ export default {
     // ...mapGetters('VuexTest/moduleB', ['moduleBNameLen']), // 模块b下的getter
     ...mapGettersForModuleB(['moduleBNameLen']) // 使用模块b专有mapGetter获取模块b下的getter
   },
-  beforeRouteEnter(to, from, next) {
-    // 路由进入时注册模块
-    if (!window.installed) {
-      // 防止重复注册，vuex报错
-      store.install()
-      window.installed = true
-    }
-    next()
-  },
-  beforeRouteLeave(to, from, next) {
-    this.$once('hook:beforeDestroy', () => {
-      // 路由离开时卸载模块
-      store.uninstall() // uninstall的最佳时机应该在 DOM 更新中或后，旧的页面组件实例销毁过程调用时
-    })
-    next()
-  },
+
   methods: {
     change() {
       this.setGlobalTestObj({

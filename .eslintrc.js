@@ -18,7 +18,7 @@ module.exports = {
     // 关闭attribute强制横线连接
     'vue/attribute-hyphenation': 'off',
     // 单行内容的html标签，将内容置于一行中
-    'vue/singleline-html-element-content-newline': 'warn',
+    // 'vue/singleline-html-element-content-newline': 'warn',
     // style、template、script块间留有空格
     'vue/padding-line-between-blocks': 'warn',
     // 允许使用v-html
@@ -61,6 +61,9 @@ module.exports = {
     // 组件必须命名
     'vue/require-name-property': 'warn',
 
+    // 关闭单html标签，内容需换行，因为其和prettier冲突
+    'vue/singleline-html-element-content-newline': 'off',
+
     // 设置缩进
     // indent: ['error', 2, { SwitchCase: 1 }],
     // 关闭reject必须返回一个error
@@ -80,6 +83,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     // eslint-plugin-simple-import-sort
     // 使用其自定义排序 https://github.com/lydell/eslint-plugin-simple-import-sort/#custom-grouping
+    // eslint-plugin-simple-import-sort v6.0版本后，此规则调整为simple-import-sort/imports
     'simple-import-sort/sort': [
       'error',
       {

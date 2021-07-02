@@ -60,6 +60,8 @@
  * * pdfjs-dist/es5/web/pdf_viewer.js
  */
 
+import { loadJs } from 'Utils/dom'
+
 import ErrorTips from './ErrorTips'
 import PercentageLoading from './PercentageLoading'
 import ToolBar from './ToolBar'
@@ -152,11 +154,39 @@ export default {
   beforeCreate() {},
   created() {},
   mounted() {
-    this.init()
+    if (!window.pdfjsLib || !window.pdfjsViewer) {
+      this.loadPdf()
+        .then(this.init.bind(this))
+        .catch(err => {
+          console.log('load pdfjs err', err)
+        })
+    } else {
+      this.init()
+    }
 
     this.$once('hook:beforeDestory', this.clean)
   },
   methods: {
+    /**
+     * 加载Hammer
+     */
+    loadHammer() {
+      return loadJs('https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js')
+    },
+    /**
+     * 加载pdf
+     */
+    loadPdf() {
+      return Promise.all([
+        loadJs(
+          // 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.js'
+          'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/build/pdf.min.js'
+        ),
+        loadJs(
+          'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/web/pdf_viewer.js'
+        )
+      ])
+    },
     /**
      * 初始化
      */
@@ -255,7 +285,19 @@ export default {
 
       this.needHandTool && this.initHandTool() // 初始化抓手工具
 
-      this.needPinch && this.initPinchGestures() // 初始化捏合缩放
+      if (this.needPinch) {
+        if (!window.Hammer) {
+          this.loadHammer()
+            .then(() => {
+              this.initPinchGestures() // 初始化捏合缩放
+            })
+            .catch(err => {
+              console.log('load Hammer err', err)
+            })
+        } else {
+          this.initPinchGestures() // 初始化捏合缩放
+        }
+      }
 
       this.$emit('pdf-pagesinit', this.pdfViewer)
     },

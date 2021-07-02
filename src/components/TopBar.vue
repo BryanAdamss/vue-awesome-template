@@ -2,26 +2,15 @@
   <div class="c-TopBar">
     <BaseLayoutHorizontal>
       <template slot="side">
-        <div
-
-          class="c-TopBar-item"
-          :style="{cursor:'pointer'}"
-        >
-          <span
-            v-show="isShowBackBtn"
-            @click="onClickGoBack"
-          >
+        <div class="c-TopBar-item" :style="{ cursor: 'pointer' }">
+          <span v-show="isShowBackBtn" @click="onClickGoBack">
             &lt;返回
           </span>
         </div>
       </template>
 
       <template>
-        <div
-          class="c-Title"
-          :title="title"
-          v-text="title"
-        />
+        <div class="c-Title" :title="title" v-text="title" />
       </template>
 
       <template slot="extra">

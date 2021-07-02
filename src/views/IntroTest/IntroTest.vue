@@ -7,7 +7,10 @@
       2
     </div>
     <div id="d3">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium voluptas repellat omnis et in incidunt sequi iusto similique tenetur, cumque perspiciatis quaerat non totam quam adipisci animi aspernatur alias expedita.
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium
+      voluptas repellat omnis et in incidunt sequi iusto similique tenetur,
+      cumque perspiciatis quaerat non totam quam adipisci animi aspernatur alias
+      expedita.
     </div>
   </div>
 </template>
@@ -31,9 +34,7 @@ export default {
   computed: {},
   watch: {},
   beforeCreate() {},
-  created() {
-
-  },
+  created() {},
   mounted() {
     setTimeout(() => {
       // https://github.com/kamranahmedse/driver.js
@@ -78,7 +79,8 @@ export default {
 
           // Start the introduction
           driver.start()
-        }).catch(err => {
+        })
+        .catch(err => {
           console.log(err)
         })
     }, 200)

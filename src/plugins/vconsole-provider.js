@@ -4,6 +4,7 @@
  */
 
 import {
+  GLOBAL_NAME_SPACE,
   VCONSOLE_DEBUG,
   VCONSOLE_ENABLE_COUNT,
   VCONSOLE_ENABLE_INTERVAL
@@ -17,7 +18,16 @@ const loadVconsole = () => {
 
   script.onload = () => {
     // eslint-disable-next-line
-    var vConsole = new VConsole()
+    if(VConsole){
+      const obj = {
+        // eslint-disable-next-line
+        vconsole: new VConsole()
+      }
+
+      window[GLOBAL_NAME_SPACE] = window[GLOBAL_NAME_SPACE]
+        ? Object.assign({}, window[GLOBAL_NAME_SPACE], obj)
+        : obj
+    }
     script = null
   }
 

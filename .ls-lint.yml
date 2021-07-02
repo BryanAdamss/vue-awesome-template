@@ -1,8 +1,28 @@
 ls:
   src:
     .js: kebab-case | PascalCase
+    .json: kebab-case
     .vue: PascalCase
-    .ts: camelCase | PascalCase
-    .d.ts: camelCase
-    .spec.ts: camelCase | PascalCase
-    .mock.ts: camelCase
+    .ts: kebab-case | PascalCase
+    .d.ts: camelCase | kebab-case | PascalCase
+    .spec.ts: kebab-case | PascalCase
+    .mock.ts: kebab-case
+    .png: kebab-case
+    .jpg: kebab-case
+    .jpeg: kebab-case
+    .gif: kebab-case
+    .svg: kebab-case
+    .css: kebab-case | PascalCase
+    .scss: kebab-case | regex:_[\w-]+
+    .eot: kebab-case
+    .ttf: kebab-case
+    .woff: kebab-case
+    .woff2: kebab-case
+    .html: kebab-case
+
+ignore:
+  - node_modules
+  - .git
+  - .circleci
+  - .github
+  - .vscode

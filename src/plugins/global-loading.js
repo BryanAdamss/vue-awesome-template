@@ -3,7 +3,7 @@
  * @description 全局loading
  */
 
-import Bus from 'Plugins/event-bus'
+import bus from 'Plugins/event-bus'
 
 /**
  * 全局loading
@@ -102,11 +102,11 @@ class GlobalLoading {
   }
 
   _show() {
-    Bus.$emit(this.showEventName)
+    bus.$emit(this.showEventName)
   }
 
   _hide() {
-    Bus.$emit(this.hideEventName)
+    bus.$emit(this.hideEventName)
   }
 
   _getNow() {

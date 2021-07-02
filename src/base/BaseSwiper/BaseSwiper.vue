@@ -1,18 +1,15 @@
 <template>
-  <div
-    v-show="isReady"
-    class="c-BaseSwiper"
-  >
+  <div v-show="isReady" class="c-BaseSwiper">
     <div
       ref="wp"
-      :style="{'padding-left':paddingLeftStyle}"
+      :style="{ 'padding-left': paddingLeftStyle }"
       class="c-BaseSwiper-wp"
       @touchstart.capture="$_onTouchstartHandler"
     >
       <BaseSwiperSlide
         v-for="slide in activeSlides"
         :key="slide.id"
-        :style="{width:`${elW}px`}"
+        :style="{ width: `${elW}px` }"
       >
         <slot :slide="slide" />
       </BaseSwiperSlide>

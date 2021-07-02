@@ -1,17 +1,17 @@
 <template>
   <div class="c-FiltersTest">
     ms2hms
-    {{ {num:100000} | ms2hms }}
-    <hr>
+    {{ { num: 100000 } | ms2hms }}
+    <hr />
     str2kebab
     {{ 'amCameCase' | str2kebab }}
-    <hr>
+    <hr />
     dateFormat
     {{ new Date().getTime() | dateFormat('yyyy年MM月dd日 hh:mm:ss') }}
-    <hr>
+    <hr />
     fixedDecimal
     {{ 0.334567 | fixedDecimal }}
-    <hr>
+    <hr />
     num2percentage
     {{ 0.334567 | num2percentage }}
   </div>

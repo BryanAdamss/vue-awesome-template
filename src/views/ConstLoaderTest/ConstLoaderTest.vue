@@ -1,9 +1,9 @@
 <template>
   <div class="c-ConstLoaderTest">
     {{ TEST_COMMON_CONST }}
-    <hr>
+    <hr />
     {{ PARENT_NAME }}
-    <hr>
+    <hr />
     <ConstLoaderTestChild />
   </div>
 </template>
@@ -20,12 +20,10 @@ import ConstLoaderTestChild from './ConstLoaderTestChild'
 export default {
   name: 'ConstLoaderTest',
   components: { ConstLoaderTestChild },
+  mixins: [],
   // * 通过provide为子组件提供常量
   provide: constLoaderTestConst,
-  inject: [
-    'TEST_COMMON_CONST'
-  ],
-  mixins: [],
+  inject: ['TEST_COMMON_CONST'],
   props: {},
   data() {
     return {}

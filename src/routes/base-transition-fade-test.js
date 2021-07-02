@@ -4,7 +4,9 @@
  */
 
 const BaseTransitionFadeTest = () =>
-  import(/* webpackChunkName:'BaseTransitionFadeTest' */ 'Views/BaseTransitionFadeTest/BaseTransitionFadeTest')
+  import(
+    /* webpackChunkName:'BaseTransitionFadeTest' */ 'Views/BaseTransitionFadeTest/BaseTransitionFadeTest'
+  )
 
 export default [
   {

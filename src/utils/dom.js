@@ -4,6 +4,7 @@
  */
 
 import { str2kebab } from 'Utils'
+import { isEmpty } from 'Utils/type-judge'
 
 /**
  * 添加样式类
@@ -196,13 +197,15 @@ export function addStyle(el, styleObj) {
  * @returns 是否支持
  */
 export function canSupportCssVar() {
+  if (canSupportCssVar.isSupport != null) return canSupportCssVar.isSupport
+
   const id = 'test-support-css-var'
-  const styleEl = document.createElement('style')
+  let styleEl = document.createElement('style')
   styleEl.innerText = styleEl.innerText = `:root{--${id}:-9999;}#${id}{position:absolute;top:-99999em;left:-99999em;z-index:var(--${id});opacity:0;font-size:0;width:0;height:0;pointer-events: none;}`
 
   document.head.appendChild(styleEl)
 
-  const testSpan = document.createElement('span')
+  let testSpan = document.createElement('span')
   testSpan.id = id
 
   document.body.appendChild(testSpan)
@@ -213,6 +216,10 @@ export function canSupportCssVar() {
 
   document.head.removeChild(styleEl)
   document.body.removeChild(testSpan)
+  styleEl = null
+  testSpan = null
+
+  canSupportCssVar.isSupport = isSupport
 
   return isSupport
 }
@@ -262,4 +269,180 @@ export function supportWebp() {
   } catch (err) {
     return false
   }
+}
+
+/**
+ * 生成svg文本
+ *
+ * @export
+ * @param {*} [{
+ *   width = 300,
+ *   height = 150,
+ *   fontSize = 14,
+ *   fontFamily = 'system-ui, sans-serif',
+ *   color = '#a2a9b6',
+ *   opacity = 1,
+ *   x = 50,
+ *   y = 50,
+ *   content = 'svg测试文本',
+ *   transform = 'rotate(0,0,0)'
+ * }={}]
+ * @return {String} svg字符串（未转义）
+ */
+export function genSvgText({
+  width = 300,
+  height = 150,
+  fontSize = 14,
+  fontFamily = 'system-ui, sans-serif',
+  color = '#a2a9b6',
+  opacity = 1,
+  x = 50,
+  y = 50,
+  content = 'svg测试文本',
+  rotate = 0
+} = {}) {
+  const size =
+    width === 300 && height === 150
+      ? ''
+      : ` width="${width}" height="${height}"`
+
+  const fill = color === '#000000' || color === '#000' ? '' : ` fill="${color}"`
+
+  const fillOpacity = opacity === 1 ? '' : ` fill-opacity="${opacity}"`
+
+  const fontF = fontFamily ? ` font-family="${fontFamily}"` : ''
+
+  // 旋转除2参考：https://www.zhangxinxu.com/wordpress/2015/10/understand-svg-transform/
+  const transformAttr =
+    rotate && size
+      ? ` transform="rotate(${rotate}, ${width / 2} ,${height / 2})"`
+      : ''
+
+  return `<svg${size} xmlns="http://www.w3.org/2000/svg"><text x="${x}%" y="${y}%" font-size="${fontSize}"${fill}${fillOpacity}${fontF}${transformAttr} text-anchor="middle" dominant-baseline="middle">${content}</text></svg>`
+}
+
+/**
+ * 安全转义svg字符串
+ *
+ * @export
+ * @param {String} svg svg字符串
+ * @return {String} 转移后的svg字符串
+ */
+export function escapeSvg(svg) {
+  return svg
+    .trim()
+    .trim()
+    .replace(/\n/g, '')
+    .replace(/"/g, "'")
+    .replace(/%/g, '%25')
+    .replace(/#/g, '%23')
+    .replace(/{/g, '%7B')
+    .replace(/}/g, '%7D')
+    .replace(/</g, '%3C')
+    .replace(/>/g, '%3E')
+}
+
+/**
+ * 生成内联svg
+ *
+ * @export
+ * @param {String} svg 未转义的svg字符串
+ * @return {String} 转义后的内联svg字符串
+ * 参考：
+ * https://www.zhangxinxu.com/wordpress/2020/10/text-as-css-background-image/
+ * https://www.zhangxinxu.com/wordpress/2015/10/understand-svg-transform/
+ * https://www.zhangxinxu.com/wordpress/2018/08/css-svg-background-image-base64-encode/
+ */
+export function makeSvgInline(svg) {
+  return `data:image/svg+xml;utf8,${escapeSvg(svg)}`
+}
+
+/**
+ * 生成水印svg(包含默认属性)
+ *
+ * @export
+ * @param {Object} params
+ * @return {String} 转义后的内联svg字符串
+ */
+export function watermarkSvg(params = {}) {
+  return makeSvgInline(
+    genSvgText({
+      rotate: -45,
+      width: 200,
+      height: 200,
+      opacity: 0.5,
+      content: '水印',
+      ...params
+    })
+  )
+}
+
+/**
+ * 加载css
+ *
+ * @export
+ * @param {String} href css地址
+ * @param {Object} [options={ rel: 'stylesheet' }] 额外options
+ * @return {Promise}  promise实例
+ */
+export function loadCss(href, options = { rel: 'stylesheet' }) {
+  return new Promise((resolve, reject) => {
+    if (typeof href !== 'string') return reject('must specify href(string)')
+
+    let link = document.createElement('link')
+    link.href = href
+
+    const op = Object.assign({}, { rel: 'stylesheet' }, options)
+    !isEmpty(op) &&
+      Object.entries(op).forEach(([key, val]) => (link[key] = val))
+
+    document.head.appendChild(link)
+
+    link.onload = () => {
+      link = null
+      resolve()
+    }
+
+    link.onerror = () => {
+      document.head.removeChild(link)
+
+      link = null
+      reject(new Error(`load css failed:${href}`))
+    }
+  })
+}
+
+/**
+ * 加载js
+ *
+ * @export
+ * @param {String} src script地址
+ * @param {Object} [options={ type: 'text/javascript' }] 额外options
+ * @return {Promise}  promise实例
+ */
+export function loadJs(src, options = { type: 'text/javascript' }) {
+  return new Promise((resolve, reject) => {
+    if (typeof src !== 'string') return reject('must specify src(string)')
+
+    let script = document.createElement('script')
+    script.src = src
+
+    const op = Object.assign({}, { type: 'text/javascript' }, options)
+    !isEmpty(op) &&
+      Object.entries(op).forEach(([key, val]) => (script[key] = val))
+
+    document.body.appendChild(script)
+
+    script.onload = () => {
+      script = null
+      resolve()
+    }
+
+    script.onerror = () => {
+      document.body.removeChild(script)
+      script = null
+
+      reject(new Error(`load js failed:${src}`))
+    }
+  })
 }

@@ -1,0 +1,24 @@
+{
+  "editor.formatOnSave": true,
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "prettier.tabWidth": 2,
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "prettier.printWidth": 80,
+
+  "vetur.format.enable": false,
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+
+  "eslint.format.enable": false,
+  "eslint.alwaysShowStatus": true,
+
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false
+}

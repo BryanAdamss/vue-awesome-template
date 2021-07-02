@@ -38,29 +38,35 @@ export default {
       default: 300
     }
   },
-  data () {
+  data() {
     return {
       scrollTop: null
     }
   },
   computed: {
-    show () {
+    show() {
       return this.scrollTop > this.threshold
     }
   },
-  mounted () {
+  mounted() {
     this.scrollTop = this.getScrollTop()
-    window.addEventListener('scroll', debounce(() => {
-      this.scrollTop = this.getScrollTop()
-    }, 100))
+    window.addEventListener(
+      'scroll',
+      debounce(() => {
+        this.scrollTop = this.getScrollTop()
+      }, 100)
+    )
   },
   methods: {
-    getScrollTop () {
-      return window.pageYOffset ||
+    getScrollTop() {
+      return (
+        window.pageYOffset ||
         document.documentElement.scrollTop ||
-        document.body.scrollTop || 0
+        document.body.scrollTop ||
+        0
+      )
     },
-    scrollToTop () {
+    scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' })
       this.scrollTop = 0
     }
@@ -68,7 +74,7 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .c-BaseGoTop {
   position: fixed;
   // right: 2.5rem;

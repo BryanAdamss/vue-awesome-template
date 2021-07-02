@@ -1,8 +1,5 @@
 <template>
-  <BasePopUp
-    ref="popup"
-    :isShow.sync="popupShow"
-  >
+  <BasePopUp ref="popup" :isShow.sync="popupShow">
     <div class="c-BaseConfirm">
       <div class="c-BaseConfirm-hd">
         <slot name="header">
@@ -18,16 +15,10 @@
       </div>
       <div class="c-BaseConfirm-ft">
         <div class="c-BtnGroup">
-          <div
-            class="c-Btn"
-            @click.stop="handleCancel"
-          >
+          <div class="c-Btn" @click.stop="handleCancel">
             取消
           </div>
-          <div
-            class="c-Btn"
-            @click.stop="onClickOk"
-          >
+          <div class="c-Btn" @click.stop="onClickOk">
             确定
           </div>
         </div>

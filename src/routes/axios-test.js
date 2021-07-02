@@ -7,7 +7,9 @@ const AxiosTest = () =>
   import(/* webpackChunkName:'AxiosTest' */ 'Views/AxiosTest/AxiosTest')
 
 const AxiosListDetailTest = () =>
-  import(/* webpackChunkName:'AxiosListDetailTest' */ 'Views/AxiosListDetailTest/AxiosListDetailTest')
+  import(
+    /* webpackChunkName:'AxiosListDetailTest' */ 'Views/AxiosListDetailTest/AxiosListDetailTest'
+  )
 
 export default [
   {

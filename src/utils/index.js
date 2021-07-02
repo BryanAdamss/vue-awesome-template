@@ -542,3 +542,30 @@ export function getGlobalThis() {
  */
 export const thousands = num =>
   num.toString().replace(/(\d{1,3})(?=(\d{3})+(?:$|\.))/g, '$1,')
+  
+/**  
+ * 超时取消单个、多个promise执行
+ *
+ * @export
+ * @param {Number} timeout 超时时间，单位毫秒
+ * @param {String} [msg='timeout'] 超时提示
+ * @param {Array} promises promise实例数组
+ * @return {*}
+ */
+export function makePromiseCancelable(timeout, msg = 'timeout', ...promises) {
+  if (!promises || !promises.length)
+    throw new Error('At least one promise is required')
+
+  return () =>
+    Promise.race([
+      new Promise((resolve, reject) => {
+        let timer = setTimeout(() => {
+          reject(msg)
+
+          clearTimeout(timer)
+          timer = null
+        }, timeout)
+      }),
+      ...promises.map(p => (typeof p === 'function' ? p() : p))
+    ])
+}

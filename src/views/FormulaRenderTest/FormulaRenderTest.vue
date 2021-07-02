@@ -1,9 +1,6 @@
 <template>
   <div class="c-FormulaRenderTest">
-    <div
-      v-for="(item,index) in items"
-      :key="index"
-    >
+    <div v-for="(item, index) in items" :key="index">
       <BaseFormulaRender :htmlString="item.rawHtml" />
     </div>
   </div>

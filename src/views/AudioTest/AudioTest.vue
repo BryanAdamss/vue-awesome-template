@@ -1,15 +1,17 @@
 <template>
   <div class="c-AudioTest">
-    <!-- <BaseAudio
+    <!--
+      <BaseAudio
       :src="'https://mdn.mozillademos.org/files/2587/AudioTest%20(1).ogg'"
       style="width:100%;
 
-font-size:20px;"
-    >
+      font-size:20px;"
+      >
       test
-    </BaseAudio> -->
+      </BaseAudio> 
+    -->
     <BaseAudio
-      :src="'https://zhixuetest.oss-cn-hangzhou.aliyuncs.com/hanzhang_test/middleHomework/middleweb/zxzy/2020/10/30/1bd095d3-5fff-4ad7-8423-df823e7b51fd_1500000200048087350.mp3'"
+      src="https://zhixuetest.oss-cn-hangzhou.aliyuncs.com/hanzhang_test/middleHomework/middleweb/zxzy/2020/10/30/1bd095d3-5fff-4ad7-8423-df823e7b51fd_1500000200048087350.mp3"
       style="width:100%;"
     >
       test
@@ -37,11 +39,8 @@ export default {
   computed: {},
   watch: {},
   beforeCreate() {},
-  created() {
-
-  },
-  mounted() {
-  },
+  created() {},
+  mounted() {},
   methods: {}
 }
 </script>

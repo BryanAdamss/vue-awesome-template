@@ -14,8 +14,7 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "ls-lint": "ls-lint",
-    "lint": "vue-cli-service lint",
-    "lint:fix": "vue-cli-service lint --fix src tests/unit tests/e2e/specs --ext .js,.vue",
+    "lint": "vue-cli-service lint src tests/unit tests/e2e/specs",
     "stylelint:fix": "stylelint --fix src/**/*.{sass,scss,vue,css,less,stylus}",
     "prettier": "prettier --write src/**/*.{json,css,scss,less,sass,md,html,flow,ts,tsd}",
     "inspect": "vue-cli-service inspect > webpack.inspect.js",
@@ -42,6 +41,7 @@
     "core-js": "^3.6.5",
     "driver.js": "^0.9.8",
     "element-ui": "^2.8.2",
+    "mathjs": "^8.1.1",
     "mutationobserver-shim": "^0.3.7",
     "pdfjs-dist": "2.5.207",
     "register-service-worker": "^1.7.1",
@@ -120,7 +120,7 @@
     }
   },
   "lint-staged": {
-    "*.{json,css,scss,less,sass,md,html,flow,ts,tsd}": [
+    "*.{json,md,html,flow,ts,tsd}": [
       "prettier --write",
       "git add"
     ],

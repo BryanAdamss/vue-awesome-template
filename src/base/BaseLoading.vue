@@ -1,14 +1,11 @@
 <template>
   <div
-    :class="{'is-center':fixedAtCenter,'has-bg':hasBg}"
+    :class="{ 'is-center': fixedAtCenter, 'has-bg': hasBg }"
     class="c-Loading"
   >
     <BaseLoadingSpinner :size="spinnerSize" />
     <slot>
-      <div
-        class="c-Loading-text"
-        v-text="text"
-      />
+      <div class="c-Loading-text" v-text="text" />
     </slot>
   </div>
 </template>

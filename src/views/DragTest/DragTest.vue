@@ -1,9 +1,6 @@
 <template>
   <div class="c-DragTest">
-    <div
-      v-drag="onDrag"
-      class="c-Box"
-    >
+    <div v-drag="onDrag" class="c-Box">
       拖动我
     </div>
   </div>

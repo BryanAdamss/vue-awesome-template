@@ -1,18 +1,11 @@
 <template>
   <div class="c-EventBusGrandson1">
     EventBusGrandson1
-    <br>
-    <button
-      type="button"
-      @click="sendMsg"
-    >
+    <br />
+    <button type="button" @click="sendMsg">
       发消息给son2
     </button>
-    <button
-      type="button"
-      style="margin-top:10px;"
-      @click="sendMsg2"
-    >
+    <button type="button" style="margin-top:10px;" @click="sendMsg2">
       发消息给parent
     </button>
   </div>

@@ -4,7 +4,9 @@
  */
 
 const DownloaderTest = () =>
-  import(/* webpackChunkName:'DownloaderTest' */ 'Views/DownloaderTest/DownloaderTest')
+  import(
+    /* webpackChunkName:'DownloaderTest' */ 'Views/DownloaderTest/DownloaderTest'
+  )
 
 export default [
   {

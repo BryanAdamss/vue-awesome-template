@@ -4,7 +4,9 @@
  */
 
 const ConstLoaderTest = () =>
-  import(/* webpackChunkName:'ConstLoaderTest' */ 'Views/ConstLoaderTest/ConstLoaderTest')
+  import(
+    /* webpackChunkName:'ConstLoaderTest' */ 'Views/ConstLoaderTest/ConstLoaderTest'
+  )
 
 export default [
   {

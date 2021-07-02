@@ -17,6 +17,7 @@ export default {
 <style lang="scss" scoped>
 .c-BaseSwiperSlide {
   position: relative;
+
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;

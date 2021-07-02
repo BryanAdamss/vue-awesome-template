@@ -4,7 +4,9 @@
  */
 
 const BasePdfViewerTest = () =>
-  import(/* webpackChunkName:'BasePdfViewerTest' */ 'Views/BasePdfViewerTest/BasePdfViewerTest')
+  import(
+    /* webpackChunkName:'BasePdfViewerTest' */ 'Views/BasePdfViewerTest/BasePdfViewerTest'
+  )
 
 export default [
   {

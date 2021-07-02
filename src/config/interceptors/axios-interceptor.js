@@ -11,7 +11,8 @@ import GlobalLoading from 'Plugins/global-loading'
 
 import { isEmpty } from 'Utils/type-judge'
 
-import { OFFLINE_MSG } from 'Services/const/common'
+import { OFFLINE_MSG, TOKEN_EXPIRED } from 'Services/const/common'
+import resendToken from 'Services/extends/resend-token-instance'
 
 const globalLoading = new GlobalLoading(GLOBAL_LOADING_DEFAULT_CONFIG)
 
@@ -27,7 +28,7 @@ export function reqResolveFn(reqConf) {
 
   !navigator.onLine && Message(OFFLINE_MSG)
 
-  return reqConf
+  return resendToken.requestCollect(reqConf) // 请求收集
 }
 
 /**
@@ -72,6 +73,8 @@ export function respSuccFn(respObj) {
   const { code } = resData
 
   switch (code) {
+    case TOKEN_EXPIRED: // token过期收集
+      return resendToken.responseCollect(respObj.config)
     case 200:
       return resData.result
     default:

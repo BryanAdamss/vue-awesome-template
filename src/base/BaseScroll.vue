@@ -1,8 +1,5 @@
 <template>
-  <div
-    ref="wrapper"
-    class="c-BaseScroll"
-  >
+  <div ref="wrapper" class="c-BaseScroll">
     <div class="c-BaseScroll-main">
       <!-- 滚动列表 -->
       <div class="c-BaseScroll-list">
@@ -10,21 +7,12 @@
       </div>
       <!-- 滚动列表 end -->
       <!-- 上拉加载容器 -->
-      <div
-        v-if="pullUpLoad"
-        class="c-BaseScroll-pullup"
-      >
+      <div v-if="pullUpLoad" class="c-BaseScroll-pullup">
         <div class="c-PullUp">
-          <div
-            v-show="pullUpOptions.isPullUpLoading"
-            class="c-PullUp-spinner"
-          >
+          <div v-show="pullUpOptions.isPullUpLoading" class="c-PullUp-spinner">
             <BaseLoadingSpinner />
           </div>
-          <div
-            v-show="!pullUpOptions.isPullUpLoading"
-            class="c-PullUp-text"
-          >
+          <div v-show="!pullUpOptions.isPullUpLoading" class="c-PullUp-text">
             {{ pullUpOptions.noMoreData ? pullUpNoMoreDataText : pullUpText }}
           </div>
         </div>
@@ -32,26 +20,21 @@
       <!-- 上拉加载容器 end -->
     </div>
     <!-- 下拉刷新容器 -->
-    <div
-      v-if="pullDownRefresh"
-      ref="pulldown"
-      class="c-BaseScroll-pulldown"
-    >
+    <div v-if="pullDownRefresh" ref="pulldown" class="c-BaseScroll-pulldown">
       <div class="c-PullDown">
-        <div
-          v-show="pullDownOptions.isPullingDown"
-          class="c-PullDown-spinner"
-        >
-          <BaseLoadingSpinner
-            size="32"
-          />
+        <div v-show="pullDownOptions.isPullingDown" class="c-PullDown-spinner">
+          <BaseLoadingSpinner size="32" />
         </div>
         <div
           v-show="!pullDownOptions.isPullingDown"
-          :class="{'is-overPullDown':pullDownOptions.isOverPullDown}"
+          :class="{ 'is-overPullDown': pullDownOptions.isOverPullDown }"
           class="c-PullDown-text"
         >
-          {{ pullDownOptions.isOverPullDown ? pullDownReleaseText : pullingDownText }}
+          {{
+            pullDownOptions.isOverPullDown
+              ? pullDownReleaseText
+              : pullingDownText
+          }}
         </div>
       </div>
     </div>

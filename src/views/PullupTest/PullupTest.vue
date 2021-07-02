@@ -1,14 +1,7 @@
 <template>
   <div class="c-PullupTest">
-    <ul
-      v-pull-up="onPullup"
-      class="c-PullupTest-list"
-    >
-      <li
-        v-for="item in list"
-        :key="item"
-        v-text="item"
-      />
+    <ul v-pull-up="onPullup" class="c-PullupTest-list">
+      <li v-for="item in list" :key="item" v-text="item" />
     </ul>
   </div>
 </template>
@@ -34,7 +27,11 @@ export default {
         setTimeout(() => {
           const len = Math.floor(Math.random() * 10 + 1)
 
-          resolve(new Array(len).fill(0).map(item => Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)))
+          resolve(
+            new Array(len)
+              .fill(0)
+              .map(item => Math.floor(Math.random() * Number.MAX_SAFE_INTEGER))
+          )
         }, delayMs)
       })
     },

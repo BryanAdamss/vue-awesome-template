@@ -1,17 +1,8 @@
 <template>
   <div class="c-SvgIconTestPage">
-    <BaseSvgIcon
-      name="1"
-      size="20"
-    />
-    <BaseSvgIcon
-      name="2"
-      size="40"
-    />
-    <BaseSvgIcon
-      name="3"
-      size="100"
-    />
+    <BaseSvgIcon name="1" size="20" />
+    <BaseSvgIcon name="2" size="40" />
+    <BaseSvgIcon name="3" size="100" />
   </div>
 </template>
 

@@ -4,7 +4,9 @@
  */
 
 const InputAutoHeightTest = () =>
-  import(/* webpackChunkName:'InputAutoHeightTest' */ 'Views/InputAutoHeightTest/InputAutoHeightTest')
+  import(
+    /* webpackChunkName:'InputAutoHeightTest' */ 'Views/InputAutoHeightTest/InputAutoHeightTest'
+  )
 
 export default [
   {

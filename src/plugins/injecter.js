@@ -10,6 +10,7 @@ import { APP_INFO, BASE_URL, GLOBAL_NAME_SPACE } from 'Config'
 import api from 'Plugins/api-builder'
 import { constLoader } from 'Plugins/const-loader'
 import bus from 'Plugins/event-bus'
+import { rootVue } from 'Plugins/root-instance'
 
 import { debounce, getGlobalThis, getOrigin, throttle } from 'Utils'
 
@@ -83,6 +84,7 @@ export const globalInjecter = () => {
   window[GLOBAL_NAME_SPACE] = {
     APP_INFO,
     GLOBAL_NAME_SPACE,
-    $bus: bus
+    $bus: bus,
+    rootVue
   }
 }

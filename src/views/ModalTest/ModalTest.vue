@@ -10,10 +10,7 @@
     >
       <div style="background-color:#fff">
         测试modal
-        <button
-          type="button"
-          @click.stop="closeModal"
-        >
+        <button type="button" @click.stop="closeModal">
           &times;
         </button>
         <h1>sjdkfljaslkdfj</h1>

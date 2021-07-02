@@ -1,7 +1,5 @@
 import './register-service-worker'
 
-import Vue from 'vue'
-
 // * ----------------------------------------
 // * 导入插件
 // * ----------------------------------------
@@ -12,11 +10,9 @@ import {
 import { globalInjecter, vueInjecter } from 'Plugins/injecter'
 import { bindNetworkChangeEvent } from 'Plugins/network-detector'
 import { directiveRegister, filterRegister } from 'Plugins/register'
-import router from 'Plugins/router-instance'
+import { mountRootVue } from 'Plugins/root-instance'
 import { vconsoleProvider } from 'Plugins/vconsole-provider'
-import store from 'Plugins/vuex-instance'
-
-import App from './App'
+import { setVueConfig } from 'Plugins/vue-config'
 
 // * ----------------------------------------
 // * 注册组件
@@ -47,14 +43,11 @@ vconsoleProvider()
 bindNetworkChangeEvent()
 
 // * ----------------------------------------
-// * 实例化vue
+// * 设置vue config
 // * ----------------------------------------
-Vue.config.productionTip = false
+setVueConfig()
 
-/* eslint-disable no-new */
-/* eslint-disable vue/require-name-property */
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+// * ----------------------------------------
+// * 挂载根实例
+// * ----------------------------------------
+mountRootVue()

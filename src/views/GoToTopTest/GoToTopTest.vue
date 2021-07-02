@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="goTop"
-    class="c-GoToTopTest"
-  >
+  <div id="goTop" class="c-GoToTopTest">
     <ul>
       <li>1</li>
       <li>2</li>
@@ -106,7 +103,7 @@
       <li>100</li>
     </ul>
     <div
-      v-go-to-top="{target:'#goTop'}"
+      v-go-to-top="{ target: '#goTop' }"
       style="position:fixed;right:10px;bottom:40px;"
     >
       GoToTop

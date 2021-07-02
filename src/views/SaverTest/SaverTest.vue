@@ -18,13 +18,13 @@
     <button @click="getNamespace()">
       获取命名空间
     </button>
-    <hr>
+    <hr />
     value:{{ value }}
-    <br>
+    <br />
     allKeys:{{ allKeys }}
-    <br>
+    <br />
     allKeyFullNames:{{ allKeyFullNames }}
-    <br>
+    <br />
     namespace:{{ namespace }}
   </div>
 </template>
@@ -43,7 +43,8 @@ export default {
   props: {},
   data() {
     return {
-      testSaver: new Saver({ // 模块化Saver
+      testSaver: new Saver({
+        // 模块化Saver
         moduleName: 'SaverTest',
         isSession: true // sessionStorage
       }),

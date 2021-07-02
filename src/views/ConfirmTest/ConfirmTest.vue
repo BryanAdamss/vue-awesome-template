@@ -1,9 +1,6 @@
 <template>
   <div class="c-ConfirmTest">
-    <button
-      type="button"
-      @click.stop="showConfirm"
-    >
+    <button type="button" @click.stop="showConfirm">
       点击展示confirm
     </button>
     <BaseConfirm

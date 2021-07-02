@@ -1,10 +1,7 @@
 <template>
   <div class="c-ScrollbarTest">
     <BaseScrollbar>
-      <ul
-        class="c-List"
-        style="width:400px;"
-      >
+      <ul class="c-List" style="width:400px;">
         <li class="c-List-item">
           1
         </li>

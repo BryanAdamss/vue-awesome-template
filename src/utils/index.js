@@ -537,6 +537,13 @@ export function getGlobalThis() {
 }
 
 /**
+ * 千分位处理
+ * 1000.123 -> 1,000.123
+ */
+export const thousands = num =>
+  num.toString().replace(/(\d{1,3})(?=(\d{3})+(?:$|\.))/g, '$1,')
+  
+/**  
  * 超时取消单个、多个promise执行
  *
  * @export

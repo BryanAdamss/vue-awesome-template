@@ -543,18 +543,25 @@ export function getGlobalThis() {
 export const thousands = num =>
   num.toString().replace(/(\d{1,3})(?=(\d{3})+(?:$|\.))/g, '$1,')
   
-/**  
+/**
  * 超时取消单个、多个promise执行
  *
  * @export
  * @param {Number} timeout 超时时间，单位毫秒
  * @param {String} [msg='timeout'] 超时提示
- * @param {Array} promises promise实例数组
- * @return {*}
+ * @param {Promise|Array<Promise>} promises promise实例数组
+ * @return {Promise} 一个超时自动取消的promise实例
  */
-export function makePromiseCancelable(timeout, msg = 'timeout', ...promises) {
-  if (!promises || !promises.length)
+ export function makePromiseTimeoutAutoCancel(oneOrMorePromise, timeout, msg = 'timeout') {
+  if (!oneOrMorePromise ||
+    (Array.isArray(oneOrMorePromise) && !oneOrMorePromise.length)
+  ) {
     throw new Error('At least one promise is required')
+  }
+
+  const promises = Array.isArray(oneOrMorePromise)
+    ? oneOrMorePromise
+    : [oneOrMorePromise]
 
   return () =>
     Promise.race([

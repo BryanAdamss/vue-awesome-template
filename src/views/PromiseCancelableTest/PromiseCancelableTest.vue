@@ -1,35 +1,42 @@
 <template>
   <div class="c-PromiseCancelableTest">
     <pre>
-        const p1 = new Promise(resolve => {
+    const p1 = new Promise(resolve => {
       setTimeout(() => {
-        resolve(1000)
+        resolve('p1 resolved')
       }, 1000)
     })
+
     const p2 = new Promise(resolve => {
       setTimeout(() => {
-        resolve(2000)
+        resolve('p2 resolved')
       }, 2000)
     })
 
-    const p3 = makePromiseCancelable(500, 'p1超时被取消', p1)
+    const p3 = new Promise(resolve => {
+      setTimeout(() => {
+        resolve('p3 resolved')
+      }, 3000)
+    })
 
-    p3()
-      .then(res => {
-        alert(`p3----${res}`)
-      })
-      .catch(err => {
-        alert(`p3----${err}`)
-      })
-
-    const p4 = makePromiseCancelable(500, 'p1、p2有一个超时了', p1, p2)
+    const p4 = makePromiseTimeoutAutoCancel(p1,500, 'p1超时被取消')
 
     p4()
       .then(res => {
         alert(`p4----${res}`)
       })
       .catch(err => {
-        alert(`p4----${err}`)
+        alert(`p4 err----${err}`)
+      })
+
+    const p5 = makePromiseTimeoutAutoCancel([p2,p3],500, 'p1、p2有一个超时了')
+
+    p5()
+      .then(res => {
+        alert(`p5----${res}`)
+      })
+      .catch(err => {
+        alert(`p5 err----${err}`)
       })
     </pre>
   </div>
@@ -40,7 +47,7 @@
  * * PromiseCancelableTest
  */
 
-import { makePromiseCancelable } from 'Utils'
+import { makePromiseTimeoutAutoCancel } from 'Utils'
 
 export default {
   name: 'PromiseCancelableTest',
@@ -56,33 +63,40 @@ export default {
   created() {
     const p1 = new Promise(resolve => {
       setTimeout(() => {
-        resolve(1000)
+        resolve('p1 resolved')
       }, 1000)
     })
+
     const p2 = new Promise(resolve => {
       setTimeout(() => {
-        resolve(2000)
+        resolve('p2 resolved')
       }, 2000)
     })
 
-    const p3 = makePromiseCancelable(500, 'p1超时被取消', p1)
+    const p3 = new Promise(resolve => {
+      setTimeout(() => {
+        resolve('p3 resolved')
+      }, 3000)
+    })
 
-    p3()
-      .then(res => {
-        alert(`p3----${res}`)
-      })
-      .catch(err => {
-        alert(`p3----${err}`)
-      })
-
-    const p4 = makePromiseCancelable(500, 'p1、p2有一个超时了', p1, p2)
+    const p4 = makePromiseTimeoutAutoCancel(p1,500, 'p1超时被取消')
 
     p4()
       .then(res => {
         alert(`p4----${res}`)
       })
       .catch(err => {
-        alert(`p4----${err}`)
+        alert(`p4 err----${err}`)
+      })
+
+    const p5 = makePromiseTimeoutAutoCancel([p2,p3],500, 'p1、p2有一个超时了')
+
+    p5()
+      .then(res => {
+        alert(`p5----${res}`)
+      })
+      .catch(err => {
+        alert(`p5 err----${err}`)
       })
   },
   mounted() {},

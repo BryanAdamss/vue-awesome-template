@@ -11,14 +11,6 @@ module.exports = {
   },
   plugins: ['simple-import-sort'], // 添加import排序插件
   rules: {
-    // 建议使用命名导出
-    'no-restricted-syntax': [
-      'error',
-      {
-        selector: 'ExportDefaultDeclaration',
-        message: 'Prefer named exports'
-      }
-    ],
     // 在类成员之间出现空行
     'lines-between-class-members': 'warn',
     // 强制驼峰
@@ -138,6 +130,20 @@ module.exports = {
       ],
       env: {
         jest: true
+      }
+    },
+    {
+      // 所有的js/ts建议使用命名导出
+      files: ['**/*.js', '**/*.ts'],
+      rules: {
+        // 建议使用命名导出
+        'no-restricted-syntax': [
+          'error',
+          {
+            selector: 'ExportDefaultDeclaration',
+            message: 'Prefer named exports'
+          }
+        ]
       }
     }
   ],

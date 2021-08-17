@@ -1,37 +1,37 @@
 {
   "name": "vue-awesome-template",
   "version": "2.1.0",
+  "private": true,
   "description": "A Vue.js project template base on vue-cli@4.x",
   "author": "BryanAdamss@foxmail.com",
-  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:modern": "vue-cli-service build --modern",
-    "build:dev": "vue-cli-service build --mode dev",
-    "build:testing": "vue-cli-service build --mode testing",
-    "build:analysis": "vue-cli-service build --mode analysis",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "ls-lint": "ls-lint",
     "lint": "vue-cli-service lint src tests/unit tests/e2e/specs",
-    "stylelint:fix": "stylelint --fix src/**/*.{sass,scss,vue,css,less,stylus}",
-    "prettier": "prettier --write src/**/*.{json,css,scss,less,sass,md,html,flow,ts,tsd}",
-    "inspect": "vue-cli-service inspect > webpack.inspect.js",
-    "inspect:production": "vue-cli-service inspect --mode production > webpack.inspect.prod.js",
+    "build:analysis": "vue-cli-service build --mode analysis",
+    "build:dev": "vue-cli-service build --mode dev",
+    "build:modern": "vue-cli-service build --modern",
+    "build:testing": "vue-cli-service build --mode testing",
+    "color": "color-palette --input src/sass/utils/_color-base.scss --output src/sass/utils/_color-palette.scss --sassMap",
     "commit": "git-cz",
     "contributor:add": "all-contributors add",
     "contributor:generate": "all-contributors generate",
     "contributor:init": "all-contributors init",
+    "inspect": "vue-cli-service inspect > webpack.inspect.js",
+    "inspect:production": "vue-cli-service inspect --mode production > webpack.inspect.prod.js",
+    "ls-lint": "ls-lint",
+    "new:comp": "node node_modules/@bryanadamss/generate-file",
+    "prettier": "prettier --write src/**/*.{json,css,scss,less,sass,md,html,flow,ts,tsd}",
     "release": "standard-version",
     "release:first": "npm run release -- --first-release",
     "release:major": "npm run release -r major",
     "release:minor": "npm run release -r minor",
     "release:patch": "npm run release -r patch",
     "release:publish": "git push --follow-tags origin master",
-    "new:comp": "node node_modules/@bryanadamss/generate-file",
-    "treer": "treer -e project-structure.txt -i node_modules",
-    "color": "color-palette --input src/sass/utils/_color-base.scss --output src/sass/utils/_color-palette.scss --sassMap"
+    "stylelint:fix": "stylelint --fix src/**/*.{sass,scss,vue,css,less,stylus}",
+    "treer": "treer -e project-structure.txt -i node_modules"
   },
   "dependencies": {
     "@bryanadamss/drawing-board": "^1.5.8",
@@ -57,14 +57,14 @@
     "@commitlint/config-conventional": "^9.0.1",
     "@ghchu/color-palette": "^1.1.3",
     "@ls-lint/ls-lint": "^1.9.0",
-    "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-e2e-cypress": "~4.4.0",
-    "@vue/cli-plugin-eslint": "~4.4.0",
-    "@vue/cli-plugin-pwa": "~4.4.0",
-    "@vue/cli-plugin-router": "~4.4.0",
-    "@vue/cli-plugin-unit-jest": "~4.4.0",
-    "@vue/cli-plugin-vuex": "~4.4.0",
-    "@vue/cli-service": "~4.4.0",
+    "@vue/cli-plugin-babel": "~4.5.13",
+    "@vue/cli-plugin-e2e-cypress": "~4.5.13",
+    "@vue/cli-plugin-eslint": "~4.5.13",
+    "@vue/cli-plugin-pwa": "~4.5.13",
+    "@vue/cli-plugin-router": "~4.5.13",
+    "@vue/cli-plugin-unit-jest": "~4.5.13",
+    "@vue/cli-plugin-vuex": "~4.5.13",
+    "@vue/cli-service": "~4.5.13",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/test-utils": "^1.0.3",
@@ -104,14 +104,14 @@
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cdn-plugin": "^3.3.1"
   },
-  "engines": {
-    "node": ">= 8.17.0",
-    "npm": ">= 6.13.4"
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "engines": {
+    "node": ">= 8.17.0",
+    "npm": ">= 6.13.4"
   },
   "husky": {
     "hooks": {

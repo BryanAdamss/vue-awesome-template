@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
 // 选择文本样式
+@use "sass:math";
+
 @mixin selection($bgColor: #e74c3c, $color: #ecf0f1) {
   ::selection {
     color: $color;
@@ -223,8 +225,7 @@
     font-size: 16px;
     line-height: 1.625;
   } @else {
-    font-size: ($ui-width/10)/
-      ($ui-width/2) *
+    font-size: math.div(($ui-width*0.1), ($ui-width*0.5)) *
       100vw; // 设计图750，默认1rem为7.5，所以通过这种方式将html的font-size设置为75px，配套的px2rem中1rem也为75px；如果设置为font-size为7.5，可以做到rem、vw最终得到相同的px值，但是因为有字体大小限制(最小12px)，所以只能使用75px
     line-height: 1.5;
     // 为了不让基准字体无限变大或变小破坏布局，所以必须做一个限制
@@ -291,7 +292,7 @@
 
 // 设置透明度
 @mixin opacity($opacity: 50) {
-  opacity: $opacity / 100;
+  opacity: $opacity * 0.01;
   @if $ie-filter {
     filter: alpha(opacity=$opacity);
   }
@@ -430,7 +431,7 @@
   background-color: $base;
   background-image: radial-gradient($accent $dot, transparent 0),
     radial-gradient($accent $dot, transparent 0);
-  background-position: 0 0, $size/2 $size/2;
+  background-position: 0 0, $size*0.5 $size*0.5;
   background-size: $size $size;
 }
 
@@ -487,7 +488,7 @@
   @at-root #{&}::before {
     float: left; // 元素需要浮动，不然后面元素需要使用绝对定位
     height: 0; // 本身高度必须置0
-    padding-top: percentage($height/$width); // 使用padding-top撑起高度
+    padding-top: percentage(math.div($height, $width)); // 使用padding-top撑起高度
 
     content: '';
   }

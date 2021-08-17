@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
 // 为颜色添加白色，以百分比形式
+@use "sass:math";
+
 @function tint($color, $percent) {
   @return mix(white, $color, $percent);
 }
@@ -12,7 +14,7 @@
 
 // 计算百分比
 @function calc-percent($target, $context) {
-  @return $target / $context * 100%;
+  @return math.div($target, $context) * 100%;
 }
 
 //黄金比例确切值为(√5-1)/2=0.618033,
@@ -31,8 +33,8 @@ $goldenRatio: 1.618033 !default;
   @return floor(
       $fontSize *
         (
-          $goldenRatio - (1/ (2 * $goldenRatio)) *
-            (1- ($width/($fontSize * $goldenRatio * $fontSize * $goldenRatio)))
+          $goldenRatio - math.div(1, 2 * $goldenRatio) *
+            (1- math.div($width, $fontSize * $goldenRatio * $fontSize * $goldenRatio))
         )
     )
     px;
@@ -43,7 +45,7 @@ $goldenRatio: 1.618033 !default;
 @function calc-width($fontSize, $lineHeight) {
   @return floor(
       ($fontSize * $goldenRatio * $fontSize * $goldenRatio) *
-        (1+2 * $goldenRatio * (($lineHeight/$fontSize)-$goldenRatio))
+        (1+2 * $goldenRatio * (math.div($lineHeight, $fontSize)-$goldenRatio))
     )
     px;
 }
@@ -57,7 +59,7 @@ $goldenRatio: 1.618033 !default;
   } @else if (unit($px) == em) {
     @return $px;
   }
-  @return ($px / $base-font-size) * 1em;
+  @return math.div($px, $base-font-size) * 1em;
 }
 
 // px转rem
@@ -69,7 +71,7 @@ $goldenRatio: 1.618033 !default;
   } @else if (unit($px) == rem) {
     @return $px;
   }
-  @return $px/($ui-width/10) * 1rem; // 750设计图上默认1rem为75px，量出来的px得先除以2再和rem相除
+  @return math.div($px, ($ui-width*0.1)) * 1rem; // 750设计图上默认1rem为75px，量出来的px得先除以2再和rem相除
 }
 
 // px转vw
@@ -81,7 +83,7 @@ $goldenRatio: 1.618033 !default;
   } @else if (unit($px) == vw) {
     @return $px;
   }
-  @return ($px / $ui-width) * 100vw;
+  @return math.div($px, $ui-width) * 100vw;
 }
 
 // 文字长阴影

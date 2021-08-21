@@ -33,9 +33,9 @@
 ```sh
 git clone git@github.com:BryanAdamss/vue-awesome-template.git
 
-npm i
+yarn
 
-npm run serve
+yarn serve
 ```
 
 - scripts

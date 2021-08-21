@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
 // 为颜色添加白色，以百分比形式
-@use "sass:math";
-
 @function tint($color, $percent) {
   @return mix(white, $color, $percent);
 }
@@ -34,7 +32,10 @@ $goldenRatio: 1.618033 !default;
       $fontSize *
         (
           $goldenRatio - math.div(1, 2 * $goldenRatio) *
-            (1- math.div($width, $fontSize * $goldenRatio * $fontSize * $goldenRatio))
+            (
+              1- math.div($width, $fontSize * $goldenRatio * $fontSize *
+                    $goldenRatio)
+            )
         )
     )
     px;
@@ -71,7 +72,7 @@ $goldenRatio: 1.618033 !default;
   } @else if (unit($px) == rem) {
     @return $px;
   }
-  @return math.div($px, ($ui-width*0.1)) * 1rem; // 750设计图上默认1rem为75px，量出来的px得先除以2再和rem相除
+  @return math.div($px, ($ui-width * 0.1)) * 1rem; // 750设计图上默认1rem为75px，量出来的px得先除以2再和rem相除
 }
 
 // px转vw

@@ -23,5 +23,5 @@ export const _getNewGlobalSessionSaver = moduleName =>
     globalNamespace: GLOBAL_NAME_SPACE
   })
 
-export const globalSaver = _getNewGlobalSaver()
-export const globalSessionSaver = _getNewGlobalSessionSaver()
+export const globalSaverInstance = _getNewGlobalSaver()
+export const globalSessionSaverInstance = _getNewGlobalSessionSaver()

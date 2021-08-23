@@ -2,7 +2,7 @@
  * * 注册模块入口页
  */
 
-import { vuexInstance } from 'Plugins/vuex-instance.js'
+import { vuexInstance } from 'Services/extends/vuex-instance.js'
 
 import actions from './actions.js'
 import moduleA from './module-a.js'

@@ -1,6 +1,6 @@
 /**
  * @author GuangHui
- * @description directive、filters 注册器
+ * @description directive、filters 资源注册器
  */
 import Vue from 'vue'
 

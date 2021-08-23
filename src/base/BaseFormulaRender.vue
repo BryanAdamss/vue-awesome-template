@@ -1,8 +1,8 @@
 <script>
-import { uuid } from 'Utils'
+import { KatexWrapper } from 'Plugins/katex-wrapper'
+import { MathJaxWrapper } from 'Plugins/mathjax-wrapper'
 
-import { KatexWrapper } from 'Services/extends/katex-wrapper'
-import { MathJaxWrapper } from 'Services/extends/mathjax-wrapper'
+import { uuid } from 'Utils'
 
 const katex = new KatexWrapper()
 const mathjax = new MathJaxWrapper()

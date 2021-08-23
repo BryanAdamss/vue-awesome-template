@@ -6,8 +6,9 @@
 import Vue from 'vue'
 
 import { eventBus } from 'Plugins/event-bus.js'
-import { routerInstance } from 'Plugins/router-instance.js'
-import { vuexInstance } from 'Plugins/vuex-instance.js'
+
+import { routerInstance } from 'Services/extends/router-instance.js'
+import { vuexInstance } from 'Services/extends/vuex-instance.js'
 
 import App from '@/App'
 

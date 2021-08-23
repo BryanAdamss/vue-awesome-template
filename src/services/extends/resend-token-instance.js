@@ -11,7 +11,7 @@ import { ResendToken } from 'Plugins/resend-token'
 import { toast } from 'Base/BaseToast'
 
 import { TOKEN_EXPIRED } from 'Services/const/common'
-import { globalSaver } from 'Services/extends/global-saver'
+import { globalSaverInstance } from 'Services/extends/global-saver-instance'
 
 const isTokenExpiredFn = code => code === TOKEN_EXPIRED
 
@@ -34,7 +34,7 @@ export const resendTokenInstance = new ResendToken({
   isTokenExpiredFn, // token过期判断方法
   onGetTokenFnResolved: newToken => {
     // getTokenFn resolve时触发的回调，此时可存储相关token，后续使用
-    globalSaver.setItem('newToken', newToken)
+    globalSaverInstance.setItem('newToken', newToken)
   },
   onGetTokenFnRejected: err => {
     // getTokenFn reject时调用，此时可以提示用户或者尝试让用户重新登录

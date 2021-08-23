@@ -9,7 +9,6 @@ import { APP_INFO, BASE_URL, GLOBAL_NAME_SPACE } from 'Config'
 
 import { constLoader } from 'Plugins/const-loader'
 import { eventBus } from 'Plugins/event-bus'
-import { rootVue } from 'Plugins/root-instance'
 
 import { debounce, getGlobalThis, getOrigin, throttle } from 'Utils'
 
@@ -18,9 +17,10 @@ import { toast } from 'Base/BaseToast'
 import {
   _getNewGlobalSaver,
   _getNewGlobalSessionSaver,
-  globalSaver,
-  globalSessionSaver
-} from 'Services/extends/global-saver'
+  globalSaverInstance,
+  globalSessionSaverInstance
+} from 'Services/extends/global-saver-instance'
+import { rootVue } from 'Services/extends/root-instance'
 
 Vue.use(Loading.directive)
 
@@ -49,8 +49,8 @@ export const vueInjecter = () => {
       Vue.prototype.$prompt = MessageBox.prompt
       Vue.prototype.$message = Message
 
-      Vue.prototype.$saver = globalSaver // 全局localStorageSaver
-      Vue.prototype.$sessionSaver = globalSessionSaver // 全局sessiontorageSaver
+      Vue.prototype.$saver = globalSaverInstance // 全局localStorageSaver
+      Vue.prototype.$sessionSaver = globalSessionSaverInstance // 全局sessiontorageSaver
 
       Vue.prototype.$getNewGlobalSaver = _getNewGlobalSaver
       Vue.prototype.$getNewGlobalSessionSaver = _getNewGlobalSessionSaver

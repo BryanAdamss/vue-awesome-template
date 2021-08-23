@@ -3,16 +3,23 @@ import './register-service-worker'
 // * ----------------------------------------
 // * 导入插件
 // * ----------------------------------------
+import { bindNetworkChangeEvent } from 'Plugins/network-detector'
+import { vconsoleProvider } from 'Plugins/vconsole-provider'
+
+// * ----------------------------------------
+// * 导入服务插件
+// * ----------------------------------------
+import {
+  directiveRegister,
+  filterRegister 
+} from 'Services/extends/assets-register'
 import {
   elementUiRegister,
   vueLazyloadReigster
-} from 'Plugins/component-register'
-import { globalInjecter, vueInjecter } from 'Plugins/injecter'
-import { bindNetworkChangeEvent } from 'Plugins/network-detector'
-import { directiveRegister, filterRegister } from 'Plugins/register'
-import { mountRootVue } from 'Plugins/root-instance'
-import { vconsoleProvider } from 'Plugins/vconsole-provider'
-import { setVueConfig } from 'Plugins/vue-config'
+} from 'Services/extends/component-register'
+import { globalInjecter, vueInjecter } from 'Services/extends/injecter'
+import { mountRootVue } from 'Services/extends/root-instance'
+import { setVueConfig } from 'Services/extends/vue-config'
 
 // * ----------------------------------------
 // * 注册组件

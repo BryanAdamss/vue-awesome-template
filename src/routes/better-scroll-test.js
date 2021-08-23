@@ -8,6 +8,7 @@ const BetterScrollTest = () =>
     /* webpackChunkName:'BetterScrollTest' */ 'Views/BetterScrollTest/BetterScrollTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/better-scroll-test',

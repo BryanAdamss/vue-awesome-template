@@ -6,6 +6,7 @@
 const BitEnumTest = () =>
   import(/* webpackChunkName:'BitEnumTest' */ 'Views/BitEnumTest/BitEnumTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/bit-enum-test',

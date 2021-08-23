@@ -6,9 +6,9 @@ import axios from 'axios'
 
 import { AXIOS_DEFAULT_CONFIG } from 'Config'
 
-import ResendToken from 'Plugins/resend-token'
+import { ResendToken } from 'Plugins/resend-token'
 
-import toast from 'Base/BaseToast'
+import { toast } from 'Base/BaseToast'
 
 import { TOKEN_EXPIRED } from 'Services/const/common'
 import { globalSaver } from 'Services/extends/global-saver'
@@ -22,7 +22,7 @@ const getToken = () => Promise.resolve('test-token')
 // 建议重新创建一个新axios实例专门用于重新发送请求
 const resendRequestInstance = axios.create(AXIOS_DEFAULT_CONFIG)
 
-export default new ResendToken({
+export const resendTokenInstance = new ResendToken({
   getTokenFn: getToken,
   requestInstance: resendRequestInstance,
   configProcessor: config => {

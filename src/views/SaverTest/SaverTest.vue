@@ -34,7 +34,7 @@
  * * SaverTest
  */
 
-import Saver from 'Plugins/saver'
+import { Saver } from 'Plugins/saver'
 
 export default {
   name: 'SaverTest',

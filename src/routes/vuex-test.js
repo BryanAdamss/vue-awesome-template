@@ -6,6 +6,7 @@
 const VuexTest = () =>
   import(/* webpackChunkName:'VuexTest' */ 'Views/VuexTest/VuexTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/vuex-test',

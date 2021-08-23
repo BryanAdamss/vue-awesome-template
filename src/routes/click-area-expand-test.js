@@ -7,6 +7,7 @@ const ClickAreaExpandTest = () =>
     /* webpackChunkName:'ClickAreaExpandTest' */ 'Views/ClickAreaExpandTest/ClickAreaExpandTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/click-area-expand-test',

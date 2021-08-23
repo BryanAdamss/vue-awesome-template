@@ -8,6 +8,7 @@ const DrawingBoardTest = () =>
     /* webpackChunkName:'DrawingBoardTest' */ 'Views/DrawingBoardTest/DrawingBoardTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/drawing-board-test',

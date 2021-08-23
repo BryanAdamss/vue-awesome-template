@@ -6,6 +6,7 @@
 import { throttle } from 'Utils'
 import { addStyle } from 'Utils/dom'
 
+// eslint-disable-next-line
 export default {
   bind(el, binding, vnode) {},
   inserted(el, binding, vnode) {},

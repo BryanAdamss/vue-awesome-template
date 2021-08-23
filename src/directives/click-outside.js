@@ -3,6 +3,7 @@
  * @description 点击区域外指令
  */
 
+// eslint-disable-next-line
 export default {
   bind(el, binding, vnode) {
     function documentHandler(e) {

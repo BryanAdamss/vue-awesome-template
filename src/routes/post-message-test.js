@@ -12,6 +12,7 @@ const PostMessageTestFrame = () =>
     /* webpackChunkName:'PostMessageTestFrame' */ 'Views/PostMessageTest/PostMessageTestFrame'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/post-message-test',

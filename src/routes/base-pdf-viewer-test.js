@@ -8,6 +8,7 @@ const BasePdfViewerTest = () =>
     /* webpackChunkName:'BasePdfViewerTest' */ 'Views/BasePdfViewerTest/BasePdfViewerTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/base-pdf-viewer-test',

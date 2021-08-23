@@ -15,7 +15,7 @@
   * @export
   * @class ResendToken
   */
- export default class ResendToken {
+ export class ResendToken {
    /**
     * Creates an instance of ResendToken.
     * @constructor

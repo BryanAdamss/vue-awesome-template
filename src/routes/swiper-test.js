@@ -6,6 +6,7 @@
 const SwiperTest = () =>
   import(/* webpackChunkName:'SwiperTest' */ 'Views/SwiperTest/SwiperTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/swiper-test',

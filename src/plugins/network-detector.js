@@ -3,13 +3,13 @@
  * @description 网络情况侦测
  */
 
-import bus from 'Plugins/event-bus'
+import { eventBus } from 'Plugins/event-bus'
 
 export const bindNetworkChangeEvent = () => {
   window.addEventListener(
     'online',
     () => {
-      bus.$emit('network-change', true)
+      eventBus.$emit('network-change', true)
     },
     false
   )
@@ -17,7 +17,7 @@ export const bindNetworkChangeEvent = () => {
   window.addEventListener(
     'offline',
     () => {
-      bus.$emit('network-change', false)
+      eventBus.$emit('network-change', false)
     },
     false
   )

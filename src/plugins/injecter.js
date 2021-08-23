@@ -8,12 +8,12 @@ import Vue from 'vue'
 import { APP_INFO, BASE_URL, GLOBAL_NAME_SPACE } from 'Config'
 
 import { constLoader } from 'Plugins/const-loader'
-import bus from 'Plugins/event-bus'
+import { eventBus } from 'Plugins/event-bus'
 import { rootVue } from 'Plugins/root-instance'
 
 import { debounce, getGlobalThis, getOrigin, throttle } from 'Utils'
 
-import BaseToast from 'Base/BaseToast'
+import { toast } from 'Base/BaseToast'
 
 import {
   _getNewGlobalSaver,
@@ -35,9 +35,9 @@ export const vueInjecter = () => {
       Vue.prototype.$throttle = throttle
       Vue.prototype.$debounce = debounce
 
-      Vue.prototype.$toast = BaseToast
+      Vue.prototype.$toast = toast
 
-      Vue.prototype.$bus = bus
+      Vue.prototype.$bus = eventBus
       Vue.prototype.$baseURL = BASE_URL
       Vue.prototype.$globalNameSpace = GLOBAL_NAME_SPACE
       Vue.prototype.$appInfo = APP_INFO
@@ -82,7 +82,7 @@ export const globalInjecter = () => {
   window[GLOBAL_NAME_SPACE] = {
     APP_INFO,
     GLOBAL_NAME_SPACE,
-    $bus: bus,
+    $bus: eventBus,
     rootVue
   }
 }

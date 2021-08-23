@@ -6,6 +6,7 @@
 const PopUpTest = () =>
   import(/* webpackChunkName:'PopUpTest' */ 'Views/PopUpTest/PopUpTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/pop-up-test',

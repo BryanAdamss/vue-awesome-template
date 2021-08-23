@@ -6,6 +6,7 @@
 const ConfirmTest = () =>
   import(/* webpackChunkName:'ConfirmTest' */ 'Views/ConfirmTest/ConfirmTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/confirm-test',

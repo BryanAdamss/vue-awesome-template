@@ -8,6 +8,7 @@ const ScrollbarTest = () =>
     /* webpackChunkName:'ScrollbarTest' */ 'Views/ScrollbarTest/ScrollbarTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/scrollbar-test',

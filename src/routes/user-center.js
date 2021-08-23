@@ -6,6 +6,7 @@
 const UserCenter = () =>
   import(/* webpackChunkName:'UserCenter' */ 'Views/UserCenter/UserCenter')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/user-center',

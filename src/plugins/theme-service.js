@@ -5,7 +5,7 @@
 
 import { canSupportCssVar } from 'Utils/dom'
 
-export default class ThemeService {
+export class ThemeService {
   constructor() {
     this.styleEl = null
     this.styleElId = null

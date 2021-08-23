@@ -10,6 +10,8 @@ import { eventListenerPassiveSupported, throttle } from 'Utils'
 import BaseLoadingSpinner from 'Base/BaseLoadingSpinner'
 
 const ExtendLoading = Vue.extend({
+  // eslint-disable-next-line
+  name:'ExtendLoading',
   render(h) {
     return h(
       'div',
@@ -25,6 +27,7 @@ const ExtendLoading = Vue.extend({
 })
 const MyLoading = new ExtendLoading().$mount()
 
+// eslint-disable-next-line
 export default {
   bind(el, binding, vnode, oldVnode) {
     let lastScrollTop = 0

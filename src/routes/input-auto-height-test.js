@@ -8,6 +8,7 @@ const InputAutoHeightTest = () =>
     /* webpackChunkName:'InputAutoHeightTest' */ 'Views/InputAutoHeightTest/InputAutoHeightTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/input-auto-height-test',

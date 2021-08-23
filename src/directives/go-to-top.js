@@ -3,6 +3,7 @@
  * @description 回到顶部指令
  */
 
+// eslint-disable-next-line
 export default {
   bind(el, binding, vnode) {},
   inserted(el, binding, vnode) {

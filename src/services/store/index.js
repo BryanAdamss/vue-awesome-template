@@ -7,7 +7,7 @@ import * as getters from './getters'
 import mutations from './mutations'
 import state from './states'
 
-export default {
+export const globalStore= {
   state,
   actions,
   getters,

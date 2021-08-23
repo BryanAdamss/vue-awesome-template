@@ -5,6 +5,7 @@
 
 const Login = () => import(/* webpackChunkName:'Login' */ 'Views/Login/Login')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/login',

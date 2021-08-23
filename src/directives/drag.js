@@ -3,6 +3,7 @@
  * @description 拖拽指令
  */
 
+// eslint-disable-next-line
 export default {
   bind(el, binding, vnode, oldVnode) {},
   inserted(el, binding) {

@@ -8,6 +8,7 @@ const NumberToChineseTest = () =>
     /* webpackChunkName:'NumberToChineseTest' */ 'Views/NumberToChineseTest/NumberToChineseTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/number-to-chinese-test',

@@ -8,6 +8,7 @@ const CircleProgressTest = () =>
     /* webpackChunkName:'CircleProgressTest' */ 'Views/CircleProgressTest/CircleProgressTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/circle-progress-test',

@@ -8,6 +8,7 @@ const DownloaderTest = () =>
     /* webpackChunkName:'DownloaderTest' */ 'Views/DownloaderTest/DownloaderTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/downloader-test',

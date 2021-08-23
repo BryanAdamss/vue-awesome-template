@@ -8,6 +8,7 @@ const ListTransitionTest = () =>
     /* webpackChunkName:'ListTransitionTest' */ 'Views/ListTransitionTest/ListTransitionTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/list-transition-test',

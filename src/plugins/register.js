@@ -4,9 +4,9 @@
  */
 import Vue from 'vue'
 
-import filtersMap from 'Config/filters-map'
+import { filtersMap } from 'Config/filters-map'
 
-import directivesLoader from 'Plugins/directives-loader'
+import { directivesLoader } from 'Plugins/directives-loader'
 // import elementUIList from 'Config/element-ui-list'
 
 export function directiveRegister() {

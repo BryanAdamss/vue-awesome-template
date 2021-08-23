@@ -16,7 +16,7 @@
  * * PostMessageTest
  */
 
-import Messager from 'Plugins/messager'
+import { Messager } from 'Plugins/messager'
 
 export default {
   name: 'PostMessageTest',

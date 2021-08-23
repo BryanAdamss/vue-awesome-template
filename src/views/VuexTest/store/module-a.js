@@ -2,6 +2,7 @@
  * * 模块a（包含模块a独享的一些state、getter、mutation、action）
  */
 
+// eslint-disable-next-line no-restricted-syntax
 export default {
   namespaced: true,
   state: {

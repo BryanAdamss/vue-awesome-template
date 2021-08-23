@@ -8,6 +8,7 @@ const RandomProgressTest = () =>
     /* webpackChunkName:'RandomProgressTest' */ 'Views/RandomProgressTest/RandomProgressTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/random-progress-test',

@@ -6,6 +6,7 @@
 const AudioTest = () =>
   import(/* webpackChunkName:'AudioTest' */ 'Views/AudioTest/AudioTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/audio-test',

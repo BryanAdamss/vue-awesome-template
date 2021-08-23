@@ -2,21 +2,48 @@
  * @author GuangHui
  * @description mathjax wrapper
  */
-import { loadJs } from 'Utils/dom'
+import { loadJs } from 'Utils/dom.js'
 
-export default class MathJaxWrapper {
+/**
+ * MathJax 包装类
+ *
+ * @date 2021-05-20 14:12:59
+ * @export
+ * @class MathJaxWrapper
+ */
+export class MathJaxWrapper {
+  /**
+   * 获取实例
+   *
+   * @date 2021-05-20 14:13:13
+   * @static
+   * @param {Object} opts 入参
+   * @return {MathJaxWrapper}  MathJaxWrapper实例
+   * @memberof MathJaxWrapper
+   */
   static getInstance(opts) {
     return this._instance || (this._instance = new MathJaxWrapper(opts))
   }
 
+  /**
+   * MathJaxWrapper构造函数
+   *
+   * @date 2021-05-20 14:13:45
+   * @constructor
+   * @param {Object} opts 入参，包含js字段，默认指向'//static.zhixue.com/middlehomework/common/libs/mathjax-2.7.4-custom/MathJax.js?config=TeX-AMS_CHTML'
+   * @memberof MathJaxWrapper
+   * @example
+   // 自定义mathjax资源地址
+   const mj = new MathJaxWrapper({js:"https://cdn.jsdelivr.net/npm/mathjax@2.7.0/unpacked/MathJax.min.js"})
+   */
   constructor({
-    src = '//static.zhixue.com/middlehomework/common/libs/mathjax-2.7.4-custom/MathJax.js?config=TeX-AMS_CHTML'
+    js = '//static.zhixue.com/middlehomework/common/libs/mathjax-2.7.4-custom/MathJax.js?config=TeX-AMS_CHTML'
   } = {}) {
     if (MathJaxWrapper._instance) return MathJaxWrapper._instance
 
-    if (typeof src !== 'string') throw new Error('src can not be empty')
+    if (typeof js !== 'string') throw new Error('js can not be empty')
 
-    this.src = src
+    this.js = js
     this.isLoading = false
     this.pendingQueue = []
 
@@ -24,24 +51,27 @@ export default class MathJaxWrapper {
   }
 
   /**
-   * 加载资源
+   * 加载mathjax
    *
-   * @return {void} 无返回
+   * @date 2021-05-20 14:16:12
+   * @private
+   * @return {Promise}  Promise实例
    * @memberof MathJaxWrapper
    */
-  load() {
-    return loadJs(this.src)
+  _load() {
+    return loadJs(this.js)
   }
 
   /**
    * 设置mathjax config
    *
-   * @return {void} 无返回
+   * @date 2021-05-20 14:16:41
+   * @private
+   * @return {void}  无返回
    * @memberof MathJaxWrapper
    */
-  setMathJaxConfig() {
-    if (!window.MathJax || !window.MathJax.Hub || !window.MathJax.Hub.Config)
-      return Promise.reject('window.MathJax.Hub.Config not exist')
+  _setMathJaxConfig() {
+    if (!window.MathJax || !window.MathJax.Hub || !window.MathJax.Hub.Config) return Promise.reject('window.MathJax.Hub.Config not exist')
 
     window.MathJax.Hub.processSectionDelay = 10
 
@@ -70,8 +100,10 @@ export default class MathJaxWrapper {
   }
 
   /**
-   * 渲染对应id节点
+   * 内部渲染方法(渲染对应id节点)
    *
+   * @date 2021-05-20 14:17:09
+   * @private
    * @param {String} id 目标节点id
    * @return {Object} typeset返回值
    * @memberof MathJaxWrapper
@@ -83,13 +115,16 @@ export default class MathJaxWrapper {
   /**
    * 执行等待队列
    *
-   * @param {Object} [{ immediateReject = false, immediateRejectErr }={}] 立即reject对象
+   * @date 2021-05-19 15:15:29
+   * @private
+   * @param {Object} opt 立即reject对象，包含immediateReject、immediateRejectErr字段
+   * @property immediateReject 默认为false
+   * @property immediateRejectErr 自定义injected错误
    * @return {void} 无返回
-   * @memberof KatexWrapper
+   * @memberof MathJaxWrapper
    */
-  run({ immediateReject = false, immediateRejectErr } = {}) {
-    if (!this.pendingQueue || !this.pendingQueue.length)
-      return Promise.resolve()
+  _run({ immediateReject = false, immediateRejectErr } = {}) {
+    if (!this.pendingQueue || !this.pendingQueue.length) return Promise.resolve()
 
     while (this.pendingQueue.length) {
       const { resolve, reject, id } = this.pendingQueue.shift()
@@ -106,11 +141,25 @@ export default class MathJaxWrapper {
   }
 
   /**
-   * 包装后的渲染对应id节点
+   * 包装过的渲染函数
    *
+   * @date 2021-05-19 15:15:54
+   * @public
+   * @instance
    * @param {String} id 目标节点id
-   * @return {Object} typeset返回值
+   * @return {Promise} Promise实例
+   * @fulfil 渲染成功，无返回
+   * @reject error
    * @memberof MathJaxWrapper
+   * @example
+   * const wp = document.querySelector('#mathjax-wp')
+   * wp.innerHTML = '\frac{AC}{DF}'
+   *
+   * const mathjax = new MathJaxWrapper()
+   * mathjax.render('mathjax-wp')
+   * .then(()=>{
+   *  console.log('渲染成功')
+   * })
    */
   render(id) {
     return new Promise((resolve, reject) => {
@@ -124,19 +173,19 @@ export default class MathJaxWrapper {
         if (!this.isLoading) {
           this.isLoading = true
 
-          this.load()
+          this._load()
             .then(() => {
-              this.setMathJaxConfig()
+              this._setMathJaxConfig()
               this.isLoading = false
 
-              this.run()
+              this._run()
             })
             .catch(err => {
               console.log('load mathjax err', err)
               this.isLoading = false
 
               // load失败，需要触发等待队列中的reject，以执行后续流程
-              this.run({
+              this._run({
                 immediateReject: true,
                 immediateRejectErr: err
               })

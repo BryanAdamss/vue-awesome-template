@@ -3,7 +3,7 @@
  * @description 层级管理(单例)
  */
 
-export default class IndexManager {
+export class IndexManager {
   static MIN = Math.pow(2, -53)
   static MAX = Math.pow(2, 53)
 

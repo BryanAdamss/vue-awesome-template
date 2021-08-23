@@ -8,6 +8,7 @@ const BaseRangeTest = () =>
     /* webpackChunkName:'BaseRangeTest' */ 'Views/BaseRangeTest/BaseRangeTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/base-range-test',

@@ -6,6 +6,7 @@
 const FiltersTest = () =>
   import(/* webpackChunkName:'FiltersTest' */ 'Views/FiltersTest/FiltersTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/filters-test',

@@ -6,6 +6,7 @@
 const LoadingTest = () =>
   import(/* webpackChunkName:'LoadingTest' */ 'Views/LoadingTest/LoadingTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/loading-test',

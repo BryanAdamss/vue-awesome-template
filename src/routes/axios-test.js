@@ -11,6 +11,7 @@ const AxiosListDetailTest = () =>
     /* webpackChunkName:'AxiosListDetailTest' */ 'Views/AxiosListDetailTest/AxiosListDetailTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/axios-test',

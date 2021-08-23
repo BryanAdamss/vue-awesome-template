@@ -8,6 +8,7 @@ const BaseTransitionFadeTest = () =>
     /* webpackChunkName:'BaseTransitionFadeTest' */ 'Views/BaseTransitionFadeTest/BaseTransitionFadeTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/base-transition-fade-test',

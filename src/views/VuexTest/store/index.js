@@ -2,11 +2,11 @@
  * * 注册模块入口页
  */
 
-import vuexInstance from 'Plugins/vuex-instance'
+import { vuexInstance } from 'Plugins/vuex-instance.js'
 
-import actions from './actions'
-import moduleA from './module-a'
-import moduleB from './module-b'
+import actions from './actions.js'
+import moduleA from './module-a.js'
+import moduleB from './module-b.js'
 
 const MODULE_NAME = 'VuexTest'
 
@@ -26,9 +26,4 @@ export function install() {
 
 export function uninstall() {
   vuexInstance.unregisterModule(MODULE_NAME)
-}
-
-export default {
-  install,
-  uninstall
 }

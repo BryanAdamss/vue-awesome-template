@@ -8,6 +8,7 @@ const BaseBreadcrumbTest = () =>
     /* webpackChunkName:'BaseBreadcrumb' */ 'Views/BaseBreadcrumbTest/BaseBreadcrumbTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/base-breadcrumb-test',

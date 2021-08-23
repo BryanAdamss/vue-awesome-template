@@ -3,7 +3,7 @@
  * @description 计数器
  */
 
-class TimeCounter {
+export class TimeCounter {
   constructor({ startTime, endTime, interval, onEnd, onTick } = {}) {
     this.startTime =
       startTime == null || typeof startTime !== 'number' || startTime < 0
@@ -129,4 +129,4 @@ class TimeCounter {
   }
 }
 
-export default TimeCounter
+ 

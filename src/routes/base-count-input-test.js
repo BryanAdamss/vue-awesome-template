@@ -8,6 +8,7 @@ const BaseCountInputTest = () =>
     /* webpackChunkName:'BaseCountInputTest' */ 'Views/BaseCountInputTest/BaseCountInputTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/base-count-input-test',

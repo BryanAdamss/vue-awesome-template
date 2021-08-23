@@ -5,7 +5,7 @@
 
 import { isIE } from 'Utils/browser'
 
-class Downloader {
+export class Downloader {
   constructor() {
     this._isIE = isIE
 
@@ -119,4 +119,4 @@ class Downloader {
   }
 }
 
-export default Downloader
+ 

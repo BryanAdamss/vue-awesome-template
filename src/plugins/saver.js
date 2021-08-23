@@ -3,7 +3,7 @@
  * @description localStorage封装
  */
 
-class Saver {
+export class Saver {
   constructor({
     globalNamespace = '__VUE_SAVER__', // 全局命名空间
     moduleName = 'Global', // 模块名
@@ -136,4 +136,4 @@ class Saver {
   }
 }
 
-export default Saver
+ 

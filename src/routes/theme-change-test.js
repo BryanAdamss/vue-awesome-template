@@ -8,6 +8,7 @@ const ThemeChangeTest = () =>
     /* webpackChunkName:'ThemeChangeTest' */ 'Views/ThemeChangeTest/ThemeChangeTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/theme-change-test',

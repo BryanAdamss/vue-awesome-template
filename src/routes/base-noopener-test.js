@@ -8,6 +8,7 @@ const BaseNoopenerTest = () =>
     /* webpackChunkName:'BaseNoopenerTest' */ 'Views/BaseNoopenerTest/BaseNoopenerTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/base-noopener-test',

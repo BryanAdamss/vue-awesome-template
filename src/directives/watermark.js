@@ -5,6 +5,7 @@
 
 import { watermarkSvg } from 'Utils/dom'
 
+// eslint-disable-next-line
 export default {
   bind(el, binding) {
     el.style.background = `url("${watermarkSvg(binding.value)}")`

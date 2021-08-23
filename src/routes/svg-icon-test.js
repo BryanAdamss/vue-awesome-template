@@ -8,6 +8,7 @@ const SvgIconTestPage = () =>
     /* webpackChunkName:'SvgIconTestPage' */ 'Views/SvgIconTestPage/SvgIconTestPage'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/svg-icon-test-page',

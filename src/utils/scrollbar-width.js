@@ -5,7 +5,7 @@
 
 let scrollBarWidth
 
-export default function() {
+export function getScrollbarWidth() {
   if (scrollBarWidth != null) return scrollBarWidth
 
   const outer = document.createElement('div')

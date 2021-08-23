@@ -8,6 +8,7 @@ const CopyTextToClipBoardTest = () =>
     /* webpackChunkName:'CopyTextToClipBoardTest' */ 'Views/CopyTextToClipBoardTest/CopyTextToClipBoardTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/copy-text-to-clip-board-test',

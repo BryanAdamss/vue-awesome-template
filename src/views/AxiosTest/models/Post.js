@@ -3,7 +3,7 @@
  * @description 文章模型
  */
 
-export default class Post {
+export class Post {
   static MAX_LEN = 50
 
   constructor({ body, id, title, userId } = {}) {

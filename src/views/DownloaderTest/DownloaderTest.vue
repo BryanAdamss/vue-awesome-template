@@ -10,7 +10,7 @@
 /**
  * * DownloaderTest
  */
-import Downloader from 'Plugins/downloader'
+import { Downloader } from 'Plugins/downloader'
 
 export default {
   name: 'DownloaderTest',

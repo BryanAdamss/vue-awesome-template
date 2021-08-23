@@ -3,7 +3,7 @@
  * @description 全局loading
  */
 
-import bus from 'Plugins/event-bus'
+import { eventBus } from 'Plugins/event-bus'
 
 /**
  * 全局loading
@@ -11,7 +11,7 @@ import bus from 'Plugins/event-bus'
  * 两次loading间隔<1000ms,则合并展示loading
  * @class GlobalLoading
  */
-class GlobalLoading {
+export class GlobalLoading {
   constructor({
     showEventName = 'global-loading-show', // loading show时派发的事件名
     hideEventName = 'global-loading-hide', // loading hide时派发的事件名
@@ -102,11 +102,11 @@ class GlobalLoading {
   }
 
   _show() {
-    bus.$emit(this.showEventName)
+    eventBus.$emit(this.showEventName)
   }
 
   _hide() {
-    bus.$emit(this.hideEventName)
+    eventBus.$emit(this.hideEventName)
   }
 
   _getNow() {
@@ -136,4 +136,4 @@ class GlobalLoading {
   }
 }
 
-export default GlobalLoading
+

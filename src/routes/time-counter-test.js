@@ -8,6 +8,7 @@ const TimeCounterTest = () =>
     /* webpackChunkName:'TimeCounterTest' */ 'Views/TimeCounterTest/TimeCounterTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/time-counter-test',

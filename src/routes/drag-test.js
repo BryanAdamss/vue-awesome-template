@@ -6,6 +6,7 @@
 const DragTest = () =>
   import(/* webpackChunkName:'DragTest' */ 'Views/DragTest/DragTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/drag-test',

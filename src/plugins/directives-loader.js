@@ -3,7 +3,7 @@
  * @description 指令加载器，读取Directives目录下所有文件，并生成对应map
  */
 
-export default function directivesLoader(defaultDirectives = []) {
+export function directivesLoader(defaultDirectives = []) {
   let directives = [].concat(defaultDirectives)
 
   // ! require.context的入参不能使用变量传入，否则会报Critical dependency: require function is used in a way in which dependencies cannot be statically extracted错误

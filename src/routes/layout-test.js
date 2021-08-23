@@ -6,6 +6,7 @@
 const LayoutTest = () =>
   import(/* webpackChunkName:'LayoutTest' */ 'Views/LayoutTest/LayoutTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/layout-test',

@@ -8,6 +8,7 @@ const ClickOutsideTest = () =>
     /* webpackChunkName:'ClickOutsideTest' */ 'Views/ClickOutsideTest/ClickOutsideTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/click-outside-test',

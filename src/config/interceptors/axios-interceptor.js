@@ -7,12 +7,12 @@ import { Message } from 'element-ui'
 
 import { GLOBAL_LOADING_DEFAULT_CONFIG, GLOBAL_NAME_SPACE } from 'Config'
 
-import GlobalLoading from 'Plugins/global-loading'
+import { GlobalLoading } from 'Plugins/global-loading.js'
 
-import { isEmpty } from 'Utils/type-judge'
+import { isEmpty } from 'Utils/type-judge.js'
 
-import { OFFLINE_MSG, TOKEN_EXPIRED } from 'Services/const/common'
-import resendToken from 'Services/extends/resend-token-instance'
+import { OFFLINE_MSG, TOKEN_EXPIRED } from 'Services/const/common.js'
+import { resendTokenInstance } from 'Services/extends/resend-token-instance.js'
 
 const globalLoading = new GlobalLoading(GLOBAL_LOADING_DEFAULT_CONFIG)
 
@@ -28,7 +28,7 @@ export function reqResolveFn(reqConf) {
 
   !navigator.onLine && Message(OFFLINE_MSG)
 
-  return resendToken.requestCollect(reqConf) // 请求收集
+  return resendTokenInstance.requestCollect(reqConf) // 请求收集
 }
 
 /**
@@ -74,7 +74,7 @@ export function respSuccFn(respObj) {
 
   switch (code) {
     case TOKEN_EXPIRED: // token过期收集
-      return resendToken.responseCollect(respObj.config)
+      return resendTokenInstance.responseCollect(respObj.config)
     case 200:
       return resData.result
     default:

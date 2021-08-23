@@ -14,6 +14,7 @@ const HomeChild1 = () =>
 const HomeChild2 = () =>
   import(/* webpackChunkName:'HomeChild2' */ 'Views/HomePage/HomeChild2')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/home-page',

@@ -5,6 +5,7 @@
 const ModalTest = () =>
   import(/* webpackChunkName:'ModalTest' */ 'Views/ModalTest/ModalTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/modal-test',

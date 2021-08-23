@@ -8,6 +8,7 @@ const BaseDynamicCursorTest = () =>
     /* webpackChunkName:'BaseDynamicCursorTest' */ 'Views/BaseDynamicCursorTest/BaseDynamicCursorTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/base-dynamic-cursor-test',

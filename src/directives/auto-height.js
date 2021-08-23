@@ -3,6 +3,7 @@
  * @description 自增高指令
  */
 
+// eslint-disable-next-line
 export default {
   bind(el, binding, vnode) {
     // * auto-height必须应用在textarea上

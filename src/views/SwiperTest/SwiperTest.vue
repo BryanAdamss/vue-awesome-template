@@ -10,7 +10,7 @@
  * * SwiperTest
  */
 
-import MOCK_DATA from 'Views/FormulaRenderTest/mock-data'
+import { MOCK_DATA } from 'Views/FormulaRenderTest/mock-data'
 
 import BaseFormulaRender from 'Base/BaseFormulaRender'
 import BaseSwiper from 'Base/BaseSwiper/BaseSwiper'

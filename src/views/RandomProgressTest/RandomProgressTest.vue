@@ -11,7 +11,7 @@
  * * RandomProgressTest
  */
 
-import RandomProgress from 'Plugins/random-progress'
+import { RandomProgress } from 'Plugins/random-progress'
 
 export default {
   name: 'RandomProgressTest',

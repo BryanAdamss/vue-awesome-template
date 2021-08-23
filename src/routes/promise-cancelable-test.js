@@ -8,6 +8,7 @@ const PromiseCancelableTest = () =>
     /* webpackChunkName:'PromiseCancelableTest' */ 'Views/PromiseCancelableTest/PromiseCancelableTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/promise-cancelable-test',

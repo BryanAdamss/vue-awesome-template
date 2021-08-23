@@ -8,6 +8,7 @@ const WatermarkTest = () =>
     /* webpackChunkName:'WatermarkTest' */ 'Views/WatermarkTest/WatermarkTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/watermark-test',

@@ -30,7 +30,7 @@ const getFilteredKeys = keys =>
       )
   )
 
-export default function routesLoader(defaultRoutes = []) {
+export function routesLoader(defaultRoutes = []) {
   let routes = [].concat(defaultRoutes)
 
   // ! require.context的入参不能使用变量传入，否则会报Critical dependency: require function is used in a way in which dependencies cannot be statically extracted错误
@@ -41,6 +41,7 @@ export default function routesLoader(defaultRoutes = []) {
 
   filteredKeys.forEach(key => {
     const file = files(key)
+    console.log(file)
 
     // 将file的default导出模块添加到routes数组中
     routes = routes.concat(file.default)

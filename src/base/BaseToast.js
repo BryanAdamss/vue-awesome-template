@@ -3,7 +3,7 @@
  * @description toast
  */
 
-import IndexManager from 'Plugins/index-manager'
+import { IndexManager } from 'Plugins/index-manager'
 import { appendComp2Body, removeCompFromBody } from 'Plugins/portals'
 
 const styleFactory = () => ({
@@ -50,7 +50,7 @@ export const Toast = {
   }
 }
 
-const toast = (options = {}) => {
+export const toast = (options = {}) => {
   const opt =
     typeof options === 'string'
       ? { ...DEFAULT_OPTIONS, msg: options }
@@ -95,4 +95,4 @@ const toast = (options = {}) => {
   }, opt.duration)
 }
 
-export default toast
+ 

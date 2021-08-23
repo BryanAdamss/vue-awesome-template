@@ -11,7 +11,7 @@ import {
   removeCompFromBody
 } from 'Plugins/portals'
 
-export default class RandomProgress {
+export class RandomProgress {
   constructor({
     limit = 90,
     initial = 0,

@@ -6,6 +6,7 @@
 const GoToTopTest = () =>
   import(/* webpackChunkName:'GoToTopTest' */ 'Views/GoToTopTest/GoToTopTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/go-to-top-test',

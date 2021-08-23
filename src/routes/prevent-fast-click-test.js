@@ -8,6 +8,7 @@ const PreventFastClickBtnTest = () =>
     /* webpackChunkName:'PreventFastClickBtnTest' */ 'Views/PreventFastClickBtnTest/PreventFastClickBtnTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/prevent-fast-click-test',

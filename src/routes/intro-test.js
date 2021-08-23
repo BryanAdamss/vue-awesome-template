@@ -6,6 +6,7 @@
 const IntroTest = () =>
   import(/* webpackChunkName:'IntroTest' */ 'Views/IntroTest/IntroTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/intro-test',

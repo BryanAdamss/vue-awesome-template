@@ -8,6 +8,7 @@ const FormulaRenderTest = () =>
     /* webpackChunkName:'FormulaRenderTest' */ 'Views/FormulaRenderTest/FormulaRenderTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/formula-test',

@@ -8,6 +8,7 @@ const ConstLoaderTest = () =>
     /* webpackChunkName:'ConstLoaderTest' */ 'Views/ConstLoaderTest/ConstLoaderTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/const-loader-test',

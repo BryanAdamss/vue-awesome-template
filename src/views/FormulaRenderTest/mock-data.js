@@ -1,4 +1,4 @@
-const MOCK_DATA = [
+export const MOCK_DATA = [
   {
     id: 'e6e1222d-3124-48d0-be7e-95f883ee69ac',
     rawHtml:
@@ -25,5 +25,3 @@ const MOCK_DATA = [
       '<div><p style="text-indent:15.5pt;">\\(fdgbaegbhsthb\\)</p> <p> </p></div><div>\\((1)\\)&nbsp;下列计算正确的是(&nbsp;&nbsp;&nbsp;&nbsp;) <p></p> <p style="text-indent:15.5pt;"></p></div><div><table width="700px"><tbody><tr><td class="td100">A.&nbsp;\\(b^{4}&middot;b^{4}=2 b^{4\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;}\\)</td></tr><tr><td class="td100">B.&nbsp;\\((x^{3})^{3}=x^{6}\\)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <p></p> <p style="text-indent:15.5pt;"></p></td></tr><tr><td class="td100">C.&nbsp;\\(7^{0}&times;8^{-2}=\\)</td></tr><tr><td class="tde">D.&nbsp;\\((-bc)^{4}&divide;(-bc)^{2}=-b^{2}c^{2}\\) <p></p> <p> </p></td></tr></tbody></table></div><div>\\((2)\\)&nbsp;一个小立方块的六个面分别标有数字\\(1\\)，\\(2\\)，\\(3\\)，\\(4\\)，\\(5\\)，\\(6\\)，从三个不同方向看到的情形如图所示，则如图放置时三个底面上的数字之和等于(&nbsp;&nbsp;&nbsp;&nbsp;) <p></p> <p align="center"></p> <p style="text-indent:20.65pt;"></p></div><div><table width="700px"><tbody><tr><td class="td50">A.&nbsp;\\(6\\)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="td50">B.&nbsp;\\(7\\)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr><tr><td class="td50">C.&nbsp;\\(8\\)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="tde">D.&nbsp;\\(9\\) <p></p> <p> </p></td></tr></tbody></table></div><div>\\((3)\\)&nbsp;已知\\(x=5\\)是方程\\(ax-8=20+a\\)的解，则\\(a\\)的值是(&nbsp;&nbsp;&nbsp;&nbsp;) <p></p> <p style="text-indent:25.85pt;"></p></div><div><table width="700px"><tbody><tr><td class="td25">A.&nbsp;\\(2\\)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="td25">B.&nbsp;\\(7\\)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="td25">C.&nbsp;\\(-7\\)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="tde">D.&nbsp;\\(3\\) <p></p></td></tr></tbody></table></div>'
   }
 ]
-
-export default MOCK_DATA

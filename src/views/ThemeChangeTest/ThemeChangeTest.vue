@@ -57,7 +57,7 @@ export default {
           import(
             /* webpackChunkName:'ThemeService' */ 'Plugins/theme-service.js'
           )
-            .then(({ default: ThemeService }) => {
+            .then(({ ThemeService }) => {
               this.themeService = new ThemeService()
 
               this.themeService.applyTheme(data)
@@ -70,6 +70,7 @@ export default {
             })
         } else {
           this.themeService.applyTheme(data)
+           this.$bus.$emit('global-loading-hide')
         }
       })
     }

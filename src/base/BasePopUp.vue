@@ -3,7 +3,7 @@
  * * BasePopUp
  */
 
-import IndexManager from 'Plugins/index-manager'
+import { IndexManager } from 'Plugins/index-manager.js'
 
 const POSITIONS = ['top', 'right', 'bottom', 'left']
 

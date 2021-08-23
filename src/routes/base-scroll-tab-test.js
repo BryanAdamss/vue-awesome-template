@@ -8,6 +8,7 @@ const BaseScrollTabTest = () =>
     /* webpackChunkName:'BaseScrollTabTest' */ 'Views/BaseScrollTabTest/BaseScrollTabTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/base-scroll-tab-test',

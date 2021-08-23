@@ -6,6 +6,7 @@
 const SaverTest = () =>
   import(/* webpackChunkName:'SaverTest' */ 'Views/SaverTest/SaverTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/saver-test',

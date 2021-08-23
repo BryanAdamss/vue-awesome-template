@@ -6,6 +6,7 @@
 const AffixTest = () =>
   import(/* webpackChunkName:'AffixTest' */ 'Views/AffixTest/AffixTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/affix-test',

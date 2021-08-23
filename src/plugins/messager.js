@@ -3,7 +3,7 @@
  * @description postMessage封装
  */
 
-class Messager {
+export class Messager {
   constructor({ targetWin = null, targetOrigin = '*' } = {}) {
     this._INFOS = {
       targetOriginIsEverything:
@@ -106,5 +106,3 @@ class Messager {
     cbs.forEach(que => que.call(this, message, source))
   }
 }
-
-export default Messager

@@ -8,6 +8,7 @@ const DebounceThrottleTest = () =>
     /* webpackChunkName:'DebounceThrottleTest' */ 'Views/DebounceThrottleTest/DebounceThrottleTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/debounce-throttle-test',

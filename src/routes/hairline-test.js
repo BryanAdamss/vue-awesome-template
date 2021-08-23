@@ -8,6 +8,7 @@ const HairlineTest = () =>
     /* webpackChunkName:'HairlineTest' */ 'Views/HairlineTest/HairlineTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/hairline-test',

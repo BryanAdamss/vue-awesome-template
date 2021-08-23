@@ -5,7 +5,7 @@
 
 import { GLOBAL_NAME_SPACE } from 'Config'
 
-import Saver from 'Plugins/saver'
+import { Saver } from 'Plugins/saver'
 
 /**
  * 生成全局的localStorage

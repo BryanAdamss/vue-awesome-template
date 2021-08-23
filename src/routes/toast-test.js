@@ -6,6 +6,7 @@
 const ToastTest = () =>
   import(/* webpackChunkName:'ToastTest' */ 'Views/ToastTest/ToastTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/toast-test',

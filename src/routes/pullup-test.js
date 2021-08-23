@@ -6,6 +6,7 @@
 const PullupTest = () =>
   import(/* webpackChunkName:'PullupTest' */ 'Views/PullupTest/PullupTest')
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/pullup-test',

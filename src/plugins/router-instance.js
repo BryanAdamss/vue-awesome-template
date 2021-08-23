@@ -14,21 +14,19 @@ import {
   scrollBehaviorFn as scrollBehavior
 } from 'Config/interceptors/router-interceptor'
 
-import routesLoader from 'Plugins/routes-loader'
+import { routesLoader } from 'Plugins/routes-loader'
 
 const routes = routesLoader(INDEX_ROUTES)
 
 !window.VueRouter && Vue.use(Router) // * 2020-0617-兼容CDN配置
 
-const router = new Router({
+export const routerInstance = new Router({
   ...ROUTER_DEFAULT_CONFIG,
   routes,
   scrollBehavior
 })
 
-router.afterEach(routerAfterEachFn)
-router.beforeEach(routerBeforeEachFn)
+routerInstance.afterEach(routerAfterEachFn)
+routerInstance.beforeEach(routerBeforeEachFn)
 
-router.onError(err => routerOnErrorHandler(err, router))
-
-export default router
+routerInstance.onError(err => routerOnErrorHandler(err, routerInstance))

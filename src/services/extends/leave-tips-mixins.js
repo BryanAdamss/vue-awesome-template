@@ -6,6 +6,7 @@
 export const mixinsName = 'LEAVE_TIPS_MIXINS'
 export const getName = name => `${mixinsName}_${String(name)}`
 
+// eslint-disable-next-line no-restricted-syntax
 export default {
   data() {
     return {

@@ -8,6 +8,7 @@ const EventBusTest = () =>
     /* webpackChunkName:'EventBusTest' */ 'Views/EventBusTest/EventBusTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/event-bus-test',

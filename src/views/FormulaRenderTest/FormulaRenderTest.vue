@@ -13,7 +13,7 @@
 
 import BaseFormulaRender from 'Base/BaseFormulaRender'
 
-import MOCK_DATA from './mock-data'
+import { MOCK_DATA } from './mock-data'
 
 export default {
   name: 'FormulaRenderTest',

@@ -8,6 +8,7 @@ const ImgLazyLoadTest = () =>
     /* webpackChunkName:'ImgLazyLoadTest' */ 'Views/ImgLazyLoadTest/ImgLazyLoadTest'
   )
 
+// eslint-disable-next-line no-restricted-syntax
 export default [
   {
     path: '/img-lazy-load-test',

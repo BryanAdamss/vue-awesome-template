@@ -16,7 +16,7 @@ import {
 const num2chn = new Num2Chn()
 const numberToChn = val => num2chn.transform(val)
 
-export default {
+export const filtersMap =  {
   ms2hms,
   str2kebab,
   dateFormat,

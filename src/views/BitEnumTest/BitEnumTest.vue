@@ -69,7 +69,7 @@
  * * BitEnumTest
  */
 
-import BitEnum from 'Plugins/bit-enum'
+import { BitEnum } from 'Plugins/bit-enum'
 
 export default {
   name: 'BitEnumTest',

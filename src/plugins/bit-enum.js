@@ -3,7 +3,7 @@
  * @description 二进制枚举 inspried by https://zhuanlan.zhihu.com/p/113709328
  */
 
-export default class BitEnum {
+export  class BitEnum {
   constructor({ keys = [] } = {}) {
     if (!Array.isArray(keys)) throw new Error('keys must be a array')
     if (keys.length > 30) throw new Error('keys length over 30') // 左移超过30,会超过阈值，因为总共32位，最高位表示符号，当前在最低位，所以最多只能左移30位

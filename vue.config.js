@@ -79,7 +79,7 @@ module.exports = {
         // 这里的选项会传递给 postcss-loader
         plugins: [
           // 使用自定义插件为不兼容css var的浏览器提供备选样式
-          require('./src/plugins/postcss-plugin-add-var-value.js')
+          require('./.build/plugins/postcss-plugin-add-var-value.js')
         ]
       }
     }

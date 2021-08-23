@@ -1,12 +1,12 @@
 <template>
   <div class="c-AxiosTest">
     <h2>测试axios返回的数据</h2>
-    <ul ref="list" class="c-List">
+    <ul ref="list" class="c-AxiosTest-list">
       <li
         v-for="post in posts"
         :key="post.id"
         :class="{ 'is-overLen': post.isTitleOverLength() }"
-        class="c-List-item"
+        class="c-AxiosTest-item"
         @click.stop="onListItemClick(post)"
       >
         {{ post.id }}:{{ post.title }}
@@ -23,6 +23,7 @@
 
 import BaseLoading from 'Base/BaseLoading'
 
+import { getPost } from "Services/request/post.js";
 import { formatGetPostRes } from 'Services/translator/axios-test'
 
 import Post from './models/Post'
@@ -57,7 +58,7 @@ export default {
   created() {
     this.isLoading = true
     // * 测试axios
-    this.$api['common/getPost'](
+    getPost(
       {},
       {
         // _noShowDefaultError: true
@@ -96,12 +97,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.c-List {
-  height: 500px;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
+.c-AxiosTest {
 
-  border: 1px solid blue;
+  &-list{
+    height: 500px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+
+    border: 1px solid blue;
+  }
 
   &-item {
     & + & {

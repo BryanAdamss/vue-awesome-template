@@ -19,4 +19,4 @@ axiosInstance.interceptors.request.use(reqResolveFn, reqRejectFn)
 
 axiosInstance.interceptors.response.use(respSuccFn, respFailFn)
 
-export default axiosInstance
+export { axiosInstance }

@@ -3,6 +3,8 @@
  * @description 项目配置及开关
  */
 
+import { axiosInstance } from "Services/extends/axios-instance.js";
+
 import { version } from '../../package.json'
 
 // * ----------------------------------------
@@ -41,10 +43,11 @@ export const AXIOS_DEFAULT_CONFIG = {
 
 // API构造器 默认配置
 export const API_DEFAULT_CONFIG = {
-  mockBaseURL: 'http://localhost:5000', // mock的baseURL
-  mock: false, // 是否全局启用mock
+  axiosInstance,
+  mockBaseURL: '', // mock的baseURL，接受字符串或方法；传入方法时，可以拿到api定义配置文件的所有参数name, desc, method, mockEnable, path, mockPath, onBeforeSendData，返回的值将做为mock的baseURL
+  globalMockEnable: false, // 是否全局启用mock
   debug: false, // 调试开关
-  sep: '/' // 接口分隔符
+  onBeforeSendData: data => data // 发送数据前的钩子（全局），优先级低于配置级别的onBeforeSendData，会接收到需要发送的数据，可在此时修改数据；无需求，可不定义此字段
 }
 
 // element-loading 默认配置

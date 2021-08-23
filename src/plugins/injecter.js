@@ -7,7 +7,6 @@ import Vue from 'vue'
 
 import { APP_INFO, BASE_URL, GLOBAL_NAME_SPACE } from 'Config'
 
-import api from 'Plugins/api-builder'
 import { constLoader } from 'Plugins/const-loader'
 import bus from 'Plugins/event-bus'
 import { rootVue } from 'Plugins/root-instance'
@@ -39,7 +38,6 @@ export const vueInjecter = () => {
       Vue.prototype.$toast = BaseToast
 
       Vue.prototype.$bus = bus
-      Vue.prototype.$api = api
       Vue.prototype.$baseURL = BASE_URL
       Vue.prototype.$globalNameSpace = GLOBAL_NAME_SPACE
       Vue.prototype.$appInfo = APP_INFO

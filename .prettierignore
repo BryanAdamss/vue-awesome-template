@@ -1,2 +1,6 @@
+# vue、js交由eslint格式化
 src/**/*.vue
 src/**/*.js
+# scss 交由stylelint格式化
+src/**/*.scss
+src/**/*.css

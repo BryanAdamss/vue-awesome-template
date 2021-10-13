@@ -24,6 +24,16 @@
       "implicitUtilities": [
         "src/sass/helpers/*.scss"
       ]
-    }
+    },
+    "indentation": [
+      2,
+      {
+        "except": [
+          "block"
+        ],
+        "message": "Please use 2 spaces for indentation.",
+        "severity": "error"
+      }
+    ]
   }
 }

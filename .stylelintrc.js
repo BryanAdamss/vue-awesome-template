@@ -69,7 +69,7 @@ module.exports = {
     'selector-max-compound-selectors': 3,
     'selector-no-qualifying-type': true,
     'selector-pseudo-element-colon-notation': 'double',
-    'selector-pseudo-element-no-unknown': true,
-    'shorthand-property-no-redundant-values': true
+    'selector-pseudo-element-no-unknown': false,
+    'shorthand-property-no-redundant-values': false
   }
 }

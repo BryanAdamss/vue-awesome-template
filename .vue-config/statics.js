@@ -42,7 +42,10 @@ const setStatics = config => {
     args[0].customs = customs
 
     // 生产环境不移除html中的注释
-    args[0].minify.removeComments = process.env.NODE_ENV !== 'production'
+    if (process.env.NODE_ENV === 'production') {
+      args[0].minify.removeComments = false
+    }
+
     return args
   })
 }

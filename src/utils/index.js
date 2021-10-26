@@ -205,11 +205,16 @@ export function dateFormat(timestamp, format = 'yyyy-MM-dd hh:mm:ss') {
   return format
 }
 
+
+let isSupportPassive = null
 /**
  * 判断浏览器是否支持passive模式
+ *
+ * @date 2021-10-26 11:37:52
+ * @export
+ * @return {Boolean} 是否支持passive模式
  */
-let isSupportPassive = null
-export const eventListenerPassiveSupported = () => {
+export function eventListenerPassiveSupported() {
   if (typeof isSupportPassive === 'boolean') {
     return isSupportPassive
   }
@@ -217,7 +222,7 @@ export const eventListenerPassiveSupported = () => {
   try {
     const opts = Object.defineProperty({}, 'passive', {
       // eslint-disable-next-line
-      get() {
+        get() {
         isSupportPassive = true
       }
     })

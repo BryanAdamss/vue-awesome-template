@@ -3,7 +3,6 @@
  * @description 全局loading
  */
 
-import { eventBus } from 'Plugins/event-bus'
 
 /**
  * 全局loading
@@ -17,7 +16,8 @@ export class GlobalLoading {
     hideEventName = 'global-loading-hide', // loading hide时派发的事件名
     minReqTime = 400, // loading展示所需要的最少请求时间，请求时间超过400ms才会展示loading
     maxCombinTime = 200, // 两次独立loading合并的最大间隔时间
-    debug = false // 调试模式
+    debug = false, // 调试模式
+    eventBus // 用于内外部通信的事件总线
   } = {}) {
     this.showEventName = showEventName
     this.hideEventName = hideEventName
@@ -32,6 +32,11 @@ export class GlobalLoading {
     this.endTime = null
 
     this.count = 0 // 请求计数
+
+    this.eventBus = eventBus
+
+    if(!this.eventBus) console.log('eventBus未传入，GlobalLoading内部事件无法通知到外部!')
+    
   }
 
   start() {
@@ -102,11 +107,11 @@ export class GlobalLoading {
   }
 
   _show() {
-    eventBus.$emit(this.showEventName)
+    this.eventBus && this.eventBus.$emit(this.showEventName)
   }
 
   _hide() {
-    eventBus.$emit(this.hideEventName)
+    this.eventBus && this.eventBus.$emit(this.hideEventName)
   }
 
   _getNow() {

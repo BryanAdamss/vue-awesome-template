@@ -40,11 +40,8 @@ export function routesLoader(defaultRoutes = []) {
   const filteredKeys = getFilteredKeys(files.keys())
 
   filteredKeys.forEach(key => {
-    const file = files(key)
-    console.log(file)
-
     // 将file的default导出模块添加到routes数组中
-    routes = routes.concat(file.default)
+    routes = routes.concat(files(key).default)
   })
   return routes
 }

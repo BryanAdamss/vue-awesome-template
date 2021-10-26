@@ -15,6 +15,13 @@ const { splitAllNodeModulesVendors } = require('./.vue-config/split.js')
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
+  outputDir: 'dist', // 打包产物存放目录，默认dist
+  assetsDir: 'static', // 非/public目录静态资源存放目录(经过webpack处理的资源)，相对于outputDir
+  indexPath: 'views/index.html', // 入口html地址，相对于outputDir
+  lintOnSave: false, // 保存时lint，关闭
+  filenameHashing: true, // 文件content hash，若资源要上CND，且外层有唯一的版本号文件夹时，内部资源无需要做控制
+  // transpileDependencies: [/node_modules[/\\]@hw/], // 需要被转码的依赖包
+  productionSourceMap: false, // 生产环境sourceMap
   devServer: {
     // https://github.com/chimurai/http-proxy-middleware
     proxy: {

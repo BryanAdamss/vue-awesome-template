@@ -62,7 +62,7 @@ export default {
      */
     bindBusEvents() {
       // 接口报错弹窗
-      this.$bus.$on('biz-resp-incorrect', msg => {
+      this.$bus.$on('biz-resp-err', msg => {
         // 接口返回code不为200时默认弹窗
         if (!msg) return
         this.$message(msg)

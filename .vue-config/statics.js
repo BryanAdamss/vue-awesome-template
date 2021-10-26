@@ -9,7 +9,12 @@ const setStatics = config => {
 
   const customs = {
     head: {
-      css: ['formula/katex/katex.css'],
+      css: [
+        {
+          noBaseURL: false,
+          path: 'formula/katex/katex.css'
+        }
+      ],
       js: [
         {
           attrs: ['async'],
@@ -35,6 +40,9 @@ const setStatics = config => {
 
   htmlPlug.tap(args => {
     args[0].customs = customs
+
+    // 生产环境不移除html中的注释
+    args[0].minify.removeComments = process.env.NODE_ENV !== 'production'
     return args
   })
 }

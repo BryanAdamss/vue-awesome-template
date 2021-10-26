@@ -26,7 +26,7 @@
 
     <!-- customs.head.css -->
     <% htmlWebpackPlugin.options.customs.head.css.forEach(function(item){ %>
-    <link rel="stylesheet" href="<%= item %>" />
+    <link rel="stylesheet" href="<%= BASE_URL %><%= item.path || item %>" />
     <% }) %>
     <!-- customs.head.css end -->
 

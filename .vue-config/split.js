@@ -62,9 +62,6 @@ const splitAllNodeModulesVendors = config => {
             // 避免服务端不支持@
             return `npm.${packageName.replace('@', '')}`
           },
-          maxAsyncRequests: 100,
-          maxInitialRequests: 100,
-          minChunks: 1,
           priority: 10
         }
       }

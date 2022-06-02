@@ -50,7 +50,15 @@ export default {
   watch: {},
   beforeCreate() {},
   created() {},
-  mounted() {},
+  mounted() {
+    const a ={}
+    const c = a?.test
+    const d = a?.test??'默认值'
+
+    console.log('a',a)
+    console.log('optional chain test a?.test->',c)
+    console.log('optional chain test a?.test??"默认值"->',d)
+  },
   methods: {}
 }
 </script>

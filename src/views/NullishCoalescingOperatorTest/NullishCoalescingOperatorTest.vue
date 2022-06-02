@@ -7,13 +7,13 @@
       转义：a !== null && a !== void 0 ? a : b
       和或运算符区别：a || b，当a不为falsy值(null、undefined、0、''、NaN)时，返回a，否则返回b
       
-      let myText = ''; // 一个falsy值
+      let myFaslyText = ''; // 一个falsy值
 
-      let notFalsyText = myText || 'Hello world';
+      let notFalsyText = myFaslyText || 'Hello world';
       console.log(notFalsyText); // Hello world
 
-      let preservingFalsy = myText ?? 'Hi neighborhood';
-      console.log(preservingFalsy); // '' (myText不为null且不为undefined)
+      let preservingFalsy = myFaslyText ?? 'Hi neighborhood';
+      console.log(preservingFalsy); // '' (myFaslyText不为null且不为undefined)
 
       和可选链(?.)一起使用
       let customer = {
@@ -47,7 +47,16 @@ export default {
   watch: {},
   beforeCreate() {},
   created() {},
-  mounted() {},
+  mounted() {
+        
+      const myFaslyText = ''; // 一个falsy值
+
+      const notFalsyText = myFaslyText || 'Hello world';
+      console.log('notFalsyText',notFalsyText); // Hello world
+
+      const preservingFalsy = myFaslyText ?? 'Hi neighborhood';
+      console.log('空值合并',preservingFalsy); // '' (myFaslyText不为null且不为undefined)
+  },
   methods: {}
 }
 </script>

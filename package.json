@@ -5,6 +5,7 @@
   "description": "A Vue.js project template base on vue-cli@4.x",
   "author": "BryanAdamss@foxmail.com",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "new": "node .build/bin/new.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -115,8 +116,9 @@
     }
   },
   "engines": {
-    "node": ">= 8.17.0",
-    "npm": ">= 6.13.4"
+    "node": ">= 16.15.1",
+    "npm": ">= 8.11.0",
+    "pnpm": ">=7.1.7"
   },
   "husky": {
     "hooks": {

@@ -1,6 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@babel/plugin-proposal-nullish-coalescing-operator': ^7.17.12
+  '@babel/plugin-proposal-optional-chaining': ^7.17.12
   '@bryanadamss/drawing-board': ^1.5.8
   '@bryanadamss/generate-file': ^1.1.7
   '@bryanadamss/num2chn': ^1.1.2
@@ -92,6 +94,8 @@ dependencies:
   vuex: registry.npmmirror.com/vuex/3.6.2_vue@2.6.14
 
 devDependencies:
+  '@babel/plugin-proposal-nullish-coalescing-operator': registry.npmmirror.com/@babel/plugin-proposal-nullish-coalescing-operator/7.17.12
+  '@babel/plugin-proposal-optional-chaining': registry.npmmirror.com/@babel/plugin-proposal-optional-chaining/7.17.12
   '@bryanadamss/generate-file': registry.npmmirror.com/@bryanadamss/generate-file/1.1.7
   '@commitlint/cli': registry.npmmirror.com/@commitlint/cli/9.1.2
   '@commitlint/config-conventional': registry.npmmirror.com/@commitlint/config-conventional/9.1.2
@@ -779,6 +783,18 @@ packages:
       '@babel/plugin-syntax-logical-assignment-operators': registry.npmmirror.com/@babel/plugin-syntax-logical-assignment-operators/7.10.4_@babel+core@7.18.2
     dev: true
 
+  registry.npmmirror.com/@babel/plugin-proposal-nullish-coalescing-operator/7.17.12:
+    resolution: {integrity: sha512-ws/g3FSGVzv+VH86+QvgtuJL/kR67xaEIF2x0iPqdDfYW6ra6JF3lKVBkWynRLcNtIC1oCTfDRVxmm2mKzy+ag==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babel/plugin-proposal-nullish-coalescing-operator/-/plugin-proposal-nullish-coalescing-operator-7.17.12.tgz}
+    name: '@babel/plugin-proposal-nullish-coalescing-operator'
+    version: 7.17.12
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/helper-plugin-utils': registry.npmmirror.com/@babel/helper-plugin-utils/7.17.12
+      '@babel/plugin-syntax-nullish-coalescing-operator': registry.npmmirror.com/@babel/plugin-syntax-nullish-coalescing-operator/7.8.3
+    dev: true
+
   registry.npmmirror.com/@babel/plugin-proposal-nullish-coalescing-operator/7.17.12_@babel+core@7.18.2:
     resolution: {integrity: sha512-ws/g3FSGVzv+VH86+QvgtuJL/kR67xaEIF2x0iPqdDfYW6ra6JF3lKVBkWynRLcNtIC1oCTfDRVxmm2mKzy+ag==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babel/plugin-proposal-nullish-coalescing-operator/-/plugin-proposal-nullish-coalescing-operator-7.17.12.tgz}
     id: registry.npmmirror.com/@babel/plugin-proposal-nullish-coalescing-operator/7.17.12
@@ -836,6 +852,19 @@ packages:
       '@babel/core': registry.npmmirror.com/@babel/core/7.18.2
       '@babel/helper-plugin-utils': registry.npmmirror.com/@babel/helper-plugin-utils/7.17.12
       '@babel/plugin-syntax-optional-catch-binding': registry.npmmirror.com/@babel/plugin-syntax-optional-catch-binding/7.8.3_@babel+core@7.18.2
+    dev: true
+
+  registry.npmmirror.com/@babel/plugin-proposal-optional-chaining/7.17.12:
+    resolution: {integrity: sha512-7wigcOs/Z4YWlK7xxjkvaIw84vGhDv/P1dFGQap0nHkc8gFKY/r+hXc8Qzf5k1gY7CvGIcHqAnOagVKJJ1wVOQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babel/plugin-proposal-optional-chaining/-/plugin-proposal-optional-chaining-7.17.12.tgz}
+    name: '@babel/plugin-proposal-optional-chaining'
+    version: 7.17.12
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/helper-plugin-utils': registry.npmmirror.com/@babel/helper-plugin-utils/7.17.12
+      '@babel/helper-skip-transparent-expression-wrappers': registry.npmmirror.com/@babel/helper-skip-transparent-expression-wrappers/7.16.0
+      '@babel/plugin-syntax-optional-chaining': registry.npmmirror.com/@babel/plugin-syntax-optional-chaining/7.8.3
     dev: true
 
   registry.npmmirror.com/@babel/plugin-proposal-optional-chaining/7.17.12_@babel+core@7.18.2:
@@ -1025,6 +1054,16 @@ packages:
       '@babel/helper-plugin-utils': registry.npmmirror.com/@babel/helper-plugin-utils/7.17.12
     dev: true
 
+  registry.npmmirror.com/@babel/plugin-syntax-nullish-coalescing-operator/7.8.3:
+    resolution: {integrity: sha512-aSff4zPII1u2QD7y+F8oDsz19ew4IGEJg9SVW+bqwpwtfFleiQDMdzA/R+UlWDzfnHFCxxleFT0PMIrR36XLNQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babel/plugin-syntax-nullish-coalescing-operator/-/plugin-syntax-nullish-coalescing-operator-7.8.3.tgz}
+    name: '@babel/plugin-syntax-nullish-coalescing-operator'
+    version: 7.8.3
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/helper-plugin-utils': registry.npmmirror.com/@babel/helper-plugin-utils/7.17.12
+    dev: true
+
   registry.npmmirror.com/@babel/plugin-syntax-nullish-coalescing-operator/7.8.3_@babel+core@7.18.2:
     resolution: {integrity: sha512-aSff4zPII1u2QD7y+F8oDsz19ew4IGEJg9SVW+bqwpwtfFleiQDMdzA/R+UlWDzfnHFCxxleFT0PMIrR36XLNQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babel/plugin-syntax-nullish-coalescing-operator/-/plugin-syntax-nullish-coalescing-operator-7.8.3.tgz}
     id: registry.npmmirror.com/@babel/plugin-syntax-nullish-coalescing-operator/7.8.3
@@ -1070,6 +1109,16 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': registry.npmmirror.com/@babel/core/7.18.2
+      '@babel/helper-plugin-utils': registry.npmmirror.com/@babel/helper-plugin-utils/7.17.12
+    dev: true
+
+  registry.npmmirror.com/@babel/plugin-syntax-optional-chaining/7.8.3:
+    resolution: {integrity: sha512-KoK9ErH1MBlCPxV0VANkXW2/dw4vlbGDrFgz8bmUsBGYkFRcbRwMh6cIJubdPrkxRwuGdtCk0v/wPTKbQgBjkg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babel/plugin-syntax-optional-chaining/-/plugin-syntax-optional-chaining-7.8.3.tgz}
+    name: '@babel/plugin-syntax-optional-chaining'
+    version: 7.8.3
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
       '@babel/helper-plugin-utils': registry.npmmirror.com/@babel/helper-plugin-utils/7.17.12
     dev: true
 

@@ -2,6 +2,7 @@
   "name": "vue-awesome-template",
   "version": "0.0.0",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "build": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
@@ -34,5 +35,10 @@
     "vite": "^2.9.12",
     "vitest": "^0.15.1",
     "vue-tsc": "^0.38.1"
+  },
+  "engines": {
+    "node": ">= 16.16.0",
+    "npm": ">= 8.11.0",
+    "pnpm": ">=7.1.7"
   }
 }

@@ -1,0 +1,29 @@
+{
+  "editor.formatOnSave": false,
+
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // "prettier.enable": true,
+  // "prettier.tabWidth": 2,
+  // "prettier.singleQuote": true,
+  // "prettier.semi": false,
+  // "prettier.printWidth": 80,
+  // "prettier.arrowParens": "avoid",
+  // "prettier.trailingComma": "none",
+
+  // "vetur.format.enable": false,
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  }
+
+  // "eslint.format.enable": true,
+  // "eslint.alwaysShowStatus": true,
+
+  // "stylelint.validate": ["css", "scss", "vue"],
+
+  // "css.validate": false,
+  // "less.validate": false,
+  // "scss.validate": false
+}

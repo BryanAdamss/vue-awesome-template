@@ -1172,8 +1172,8 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: registry.npmmirror.com/caniuse-lite/1.0.30001363
-      electron-to-chromium: registry.npmmirror.com/electron-to-chromium/1.4.184
-      node-releases: registry.npmmirror.com/node-releases/2.0.5
+      electron-to-chromium: registry.npmmirror.com/electron-to-chromium/1.4.185
+      node-releases: registry.npmmirror.com/node-releases/2.0.6
       update-browserslist-db: registry.npmmirror.com/update-browserslist-db/1.0.4_browserslist@4.21.1
     dev: true
 
@@ -1442,10 +1442,10 @@ packages:
       webidl-conversions: registry.npmmirror.com/webidl-conversions/7.0.0
     dev: true
 
-  registry.npmmirror.com/electron-to-chromium/1.4.184:
-    resolution: {integrity: sha512-IADi390FRdvxWfVX3hjzfTDNVHiTqVo9ar53/7em/SfhUG9YcjVhyQecY/XwmBHRKden/wFud7RWOUH7+7LFng==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.184.tgz}
+  registry.npmmirror.com/electron-to-chromium/1.4.185:
+    resolution: {integrity: sha512-9kV/isoOGpKkBt04yYNaSWIBn3187Q5VZRtoReq8oz5NY/A4XmU6cAoqgQlDp7kKJCZMRjWZ8nsQyxfpFHvfyw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.185.tgz}
     name: electron-to-chromium
-    version: 1.4.184
+    version: 1.4.185
     dev: true
 
   registry.npmmirror.com/entities/4.3.1:
@@ -2785,10 +2785,10 @@ packages:
     version: 1.0.5
     dev: true
 
-  registry.npmmirror.com/node-releases/2.0.5:
-    resolution: {integrity: sha512-U9h1NLROZTq9uE1SNffn6WuPDg8icmi3ns4rEl/oTfIle4iLjTliCzgTsbaIFMq/Xn078/lfY/BL0GWZ+psK4Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/node-releases/-/node-releases-2.0.5.tgz}
+  registry.npmmirror.com/node-releases/2.0.6:
+    resolution: {integrity: sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/node-releases/-/node-releases-2.0.6.tgz}
     name: node-releases
-    version: 2.0.5
+    version: 2.0.6
     dev: true
 
   registry.npmmirror.com/normalize-package-data/2.5.0:

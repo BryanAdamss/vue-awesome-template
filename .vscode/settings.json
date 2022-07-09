@@ -9,7 +9,6 @@
   "prettier.semi": false,
   "prettier.printWidth": 80,
   "prettier.arrowParens": "avoid",
-  "prettier.trailingComma": "none",
 
   "vetur.format.enable": false,
 

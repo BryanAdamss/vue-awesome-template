@@ -1,0 +1,9 @@
+*.vue
+
+*.js
+*.jsx
+*.cjs
+*.mjs
+
+*.ts
+*.tsx

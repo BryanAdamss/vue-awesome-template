@@ -3,9 +3,8 @@
  * @description 基础(共享)配置
  */
 
-import type { ConfigEnv, UserConfig } from 'vite'
-
 import { URL, fileURLToPath } from 'url'
+import type { ConfigEnv, UserConfig } from 'vite'
 
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -22,12 +21,14 @@ export type CustomProdConf = Partial<Omit<UserConfig, 'server'>>
  * @return {*}  {Partial<UserConfig>}
  */
 export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
+  console.log('🚦 -> file: shared.conf.ts -> line 24 -> getSharedConf -> command, mode', command, mode)
+
   return {
     plugins: [vue(), vueJsx()],
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('../src', import.meta.url))
-      }
-    }
+        '@': fileURLToPath(new URL('../src', import.meta.url)),
+      },
+    },
   }
 }

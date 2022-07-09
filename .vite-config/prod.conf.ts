@@ -4,9 +4,9 @@
  */
 
 import type { ConfigEnv } from 'vite'
+import type { CustomProdConf } from './shared.conf'
 
 import { getSharedConf } from './shared.conf'
-import type { CustomProdConf } from './shared.conf'
 
 /**
  * @description 生产构建配置
@@ -19,6 +19,6 @@ import type { CustomProdConf } from './shared.conf'
 export function getProdConf({ command, mode }: ConfigEnv): CustomProdConf {
   return {
     ...getSharedConf({ command, mode }),
-    build: {}
+    build: {},
   }
 }

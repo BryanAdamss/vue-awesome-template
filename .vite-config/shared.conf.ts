@@ -15,13 +15,13 @@ export type CustomDevConf = Partial<Omit<UserConfig, 'build'>>
 export type CustomProdConf = Partial<Omit<UserConfig, 'server'>>
 
 /**
- * @description 基础配置
+ * @description 共享配置
  *
  * @date 2022-07-09 21:47:28
  * @export
  * @return {*}  {Partial<UserConfig>}
  */
-export function getBaseConf({ command, mode }: ConfigEnv): CustomBaseConf {
+export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
   return {
     plugins: [vue(), vueJsx()],
     resolve: {

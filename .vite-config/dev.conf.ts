@@ -3,10 +3,10 @@
  * @description 开发服务配置
  */
 
-import type { CustomDevConf } from './base.conf'
+import type { CustomDevConf } from './shared.conf'
 import type { ConfigEnv } from 'vite'
 
-import { getBaseConf } from './base.conf'
+import { getSharedConf } from './shared.conf'
 
 /**
  * @description 开发服务配置
@@ -18,7 +18,7 @@ import { getBaseConf } from './base.conf'
  */
 export function getDevConf({ command, mode }: ConfigEnv): CustomDevConf {
   return {
-    ...getBaseConf({ command, mode }),
+    ...getSharedConf({ command, mode }),
     server: {}
   }
 }

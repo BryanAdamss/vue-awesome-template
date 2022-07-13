@@ -32,7 +32,7 @@ export function getProdConf({ command, mode }: ConfigEnv): CustomProdConf {
       /* 资源内联限制大小；默认4kb */
       assetsInlineLimit: 4096,
       /* 是否开启css分隔，true的话，异步 js chunk中的css将单独拆分到异步css chunk中并在js chunk执行前加载，false则所有css提取到一个文件中；默认true；https://cn.vitejs.dev/guide/features.html#css-code-splitting */
-      cssCodeSplit: false,
+      cssCodeSplit: true,
       /* 在针对非主流浏览器时使用，单独配置css的目标；默认build.target；https://cn.vitejs.dev/config/build-options.html#build-csstarget */
       // cssTarget: 'modules',
       /* 生产sourcemap；默认false */

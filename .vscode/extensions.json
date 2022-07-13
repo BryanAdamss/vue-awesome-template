@@ -1,4 +1,8 @@
 {
-  "recommendations": ["Vue.volar", "Vue.vscode-typescript-vue-plugin"],
+  "recommendations": [
+    "Vue.volar",
+    "Vue.vscode-typescript-vue-plugin",
+    "bradlc.vscode-tailwindcss"
+  ],
   "unwantedRecommendations": ["octref.vetur"]
 }

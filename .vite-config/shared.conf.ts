@@ -24,6 +24,7 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
   console.log('🚦 -> file: shared.conf.ts -> line 24 -> getSharedConf -> command, mode', command, mode)
 
   return {
+    /* 共享配置 */
     /* https://cn.vitejs.dev/config/shared-options.html */
     root: process.cwd(), /* 项目根目录index.html所在目录；默认process.cwd() */
     base: './', /* 公共基础路径，类似assetsPublicPath；默认'/'；需要以/结尾 */
@@ -70,5 +71,26 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
     envDir: 'root',
     /* 需要通过import.meta.env暴露给客户端的变量前缀；默认VITE_ */
     envPrefix: 'VITE_',
+
+    /* 依赖预构建选项 */
+    /* https://cn.vitejs.dev/config/dep-optimization-options.html#dep-optimization-options */
+    // optimizeDeps: {
+    /* 预构建的入口文件列表；默认index.html；若指定了build.rollupOptions.input，则转而使用它 */
+    // entries: 'index.html',
+    /* 默认情况下，不在 node_modules 中的，链接的包不会被预构建。使用此选项可强制预构建链接的包。 */
+    // include: [],
+    /* 不需要预构建的依赖列表；默认[] */
+    // exclude: [],
+    /* 预构建时esbuild配置 */
+    // esbuildOptions: {},
+    /* 设置为 true 可以强制依赖预构建，而忽略之前已经缓存过的、已经优化过的依赖 */
+    // force: false,
+    // },
+
+    /* ssr相关； https://cn.vitejs.dev/config/ssr-options.html#ssr-options */
+    // ssr: {},
+
+    /* worker相关；https://cn.vitejs.dev/config/worker-options.html#worker-options */
+    // worker: {},
   }
 }

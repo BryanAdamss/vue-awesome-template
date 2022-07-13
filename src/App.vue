@@ -8,6 +8,9 @@ import HelloWorld from '@/components/HelloWorld.vue'
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125">
 
     <div class="wrapper">
+      <h1 class="text-4xl caret-lime-50">
+        hello tailwind
+      </h1>
       <HelloWorld msg="You did it!" />
 
       <nav>

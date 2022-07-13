@@ -1,3 +1,10 @@
+/**
+ * @author GuangHui
+ * @description 入口
+ */
+
+import '@/assets/tailwind-entry.css'
+
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 

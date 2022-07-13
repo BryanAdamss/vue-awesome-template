@@ -19,6 +19,16 @@ import { getSharedConf } from './shared.conf'
 export function getProdConf({ command, mode }: ConfigEnv): CustomProdConf {
   return {
     ...getSharedConf({ command, mode }),
-    build: {},
+    /* 构建配置；https://cn.vitejs.dev/config/build-options.html */
+    build: {
+      /* 构建目标；默认是vite特有的值modules，其指代支持ESM的浏览器 */
+      target: 'modules',
+      /* 是否自动注入module preload 的 polyfill，vite所有入口module都会设置为modulepreload，其有一定兼容问题；默认true */
+      polyfillModulePreload: true,
+      /* 打包输出目录；默认dist */
+      outDir: 'dist',
+      /* 静态资源目录，相对于outDir；默认assets */
+      // assetsDir: 'static',
+    },
   }
 }

@@ -24,6 +24,11 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
   console.log('🚦 -> file: shared.conf.ts -> line 24 -> getSharedConf -> command, mode', command, mode)
 
   return {
+    /* https://cn.vitejs.dev/config/shared-options.html */
+    root: process.cwd(), /* 项目根目录index.html所在目录；默认process.cwd() */
+    base: './', /* 公共基础路径，类似assetsPublicPath；默认'/'；需要以/结尾 */
+    publicDir: 'public', /* 原样拷贝资源目录，类似static；默认'public' */
+    cacheDir: 'node_modules/.vite', /* vite预构建缓存产物目录；默认node_modules/.vite */
     plugins: [vue(), vueJsx()],
     resolve: {
       /* 路径别名，配置后，需同步在tsconfig.app.json中配置paths，否则ts报TS2307错误 */
@@ -31,6 +36,39 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
       alias: {
         '~': fileURLToPath(new URL('../src', import.meta.url)),
       },
+      mainFields: ['module', 'jsnext:main', 'jsnext'], /* 解析三方包入口时尝试的字段列表；默认为['module', 'jsnext:main', 'jsnext']，优先从package.json中moudle字段解析 */
+      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'], /* 导入时想要省略的扩展名列表；默认值为['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'] */
     },
+    css: {
+      /* css modules行为 */
+      // modules: {},
+      /* postcss 配置，若提供了此配置，将不会读取其它配置如postcss.config.js */
+      // postcss: {},
+      /* 样式预处理器选项 */
+      // preprocessorOptions: {
+      //   scss: {},
+      //   styl: {},
+      // },
+      /* 开发环境是否生成css sourcemap；默认false */
+      devSourcemap: false,
+    },
+    json: {
+      /* import json时是否支持按名导入，方便tree-shaking；默认true */
+      namedExports: true,
+      /* 若设置为 true，导入的 JSON 会被转换为 export default JSON.parse("...")，这样会比转译成对象字面量性能更好，尤其是当 JSON 文件较大的时候；开启此项，则会禁用按名导入；默认false */
+      stringify: false,
+    },
+    /* esbuild 相关配置，一般自定义jsx时可能需要配置 */
+    // esbuild: {},
+    /* 使用 picomatch 模式 指定额外的静态资源  */
+    // assetsInclude:[]
+    /* 日志等级；默认info */
+    logLevel: 'info',
+    /* 运行vite命令时是否清屏；默认true */
+    clearScreen: true,
+    /* 环境变量文件目录；默认root */
+    envDir: 'root',
+    /* 需要通过import.meta.env暴露给客户端的变量前缀；默认VITE_ */
+    envPrefix: 'VITE_',
   }
 }

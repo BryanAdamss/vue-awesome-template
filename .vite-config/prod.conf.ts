@@ -29,7 +29,7 @@ export function getProdConf({ command, mode }: ConfigEnv): CustomProdConf {
       outDir: 'dist',
       /* 静态资源目录，相对于outDir；默认assets */
       assetsDir: 'static',
-      /* 资源内联限制大小；默认4kb */
+      /* 资源内联限制大小；默认4KB */
       assetsInlineLimit: 4096,
       /* 是否开启css分隔，true的话，异步 js chunk中的css将单独拆分到异步css chunk中并在js chunk执行前加载，false则所有css提取到一个文件中；默认true；https://cn.vitejs.dev/guide/features.html#css-code-splitting */
       cssCodeSplit: true,
@@ -59,7 +59,7 @@ export function getProdConf({ command, mode }: ConfigEnv): CustomProdConf {
       // emptyOutDir: true,
       /* 启用/禁用 gzip 压缩大小报告；默认true */
       reportCompressedSize: true,
-      /* 触发警告的 chunk 大小；默认500kb */
+      /* 触发警告的 chunk 大小；默认500KB */
       chunkSizeWarningLimit: 500,
       /* 设置为 {} 则会启用 rollup 的监听器。在涉及只用在构建时的插件时和集成开发流程中很常用；默认null */
       // watch: null,

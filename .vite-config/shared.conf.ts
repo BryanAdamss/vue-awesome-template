@@ -34,7 +34,7 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
       /* 路径别名，配置后，需同步在tsconfig.app.json中配置paths，否则ts报TS2307错误 */
       /* import.meta.url 类似__dirname */
       alias: {
-        '~': fileURLToPath(new URL('../src', import.meta.url)),
+        '@': fileURLToPath(new URL('../src', import.meta.url)),
       },
       mainFields: ['module', 'jsnext:main', 'jsnext'], /* 解析三方包入口时尝试的字段列表；默认为['module', 'jsnext:main', 'jsnext']，优先从package.json中moudle字段解析 */
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'], /* 导入时想要省略的扩展名列表；默认值为['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'] */

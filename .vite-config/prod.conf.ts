@@ -7,6 +7,7 @@ import type { ConfigEnv } from 'vite'
 import type { CustomProdConf } from './shared.conf'
 
 import { getSharedConf } from './shared.conf'
+import { OUTPUT_DIR, getAssetsDir } from './const'
 
 /**
  * @description 生产构建配置
@@ -17,6 +18,8 @@ import { getSharedConf } from './shared.conf'
  * @return {*}  {CustomProdConf} 生产构建配置
  */
 export function getProdConf({ command, mode }: ConfigEnv): CustomProdConf {
+  const assetsDir = getAssetsDir()
+
   return {
     ...getSharedConf({ command, mode }),
     /* 构建配置；https://cn.vitejs.dev/config/build-options.html */
@@ -26,9 +29,9 @@ export function getProdConf({ command, mode }: ConfigEnv): CustomProdConf {
       /* 是否自动注入module preload 的 polyfill，vite所有入口module都会设置为modulepreload，其有一定兼容问题；默认true */
       polyfillModulePreload: true,
       /* 打包输出目录；默认dist */
-      outDir: 'dist',
+      outDir: OUTPUT_DIR,
       /* 静态资源目录，相对于outDir；默认assets */
-      assetsDir: 'static',
+      assetsDir,
       /* 资源内联限制大小；默认4KB */
       assetsInlineLimit: 4096,
       /* 是否开启css分隔，true的话，异步 js chunk中的css将单独拆分到异步css chunk中并在js chunk执行前加载，false则所有css提取到一个文件中；默认true；https://cn.vitejs.dev/guide/features.html#css-code-splitting */
@@ -38,7 +41,13 @@ export function getProdConf({ command, mode }: ConfigEnv): CustomProdConf {
       /* 生产sourcemap；默认false */
       sourcemap: false,
       /* 自定义底层rollup打包配置，其会同vite内部的rollup选项合并 */
-      // rollupOptions: {},
+      rollupOptions: {
+        output: {
+          assetFileNames: `${assetsDir}/[name][extname]`,
+          chunkFileNames: `${assetsDir}/[name].js`,
+          entryFileNames: `${assetsDir}/[name].js`,
+        },
+      },
       /* 传递给 @rollup/plugin-commonjs 插件的选项 */
       // commonjsOptions: {},
       /* 传递给 @rollup/plugin-dynamic-import-vars 的选项。 */

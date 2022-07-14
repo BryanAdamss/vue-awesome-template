@@ -6,6 +6,8 @@
 import { URL, fileURLToPath } from 'url'
 import type { ConfigEnv, UserConfig } from 'vite'
 
+import VitePluginHtmlEnv from 'vite-plugin-html-env'
+
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
@@ -68,9 +70,9 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
     /* 日志等级；默认info */
     logLevel: 'info',
     /* 运行vite命令时是否清屏；默认true */
-    clearScreen: true,
-    /* 环境变量文件目录；默认root */
-    envDir: 'root',
+    clearScreen: false,
+    /* 环境变量文件目录；默认同root */
+    envDir: process.cwd(),
     /* 需要通过import.meta.env暴露给客户端的变量前缀；默认VITE_ */
     envPrefix: 'VITE_',
 
@@ -96,6 +98,11 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
     // worker: {},
 
     /* 插件 */
-    plugins: [vue(), vueJsx()],
+    plugins: [
+      vue(),
+      vueJsx(),
+      /* 支持在html中使用dotEnv变量 */
+      VitePluginHtmlEnv(),
+    ],
   }
 }

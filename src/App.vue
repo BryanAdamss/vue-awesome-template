@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
+const env = import.meta.env
 </script>
 
 <template>
@@ -11,6 +12,16 @@ import HelloWorld from '@/components/HelloWorld.vue'
       <h1 class="text-4xl caret-lime-50">
         hello tailwind
       </h1>
+      <hr>
+      <h2 class="text-3xl ">
+        <!-- 生产环境替换Vue模板里import.meta.env时， 会出现Unexpected token -->
+        <!-- 使用wbr兼容 -->
+        <!-- https://cn.vitejs.dev/guide/env-and-mode.html#production-replacement -->
+        import.meta<wbr>.env
+      </h2>
+      <div class="bg-red-700">
+        {{ env }}
+      </div>
       <HelloWorld msg="You did it!" />
 
       <nav>

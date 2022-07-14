@@ -1,5 +1,5 @@
 # eslint 默认会lint跟文件夹下所有文件
 # 但不lint点文件和点文件下所有文件
-# 所以使用!将需要lint的点文件或者点文件夹加入即可
+# 所以使用!将需要lint的点文件或者点文件夹反向加入即可
 # 参考https://eslint.org/docs/latest/user-guide/configuring/ignoring-code#the-eslintignore-file
 !.vite-config

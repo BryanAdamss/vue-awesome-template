@@ -38,6 +38,8 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
     resolve: {
       /* 路径别名，配置后，需同步在tsconfig.app.json中配置paths，否则ts报TS2307错误 */
       /* import.meta.url 类似__dirname */
+      /* Dont configure other symbol as an alias */
+      /* https://github.com/vitejs/vite/issues/9071 */
       alias: {
         '@': fileURLToPath(new URL('../src', import.meta.url)),
       },

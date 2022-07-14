@@ -7,6 +7,7 @@ import { URL, fileURLToPath } from 'url'
 import type { ConfigEnv, UserConfig } from 'vite'
 
 import VitePluginHtmlEnv from 'vite-plugin-html-env'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -103,6 +104,17 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
       vueJsx(),
       /* 支持在html中使用dotEnv变量 */
       VitePluginHtmlEnv(),
+      /* 支持打包分析 */
+      {
+        ...visualizer({
+          filename: 'bundle-stats.html',
+          open: true,
+          gzipSize: true,
+          brotliSize: true,
+          template: 'treemap',
+        }),
+        apply: 'build',
+      },
     ],
   }
 }

@@ -9,6 +9,7 @@
     "build": "pnpm build:prod",
     "build:prod": "vite build --mode prod",
     "build:staging": "vite build --mode staging",
+    "build:analysis": "vite build --mode analysis",
     "check-build": "run-p type-check build:prod",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
@@ -33,6 +34,7 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.14",
     "prettier": "^2.5.1",
+    "rollup-plugin-visualizer": "^5.7.0",
     "tailwindcss": "^3.1.6",
     "typescript": "~4.7.4",
     "vite": "^2.9.12",

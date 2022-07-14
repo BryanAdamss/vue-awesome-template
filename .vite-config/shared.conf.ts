@@ -30,7 +30,8 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
     base: './', /* 公共基础路径，类似assetsPublicPath；默认'/'；需要以/结尾 */
     publicDir: 'public', /* 原样拷贝资源目录，类似static；默认'public' */
     cacheDir: 'node_modules/.vite', /* vite预构建缓存产物目录；默认node_modules/.vite */
-    plugins: [vue(), vueJsx()],
+
+    /* 解析相关 */
     resolve: {
       /* 路径别名，配置后，需同步在tsconfig.app.json中配置paths，否则ts报TS2307错误 */
       /* import.meta.url 类似__dirname */
@@ -40,6 +41,7 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
       mainFields: ['module', 'jsnext:main', 'jsnext'], /* 解析三方包入口时尝试的字段列表；默认为['module', 'jsnext:main', 'jsnext']，优先从package.json中moudle字段解析 */
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'], /* 导入时想要省略的扩展名列表；默认值为['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'] */
     },
+
     css: {
       /* css modules行为 */
       // modules: {},
@@ -92,5 +94,8 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
 
     /* worker相关；https://cn.vitejs.dev/config/worker-options.html#worker-options */
     // worker: {},
+
+    /* 插件 */
+    plugins: [vue(), vueJsx()],
   }
 }

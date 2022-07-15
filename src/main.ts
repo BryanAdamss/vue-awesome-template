@@ -6,7 +6,7 @@
 // * ----------------------------------------
 // * 引入样式
 // * ----------------------------------------
-import '@/assets/tailwind-entry.css'
+import '@/assets/styles/tailwind-entry.css'
 
 import { piniaInstance } from '@/services/instance/pinia-instance'
 import { routerInstance } from '@/services/instance/router-instance'

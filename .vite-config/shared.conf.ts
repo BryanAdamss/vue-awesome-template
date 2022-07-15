@@ -8,6 +8,7 @@ import type { ConfigEnv, UserConfig } from 'vite'
 
 import VitePluginHtmlEnv from 'vite-plugin-html-env'
 import { visualizer } from 'rollup-plugin-visualizer'
+import viteCompression from 'vite-plugin-compression'
 
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -114,6 +115,15 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
           gzipSize: true,
           brotliSize: true,
           template: 'treemap',
+        }),
+        apply: 'build',
+      },
+      {
+        ...viteCompression({
+          verbose: true,
+          threshold: 1025, // byte
+          filter: /\.(js|mjs|json|css|html)$/i,
+          algorithm: 'gzip',
         }),
         apply: 'build',
       },

@@ -3,17 +3,23 @@
  * @description 入口
  */
 
+// * ----------------------------------------
+// * 引入样式
+// * ----------------------------------------
 import '@/assets/tailwind-entry.css'
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { piniaInstance } from '@/services/instance/pinia-instance'
+import { routerInstance } from '@/services/instance/router-instance'
+import { appInstance, mountApp } from '@/services/instance/app-instance'
 
-import App from './App.vue'
-import router from '@/services/instance/router-instance'
+// * ----------------------------------------
+// * 注册实例
+// * ----------------------------------------
+appInstance
+  .use(piniaInstance)
+  .use(routerInstance)
 
-const app = createApp(App)
-
-app.use(createPinia())
-app.use(router)
-
-app.mount('#app')
+// * ----------------------------------------
+// * mount 应用
+// * ----------------------------------------
+mountApp('#app')

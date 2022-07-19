@@ -2,9 +2,11 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 const env = import.meta.env
 
+/* useGlobalState is auto import with  unplugin-auto-import */
 const globalState = useGlobalState()
 console.log(globalState.userInfo)
 
+/* vue3 ref api is auto import with unplugin-auto-import */
 const a = ref(3)
 </script>
 

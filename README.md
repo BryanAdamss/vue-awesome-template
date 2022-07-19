@@ -35,7 +35,7 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 - [ ] svg
 - [ ] `vueuse`集成
 - [ ] `TSX`支持
-- [ ] `Vue3API自动导入`支持
+- [x] `Vue3API自动导入`支持
 - [ ] 暗黑模式支持
 - [x] `Inspect调试`支持
 - [ ] 组件模板生成/移除

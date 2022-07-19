@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
 const env = import.meta.env
+
+const globalState = useGlobalState()
+console.log(globalState.userInfo)
+
+const a = ref(3)
 </script>
 
 <template>

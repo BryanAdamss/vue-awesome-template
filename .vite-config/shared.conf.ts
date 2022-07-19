@@ -14,6 +14,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Inspect from 'vite-plugin-inspect'
 import Modules from 'vite-plugin-use-modules'
+import AutoImport from 'unplugin-auto-import/vite'
 
 export type CustomBaseConf = Omit<UserConfig, 'server' | 'build'>
 export type CustomDevConf = Partial<Omit<UserConfig, 'build'>>
@@ -135,6 +136,42 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
       /* 自动导入并注册instance中的实例 */
       Modules({
         target: 'src/services/instance',
+      }),
+      /* API自动导入 */
+      AutoImport({
+        // targets to transform
+        include: [
+          /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+          /\.vue$/, /\.vue\?vue/, // .vue
+        ],
+
+        // global imports to register
+        /* 自动导入vue、vue-router、pinia等API */
+        imports: [
+          // presets
+          'vue',
+          'vue-router',
+          'pinia',
+        ],
+
+        // Auto import for all module exports under directories
+        dirs: [
+          /* 状态将自动导入 */
+          'src/services/stores',
+          // './hooks',
+          // './composables'
+          // ...
+        ],
+
+        // Filepath to generate corresponding .d.ts file.
+        // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
+        // Set `false` to disable.
+        dts: './auto-imports.d.ts',
+
+        // Auto import inside Vue template
+        // see https://github.com/unjs/unimport/pull/15 and https://github.com/unjs/unimport/pull/72
+        vueTemplate: false,
+
       }),
     ],
   }

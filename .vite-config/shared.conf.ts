@@ -13,6 +13,7 @@ import viteCompression from 'vite-plugin-compression'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Inspect from 'vite-plugin-inspect'
+import Modules from 'vite-plugin-use-modules'
 
 export type CustomBaseConf = Omit<UserConfig, 'server' | 'build'>
 export type CustomDevConf = Partial<Omit<UserConfig, 'build'>>
@@ -131,6 +132,10 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
       },
       /* inspect */
       Inspect(), // only applies in dev mode
+      /* 自动导入并注册instance中的实例 */
+      Modules({
+        target: 'src/services/instance',
+      }),
     ],
   }
 }

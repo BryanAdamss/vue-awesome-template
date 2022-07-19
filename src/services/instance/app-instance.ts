@@ -1,6 +1,6 @@
 /**
  * @author GuangHui
- * @description 应用实例
+ * @description 应用实例，不导出实例注册方法
  */
 
 import { createApp } from 'vue'

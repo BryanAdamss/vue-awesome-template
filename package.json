@@ -41,6 +41,7 @@
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-html-env": "^1.2.2",
     "vite-plugin-inspect": "^0.6.0",
+    "vite-plugin-use-modules": "^1.2.1",
     "vitest": "^0.15.1",
     "vue-tsc": "^0.38.1"
   },

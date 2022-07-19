@@ -22,8 +22,13 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 ## TODO
 
-- 分包优化
-- gzip
-- html 压缩
-- svg
-- 目录分层
+- [x] 约束镜像源和`npm、node、pnpm`版本
+- [x] 仅允许使用`pnpm`
+- [x] `Eslint` + `prettier` ready
+- [x] `vite`配置拆分
+- [x] 集成`tailwindcss`
+- [x] 构建`gzip`
+- [x] 多构建环境区分
+- [x] 目录分层
+- [ ] 分包优化
+- [ ] svg

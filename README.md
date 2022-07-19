@@ -30,5 +30,13 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 - [x] 构建`gzip`
 - [x] 多构建环境区分
 - [x] 目录分层
+- [x] `TS`支持
 - [ ] 分包优化
 - [ ] svg
+- [ ] `vueuse`集成
+- [ ] `TSX`支持
+- [ ] `Vue3API自动导入`支持
+- [ ] 暗黑模式支持
+- [ ] `Inspect调试`支持
+- [ ] 组件模板生成/移除
+- [ ] `i18n`支持

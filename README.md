@@ -31,6 +31,7 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 - [x] 多构建环境区分
 - [x] 目录分层
 - [x] `TS`支持
+- [x] `html`支持`env变量`
 - [ ] 分包优化
 - [ ] svg
 - [ ] `vueuse`集成

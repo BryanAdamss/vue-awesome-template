@@ -6,18 +6,19 @@
 import type { ConfigEnv } from 'vite'
 import type { CustomProdConf } from './shared.conf'
 
+import { OUTPUT_DIR } from './const'
+import { getAssetsDir, getManualChunksMap } from './utils'
 import { getSharedConf } from './shared.conf'
-import { OUTPUT_DIR, getAssetsDir } from './const'
 
 /**
- * @description 生产构建配置
+ * 生产构建配置
  *
- * @date 2022-07-09 22:06:39
+ * @date 2022-07-20 17:41:07
  * @export
  * @param {ConfigEnv} { command, mode } 命令、模式
- * @return {*}  {CustomProdConf} 生产构建配置
+ * @return {*}  {Promise<CustomProdConf>} 生产构建配置
  */
-export function getProdConf({ command, mode }: ConfigEnv): CustomProdConf {
+export async function getProdConf({ command, mode }: ConfigEnv): Promise<CustomProdConf> {
   const assetsDir = getAssetsDir()
 
   return {
@@ -46,6 +47,7 @@ export function getProdConf({ command, mode }: ConfigEnv): CustomProdConf {
           assetFileNames: `${assetsDir}/[name][extname]`,
           chunkFileNames: `${assetsDir}/[name].js`,
           entryFileNames: `${assetsDir}/[name].js`,
+          manualChunks: await getManualChunksMap(),
         },
       },
       /* 传递给 @rollup/plugin-commonjs 插件的选项 */

@@ -21,6 +21,10 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.25.2",
+    "@pnpm/lockfile-file": "^5.1.4",
+    "@pnpm/lockfile-utils": "^4.0.10",
+    "@pnpm/lockfile-walker": "^5.0.10",
+    "@pnpm/logger": "^4.0.0",
     "@types/jsdom": "^16.2.14",
     "@types/node": "^16.11.41",
     "@vitejs/plugin-vue": "^2.3.3",

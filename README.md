@@ -32,7 +32,7 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 - [x] 目录分层
 - [x] `TS`支持
 - [x] `html`支持`env变量`
-- [ ] 分包优化
+- [x] 支持三方包拆分到独自的`chunk`中
 - [ ] svg
 - [ ] `vueuse`集成
 - [ ] `TSX`支持

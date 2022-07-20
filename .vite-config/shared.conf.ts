@@ -134,8 +134,13 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
       /* inspect */
       Inspect(), // only applies in dev mode
       /* 自动导入并注册instance中的实例 */
+      /* https://github.com/dishait/vite-plugin-use-modules */
       Modules({
-        target: 'src/services/instance',
+        /* https://github.com/dishait/vite-plugin-use-modules/issues/2 */
+        normalize() {
+          /* 排除app-instance */
+          return JSON.stringify(['/src/services/instance/**/*.[tj]s', '!/**/app-instance.ts'])
+        },
       }),
       /* API自动导入 */
       AutoImport({

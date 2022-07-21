@@ -33,7 +33,8 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 - [x] `TS`支持
 - [x] `html`支持`env变量`
 - [x] 支持三方包拆分到独自的`chunk`中
-- [ ] svg
+- [ ] 主题化
+- [ ] `svg` 集成
 - [ ] `vueuse`集成
 - [ ] `TSX`支持
 - [x] `Vue3API自动导入`支持

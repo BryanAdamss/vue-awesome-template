@@ -37,6 +37,9 @@ const a = ref(3)
         <RouterLink to="/about">
           About
         </RouterLink>
+        <RouterLink to="/tailwind-example">
+          TailwindExample
+        </RouterLink>
       </nav>
     </div>
   </header>

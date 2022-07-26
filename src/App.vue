@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import type { MessageCenter } from '@/plugins/message-center'
+
 import HelloWorld from '@/components/HelloWorld.vue'
+
 const env = import.meta.env
 
 /* useGlobalState is auto import with  unplugin-auto-import */
@@ -8,6 +11,13 @@ console.log(globalState.userInfo)
 
 /* vue3 ref api is auto import with unplugin-auto-import */
 const a = ref(3)
+
+/* setup语法中无法使用this.$mc方式 */
+const mc = inject<MessageCenter>('mc')
+
+const onClick = () => {
+  mc?.emit('messageCenterBtnClick', `Msg from App.vue with MessageCenter and app.provide/inject ${Math.random()}`)
+}
 </script>
 
 <template>
@@ -29,6 +39,10 @@ const a = ref(3)
         {{ env }}
       </div>
       <HelloWorld msg="You did it!" />
+
+      <button class="bg-red-300 p-1 rounded hover:text-white" @click="onClick">
+        messageCenterBtnClickUseProvide/inject
+      </button>
 
       <nav>
         <RouterLink to="/">

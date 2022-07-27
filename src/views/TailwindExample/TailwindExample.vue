@@ -550,13 +550,157 @@
             }
           }
 
-          // 解决方案，不在sfc中使用@layer或使用tailwind utils取代components声明
+          // 解决方案，不在sfc中使用@layer或使用tailwind的样式类
           div {
             background-color: theme('colors.white');
             border-radius: theme('borderRadius.lg');
             padding: theme('spacing.6');
             box-shadow: theme('boxShadow.xl');
           }
+          </pre>
+        </li>
+        <li>
+          <h2>通过tailwindcss 提供的plugin入口，添加自定义样式</h2>
+          <pre>
+          const plugin = require('tailwindcss/plugin')
+          module.exports = {
+            // ...
+            plugins: [
+              plugin(function ({ addBase, addComponents, addUtilities, theme }) {
+                addBase({
+                  'h1': {
+                    fontSize: theme('fontSize.2xl'),
+                  },
+                  'h2': {
+                    fontSize: theme('fontSize.xl'),
+                  },
+                })
+                addComponents({
+                  '.card': {
+                    backgroundColor: theme('colors.white'),
+                    borderRadius: theme('borderRadius.lg'),
+                    padding: theme('spacing.6'),
+                    boxShadow: theme('boxShadow.xl'),
+                  }
+                })
+                addUtilities({
+                  '.content-auto': {
+                    contentVisibility: 'auto',
+                  }
+                })
+              })
+            ]
+          }
+          </pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="border-2 border-blue-100 p-4 mt-2">
+      <h1><a href="https://tailwindcss.com/docs/adding-custom-styles">内置指令和函数</a></h1>
+      <ul>
+        <li>
+          <h2>指令</h2>
+          <pre>
+            @tailwind 用来插入tailwindcss的base、components、utils和variants
+
+            @layer 用来插入自定义样式到tailwindcss的base、components、utils中，插入的样式能使用tailwindcss的modifers，像hover:xxx focus:xxx md:xxx
+
+            @apply 用来内联已经存在的utils样式类到自定义的样式中;
+
+            @tailwind base;
+            @tailwind components;
+            @tailwind utilities;
+            @tailwind variants;
+
+            @layer base {
+              h1 {
+                @apply text-2xl;
+              }
+              h2 {
+                @apply text-xl;
+              }
+            }
+
+            @layer components {
+              .btn-blue {
+                @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+              }
+            }
+
+            @layer utilities {
+              .filter-none {
+                filter: none;
+              }
+              .filter-grayscale {
+                filter: grayscale(100%);
+              }
+            }
+
+            使用@apply内联时，已存在utils样式类中包含的!important默认会被删除；
+            /* Input */
+            .foo {
+              color: blue !important;
+            }
+
+            .bar {
+              @apply foo;
+            }
+
+            /* Output */
+            .foo {
+              color: blue !important;
+            }
+
+            .bar {
+              color: blue; // 被删除了
+            }
+
+            可在@apply后面加上!important来添加最高权重
+            /* Input */
+            .btn {
+              @apply font-bold !important;
+            }
+
+            /* Output */
+            .btn {
+              font-weight: 700 !important;
+            }
+
+            在sass中使用@apply并需要提高权重时，使用#{!important}
+            .btn {
+              @apply font-bold py-2 px-4 rounded #{!important};
+            }
+          </pre>
+        </li>
+        <li>
+          <h2>
+            函数，用来在css中获取tailwindcss的一些值
+          </h2>
+          <pre>
+            theme()
+            用来获取tailwind config中指定的一些设计系统值，如colors、spacing等
+            获取tailwind定义值时使用点语法，如theme(spacing.12)
+            特殊值使用中括号语法，如theme(spacing[2.5])
+            嵌套颜色值，也请使用点语法，如colors-blue-500->theme(colors.blue.500)
+
+            .content{
+              height:calc(100vh - theme(spacing.12))
+              color:theme(colors.blue.500)
+              color:theme(colors.blue-500) // 报错
+            }
+
+            screen()
+            传入配置中定义的断点名称，自动生成相关media query
+            <!-- input -->
+            @media screen(sm) {
+              /* ... */
+            }
+            <!-- output -->
+            @media (min-width: 640px) {
+              /* ... */
+            }
+
           </pre>
         </li>
       </ul>

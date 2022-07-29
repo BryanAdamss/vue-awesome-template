@@ -171,7 +171,7 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
         // Filepath to generate corresponding .d.ts file.
         // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
         // Set `false` to disable.
-        dts: './auto-imports.d.ts',
+        dts: 'types/auto-imports.d.ts',
 
         // Auto import inside Vue template
         // see https://github.com/unjs/unimport/pull/15 and https://github.com/unjs/unimport/pull/72

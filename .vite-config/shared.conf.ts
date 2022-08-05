@@ -4,6 +4,7 @@
  */
 
 import { URL, fileURLToPath } from 'url'
+import { loadEnv } from 'vite'
 import type { ConfigEnv, UserConfig } from 'vite'
 
 import VitePluginHtmlEnv from 'vite-plugin-html-env'
@@ -29,12 +30,91 @@ export type CustomProdConf = Partial<Omit<UserConfig, 'server'>>
  */
 export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
   console.log('🚦 -> file: shared.conf.ts -> line 24 -> getSharedConf -> command, mode', command, mode)
+  const env = loadEnv(mode, process.cwd(), '')
+
+  const plugins = [
+    vue(),
+    vueJsx(),
+    /* 支持在html中使用dotEnv变量 */
+    VitePluginHtmlEnv(),
+    /* gzip */
+    {
+      ...viteCompression({
+        verbose: true,
+        threshold: 1025, // byte
+        filter: /\.(js|mjs|json|css|html)$/i,
+        algorithm: 'gzip',
+      }),
+      apply: 'build',
+    },
+    /* inspect */
+    Inspect(), // only applies in dev mode
+    /* 自动导入并注册instance中的实例 */
+    /* https://github.com/dishait/vite-plugin-use-modules */
+    Modules({
+      /* https://github.com/dishait/vite-plugin-use-modules/issues/2 */
+      normalize() {
+        /* 排除app-instance */
+        return JSON.stringify(['/src/services/instance/**/*.[tj]s', '!/**/app-instance.ts'])
+      },
+    }),
+    /* API自动导入 */
+    AutoImport({
+      // targets to transform
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/, /\.vue\?vue/, // .vue
+      ],
+
+      // global imports to register
+      /* 自动导入vue、vue-router、pinia等API */
+      imports: [
+        // presets
+        'vue',
+        'vue-router',
+        'pinia',
+      ],
+
+      // Auto import for all module exports under directories
+      dirs: [
+        /* 状态将自动导入 */
+        'src/services/stores',
+        // './hooks',
+        // './composables'
+        // ...
+      ],
+
+      // Filepath to generate corresponding .d.ts file.
+      // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
+      // Set `false` to disable.
+      dts: 'types/auto-imports.d.ts',
+
+      // Auto import inside Vue template
+      // see https://github.com/unjs/unimport/pull/15 and https://github.com/unjs/unimport/pull/72
+      vueTemplate: false,
+
+    }),
+  ]
+
+  /* 支持打包分析 */
+  if (mode === 'analysis') {
+    plugins.push({
+      ...visualizer({
+        filename: 'bundle-stats.html',
+        open: true,
+        gzipSize: true,
+        brotliSize: true,
+        template: 'treemap',
+      }),
+      apply: 'build',
+    })
+  }
 
   return {
     /* 共享配置 */
     /* https://cn.vitejs.dev/config/shared-options.html */
     root: process.cwd(), /* 项目根目录index.html所在目录；默认process.cwd() */
-    base: './', /* 公共基础路径，类似assetsPublicPath；默认'/'；需要以/结尾 */
+    base: env.VITE_BUILD_BASE, /* 公共基础路径，类似assetsPublicPath；默认'/'；需要以/结尾 */
     publicDir: 'public', /* 原样拷贝资源目录，类似static；默认'public' */
     cacheDir: 'node_modules/.vite', /* vite预构建缓存产物目录；默认node_modules/.vite */
 
@@ -105,79 +185,6 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
     // worker: {},
 
     /* 插件 */
-    plugins: [
-      vue(),
-      vueJsx(),
-      /* 支持在html中使用dotEnv变量 */
-      VitePluginHtmlEnv(),
-      /* 支持打包分析 */
-      {
-        ...visualizer({
-          filename: 'bundle-stats.html',
-          open: true,
-          gzipSize: true,
-          brotliSize: true,
-          template: 'treemap',
-        }),
-        apply: 'build',
-      },
-      /* gzip */
-      {
-        ...viteCompression({
-          verbose: true,
-          threshold: 1025, // byte
-          filter: /\.(js|mjs|json|css|html)$/i,
-          algorithm: 'gzip',
-        }),
-        apply: 'build',
-      },
-      /* inspect */
-      Inspect(), // only applies in dev mode
-      /* 自动导入并注册instance中的实例 */
-      /* https://github.com/dishait/vite-plugin-use-modules */
-      Modules({
-        /* https://github.com/dishait/vite-plugin-use-modules/issues/2 */
-        normalize() {
-          /* 排除app-instance */
-          return JSON.stringify(['/src/services/instance/**/*.[tj]s', '!/**/app-instance.ts'])
-        },
-      }),
-      /* API自动导入 */
-      AutoImport({
-        // targets to transform
-        include: [
-          /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-          /\.vue$/, /\.vue\?vue/, // .vue
-        ],
-
-        // global imports to register
-        /* 自动导入vue、vue-router、pinia等API */
-        imports: [
-          // presets
-          'vue',
-          'vue-router',
-          'pinia',
-        ],
-
-        // Auto import for all module exports under directories
-        dirs: [
-          /* 状态将自动导入 */
-          'src/services/stores',
-          // './hooks',
-          // './composables'
-          // ...
-        ],
-
-        // Filepath to generate corresponding .d.ts file.
-        // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
-        // Set `false` to disable.
-        dts: 'types/auto-imports.d.ts',
-
-        // Auto import inside Vue template
-        // see https://github.com/unjs/unimport/pull/15 and https://github.com/unjs/unimport/pull/72
-        vueTemplate: false,
-
-      }),
-    ],
+    plugins,
   }
 }

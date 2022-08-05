@@ -14,4 +14,3 @@ export const VIEWS_DIR = 'views'
 
 /* ciVersion传参key */
 export const CI_VERSION_KEY = '--ciVersion'
-

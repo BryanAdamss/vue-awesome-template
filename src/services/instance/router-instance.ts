@@ -6,6 +6,7 @@
 import type { App } from 'vue'
 
 import { createRouter, createWebHistory } from 'vue-router'
+
 import { routesLoader } from '@/plugins/routes-loader'
 
 /* router实例 */

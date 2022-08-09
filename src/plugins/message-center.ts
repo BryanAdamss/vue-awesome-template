@@ -3,10 +3,10 @@
  * @description 消息中心（发布订阅）
  */
 
+import type { App } from 'vue'
+
 /* 文档参阅：https://www.npmjs.com/package/eventemitter3 */
 import EventEmitter from 'eventemitter3'
-
-import type { App } from 'vue'
 
 /**
  * 消息中心（继承自EventEmitter3）

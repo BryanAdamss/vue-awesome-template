@@ -9,6 +9,7 @@
 import '@/assets/styles/tailwind-entry.css'
 
 import { useModules } from 'virtual:modules'
+
 import { appInstance, mountApp } from '@/services/instance/app-instance'
 
 // * ----------------------------------------

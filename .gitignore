@@ -27,3 +27,5 @@ coverage
 
 # custom
 bundle-stats.html
+
+eslintrc-raw.json

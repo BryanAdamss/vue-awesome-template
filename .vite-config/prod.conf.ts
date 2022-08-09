@@ -3,12 +3,12 @@
  * @description 生产构建配置
  */
 
-import type { ConfigEnv } from 'vite'
 import type { CustomProdConf } from './shared.conf'
+import type { ConfigEnv } from 'vite'
 
 import { OUTPUT_DIR } from './const'
-import { getAssetsDir, getManualChunksMap } from './utils'
 import { getSharedConf } from './shared.conf'
+import { getAssetsDir, getManualChunksMap } from './utils'
 
 /**
  * 生产构建配置

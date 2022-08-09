@@ -3,8 +3,8 @@
  * @description 开发服务配置
  */
 
-import type { ConfigEnv } from 'vite'
 import type { CustomDevConf } from './shared.conf'
+import type { ConfigEnv } from 'vite'
 
 import { getSharedConf } from './shared.conf'
 

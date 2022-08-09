@@ -3,6 +3,8 @@
  * @description 基础(共享)配置
  */
 
+import type { ConfigEnv, UserConfig } from 'vite'
+
 import { URL, fileURLToPath } from 'url'
 
 import vue from '@vitejs/plugin-vue'
@@ -14,8 +16,6 @@ import viteCompression from 'vite-plugin-compression'
 import VitePluginHtmlEnv from 'vite-plugin-html-env'
 import Inspect from 'vite-plugin-inspect'
 import Modules from 'vite-plugin-use-modules'
-
-import type { ConfigEnv, UserConfig } from 'vite'
 
 export type CustomBaseConf = Omit<UserConfig, 'server' | 'build'>
 export type CustomDevConf = Partial<Omit<UserConfig, 'build'>>

@@ -3,9 +3,9 @@
  * @description 工具方法
  */
 
-import lockfileWalker from '@pnpm/lockfile-walker'
 import { readWantedLockfile } from '@pnpm/lockfile-file'
 import { nameVerFromPkgSnapshot } from '@pnpm/lockfile-utils'
+import lockfileWalker from '@pnpm/lockfile-walker'
 
 import { ASSETS_DIR, CI_VERSION_KEY } from './const'
 

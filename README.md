@@ -43,3 +43,4 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 - [ ] 组件模板生成/移除
 - [ ] `i18n`支持
 - [x] 支持`event-bus`（基于`EventEmitter3`）
+- [ ] 自定义`import语句`顺序

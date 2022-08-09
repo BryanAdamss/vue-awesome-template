@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { MessageCenter } from '@/plugins/message-center'
-
 import HelloWorld from '@/components/HelloWorld.vue'
 
 const env = import.meta.env
@@ -13,7 +11,8 @@ console.log(globalState.userInfo)
 const a = ref(3)
 
 /* setup语法中无法使用this.$mc方式 */
-const mc = inject<MessageCenter>('mc')
+/* messageCenterKey自动注入 */
+const mc = inject(messageCenterKey)
 
 const onClick = () => {
   mc?.emit('messageCenterBtnClick', `Msg from App.vue with MessageCenter and app.provide/inject ${Math.random()}`)

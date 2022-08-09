@@ -4,18 +4,18 @@
  */
 
 import { URL, fileURLToPath } from 'url'
-import { loadEnv } from 'vite'
-import type { ConfigEnv, UserConfig } from 'vite'
-
-import VitePluginHtmlEnv from 'vite-plugin-html-env'
-import { visualizer } from 'rollup-plugin-visualizer'
-import viteCompression from 'vite-plugin-compression'
 
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import { visualizer } from 'rollup-plugin-visualizer'
+import AutoImport from 'unplugin-auto-import/vite'
+import { loadEnv } from 'vite'
+import viteCompression from 'vite-plugin-compression'
+import VitePluginHtmlEnv from 'vite-plugin-html-env'
 import Inspect from 'vite-plugin-inspect'
 import Modules from 'vite-plugin-use-modules'
-import AutoImport from 'unplugin-auto-import/vite'
+
+import type { ConfigEnv, UserConfig } from 'vite'
 
 export type CustomBaseConf = Omit<UserConfig, 'server' | 'build'>
 export type CustomDevConf = Partial<Omit<UserConfig, 'build'>>
@@ -79,6 +79,8 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
       dirs: [
         /* 状态将自动导入 */
         'src/services/stores',
+        /* 常量将自动导入 */
+        'src/services/const',
         // './hooks',
         // './composables'
         // ...
@@ -144,12 +146,14 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
       /* 开发环境是否生成css sourcemap；默认false */
       devSourcemap: false,
     },
+
     json: {
       /* import json时是否支持按名导入，方便tree-shaking；默认true */
       namedExports: true,
       /* 若设置为 true，导入的 JSON 会被转换为 export default JSON.parse("...")，这样会比转译成对象字面量性能更好，尤其是当 JSON 文件较大的时候；开启此项，则会禁用按名导入；默认false */
       stringify: false,
     },
+
     /* esbuild 相关配置，一般自定义jsx时可能需要配置 */
     // esbuild: {},
     /* 使用 picomatch 模式 指定额外的静态资源  */

@@ -3,10 +3,10 @@
  * @description 消息中心（发布订阅）
  */
 
-import type { App } from 'vue'
-
 /* 文档参阅：https://www.npmjs.com/package/eventemitter3 */
 import EventEmitter from 'eventemitter3'
+
+import type { App } from 'vue'
 
 /**
  * 消息中心（继承自EventEmitter3）
@@ -29,13 +29,20 @@ export class MessageCenter extends EventEmitter {
     return (MessageCenter._instance = this)
   }
 
-  /* 暴露install方法供vue plugin调用 */
-  install(app: App) {
+  /* 暴露install方法供vue注册plugin调用 */
+  install(
+    app: App,
+    { injectKey = 'mc' }: { injectKey?: Symbol | string } = {},
+  ) {
+    const name = typeof injectKey === 'symbol'
+      ? injectKey.description
+      : injectKey
+
     /* this.$mc仅在非setup中生效 */
-    app.config.globalProperties.$mc = this
+    app.config.globalProperties[`$${name}`] = this
 
     /* provide/inject方式，可在setup中生效 */
-    app.provide<MessageCenter>('mc', this)
+    app.provide(injectKey, this)
   }
 }
 

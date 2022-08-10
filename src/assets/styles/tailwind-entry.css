@@ -1,3 +1,15 @@
 @tailwind base;
+@layer base {
+  :root {
+    /* https://tailwindcss.com/docs/customizing-colors#using-css-variables */
+    /* R,G,B字符串，在tailwind中用cssvar配置颜色 */
+    --vat-green: 82, 196, 26;
+    --vat-blue: 24, 144, 255;
+    --vat-yellow: 250, 219, 20;
+    --vat-red: 245, 34, 45;
+    --vat-gray: 191, 191, 191;
+  }
+}
+
 @tailwind components;
 @tailwind utilities;

@@ -597,7 +597,7 @@
     </div>
 
     <div class="border-2 border-blue-100 p-4 mt-2">
-      <h1><a href="https://tailwindcss.com/docs/adding-custom-styles">内置指令和函数</a></h1>
+      <h1><a href="https://tailwindcss.com/docs/functions-and-directives">内置指令和函数</a></h1>
       <ul>
         <li>
           <h2>指令</h2>
@@ -702,6 +702,231 @@
             }
 
           </pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="border-2 border-blue-100 p-4 mt-2">
+      <h1><a href="https://tailwindcss.com/docs/customizing-colors">自定义颜色</a></h1>
+      <ul>
+        <li>
+          <h2>测试自定义颜色</h2>
+        </li>
+        <li class="text-primary">
+          text-primary
+        </li>
+        <li class="text-primary/0">
+          text-primary/0
+        </li>
+        <li class="text-primary/10">
+          text-primary/10
+        </li>
+        <li class="text-primary/20">
+          text-primary/20
+        </li>
+        <li class="text-primary/30">
+          text-primary/30
+        </li>
+        <li class="text-primary/40">
+          text-primary/40
+        </li>
+        <li class="text-primary/50">
+          text-primary/50
+        </li>
+        <li class="text-primary/60">
+          text-primary/60
+        </li>
+        <li class="text-primary/70">
+          text-primary/70
+        </li>
+        <li class="text-primary/80">
+          text-primary/80
+        </li>
+        <li class="text-primary/90">
+          text-primary/90
+        </li>
+        <li class="text-primary/100">
+          text-primary/100
+        </li>
+        <li class="text-secondary">
+          text-secondary
+        </li>
+        <li class="text-secondary/0">
+          text-secondary/0
+        </li>
+        <li class="text-secondary/10">
+          text-secondary/10
+        </li>
+        <li class="text-secondary/20">
+          text-secondary/20
+        </li>
+        <li class="text-secondary/30">
+          text-secondary/30
+        </li>
+        <li class="text-secondary/40">
+          text-secondary/40
+        </li>
+        <li class="text-secondary/50">
+          text-secondary/50
+        </li>
+        <li class="text-secondary/60">
+          text-secondary/60
+        </li>
+        <li class="text-secondary/70">
+          text-secondary/70
+        </li>
+        <li class="text-secondary/80">
+          text-secondary/80
+        </li>
+        <li class="text-secondary/90">
+          text-secondary/90
+        </li>
+        <li class="text-secondary/100">
+          text-secondary/100
+        </li>
+        <li class="text-success">
+          text-success
+        </li>
+        <li class="text-success/0">
+          text-success/0
+        </li>
+        <li class="text-success/10">
+          text-success/10
+        </li>
+        <li class="text-success/20">
+          text-success/20
+        </li>
+        <li class="text-success/30">
+          text-success/30
+        </li>
+        <li class="text-success/40">
+          text-success/40
+        </li>
+        <li class="text-success/50">
+          text-success/50
+        </li>
+        <li class="text-success/60">
+          text-success/60
+        </li>
+        <li class="text-success/70">
+          text-success/70
+        </li>
+        <li class="text-success/80">
+          text-success/80
+        </li>
+        <li class="text-success/90">
+          text-success/90
+        </li>
+        <li class="text-success/100">
+          text-success/100
+        </li>
+        <li class="text-info">
+          text-info
+        </li>
+        <li class="text-info/0">
+          text-info/0
+        </li>
+        <li class="text-info/10">
+          text-info/10
+        </li>
+        <li class="text-info/20">
+          text-info/20
+        </li>
+        <li class="text-info/30">
+          text-info/30
+        </li>
+        <li class="text-info/40">
+          text-info/40
+        </li>
+        <li class="text-info/50">
+          text-info/50
+        </li>
+        <li class="text-info/60">
+          text-info/60
+        </li>
+        <li class="text-info/70">
+          text-info/70
+        </li>
+        <li class="text-info/80">
+          text-info/80
+        </li>
+        <li class="text-info/90">
+          text-info/90
+        </li>
+        <li class="text-info/100">
+          text-info/100
+        </li>
+        <li class="text-warning">
+          text-warning
+        </li>
+        <li class="text-warning/0">
+          text-warning/0
+        </li>
+        <li class="text-warning/10">
+          text-warning/10
+        </li>
+        <li class="text-warning/20">
+          text-warning/20
+        </li>
+        <li class="text-warning/30">
+          text-warning/30
+        </li>
+        <li class="text-warning/40">
+          text-warning/40
+        </li>
+        <li class="text-warning/50">
+          text-warning/50
+        </li>
+        <li class="text-warning/60">
+          text-warning/60
+        </li>
+        <li class="text-warning/70">
+          text-warning/70
+        </li>
+        <li class="text-warning/80">
+          text-warning/80
+        </li>
+        <li class="text-warning/90">
+          text-warning/90
+        </li>
+        <li class="text-warning/100">
+          text-warning/100
+        </li>
+        <li class="text-error">
+          text-error
+        </li>
+        <li class="text-error/0">
+          text-error/0
+        </li>
+        <li class="text-error/10">
+          text-error/10
+        </li>
+        <li class="text-error/20">
+          text-error/20
+        </li>
+        <li class="text-error/30">
+          text-error/30
+        </li>
+        <li class="text-error/40">
+          text-error/40
+        </li>
+        <li class="text-error/50">
+          text-error/50
+        </li>
+        <li class="text-error/60">
+          text-error/60
+        </li>
+        <li class="text-error/70">
+          text-error/70
+        </li>
+        <li class="text-error/80">
+          text-error/80
+        </li>
+        <li class="text-error/90">
+          text-error/90
+        </li>
+        <li class="text-error/100">
+          text-error/100
         </li>
       </ul>
     </div>

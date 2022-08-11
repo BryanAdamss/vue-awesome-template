@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import HelloWorld from '@/components/HelloWorld.vue'
+import { ThemeType, darkThemeInstance } from '@/services/instance/dark-theme-instance'
 
 const env = import.meta.env
 
@@ -20,7 +21,7 @@ const onClick = () => {
 </script>
 
 <template>
-  <header>
+  <header class="bg-white dark:bg-slate-600">
     <img alt="Vue logo" class="logo" src="@/assets/svgs/logo.svg" width="125" height="125">
 
     <div class="wrapper">
@@ -54,6 +55,17 @@ const onClick = () => {
           TailwindExample
         </RouterLink>
       </nav>
+
+      <h1>主题</h1>
+      <button type="button" @click="darkThemeInstance.setTheme(ThemeType.OS)">
+        跟随系统
+      </button>
+      <button type="button" @click="darkThemeInstance.setTheme(ThemeType.MANUAL_DARK)">
+        dark
+      </button>
+      <button type="button" @click="darkThemeInstance.setTheme(ThemeType.MANUAL_LIGHT)">
+        light
+      </button>
     </div>
   </header>
 

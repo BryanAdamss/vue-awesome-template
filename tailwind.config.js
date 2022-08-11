@@ -11,6 +11,9 @@ module.exports = {
     './index.html',
     './src/**/*.{vue,js,ts,jsx,tsx}',
   ],
+  /* 通过切换class控制darkmode */
+  /* https://tailwindcss.com/docs/dark-mode#customizing-the-class-name */
+  darkMode: ['class', '.is-dark'],
   /* https://tailwindcss.com/docs/configuration#prefix */
   // prefix: 'vat-', // 类名前缀
   /* https://tailwindcss.com/docs/configuration#important */

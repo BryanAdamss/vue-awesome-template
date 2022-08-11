@@ -20,4 +20,3 @@ export const appInstance = createApp(App)
 export function mountApp(elOrSelector = '#app') {
   appInstance.mount(elOrSelector)
 }
-

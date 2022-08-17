@@ -18,6 +18,11 @@ const mc = inject(messageCenterKey)
 const onClick = () => {
   mc?.emit('messageCenterBtnClick', `Msg from App.vue with MessageCenter and app.provide/inject ${Math.random()}`)
 }
+
+const fetchPost = inject(fetchPostKey)!
+
+const res = await fetchPost(PREMISSION_QUERY, { types: [134, 146] })
+console.log('🚦 -> file: App.vue -> line 26 -> res', res)
 </script>
 
 <template>

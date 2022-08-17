@@ -21,7 +21,7 @@ const onClick = () => {
 
 const fetchPost = inject(fetchPostKey)!
 
-const res = await fetchPost(PREMISSION_QUERY, { types: [134, 146] })
+const res = await fetchPost(ApiPaths.addPet, { types: [134, 146] })
 console.log('🚦 -> file: App.vue -> line 26 -> res', res)
 </script>
 

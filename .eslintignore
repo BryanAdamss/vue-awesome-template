@@ -3,3 +3,4 @@
 # 所以使用!将需要lint的点文件或者点文件夹反向加入即可
 # 参考https://eslint.org/docs/latest/user-guide/configuring/ignoring-code#the-eslintignore-file
 !.vite-config
+!.swagger-ts

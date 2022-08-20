@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div class="TailwindExample">
+  <div class="c-TailwindExample">
     <h1>version:3.1.6</h1>
     <div class="border-2 border-blue-100 p-4">
       <a href="https://tailwindcss.com/docs/hover-focus-and-other-states#hover-focus-and-active">

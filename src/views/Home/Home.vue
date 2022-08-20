@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import TheWelcome from '@/components/TheWelcome.vue'
+import { routesLoader } from '@/plugins/routes-loader'
+
+const routes = routesLoader()
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <ul>
+      <li v-for="(route, path) in routes" :key="path">
+        <RouterLink :to="route.path">
+          {{ route.path }}
+        </RouterLink>
+      </li>
+    </ul>
   </main>
 </template>

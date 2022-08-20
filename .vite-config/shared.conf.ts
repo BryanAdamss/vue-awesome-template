@@ -83,6 +83,8 @@ export function getSharedConf({ command, mode }: ConfigEnv): CustomBaseConf {
         'src/services/const',
         /* api定义将自动导入 */
         'src/services/api',
+        /* request定义将自动导入 */
+        'src/services/request',
         // './hooks',
         // './composables'
         // ...

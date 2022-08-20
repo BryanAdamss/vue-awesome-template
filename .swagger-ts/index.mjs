@@ -1,6 +1,7 @@
 /**
  * @author GuangHui
- * @description swagger 转 ts声明
+ * @description openapiTS（swagger schema->dts）
+ * @docs https://github.com/drwpow/openapi-typescript
  */
 
 import fs from 'fs'
@@ -8,17 +9,27 @@ import path from 'path'
 
 import openapiTS from 'openapi-typescript'
 
+import { SWAGGER_API_FILE } from './const.mjs';
+
 (async function () {
-  const output = await openapiTS(
+  const content = await openapiTS(
     'https://petstore.swagger.io/v2/swagger.json',
     {
-      additionalProperties: true,
-      immutableTypes: true,
-      makePathsEnum: true,
+      additionalProperties: false,
+      immutableTypes: false,
+      makePathsEnum: false,
+      pathParamsAsTypes: false,
     },
   )
 
-  fs.writeFile(path.join(process.cwd(), 'types/swagger-api.ts'), output, (err) => {
-    console.log(err)
-  })
+  const outputFilePath = path.join(process.cwd(), SWAGGER_API_FILE)
+
+  fs.writeFile(
+    outputFilePath,
+    content,
+    (err) => {
+      err && console.log(err)
+
+      console.log(`${outputFilePath} generated.`)
+    })
 })()

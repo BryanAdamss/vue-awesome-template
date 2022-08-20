@@ -8,10 +8,11 @@ type HttpMethods = 'CONNECT' | 'DELETE' | 'GET' | 'HEAD' | 'OPTIONS' | 'PATCH' |
 /* 自定义参数 */
 export interface CustomOpts {
   singleton: boolean
+  baseUrl: string
   onBeforeSendReq: (opts: Opts) => Opts
   onSendReqError: (err: unknown) => unknown
   onReciveRespSucc(resp: Response): unknown
-  onReciveRespSucc<RetType>(resp: Promise<RetType>): RetType
+  onReciveRespSucc<Ret>(resp: Promise<Ret>): Ret
   onReciveRespError: (err: unknown) => unknown
   transformData: (data: unknown) => BodyInit | null | undefined
 }
@@ -22,6 +23,7 @@ type Opts = CustomOpts & RequestInit
 /* 默认参数 */
 const defaultOpts: CustomOpts = {
   singleton: false,
+  baseUrl: '',
   onBeforeSendReq: opts => opts, /* 默认拦截器原样返回 */
   onSendReqError: err => err,
   onReciveRespSucc: (resp: unknown) => resp, /* 默认拦截器原样返回 */
@@ -87,7 +89,7 @@ export class FetchWrapper {
    * @memberof FetchWrapper
    */
   create(method: HttpMethods = 'GET') {
-    return async (url: string, data?: object | number | string | boolean | null, init?: Partial<Opts>) => {
+    return async <Param, Ret>(url: string, data?: Param, init?: Partial<Opts>): Promise<Ret | unknown> => {
       /* 此处可在某个请求发送时， 改变对应参数配置 */
       /* opts覆盖优先级，单个请求init > this.globalOpts > defaultOpts，前者覆盖后者 */
       let finalOpts = Object.assign({}, this.globalOpts, init)

@@ -10,10 +10,10 @@ export interface CustomOpts {
   singleton: boolean
   baseUrl: string
   onBeforeSendReq: (opts: Opts) => Opts
-  onSendReqError: (err: unknown) => unknown
-  onReciveRespSucc(resp: Response): unknown
-  onReciveRespSucc<Ret>(resp: Promise<Ret>): Ret
-  onReciveRespError: (err: unknown) => unknown
+  onSendReqError: (err: unknown) => any
+  onReciveRespSucc(resp: any): any
+  onReciveRespSucc<Ret>(resp: Promise<Ret>): any
+  onReciveRespError: (err: unknown) => any
   transformData: (data: unknown) => BodyInit | null | undefined
 }
 
@@ -26,7 +26,7 @@ const defaultOpts: CustomOpts = {
   baseUrl: '',
   onBeforeSendReq: opts => opts, /* 默认拦截器原样返回 */
   onSendReqError: err => err,
-  onReciveRespSucc: (resp: unknown) => resp, /* 默认拦截器原样返回 */
+  onReciveRespSucc: (resp: any) => resp, /* 默认拦截器原样返回 */
   onReciveRespError: err => err,
   transformData: data => JSON.stringify(data), /* 默认使用JSON序列化 */
 }
@@ -84,15 +84,17 @@ export class FetchWrapper {
   /**
    * 创建请求实例
    *
-   * @date 2022-08-15 20:15:00
-   * @return {*}  (input: RequestInfo | URL, init?: Opts) => Promise<unknown>
+   * @date 2022-08-23 14:24:08
+   * @param {HttpMethods} [method='GET']
+   * @return {*}  <Param, Ret>(url: string, data?: Param | undefined, init?: Partial<Opts>) => Promise<Ret>
    * @memberof FetchWrapper
    */
   create(method: HttpMethods = 'GET') {
-    return async <Param, Ret>(url: string, data?: Param, init?: Partial<Opts>): Promise<Ret | unknown> => {
+    return async <Param, Ret>(url: string, data?: Param, init?: Partial<Opts>): Promise<Ret> => {
       /* 此处可在某个请求发送时， 改变对应参数配置 */
       /* opts覆盖优先级，单个请求init > this.globalOpts > defaultOpts，前者覆盖后者 */
       let finalOpts = Object.assign({}, this.globalOpts, init)
+      let finalUrl = url
 
       try {
         /* 可在此时对最终的opts做调整 */
@@ -100,10 +102,23 @@ export class FetchWrapper {
         const onBeforeSendReqQueue = [this.globalOpts.onBeforeSendReq, init?.onBeforeSendReq]
         finalOpts = onBeforeSendReqQueue.reduce((acc, cur) => cur ? cur(acc) : acc, finalOpts)
 
+        const m = init?.method ?? method
         /* 修改method */
-        finalOpts.method = init?.method ?? method
+        finalOpts.method = m
         /* 转换data */
-        finalOpts.body = finalOpts.transformData(data)
+        if (m === 'GET') {
+          const query = data
+            ? Object.entries(data)
+              .reduce((acc, [k, v]) => acc.concat(`${k}=${v}`), [] as string[])
+              .join('&')
+            : ''
+
+          finalUrl = query ? `${finalOpts.baseUrl}${url}?${query}` : `${finalOpts.baseUrl}${url}`
+          finalOpts.body = null
+        }
+        else {
+          finalOpts.body = finalOpts.transformData(data)
+        }
       }
       catch (error) {
         return finalOpts.onSendReqError(error)
@@ -111,7 +126,7 @@ export class FetchWrapper {
 
       let resp = null
       try {
-        resp = await fetch(url, finalOpts)
+        resp = await fetch(finalUrl, finalOpts)
 
         if (!this.isHttpStatusOK(resp.status))
           throw new Error(`HttpStatusError cause by ${resp.status}`)

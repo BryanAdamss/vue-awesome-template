@@ -8,6 +8,8 @@ import { FetchWrapper } from '@/plugins/fetch-wrapper'
 /* 创建FetchWrapper实例（单例） */
 export const fetchWrapper = new FetchWrapper({
   singleton: true,
+  /* 测试地址 */
+  baseUrl: 'https://petstore.swagger.io/v2',
   transformData: (data) => {
     return JSON.stringify({
       base: {

@@ -1,6 +1,6 @@
 /**
  * @author GuangHui
- * @description fetch封装
+ * @description fetch封装（弃用，使用openapi-typescript-fetch）
  */
 
 type HttpMethods = 'CONNECT' | 'DELETE' | 'GET' | 'HEAD' | 'OPTIONS' | 'PATCH' | 'POST' | 'PUT' | 'TRACE'

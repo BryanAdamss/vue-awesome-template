@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * * OTFetch
+ * * SwgApiRequest
  */
 
 const { status, data: pets } = await findPetsByStatus({
@@ -10,7 +10,7 @@ console.log('🚦 -> file: App.vue -> line 27 -> status, data', status, pets)
 </script>
 
 <template>
-  <div class="c-OTFetch">
+  <div class="c-SwgApiRequest">
     {{ status }}
     <hr>
     {{ pets }}

@@ -1,6 +1,6 @@
 /**
  * @author GuangHui
- * @description FetchWrapper实例
+ * @description FetchWrapper实例（弃用，使用otfetch-instance.ts）
  */
 
 import { FetchWrapper } from '@/plugins/fetch-wrapper'

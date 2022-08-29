@@ -5,4 +5,7 @@
 
 export const SWAGGER_API_FILE = 'src/services/api/swagger-api.ts'
 
-export const SWAGGER_REQUEST_OUTPUT_FILE = 'src/services/request/swagger-api-request.ts'
+export const INPUT_FILES = 'src/services/api/*.ts'
+
+export const OUTPUT_DIR = 'src/services/request'
+

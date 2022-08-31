@@ -3,15 +3,13 @@
  * * CustomApiRequest
  */
 
-import type { FetchReturnType } from 'openapi-typescript-fetch'
-
-const data = reactive({ p: [] } as { p: FetchReturnType<typeof findPetsByStatusCustom> })
+const status = reactive({ resp: {} } as { resp: findPetsByStatusCustomRet })
 
 const handleClick = async () => {
-  const { data: pets } = await findPetsByStatusCustom({
-    status: ['pending'],
+  const res = await findPetsByStatusCustom({
+    status: ['available'],
   })
-  data.p = pets
+  status.resp = res.data
 }
 </script>
 
@@ -21,6 +19,6 @@ const handleClick = async () => {
       getPetByStatus use CustomApiRequest
     </div>
     <hr>
-    {{ data }}
+    {{ status }}
   </div>
 </template>

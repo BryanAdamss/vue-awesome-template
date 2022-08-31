@@ -44,7 +44,7 @@ dependencies:
   eventemitter3: registry.npmmirror.com/eventemitter3/4.0.7
   openapi-typescript-fetch: registry.npmmirror.com/openapi-typescript-fetch/1.1.3
   pinia: registry.npmmirror.com/pinia/2.0.14_j6bzmzd4ujpabbp5objtwxyjp4
-  tailwindcss: registry.npmmirror.com/tailwindcss/3.1.8_ts-node@10.9.1
+  tailwindcss: registry.npmmirror.com/tailwindcss/3.1.8_pe6iykxod2v7i2uk6okjazxzki
   vue: registry.npmmirror.com/vue/3.2.37
   vue-router: registry.npmmirror.com/vue-router/4.1.1_vue@3.2.37
 
@@ -5439,13 +5439,15 @@ packages:
     version: 3.2.4
     dev: true
 
-  registry.npmmirror.com/tailwindcss/3.1.8_ts-node@10.9.1:
+  registry.npmmirror.com/tailwindcss/3.1.8_pe6iykxod2v7i2uk6okjazxzki:
     resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tailwindcss/-/tailwindcss-3.1.8.tgz}
     id: registry.npmmirror.com/tailwindcss/3.1.8
     name: tailwindcss
     version: 3.1.8
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: registry.npmmirror.com/arg/5.0.2
       chokidar: registry.npmmirror.com/chokidar/3.5.3

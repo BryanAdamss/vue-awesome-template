@@ -14,9 +14,9 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "lint:raw": "eslint --print-config .eslintrc.js > eslintrc-raw.json",
-    "fetch-swg-def": "node .swagger-ts/index.mjs",
+    "fetch-def": "node .swagger-ts/index.mjs",
     "gen-req": "node .swagger-ts/gen-request.mjs",
-    "swg2ts": "pnpm fetch-swg-def && pnpm gen-req"
+    "swg2ts": "pnpm fetch-def && pnpm gen-req"
   },
   "dependencies": {
     "eventemitter3": "^4.0.7",

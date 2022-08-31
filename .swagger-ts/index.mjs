@@ -9,7 +9,7 @@ import path from 'path'
 
 import openapiTS from 'openapi-typescript'
 
-import { SWAGGER_API_FILE } from './const.mjs';
+import { SWAGGER_API_FILE_PATH } from './const.mjs';
 
 (async function () {
   const content = await openapiTS(
@@ -22,7 +22,7 @@ import { SWAGGER_API_FILE } from './const.mjs';
     },
   )
 
-  const outputFilePath = path.join(process.cwd(), SWAGGER_API_FILE)
+  const outputFilePath = path.join(process.cwd(), SWAGGER_API_FILE_PATH)
 
   fs.writeFile(
     outputFilePath,

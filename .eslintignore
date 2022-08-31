@@ -4,3 +4,7 @@
 # 参考https://eslint.org/docs/latest/user-guide/configuring/ignoring-code#the-eslintignore-file
 !.vite-config
 !.swagger-ts
+
+
+# 让eslint检查声明文件
+!*.d.ts

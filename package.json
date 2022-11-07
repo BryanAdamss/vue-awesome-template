@@ -16,7 +16,8 @@
     "lint:raw": "eslint --print-config .eslintrc.js > eslintrc-raw.json",
     "fetch-def": "node .swagger-ts/index.mjs",
     "gen-req": "node .swagger-ts/gen-request.mjs",
-    "swg2ts": "pnpm fetch-def && pnpm gen-req"
+    "swg2ts": "pnpm fetch-def && pnpm gen-req",
+    "check-env": "echo check node and package manager successfully"
   },
   "dependencies": {
     "eventemitter3": "^4.0.7",

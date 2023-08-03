@@ -24,5 +24,12 @@
 
   "css.validate": false,
   "less.validate": false,
-  "scss.validate": false
+  "scss.validate": false,
+
+  /** Unnecessary emmet.includeLanguages.vue */
+  /** https://github.com/vuejs/language-tools/blob/master/packages/vscode-vue/src/features/doctor.ts#L200 */
+  "emmet.includeLanguages.vue": null,
+
+  /** volar 使用项目中的 ts 版本 */
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
